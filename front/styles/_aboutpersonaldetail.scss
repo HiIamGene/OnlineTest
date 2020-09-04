@@ -1,0 +1,73 @@
+//////////////////////from personal detail////////////////////////////////////////
+.personald-containerPersonalDetail {
+    display : flex;
+    justify-content : space-between;
+    font-size:12.8px;
+}
+.personald-labelPersonalDetail{
+    padding : 0;
+    margin : 5px 0;
+    font-size: 12.8px;
+    font-family: Cloud Light;
+}
+.personald-valuePersonalDetail{
+    padding : 0;
+    margin : 5px 0;
+    font-size: 12.8px;
+}
+//////////////////////from avaliable date////////////////////////////////////////
+.a-personal-input-date{
+    display: flex;
+    margin-left:10px;
+}
+.a-personal-custom-date{
+    display:flex;
+    justify-content:space-between;
+}
+
+.a-personal-ready-from{
+    display:flex;
+}
+.a-personal-available-panel{
+    display:flex;
+    flex-direction: column;
+}
+.a-personal-available-panel > div > span {
+    margin-bottom : 1.5em;
+}
+.a-personal-available-header{
+       border-bottom : 1px solid rgb(180,180,180);
+       margin-bottom : 20px;
+       display: flex;
+       justify-content: space-between;
+}
+.a-personal-available-header > span{
+    display: flex;
+    color: #46A88D;
+    align-items: center;
+    align-self: flex-end;
+    font-size : 12.8px;
+    font-family: Cloud;
+
+}
+.a-personal-available-header > span> .dot {
+      height: 8px;
+      width: 8px;
+      background-color: #46A88D;
+      margin-right:4px;
+      border-radius: 50%;
+      display: inline-block;
+}
+.a-personal-headerRightSideAboutMainComponent{
+        color : rgb(103,103,103);
+        padding : 0px 0px;
+        margin-top : 20px;
+        font-size: 12.8px;
+        margin-bottom: 5px;
+    }
+@media (max-width:991px) and (min-width:767px){
+    .modal-dialog{
+        max-width:750px !important;
+    }
+}
+//////////////////////from add calendar////////////////////////////////////////

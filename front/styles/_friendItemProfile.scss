@@ -1,0 +1,118 @@
+.friend-item-profile {
+    .btn-add-friend:active{
+        transition: all .1s ease-in;
+        transform:scale(1) !important;
+
+    }
+
+    .btn-message-profile {
+        position: relative;
+        left: 5px;
+        width: 20px;
+        height: 15px;
+        filter: invert(100) brightness(100);
+    }
+
+    .btn-add-friend:focus{
+        box-shadow:none;
+        outline:none;
+    }
+
+    .btn-add-friend:hover{
+        transform:scale(1.05);
+    }
+    .btn-add-friend{
+        border-radius: 5px;
+        position: relative;
+        right: 5px;
+        background-color: #1F2546;
+        border: solid 2px #1F2546;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        color: #1F2546;
+        transition:all .2s ease-in;
+        align-items: center;
+    }
+    .mutual{
+        font-size: .7em;
+        color: #31A7D7;
+        padding-left: .5em;
+    }
+
+    .sm-profile>img{
+        width:15px;
+        min-height:15px;
+    }
+    .sm-profile{
+        width: 15px;
+        height: 15px;
+        overflow: hidden;
+        border-radius: 100%;
+        display: flex;
+    }
+
+    .mutual-friend{
+        display:flex;
+        align-items:center;
+        margin-top:.2em;
+        width:fit-content;
+    }
+    .detail>span{
+        font-family: "Cloud";
+        color: #05114f;
+        font-size: 12.8px;
+        width: fit-content;
+    }
+    .detail>span:hover,.mutual:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .detail>small{
+        color: #808080;
+        line-height: .9em;
+        width: fit-content;
+    }
+    .detail{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding-left: 1em;
+        width:100px;
+    }
+    .f-wrapper{
+        display:flex;
+        align-items:center;
+        border-bottom: solid 1px #d5d5d5;
+        padding-bottom: .5em;
+        margin-bottom: .3em;
+    }
+    .f-wrapper:last-child{
+        border-bottom: none;
+    }
+    .friend-profile{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        overflow: hidden;
+        transition: 0.5s;
+    }
+    .friend-profile:hover {
+        transform: scale(1.1);
+        transition: 0.5s;
+    }
+    .friend-profile>img{
+        margin-top:-3px;
+        margin-left:-3px;
+        min-width:50px;
+        min-height:50px;
+        width:50px;
+        border-radius:100%;
+    }
+    @media (max-width:1200px) and (min-width: 768px){
+        .detail{
+            flex-grow: 0.4;
+        }
+    }
+}

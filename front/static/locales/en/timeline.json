@@ -1,0 +1,114 @@
+{
+  "Suggest Friend": "Suggest Friend",
+  "Create Post": "Create Post",
+  "view_resume": "View your Resume",
+  "edit_update_profile" : "My resume",
+  "profile_strength" : "Profile Strength",
+  "see_more_about": "See more your About",
+  "see_more_anotherabout" :"See more ",
+  "see_more_anotherabout2": "'s About",
+  "license&certificate": "License & Training Certificate",
+  "education": "Education",
+  "skill": "Skill",
+  "about": "About",
+  "update": "UPDATE",
+  "friends": "Friends",
+  "events": "Events",
+  "MENU" : {
+    "timeline": "Timeline",
+    "about":"About",
+    "friend": "Friend",
+    "photo":"Photo",
+    "event": "Event",
+    "point":"Point"
+  },
+  "RECOMMEND": {
+    "recommend_for_u": "Recommended for you"
+  },
+  "BOX": {
+    "add_exp": "Add your Experience",
+    "add_skill": "Add your Skill",
+    "add_edu": "Add your Education",
+    "add_cert": "Add your License & Training Certificate"
+  },
+  "ABOUT": {
+    "live_in": "Live in",
+    "email": "Email"
+  },
+  "FRIENDS": {
+    "find_friend": "Find Friend",
+    "mutual_connection": " mutual connection.",
+    "Suggest": "Suggest"
+  },
+  "EVENTS": {
+    "create": "Create",
+    "see_more_events": "See more your Events"
+  },
+  "POSTS": {
+    "create_post": "Create Post",
+    "placeholder": "What's happening",
+    "likes": "Likes",
+    "like": "Like",
+    "comments" : "Comments",
+    "comment" : "Comment",
+    "share": "Share",
+    "min": "min",
+    "write_comment": "Write a comment....",
+    "see_more_comment": "View previous comments"
+  },
+  "UPLOAD": {
+    "upload_your_profile": "Upload Your Image Profile",
+    "choose_photo": "Choose a Photo",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "RESEND_EMAIL":{
+    "confirm_your_email": "Please check your email \"{{email}}\" then click link to confirm",
+    "resend": "Resend",
+    "toast_msg": "Resend confirm to {{email}}"
+  },
+  "NAVBAR": {
+    "home": "Home",
+    "logout": "Logout"
+  },
+  "POST_MENU":{
+    "Edit Post" : "Edit Post",
+    "Delete Post" : "Delete Post",
+    "Privacy" : "Privacy",
+    "Report" : "Report",
+    "DETAIL" : {
+      "DELETE POST CONFIRM":"Are you sure to delete this post?"
+    }
+  },
+  "NEARBY_MENU":{
+    "Near Me" : "Near Me",
+    "Discover More" : "Discover More"
+  },
+  "OPTION": {
+    "confirm text": "Are you sure to Discard ?",
+    "cancel": "Cancel"
+  },
+  "REPORT": {
+    "reason report": "Report",
+    "reason header": "Reason",
+    "reason name": {
+      "nudity": "Nudity",
+      "violence": "Violence",
+      "harrasment": "Harrasment",
+      "spam": "Spam",
+      "hate speech": "Hate speech",
+      "terrorism": "Terrorism",
+      "false news": "False news"
+    },
+    "report failed": "This post has been reported.",
+    "report succeeded": "Report suceeded.",
+    "report not select": "Please select a reason to report.",
+    "report confirm": "Done"
+  },
+  "PRIVACY": {
+    "change privacy": "Change privacy to",
+    "change": "Change",
+    "public": "Public",
+    "friend only": "Friend Only"
+  }
+}

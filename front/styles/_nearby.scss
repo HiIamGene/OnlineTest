@@ -1,0 +1,125 @@
+.btn-find-friend{
+    transition: all .2s ease-in-out;
+    font-family: "Cloud";
+    color: #31a7d7;
+    cursor: pointer;
+    line-height: 1.2;
+    font-size: 12.8px;
+}
+
+.btn-find-friend:hover{
+    transform: scale(1.02);
+}
+.find-friends-btn{
+    width: 100%;
+    border: none;
+    background: none;
+    padding-top: 6px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    font-family: "cloud";
+    color: #31a7d7;
+}
+.find-friends-btn:focus{
+    outline: none;
+}
+.find-friends-btn:active{
+    color:#00235b;
+}
+.center-div{
+    max-height: 330px;
+    overflow-y: scroll;
+    // top: 50%;
+    // left: 50%;
+    z-index: 10;
+}
+.center-div> div {
+    margin-top: -20px;
+}
+.nearby-list-header{
+    width: 50%;
+    height: 40%;
+    max-height: 500px;
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    border: none;
+}
+.center-div::-webkit-scrollbar{
+    width: 10px;
+}
+.center-div::-webkit-scrollbar-thumb{
+    background: #31a7d7;
+    border-radius: 10px; 
+}
+.center-div::-webkit-scrollbar-thumb:hover{
+    background: #1c0083;
+}
+.center-div::-webkit-scrollbar-track{
+    border-radius: 10px;
+    background: #CDCDCD;
+}
+.btn-close-find-friends{
+    cursor: pointer;
+    font-family: "cloud";
+    color:#1c0083;
+    transition: all 0.1s ease-out;
+}
+.btn-close-find-friends:hover{
+    transform: scale(1.2);
+}
+.btn-close-find-friends:active{
+    transform: scale(0.8);
+}
+.grey-onclick-element.show.near{
+    z-index: 9;
+}
+.grey-onclick-element.near{
+    z-index: 9;
+}
+.btn-chat{
+    border:none;
+    background-color: #000644;
+    border-radius: 3px; 
+    margin-right: .2em;
+}
+.btn-chat:focus{
+    outline: none;
+}
+.btn-chat:active{
+    background-color: #000429;
+}
+.nearby-icon{
+    width: 1em;
+    margin: 3px;
+}
+.btn-add-friend-feed{
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-family: "cloud";
+    font-size: 12px;
+    padding-top: .34em;
+    padding-bottom: .32em;
+    border-radius: 3px; 
+    border:none;
+    background-color: #C7C7C7;
+}
+.btn-add-friend-feed:focus{
+    outline: none;
+}
+.btn-add-friend-feed:active{
+    background-color: #7D7D7D;
+}
+.nearby-icon.grey{
+    filter: grayscale(100%) invert(100%);
+}
+.nearby-button-container{
+    margin-left: 60px;
+}
+.information-nearby>small{
+    margin: 20px 0;
+}

@@ -1,0 +1,111 @@
+.btn-search{
+    background-color: white !important;
+    color: #dedede !important;
+    border: solid 1px #dedede !important;
+    border-left: none !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+  }
+
+  .btn-search:hover{
+    color: #f30d0d !important;
+  }
+
+  .btn-search:focus{
+    outline: none !important;
+    box-shadow:none !important;
+  }
+
+
+  .input-search{
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    z-index: 2;
+  }
+
+  .input-search:focus{
+    border-color: #dedede !important;
+    border-right: none !important;
+    box-shadow: none !important;
+  }
+
+  .mini-img-profile{
+    width:40px;
+    border: solid 2px  #fff;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+
+  .nav-icon{
+    font-size: x-large;
+    margin-right: .05em;
+    margin-left: .05em;
+  }
+  .show-cfm-email{
+    top:44px !important;
+}
+
+    .nav-item{
+        display: flex !important;
+        align-items: center !important;
+        cursor:pointer;
+    }
+
+    .warp-navbar{
+        background-color: #171e4a !important;
+        position:fixed !important;
+        top:0 !important;
+        width:100% !important;
+        z-index:1000;
+    }
+    .search-box-list{
+      visibility: visible;
+      z-index: 3;
+      width: 500px;
+      height: fit-content;
+      background-color: white;
+      position: absolute;
+      margin-top: 31px;
+      border-radius: 10px;
+      padding: 1em;
+    }
+    .search-box-list.hide{
+      visibility: hidden;
+    }
+    .search-name{
+      margin-left: 15px;
+      display: inline;
+      font-size: 12.8px;
+    }
+    .search-box-container{
+      margin-bottom :10px;
+    }
+    .search-box-container:last-child{
+      margin-bottom :0px;
+    }
+    .zero-opacity-box{
+      visibility: visible;
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: aquamarine;
+      z-index: 1;
+    }
+    .zero-opacity-box.hide{
+      visibility: hidden;
+    }
+    .search-list-footer{
+      width:100%;
+      border-top: 1px solid #aaaaaa; 
+      padding-top: 1em;
+    }
+    .search-list-footer-text{
+      margin: 0;
+      font-family: "cloud";
+      color: #31a7d7;
+    }

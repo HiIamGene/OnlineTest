@@ -1,0 +1,14 @@
+{
+    "certificateNameTraining" : "ชื่อใบประกาศนียบัตร",
+    "certificateNumberTraining" : "หมายเลขประกาศนียบัตร",
+    "IssueAuthorityTraining" : "สถานที่ออก",
+    "addMoreYourCertificate" : "เพิ่มใบประกาศนียบัตร",
+    "issueDateTraining" : "วันที่ออกบัตร",
+    "expiryDateTraining" : "วันหมดอายุ",
+    "cancelButtonTraining" : "ยกเลิก",
+    "saveButtonTraining" : "บันทึก",
+    "createNewMasterTrainingEnglishName" : "ชื่อภาษาอังกฤษ",
+    "createNewMasterTrainingThaiName" : "ชื่อภาษาไทย",
+    "masterTypeTraining" : "ชนิด",
+    "errorTrainingDate" : "วันที่ไม่ถูกต้อง"
+}

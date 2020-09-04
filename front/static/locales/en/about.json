@@ -1,0 +1,18 @@
+{
+    "personalDetail" : "Personal detail",
+    "identityDocument" : "Identity document",
+    "experience" : "Experience",
+    "education" : "Education",
+    "license" : "Your License",   
+    "training" : "Training certificate",
+    "skill" : "Skill",
+    "health" : "Heath certificate",
+    "dp" : "DP qualification",
+    "setting" : "Setting",
+    "totalSkill" : "Skills",
+    "totalCertificate"  :"Cer.",
+    "totalLocation" : "Locations.",
+    "competency" : "Certificate of competency",
+    "proficiency" : "Certificate of proficiency",
+    "loading" : "Please wait..."
+}
