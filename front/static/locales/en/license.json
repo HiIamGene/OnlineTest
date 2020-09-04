@@ -1,0 +1,15 @@
+{
+    "addMoreLicenseButton" : "Add More Your License",
+    "licenseName" : "License",
+    "levelLicense" : "Level",
+    "certificateNumber" : "Certificate Number",
+    "issueDateLicense" : "Issue Date",
+    "expiryDateLicense" : "Expiry Date",
+    "limitationLicense" : "Limitation",
+    "cancelButtonLicense" : "Cancel",
+    "saveButtonLicense" : "Save",
+    "createNewMasterLicenseEnglishName" : "English Name",
+    "createNewMasterLicenseThaiName" : "Thai Name",
+    "masterTypeLicense" : "Type",
+    "errorLicenseDate" : "Invalid Date"
+} 

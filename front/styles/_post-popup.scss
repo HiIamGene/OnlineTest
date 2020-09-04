@@ -1,0 +1,181 @@
+.post-popup-main {
+    // position: fixed;
+    // background: white;
+    // width: 80%;
+    // height: auto;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // display: flex;
+    // justify-content: space-between;
+    // z-index: 20;
+    .image-slide-main {
+        display: relative;
+        width: 65%;
+        // background-color: #000;
+        max-width: 70vh;
+        .current-image-slide {
+            position: relative;
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            .prev-image-left {
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                color: #fff;
+                font-size: 30px;
+                text-shadow: 2px 2px 8px #000;
+                cursor: pointer;
+            }
+            .prev-image-right {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                color: #fff;
+                font-size: 30px;
+                text-shadow: 2px 2px 8px #000;
+                cursor: pointer;
+            }
+            .current-image-show {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
+    // .youtube-preview-video {
+    //     width: 250%;
+    // }
+    // .post-detail {
+    //     color: #0e143b;
+    //     .popup-header {
+    // display: flex;
+    // padding: 1em 1em 0.5em 1em;
+    // .popup-wrapper-profile {
+    //     width: 50px;
+    //     height: 50px;
+    //     margin-right: 1.2em;
+    //     overflow: hidden;
+    //     border-radius: 100%;
+    //     img {
+    //         width: 50px;
+    //     }
+    // }
+    // .popup-wrapper-detail {
+    //     .popup-name-text {
+    //         font-family: "Cloud", sans-serif;
+    //         color: #0e143b;
+    //     }
+    //     .popup-name-text:hover {
+    //         text-decoration: underline;
+    //         cursor: pointer;
+    //     }
+    //     .popup-date {
+    //         color: #8b8b8b;
+    //     }
+    //     .popup-date:hover {
+    //         text-decoration: underline;
+    //         cursor: pointer;
+    //     }
+    // }
+    //     }
+    // }
+}
+.post-popup-click {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10;
+}
+
+.post-popup-modal {
+    min-width: 85%;
+    max-width: 85%;
+    max-height: 50vh;
+    min-height: 70vh;
+    .post-popup-modal-body {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .image-slide-main {
+            width: 65%;
+            min-height: 50vh;
+            max-height: 70vh;
+            position: relative;
+            background: #eee;
+            .current-image-show {
+                display: block;
+                max-width: 100%;
+                min-height: 50vh;
+                max-height: 70vh;
+                height: auto;
+                width: auto;
+                margin: auto;
+            }
+            .prev-image-left {
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #fff;
+                text-shadow: 2px 2px 5px #000;
+                cursor: pointer;
+            }
+            .prev-image-right {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #fff;
+                text-shadow: 2px 2px 5px #000;
+                cursor: pointer;
+            }
+        }
+        .detail-post-popup {
+            width: 35%;
+            height: 70vh;
+            overflow: auto;
+            .popup-header {
+                display: flex;
+                padding: 1em 1em 0.5em 1em;
+                position: relative;
+                .popup-wrapper-profile {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 1.2em;
+                    overflow: hidden;
+                    border-radius: 100%;
+                    img {
+                        width: 50px;
+                    }
+                }
+                .popup-wrapper-detail {
+                    .popup-name-text {
+                        font-family: "Cloud", sans-serif;
+                        color: #0e143b;
+                    }
+                    .popup-name-text:hover {
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                    .popup-date {
+                        color: #8b8b8b;
+                    }
+                    .popup-date:hover {
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+                .menu-container-post-popup {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+    }
+}

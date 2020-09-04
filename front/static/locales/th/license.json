@@ -1,0 +1,15 @@
+{
+    "addMoreLicenseButton" : "เพิ่มใบอนุญาติ",
+    "licenseName" : "ชื่อใบอนุญาติ",
+    "levelLicense" : "ระดับ",
+    "certificateNumber" : "หมายเลขใบอนุญาติ",
+    "issueDateLicense" : "วันที่ออกบัตร",
+    "expiryDateLicense" : "วันที่หมดอายุ",
+    "limitationLicense" : "ข้อจำกัด",
+    "cancelButtonLicense" : "ยกเลิก",
+    "saveButtonLicense" : "บันทึก",
+    "createNewMasterLicenseEnglishName" : "ชื่อภาษาอังกฤษ",
+    "createNewMasterLicenseThaiName" : "ชื่อภาษาไทย",
+    "masterTypeLicense" : "ชนิด",
+    "errorLicenseDate" : "วันที่ไม่ถูกต้อง"
+} 

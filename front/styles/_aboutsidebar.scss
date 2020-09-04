@@ -1,0 +1,91 @@
+.about-sidebar-position {
+    margin : 0;
+    padding : 0;
+}
+.about-sidebar-container{
+    border-bottom : 2px solid #ffffff;
+    color: #AFAFAF !important;
+    border-spacing: 0;
+    display : flex;
+    font-family: Cloud Light;
+    position : relative;
+    flex: auto;
+    align-content : stretch;
+   
+    padding : 15px 50px 15px 50px;
+    justify-content : space-between;
+    align-items  : center;
+    box-sizing:border-box;
+    cursor : pointer !important;
+    padding-bottom: 5px;
+    transition :  all .3s;
+    &:default{
+        color: #0F143A !important;
+        font-family: cloud;
+        font-weight: bold;
+        border-bottom: 2px solid #0F143A
+    }
+}
+.about-sidebar-container:active{
+    border-bottom : 2px solid #0F143A !important;
+    color: #0F143A !important;
+    font-weight: bold !important;
+    font-family: Cloud !important;
+}
+.about-sidebar-container:focus{
+    border-bottom : 2px solid #0F143A !important;
+    color: #0F143A !important;
+    font-weight: bold !important;
+    font-family: Cloud !important;
+}
+.about-sidebar-container:hover{
+    border-bottom : 2px solid #ffffff;
+    padding-bottom: 5px;
+    &:active{
+        border-bottom : 2px solid #0f143a;
+    }
+    transition : height .1s,  border-bottom .1s , padding-bottom 0.1s;
+    &:default{
+        border-bottom: 2px solid #0F143A;
+    }
+}
+.about-sidebar-container:hover > .about-sidebar-icon{
+    color  : red;
+}
+.about-sidebar-container:hover > .about-sidebar-container-title > .about-sidebar-title {
+    transition : color .2s;
+    font-weight: bold;
+    color: #212121;
+}
+
+.about-sidebar-container-icon{
+    position : absolute;
+    left : 20px;
+    top: .7em;
+    color: #AFAFAF !important;
+    &:default{
+        color: #0F143A !important;
+    }
+}
+.about-sidebar-current-data{
+   color : #C46367;
+   font-family: "Cloud";
+   font-size: .8em;
+   &:default{
+       color: #0F143A !important;
+   }
+}
+.about-sidebar-title{
+    font-size : 12.8px;
+    transition : color .2s;
+    width:20vw;
+    color : #636363;
+    &:default{
+        color: #0F143A !important;
+    }
+}
+@media screen and (max-width: 600px) {
+    .about-sidebar-title{
+        width:150px;
+    }
+}

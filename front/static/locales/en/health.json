@@ -1,0 +1,12 @@
+{
+    "medicalNumberHealth" : "Medical Number",
+    "issueByHealth" : "Issue By",
+    "issueDateHealth" : "Issue Date",
+    "expiryDateHealth" : "Expiry Date",
+    "editYourHealthButton" : "Edit More Health Certificate",
+    "addYourHealthButton" : "Add More Health Certificate",
+    "saveButtonHealth" : "Save",
+    "cancelButtonHealth" : "Cancel",
+    "deleteButtonHealth" : "Delete",
+    "errorHealthDate" : "Invalid Date"
+}

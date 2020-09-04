@@ -1,0 +1,12 @@
+{
+    "medicalNumberHealth" : "หมายใบรับรอง",
+    "issueByHealth" : "ออกโดย",
+    "issueDateHealth" : "วันที่ออก",
+    "expiryDateHealth" : "วันหมดอายุ",
+    "editYourHealthButton" : "แก้ไขใบรับรอง",
+    "addYourHealthButton" : "เพิ่มใบรับรอง",
+    "saveButtonHealth" : "บันทึก",
+    "cancelButtonHealth" : "ยกเลิก",
+    "deleteButtonHealth" : "ลบ",
+    "errorHealthDate" : "วันที่ผิดพลาด"
+}

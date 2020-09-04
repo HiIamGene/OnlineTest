@@ -1,0 +1,14 @@
+{
+    "certificateNameTraining" : "Certificate Name",
+    "certificateNumberTraining" : "Certificate Number",
+    "IssueAuthorityTraining" : "Issue Authority",
+    "addMoreYourCertificate" : "Add More Your Certificate",
+    "issueDateTraining" : "Issue Date",
+    "expiryDateTraining" : "Expiry Date",
+    "cancelButtonTraining" : "Cancel",
+    "saveButtonTraining" : "Save",
+    "createNewMasterTrainingEnglishName" : "English Name",
+    "createNewMasterTrainingThaiName" : "Thai Name",
+    "masterTypeTraining" : "Type",
+    "errorTrainingDate" : "Invalid Date"
+}

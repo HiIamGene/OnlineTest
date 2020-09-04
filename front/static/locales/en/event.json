@@ -1,0 +1,80 @@
+{
+  "MENU": {
+    "timeline": "Timeline",
+    "about": "About",
+    "friends": "Friends",
+    "photo": "Photo",
+    "event": "Event",
+    "point": "Point",
+    "my_event": "My Events",
+    "bookmark": "See Your Bookmarks"
+  },
+
+  "EVENTS": {
+    "no": " No event at now, try update about yourself"
+  },
+
+  "CONTAINER" : {
+    "edit": "Edit",
+    "delete" : "Delete",
+    "report" : "Report"
+  },
+
+  "CREATE": {
+    "create": "Create Event",
+    "upload": "Uploading . . .",
+    "Status" : "You don't have any event now",
+    "placeholder" : "Create upcoming event",
+    "privacy" : "Privacy",
+    "name" : "Name",
+    "name_descript" : "Add short, clear Name",
+    "location" : "Location",
+    "location_descript" : "Search a place",
+    "description" : "Description",
+    "description_descript" : "Tell people more about Event",
+    "start_date" : "Start Date",
+    "end_date" : "End Date",
+    "invite_friend" : "Invite Friend",
+    "guest_join" : "Guest can invite friend",
+    "people_join" : "People can request to join",
+    "share" : "Share",
+    "cancle" : "Cancle"
+  },
+
+  "PRIVACY" : {
+    "public" : "Public",
+    "private" : "Private"
+  },
+
+  "INVITE":{
+    "Invitation_event": "Invitation Event",
+    "invite_descript" : "Search Friend",
+    "not_found" : "Not Found",
+    "input" : "Input some letter",
+    "loading" : "Loading . . .",
+    "no": "No invitation at now, try update about yourself",
+    "invite" : "Invite",
+    "invited" : "Invited",
+    "invite_friend" : "Invite Friend"
+  },
+
+  "NavEvent":{
+    "title": "Events"
+  },
+
+  "RELATIVE": {
+    "title": "Public event you may interested",
+    "title2": "Relate Event"
+  },
+
+  "FRIEND" : {
+    "title" : "Friend Request",
+    "no" : "No request at now . . . "
+  },
+
+  "MEMBER" : {
+    "title" : "Guest",
+    "connect": "Connected",
+    "other" : "Other"
+  }
+}
