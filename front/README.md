@@ -1,157 +1,98 @@
-# Crewhitz Client Web
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## How to setup
+## Available Scripts
 
-### 1. Copy .env.example and rename to .env
+In the project directory, you can run:
 
-```bash
-ENV=
-```
-The environment of running project
-* development
-* production
+### `npm start`
 
-```bash
-API_DOMAIN_NAME=
-```
-The Domain name
-* Development: https://api-dev.crewhitz.com
-* Production: https://api.crewhitz.com
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```bash
-API_USER=
-```
-The API User Service
-* Development: https://api-dev.crewhitz.com/user
-* Production: https://api.crewhitz.com/user
-----
-The documentation
-* Development: https://api-dev.crewhitz.com/user/documentation
-* Production: https://api.crewhitz.com/user/documentation
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-```bash
-API_MASTER=
-```
-The API master Service
-* Development: https://api-dev.crewhitz.com/master
-* Production: https://api.crewhitz.com/master
-----
-The documentation
-* Development: https://api-dev.crewhitz.com/master/documentation
-* Production: https://api.crewhitz.com/master/documentation
+### `npm test`
 
-```bash
-API_SERVICE=
-```
-The API service Service
-* Development: https://api-dev.crewhitz.com/service
-* Production: https://api.crewhitz.com/service
-----
-The documentation
-* Development: https://api-dev.crewhitz.com/service/documentation
-* Production: https://api.crewhitz.com/service/documentation
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```bash
-API_MARKET=
-```
-The API market Service
-* Development: https://api-dev.crewhitz.com/market
-* Production: https://api.crewhitz.com/market
-----
-The documentation
-* Development: https://api-dev.crewhitz.com/market/documentation
-* Production: https://api.crewhitz.com/market/documentation
+### `npm run build`
 
-```bash
-API_WALLET=
-```
-The API wallet Service
-* Development: https://api-dev.crewhitz.com/wallet
-* Production: https://api.crewhitz.com/wallet
-----
-The documentation
-* Development: https://api-dev.crewhitz.com/wallet/documentation
-* Production: https://api.crewhitz.com/wallet/documentation
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```bash
-API_RECRUIT=
-```
-The API recruit Service
-* Development: https://api-dev.crewhitz.com/recruit
-* Production: https://api.crewhitz.com/recruit
-----
-The documentation
-* Development: https://api-dev.crewhitz.com/recruit/documentation
-* Production: https://api.crewhitz.com/recruit/documentation
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-```bash
-API_MESSAGE=
-```
-The API message Service
-* Development: https://api-dev.crewhitz.com/message
-* Production: https://api.crewhitz.com/message
-----
-The documentation
-* Development: https://api-dev.crewhitz.com/message/documentation
-* Production: https://api.crewhitz.com/message/documentation
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```bash
-API_FEED=
-```
-The API feed Service
-* Development: https://api-dev.crewhitz.com/feed
-* Production: https://api.crewhitz.com/feed
-----
-The documentation
-* Development: https://api-dev.crewhitz.com/feed/documentation
-* Production: https://api.crewhitz.com/feed/documentation
+### `npm run eject`
 
-```bash
-SOCKET_MESSAGE=
-```
-The socket endpoint for message
-* Development: https://api-message-dev.crewhitz.com
-* Production: https://api-message.crewhitz.com
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-```bash
-SOCKET_FEED=
-```
-The socket endpoint for feed
-* Development: https://api-feed-dev.crewhitz.com
-* Production: https://api-feed.crewhitz.com
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-```bash
-SOCKET_USER=
-```
-The socket endpoint for user
-* Development: https://api-user-dev.crewhitz.com
-* Production: https://api-user.crewhitz.com
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-```bash
-SOCKET_SERVICE=
-```
-The socket endpoint for service
-* Development: https://api-service-dev.crewhitz.com
-* Production: https://api-service.crewhitz.com
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## How to run
+## Learn More
 
-Install it and run:
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Eikon Advertiser Website
+### Install dependencies
 ```bash
 npm install
-npm run dev
-# or
-yarn
-yarn dev
 ```
-
-Run production build with:
-
+### Make a copy of src/constants/env.example and rename to src/constants/env.jsx
 ```bash
-npm run build
-npm run start
-# or
-yarn build
-yarn start
+cp src/constants/env.example src/constants/env.jsx
 ```
+### Set environment variables in src/constants/env.jsx
+- Development
+```javascript
+export default {
+    BASE_URL: 'https://api-dev.eikon.asia'
+}
+```
+- Production
+```javascript
+export default {
+    BASE_URL: 'https://api.eikon.asia'
+}
+```
+
+### Start project
+```bash
+npm start
+```
+
+
+test
