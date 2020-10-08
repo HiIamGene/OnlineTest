@@ -1,40 +1,39 @@
-image: node:11.6.0
+image: node:10.16.0
 
 cache:
   key: node_modules
   paths:
-    - node_modules
+  - node_modules
 
 before_script:
-  - apt-get update -qq && apt-get install -y -qq sshpass
+- apt-get update -qq && apt-get install -y -qq sshpass
 
 stages:
-  - build
-  - deploy
+- build
+- deploy
 
 build:
   stage: build
   script:
-    - npm install
-    - npm run build
+  - cp src/constants/env.example src/constants/env.jsx
+  - npm install
+  - npm run build
   artifacts:
     paths:
-      - node_modules
+    - node_modules
 
 deploy_development:
   stage: deploy
   only:
-    - master
+  - master
   script:
-    - export SSHPASS=$DEV_PASS
-    - sshpass -e ssh -o "StrictHostKeyChecking=no" $DEV_HOST "cd $DEV_PATH && git checkout . && git pull"
-    - sshpass -e ssh -o "StrictHostKeyChecking=no" $DEV_HOST "cd $DOCKER_PATH && docker-compose up -d --build $DEV_NAME"
+  - export SSHPASS=$DEV_SSH_PASSWORD
+  - sshpass -e ssh -o "StrictHostKeyChecking=no" $DEV_SSH_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && cd ~/eikon-advertiser-web && git checkout . && git pull && rm -rf package-lock.json && rm -rf dist && npm cache clean --force && npm install && npm run build && pm2 restart advertiser-dev'
 
 deploy_production:
   stage: deploy
   only:
-    - production
+  - production
   script:
-    - export SSHPASS=$PROD_PASS
-    - sshpass -e ssh -o "StrictHostKeyChecking=no" $PROD_HOST "cd $PROD_PATH && git checkout . && git pull"
-    - sshpass -e ssh -o "StrictHostKeyChecking=no" $PROD_HOST "cd $DOCKER_PATH && docker-compose up -d --build $PROD_NAME"
+  - export SSHPASS=$PROD_SSH_PASSWORD
+  - sshpass -e ssh -o "StrictHostKeyChecking=no" $PROD_SSH_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && cd ~/eikon-advertiser-web && git checkout . && git pull && rm -rf package-lock.json && rm -rf dist && npm cache clean --force && npm install && npm run build && pm2 restart advertiser-prod'
