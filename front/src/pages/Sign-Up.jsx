@@ -137,6 +137,11 @@ function Homepage(props) {
                 <br />
 
                 <Title level="2" style={{}}>Create Account</Title>
+                <div>
+                  Take control of your advertising experience.<br />
+                  See how well your ads perform by having <br />
+                  the full access to performance data.
+          </div>
                 <br />
                 <br />
                 <Button type="primary" htmlType="submit" className="login-form-button" onClick={toggleEdit} style={{ background: 'rgb(41,128,174)', color: '#FFF', width: "35%", borderRadius: '15px' }}>
@@ -158,6 +163,11 @@ function Homepage(props) {
                 <br />
 
                 <Title level="2" >Welcome Back</Title>
+                <div>
+                  Take control of your advertising experience.<br />
+                  See how well your ads perform by having <br />
+                  the full access to performance data.
+          </div>
                 <br />
                 <br />
                 <Button onClick={toggleEdit} style={{ background: 'rgb(41,128,174)', color: '#FFF', width: "35%", borderRadius: '15px' }}>

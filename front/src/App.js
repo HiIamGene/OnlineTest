@@ -8,11 +8,13 @@ import RealTime from './pages/RealTime';
 import Payment from './pages/Payment';
 import Acquistion from './pages/Acquistion';
 import Homepage from './pages/Homepage';
+import Menu from './pages/Menu';
+
 
 function App() {
   return (
       <Router>
-        <Route exact path="/"component={Homepage} />
+        <Route exact path="/"component={Menu} />
         <Route exact path="/campaign" component={Campaign} />
         <Route exact path="/campaign/add" component={AddCampaign} />
         <Route path="/realtime" component={RealTime} />
