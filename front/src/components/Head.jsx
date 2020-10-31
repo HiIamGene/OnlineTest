@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { Avatar } from 'antd';
 import styled from 'styled-components';
 import { Layout, Menu, Typography } from 'antd';
-import nonti from '../assets/img/Group 20.png';
-import setting from '../assets/img/Group 21.png';
-import logout from '../assets/img/Group 23.png'
 import { NavLink } from 'react-router-dom';
+import { Row, Col, Button, Input, Form } from 'antd';
+import logout from  '../assets/img/logout.png';
 const { Text } = Typography;
 const MenuIcon = styled.img`
   width: 30px;
@@ -30,54 +29,26 @@ margin-top:10px;
 
 
 const { Header } = Layout;
-var firstname = 'John';
-var lastname = 'Doe';
-var tel = '02-123-1234';
 function Head() {
+  const [Username, setUsername] = useState("T.Somchai")
   return (
-
-    <ContainerHead style={{ background: '#fff', borderRadius: '18px', boxShadow: "0 3px 6px rgba(0, 0, 0, 0.15)" }}>
-      <Header className="header" style={{ background: '#fff', borderRadius: '18px', minHeight: 100 }}>
-
-        <div style={{ float: "left" }} >
-
-          <Avatar size={100} icon="user" style={{ width: 100, height: 100, borderRadius: 100 / 2 }} />
-
-        </div>
-        <ContainerName>
-          <Text strong style={{ fontSize: 30, top: "50px" }}>{firstname} {lastname} </Text>
-          <Text style={{ fontSize: 20 }}>{tel}  </Text>
-          <Menu
-            theme="light"
-            mode="horizontal"
-            //defaultSelectedKeys={['2']}
-            style={{ lineHeight: '100px', float: "right", fontSize: 20 }}
-
-          >
-            <Menu.Item key="1">
-              <MenuIcon src={nonti} />
-              Notification
-              </Menu.Item>
-            <Menu.Item key="2">
-              <MenuIcon src={setting} />
-              Settings
-              </Menu.Item>
-            <Menu.Item key="3">
-              <NavLink to="/">
-                <MenuIcon src={logout} />
-
-                Log Out
-                </NavLink>
-            </Menu.Item>
-
-          </Menu>
-
-        </ContainerName>
-
-
-
-      </Header>
-    </ContainerHead>
+    <div>
+      <Row>
+        <Col span={1} offset={2}>
+        < img src={logout} alt="Logo" style={{ width: 40 ,marginTop:60,marginLeft:30}} />
+        </Col>
+        <Col span={17} >
+  <div style={{ fontSize:30,marginTop:55}}>{Username}</div>
+        </Col>
+        <Col span={3}>              
+        <NavLink to="/">
+                <Button ype="primary" htmlType="submit" className="login-form-button" style={{marginTop:50, background: '#DEDEDE', color: '#FFFFFF', width: 200, height: 60 }} >
+                < img src={logout} alt="Logo" style={{ width: 40 ,marginTop:3}} />
+                <div style={{fontSize:30,float:'right',color:'black',fontWeight: "bold",marginBottom:20}}>Logout</div>
+                </Button>
+                </NavLink></Col>
+      </Row>
+    </div>
   );
 }
 

@@ -1,12 +1,9 @@
-import React   from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Layout, Menu } from 'antd';
-import logo from '../assets/img/eikon-logo.svg';
-import acquistion_logo from '../assets/img/acquistion.svg';
-import realtime_logo from '../assets/img/realtime.svg';
-import campaign_logo from '../assets/img/campaigns.svg';
-import payment_logo from '../assets/img/payment.svg'
+import Class from '../assets/icon/Class.png';
+import UserInfo from '../assets/icon/userInfo.png';
 
 const { Sider } = Layout;
 
@@ -15,67 +12,144 @@ width: 40px;
 height: 40px;
   padding: 5px;
 `
-
-const Branding = styled.img`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 16px 5px 5px 5px;
-`
-const center = styled.div`
-  margin: auto;
-  width: 50%;
-  padding: 10px;
+const Center = styled.div`
+  position: 'absolute', left: '50%', top: '50%',
+  transform: 'translate(-50%, -50%)'
+ 
   `
 
 function SideMenu(props) {
-  return (
-    <Sider
-      collapsedWidth="500"
-      theme="light"
-    >
-      <div style={{ height: 110 }}>
-       
-      </div>
-      <center>
-      <Menu mode="inline"  defaultSelectedKeys={[props.keyValue]}>
-        <Menu.Item key="1"style={{height: "85px"}} value="1" >
-          <NavLink to="/acquisition">
-            <MenuIcon src={acquistion_logo} style={{ height: "40px" }}  />
-            <br />
-            <span>Acquistion</span>
-          </NavLink>
-        </Menu.Item>
+  if (props.form === 1) {
+    return (
+      <Sider
+        collapsedWidth="500"
+        style={{ background: "#70C5FB" }}
+      >
+        <div style={{ height: 110 }}>
 
-        <Menu.Item key="2"style={{height: "85px"}} value="2">
-          <NavLink to="/realtime">
-            <MenuIcon src={realtime_logo} style={{ height: "40px" }} />
-            <br />
-            <span>Realtime</span>
-          </NavLink>
-        </Menu.Item>
+        </div>
+        <Center >
 
-        <Menu.Item key="3"style={{height: "85px"}} value="3">
-          <NavLink to="/campaign">
-            <MenuIcon src={campaign_logo} style={{ height: "40px" }} />
-            <br />
-            <span>Campaigns</span>
-          </NavLink>
-        </Menu.Item>
+          <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
+            <Menu.Item key="1" style={{ height: "140px" }} value="1" >
+              <NavLink to="/Class">
+                <MenuIcon src={Class} style={{ height: "70px", width: "70px" }} />
+                <br />
+                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Class</span>
+              </NavLink>
+            </Menu.Item>
+            <Menu.Item key="2" style={{ height: "140px" }} value="2" >
+              <NavLink to="/Class">
+                <MenuIcon src={UserInfo} style={{ height: "60px", width: "80px" }} />
+                <br />
+                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>User Info</span>
+              </NavLink>
+            </Menu.Item>
+          </Menu>
 
-        <Menu.Item key="4"style={{height: "85px"}} value="4">
-          <NavLink to="/payment">
-            <MenuIcon src={payment_logo} style={{ height: "40px" }} />
-            <br />
-            <span>Payment</span>
-          </NavLink>
-        </Menu.Item>
-      </Menu>
-      </center>
-    </Sider>
-  );
+        </Center>
+      </Sider>
+    );
+  }
+  else if (props.form === 2) {
+    return (
+      <Sider
+        collapsedWidth="500"
+        style={{ background: "#70C5FB" }}
+      >
+        <div style={{ height: 110 }}>
+
+        </div>
+        <Center >
+
+          <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
+            <Menu.Item key="1" style={{ height: "140px" }} value="1" >
+              <NavLink to="/Class">
+                <MenuIcon src={Class} style={{ height: "70px", width: "70px" }} />
+                <br />
+                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Class</span>
+              </NavLink>
+            </Menu.Item>
+            <Menu.Item key="2" style={{ height: "140px" }} value="2" >
+              <NavLink to="/Class">
+                <MenuIcon src={UserInfo} style={{ height: "60px", width: "80px" }} />
+                <br />
+                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>User Info</span>
+              </NavLink>
+            </Menu.Item>
+          </Menu>
+
+        </Center>
+      </Sider>
+    );
+  }
+  else if (props.form === 3) {
+    {
+      return (
+        <Sider
+          collapsedWidth="500"
+          style={{ background: "#70C5FB" }}
+        >
+          <div style={{ height: 110 }}>
+
+          </div>
+          <Center >
+
+            <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
+              <Menu.Item key="1" style={{ height: "140px" }} value="1" >
+                <NavLink to="/Class">
+                  <MenuIcon src={Class} style={{ height: "70px", width: "70px" }} />
+                  <br />
+                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Class</span>
+                </NavLink>
+              </Menu.Item>
+              <Menu.Item key="2" style={{ height: "140px" }} value="2" >
+                <NavLink to="/Class">
+                  <MenuIcon src={UserInfo} style={{ height: "60px", width: "80px" }} />
+                  <br />
+                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>User Info</span>
+                </NavLink>
+              </Menu.Item>
+            </Menu>
+          </Center>
+        </Sider>
+      );
+    }
+  }
+  else if (props.form === 4) {
+    {
+      return (
+        <Sider
+          collapsedWidth="500"
+          style={{ background: "#70C5FB" }}
+        >
+          <div style={{ height: 110 }}>
+
+          </div>
+          <Center >
+
+            <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
+              <Menu.Item key="1" style={{ height: "140px" }} value="1" >
+                <NavLink to="/Class">
+                  <MenuIcon src={Class} style={{ height: "70px", width: "70px" }} />
+                  <br />
+                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Class</span>
+                </NavLink>
+              </Menu.Item>
+              <Menu.Item key="2" style={{ height: "140px" }} value="2" >
+                <NavLink to="/Class">
+                  <MenuIcon src={UserInfo} style={{ height: "60px", width: "80px" }} />
+                  <br />
+                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>User Info</span>
+                </NavLink>
+              </Menu.Item>
+            </Menu>
+          </Center>
+        </Sider>
+      );
+    }
+  }
+
 }
 
 export default SideMenu;
-//defaultSelectedKeys={['4']}
-// <Branding src={logo} style={{ height: 50, marginTop: 40 }} />
