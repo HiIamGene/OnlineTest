@@ -171,7 +171,7 @@ function SideMenu(props) {
               </Menu.Item>
               <Menu.Item key="3" style={{ height: "140px" }} value="3" >
                 <NavLink to="/Class">
-                  <MenuIcon src={Back} style={{ height: "60px", width: "80px" }} />
+                  <MenuIcon src={Back} style={{ height: "74px", width: "74px" }} />
                   <br />
                   <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Back</span>
                 </NavLink>
