@@ -10,8 +10,8 @@ const { Title } = Typography;
 
 function Class() {
   const [data, setData] = useState();
-  const keyValue = "1";
-  const form = 2;
+  const keyValue = "2";
+  const form = 4;
   return (
     <Container>
       <Layout>   
