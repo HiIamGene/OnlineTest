@@ -12,6 +12,8 @@ import Group from '../assets/icon/Group.png';
 import Member from '../assets/icon/Member.png';
 import Info from '../assets/icon/Info.png';
 import logo from '../assets/icon/Logo-b.png';
+import ScoreTest from '../assets/icon/ScoreTest.png';
+
 const { Sider } = Layout;
 
 
@@ -34,29 +36,29 @@ function SideMenu(props) {
   if (props.form === 1) {
     return (
       <Sider
-        collapsedWidth="500"
+        width={180}
         style={{ background: "#70C5FB" }}
       >
-        <div style={{ height:  50}}>
+        <div style={{ height: 50 }}>
 
         </div>
         <Center >
           <div style={{ height: 150 }}>
-            <Branding src={logo} style={{ height: 150}} />
+            <Branding src={logo} style={{ height: 150 }} />
           </div>
           <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
-            <Menu.Item key="1" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="1" >
+            <Menu.Item key="1" style={{ marginRight:"20px",height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="1" >
               <NavLink to="/Class">
                 <MenuIcon src={Class} />
                 <br />
-                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Class</span>
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Class</span>
               </NavLink>
             </Menu.Item>
-            <Menu.Item key="2" style={{ height: "140px" , display: "flex", justifyContent: "center", alignItems: "center"}} value="2" >
+            <Menu.Item key="2" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="2" >
               <NavLink to="/UserInfo">
-                <MenuIcon src={UserInfo} style={{ marginLeft:"23px",height: "60px", width: "80px" }} />
+                <MenuIcon src={UserInfo} style={{ marginLeft: "10px", height: "60px", width: "80px" }} />
                 <br />
-                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>User Info</span>
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>User Info</span>
               </NavLink>
             </Menu.Item>
           </Menu>
@@ -68,42 +70,50 @@ function SideMenu(props) {
   else if (props.form === 2) {
     return (
       <Sider
-        collapsedWidth="500"
+        width={180}
         style={{ background: "#70C5FB" }}
       >
-        <div style={{ height: 110 }}>
-
-        </div>
+        <div style={{ height: 50 }}></div>
         <Center >
-
+          <div style={{ height: 150 }}>
+            <Branding src={logo} style={{ height: 150 }} />
+          </div>
           <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
-            <Menu.Item key="1" style={{ height: "140px" , display: "flex", justifyContent: "center", alignItems: "center"}} value="1" >
+            <Menu.Item key="1" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="1" >
               <NavLink to="/Class">
-                <MenuIcon src={Class} style={{ height: "70px", width: "70px" }} />
+                <MenuIcon src={Class} style={{marginRight:"20px", height: "70px", width: "70px" }} />
                 <br />
-                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Class</span>
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Class</span>
               </NavLink>
             </Menu.Item>
-            <Menu.Item key="2" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="2" >
+            <Menu.Item key="2" style={{height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="2" >
               <NavLink to="/Teacher">
                 <MenuIcon src={Member} style={{ height: "60px", width: "80px" }} />
                 <br />
-                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Member</span>
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Member</span>
               </NavLink>
             </Menu.Item>
-            <Menu.Item key="3" style={{ height: "140px" }} value="3" >
+            <Menu.Item key="3" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="3" >
               <NavLink to="/Testbank">
                 <MenuIcon src={TestBank} style={{ height: "60px", width: "80px" }} />
                 <br />
-                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>TestBank</span>
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>TestBank</span>
               </NavLink>
             </Menu.Item>
-            <Menu.Item key="4" style={{ height: "140px" }} value="4" >
+            <Menu.Item key="4" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="4" >
+              <NavLink to="/ScoreTest">
+                <MenuIcon src={ScoreTest} style={{marginLeft:10, height: "80px", width: "80px" }} />
+                <br />
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Score Test</span>
+              </NavLink>
+            </Menu.Item>
+            <Menu.Item key="5" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="5" >
               <NavLink to="/Class">
                 <MenuIcon src={Back} style={{ height: "60px", width: "80px" }} />
                 <br />
-                <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Back</span>
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Back</span>
               </NavLink>
+
             </Menu.Item>
           </Menu>
         </Center>
@@ -114,34 +124,35 @@ function SideMenu(props) {
     {
       return (
         <Sider
-          collapsedWidth="500"
-          style={{ background: "#70C5FB" }}
-        >
-          <div style={{ height: 110 }}>
-
+        width={180}
+        style={{ background: "#70C5FB" }}
+      >
+        <div style={{ height: 50 }}></div>
+        <Center >
+          <div style={{ height: 150 }}>
+            <Branding src={logo} style={{ height: 150 }} />
           </div>
-          <Center >
 
             <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
-              <Menu.Item key="1" style={{ height: "140px" }} value="1" >
+              <Menu.Item key="1" style={{ height: "140px" , display: "flex", justifyContent: "center", alignItems: "center"}} value="1" >
                 <NavLink to="/Teacher">
                   <MenuIcon src={Teacher} style={{ height: "70px", width: "70px" }} />
                   <br />
-                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Teacher</span>
+                  <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Teacher</span>
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key="2" style={{ height: "140px" }} value="2" >
+              <Menu.Item key="2" style={{ height: "140px" , display: "flex", justifyContent: "center", alignItems: "center"}} value="2" >
                 <NavLink to="/Student">
                   <MenuIcon src={Student} style={{ height: "60px", width: "80px" }} />
                   <br />
-                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Student</span>
+                  <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Student</span>
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key="3" style={{ height: "140px" }} value="3" >
-                <NavLink to="/Class">
+              <Menu.Item key="3" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="3" >
+                <NavLink to="/InClass">
                   <MenuIcon src={Back} style={{ height: "60px", width: "80px" }} />
                   <br />
-                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Back</span>
+                  <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Back</span>
                 </NavLink>
               </Menu.Item>
             </Menu>
@@ -154,34 +165,35 @@ function SideMenu(props) {
     {
       return (
         <Sider
-          collapsedWidth="500"
-          style={{ background: "#70C5FB" }}
-        >
-          <div style={{ height: 110 }}>
-
+        width={180}
+        style={{ background: "#70C5FB" }}
+      >
+        <div style={{ height: 50 }}></div>
+        <Center >
+          <div style={{ height: 150 }}>
+            <Branding src={logo} style={{ height: 150 }} />
           </div>
-          <Center >
 
             <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
-              <Menu.Item key="1" style={{ height: "140px" }} value="1" >
+              <Menu.Item key="1" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="1" >
                 <NavLink to="/Detail">
-                  <MenuIcon src={Class} style={{ height: "70px", width: "70px" }} />
+                  <MenuIcon src={Info} style={{ marginRight:20,height: "70px", width: "70px" }} />
                   <br />
-                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Class</span>
+                  <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Info</span>
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key="2" style={{ height: "140px" }} value="2" >
+              <Menu.Item key="2" style={{ height: "140px" , display: "flex", justifyContent: "center", alignItems: "center"}} value="2" >
                 <NavLink to="/Group">
                   <MenuIcon src={Group} style={{ height: "60px", width: "80px" }} />
                   <br />
-                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Group</span>
+                  <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Group</span>
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key="3" style={{ height: "140px" }} value="3" >
+              <Menu.Item key="3" style={{ height: "140px" , display: "flex", justifyContent: "center", alignItems: "center"}} value="3" >
                 <NavLink to="/Class">
                   <MenuIcon src={Back} style={{ height: "74px", width: "74px" }} />
                   <br />
-                  <span style={{ fontSize: 30, color: 'white', fontWeight: "bold" }}>Back</span>
+                  <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Back</span>
                 </NavLink>
               </Menu.Item>
             </Menu>

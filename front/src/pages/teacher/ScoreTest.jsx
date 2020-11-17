@@ -11,7 +11,7 @@ const { Title } = Typography;
 function Class() {
   const [data, setData] = useState();
   const keyValue = "1";
-  const form = 3;
+  const form = 4;
   return (
     <Container>
       <Layout>   
@@ -20,7 +20,7 @@ function Class() {
         <Head />
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
-
+              
             </Row>
           </ContentContainer>
         </Layout>
