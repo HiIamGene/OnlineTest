@@ -1,10 +1,11 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import { Avatar } from 'antd';
 import styled from 'styled-components';
 import { Layout, Menu, Typography } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { Row, Col, Button, Input, Form } from 'antd';
-import logout from  '../assets/img/logout.png';
+import Profile from '../assets/icon/Profile.png';
+import { UnderlineOutlined } from '@ant-design/icons';
 const { Text } = Typography;
 const MenuIcon = styled.img`
   width: 30px;
@@ -35,18 +36,18 @@ function Head() {
     <div>
       <Row>
         <Col span={1} offset={2}>
-        < img src={logout} alt="Logo" style={{ width: 40 ,marginTop:60,marginLeft:30}} />
+          <img src={Profile} alt="Logo" style={{ width: 40, marginTop: 60, marginLeft: 30 }} />
         </Col>
         <Col span={17} >
-  <div style={{ fontSize:30,marginTop:55}}>{Username}</div>
+          <div style={{ fontSize: 30, marginTop: 55 }}>{Username}</div>
         </Col>
-        <Col span={3}>              
-        <NavLink to="/">
-                <Button ype="primary" htmlType="submit" className="login-form-button" style={{marginTop:50, background: '#DEDEDE', color: '#FFFFFF', width: 200, height: 60 }} >
-                < img src={logout} alt="Logo" style={{ width: 40 ,marginTop:3}} />
-                <div style={{fontSize:30,float:'right',color:'black',fontWeight: "bold",marginBottom:20}}>Logout</div>
-                </Button>
-                </NavLink></Col>
+        <Col span={3}>
+          <NavLink to="/">
+            <div  style={{ marginTop: 50, width: 200, height: 60 ,fontSize:30,  textDecorationLine: 'underline'}} >
+              Logout
+            </div>
+          </NavLink>
+        </Col>
       </Row>
     </div>
   );

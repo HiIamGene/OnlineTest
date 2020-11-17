@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
+import Classlist from '../../components/Classlist';
 
 const { Option } = Select;
 
@@ -15,6 +16,7 @@ const { Title } = Typography;
 
 function Class() {
   const [data, setData] = useState();
+
   const keyValue = "1";
   const form = 1;
   const handleChange = (value) => {
@@ -32,14 +34,19 @@ function Class() {
                 <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Class</div>
               </Col>
               <Col span={5} >
-                <Select mode="tags" style={{ width: '100%' ,marginTop:30}} placeholder="Tags Mode" onChange={handleChange}>
+                <Select mode="tags" style={{ width: '100%', marginTop: 30 }} placeholder="Tags Mode" onChange={handleChange}>
                   {children}
                 </Select>
               </Col>
               <Col span={1} >
-                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%' , height: 32 ,marginTop:30 }} >
+                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
                   <div style={{ font: 'Josefin Sans', fontSize: 10 }}>Search</div>
                 </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24} offset={2}>
+              <Classlist/>
               </Col>
             </Row>
 
