@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import AddQuestion from './pages/teacher/Class';
+import AddQuestion from './pages/teacher/Addquestion';
 import Class from './pages/teacher/Class';
 import Detail from './pages/teacher/Detail';
 import Group from './pages/teacher/Group';
