@@ -31,11 +31,11 @@ function Class() {
                 <div style={{  fontSize: 30, fontWeight: "bold",  display:"block" }} >
                   Description : <Input style={{ width:850}} />
                 </div>
-                <div style={{fontSize: 30, fontWeight: "bold",  display:"block" }} >
-                  Time : <Input style={{ width:850}} />
-                </div>
                 <div style={{  fontSize: 30, fontWeight: "bold",  display:"block" }} >
                   Date start : <DatePicker onChange={onChange}  style={{ width:850}} />
+                </div>
+                <div style={{fontSize: 30, fontWeight: "bold",  display:"block" }} >
+                  Time : <Input style={{ width:850}} />
                 </div>
                 <div style={{  fontSize: 30, fontWeight: "bold",  display:"block" }} >
                   Time start : <TimePicker onChange={onChange} style={{ width:850}} />

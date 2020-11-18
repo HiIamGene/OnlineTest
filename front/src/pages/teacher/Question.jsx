@@ -20,7 +20,7 @@ function Class() {
         <Head />
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
-            <QuestionList/>
+              <QuestionList/>
             </Row>
           </ContentContainer>
         </Layout>

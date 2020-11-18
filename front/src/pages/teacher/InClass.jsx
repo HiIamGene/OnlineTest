@@ -60,7 +60,9 @@ function Class() {
                 </div>
               </Col>
             </Row>
-            <Button>Add Test</Button>
+            <div style={{ marginLeft: 1250, marginTop: 200 }}>
+              <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} >Add Test</Button>
+            </div>
           </ContentContainer>
         </Layout>
       </Layout>

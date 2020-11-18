@@ -9,7 +9,7 @@ import Profile from '../../assets/icon/Profile.png';
 const { Title } = Typography;
 
 function Class() {
-  const UserInfo = { name:"Somchai",surname:"Charoendee",teacherId: "0000001" ,email:"0000001@kmitl.ac.th" }
+  const UserInfo = { name: "Somchai", surname: "Charoendee", teacherId: "0000001", email: "0000001@kmitl.ac.th" }
 
   const keyValue = "2";
   const form = 1;
@@ -22,12 +22,15 @@ function Class() {
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
             </Row>
-            <img src={Profile} style={{ height: 200 , marginLeft: 150 }} />
-            <div style={{ marginLeft: 150 ,fontSize:30,fontWeight: "bold" }} >T.{UserInfo.name}</div>
-            <div style={{ marginLeft: 150 ,fontSize:30 }} >Name : {UserInfo.name}</div>
-            <div style={{ marginLeft: 150 ,fontSize:30 }} >Surname : {UserInfo.surname}</div>
-            <div style={{ marginLeft: 150 ,fontSize:30 }} >Teacher Id : {UserInfo.teacherId}</div>
-            <div style={{ marginLeft: 150 ,fontSize:30 }} >E-mail : {UserInfo.email}</div>
+            <img src={Profile} style={{ height: 200, marginLeft: 150 }} />
+            <div style={{ marginLeft: 150, fontSize: 30, fontWeight: "bold" }} >T.{UserInfo.name}</div>
+            <div style={{ marginLeft: 150, fontSize: 30 }} >Name : {UserInfo.name}</div>
+            <div style={{ marginLeft: 150, fontSize: 30 }} >Surname : {UserInfo.surname}</div>
+            <div style={{ marginLeft: 150, fontSize: 30 }} >Teacher Id : {UserInfo.teacherId}</div>
+            <div style={{ marginLeft: 150, fontSize: 30 }} >E-mail : {UserInfo.email}</div>
+            <div style={{  marginLeft: 1200,marginTop:200}}>
+              <Button  style={{background:"#F43A09",color:"#ffffff",width:300,height:70,fontSize:30}}>Edit</Button>
+            </div>
           </ContentContainer>
         </Layout>
       </Layout>
