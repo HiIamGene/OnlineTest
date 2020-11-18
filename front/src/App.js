@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/Teacher"component={Teacher} />
         <Route exact path="/TestBank"component={TestBank} />
         <Route exact path="/UserInfo"component={UserInfo} />
-        
+        <Route exact path="/ScoreTest"component={UserInfo} />
         
       </Router>
   );

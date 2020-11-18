@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
-
+import QuestionList from '../../components/QuestionList';
 
 const { Title } = Typography;
 
@@ -20,7 +20,7 @@ function Class() {
         <Head />
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
-              
+            <QuestionList/>
             </Row>
           </ContentContainer>
         </Layout>

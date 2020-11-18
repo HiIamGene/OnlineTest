@@ -9,7 +9,8 @@ import Profile from '../../assets/icon/Profile.png';
 const { Title } = Typography;
 
 function Class() {
-  const [data, setData] = useState();
+  const UserInfo = { name:"Somchai",surname:"Charoendee",teacherId: "0000001" ,email:"0000001@kmitl.ac.th" }
+
   const keyValue = "2";
   const form = 1;
   return (
@@ -21,8 +22,12 @@ function Class() {
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
             </Row>
-            <img src={Profile} style={{ height: 200 , marginLeft: 100}} />
-            หกดหกดหกวสาดสวกหาสาสาแปวอกไหาสฟาหกวสฟหากสวฟาหก
+            <img src={Profile} style={{ height: 200 , marginLeft: 150 }} />
+            <div style={{ marginLeft: 150 ,fontSize:30,fontWeight: "bold" }} >T.{UserInfo.name}</div>
+            <div style={{ marginLeft: 150 ,fontSize:30 }} >Name : {UserInfo.name}</div>
+            <div style={{ marginLeft: 150 ,fontSize:30 }} >Surname : {UserInfo.surname}</div>
+            <div style={{ marginLeft: 150 ,fontSize:30 }} >Teacher Id : {UserInfo.teacherId}</div>
+            <div style={{ marginLeft: 150 ,fontSize:30 }} >E-mail : {UserInfo.email}</div>
           </ContentContainer>
         </Layout>
       </Layout>
