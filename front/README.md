@@ -79,13 +79,13 @@ cp src/constants/env.example src/constants/env.jsx
 - Development
 ```javascript
 export default {
-    BASE_URL: 'https://api-dev.eikon.asia'
+    BASE_URL: ''
 }
 ```
 - Production
 ```javascript
 export default {
-    BASE_URL: 'https://api.eikon.asia'
+    BASE_URL: ''
 }
 ```
 
