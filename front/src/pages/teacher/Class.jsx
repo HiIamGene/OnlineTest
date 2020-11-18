@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button, Select } from 'antd';
+import { Layout, Typography, Row, Col, Button, Select, Modal, Input } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
@@ -15,6 +15,7 @@ for (let i = 10; i < 36; i++) {
 const { Title } = Typography;
 
 function Class() {
+  const [visible, setVisible] = useState(false);
   const [data, setData] = useState();
 
   const keyValue = "1";
@@ -46,11 +47,38 @@ function Class() {
             </Row>
             <Row>
               <Col span={24} offset={2}>
-              <Classlist/>
+                <Classlist />
               </Col>
             </Row>
+            <div style={{ marginLeft: 1250, marginTop: 100 }}>
+              <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} onClick={() => setVisible(true)}>Add Class</Button>
+            </div>
+            <Modal
+              centered
+              visible={visible}
+              onOk={() => setVisible(false)}
+              onCancel={() => setVisible(false)}
+              width={1200}
+            >
 
+              <div style={{ fontSize: 30, display: "block",textAlign:"center" }} >
+                Add Class
+                </div>
+              <div style={{ fontSize: 30, display: "block" }} >
+                Course Code : <Input style={{ width: 850 }} />
+              </div>
+              <div style={{ fontSize: 30, display: "block" }} >
+                Classname : <Input style={{ width: 850 }} />
+              </div>
 
+              <div style={{ fontSize: 30, display: "block" }} >
+                Year : <Input style={{ width: 850 }} />
+              </div>
+              <div style={{ fontSize: 30, display: "block" }} >
+                Year : <Input style={{ width: 850 }} />
+              </div>
+
+            </Modal>
           </ContentContainer>
         </Layout>
       </Layout>

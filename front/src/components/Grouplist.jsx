@@ -3,80 +3,34 @@ import { PlusOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Button } from 'antd';
 import { NavLink } from 'react-router-dom';
-const { Option } = Select;
-
-let index = 0;
-let i = 0;
-let table = []
-
-class Grouplist extends React.Component {
-    
-    state = {
-        items: ['jack', 'lucy'],
-        name: '',
-    };
-
-    onNameChange = event => {
-        this.setState({
-            name: event.target.value,
-        });
-    };
-
-    addItem = () => {
-        console.log('addItem');
-        const { items, name } = this.state;
-        this.setState({
-            items: [...items, name || `New item ${index++}`],
-            name: '',
-        });
-    };
-
-
-    classlistOut = () => {
-        alert(i);
-        const { items, name } = this.state;
-        for (i = 0; i < 2; i++) {
-            
+import Student from '../assets/icon/student.png';
+import Query from '../components/Query';
+function Grouplist() {
+    const classlist = [{ classId: 90010100, className: "Data computer", year: 2020, }
+        , { classId: 90010101, className: "Food Science", year: 2020 }
+        , { classId: 90010101, className: "Food Science", year: 2019 }
+        , { classId: 90010103, className: "UX&UI", year: 2020 }]
+    var i;
+    let table = []
+    const classlistOut = () => {
+        for (i = 0; i < classlist.length; i++) {
             table.push(
-                <NavLink to="/InClass">
-                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>
-                        <Select
-                            style={{ width: 240 }}
-                            placeholder="custom dropdown render"
-                            dropdownRender={menu => (
-                                <div>
-                                    {menu}
-                                    <Divider style={{ margin: '4px 0' }} />
-                                    <div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
-                                        <Input style={{ flex: 'auto' }} value={name} onChange={this.onNameChange} />
-                                        <a
-                                            style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
-                                            onClick={this.addItem}
-                                        >
-                                            <PlusOutlined /> Add item
-              </a>
-                                    </div>
-                                </div>
-                            )}
-                        >
-                            {items.map(item => (
-                                <Option key={item}>{item}</Option>
-                            ))}
-                        </Select>
+                <div>
+                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}><Query/>
+
                     </Button>
+                    <NavLink to="/InClass">
                 </NavLink>
+                </div>
             )
         }
         return table
     }
-    render() {
-
-        return (
-            <table>
-                { table}
-            </table >
-        )
-    }
+    return (
+        <table>
+            {classlistOut()}
+        </table>
+    )
 }
 
 
