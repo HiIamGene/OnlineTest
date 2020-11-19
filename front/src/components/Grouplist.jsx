@@ -14,23 +14,23 @@ function Grouplist() {
         for (i = 0; i < classlist.length; i++) {
             table.push(
                 <div>
-                    <div style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 80, marginTop: 30, display: "block" }}>
+                    <div style={{ fontSize: 25, background: '#F4A940',  width: 1400, height: 80, marginTop: 30, display: "block" }}>
                         <Row gutter={24} type="flex" justify="space-around">
-                            <Col span={10} offset={1}>
+                            <Col span={9} offset={1}>
 
                                 <Query />
                             </Col>
-                            <Col span={6} offset={1}> <div>Number of questions</div>
+                            <Col span={5} offset={1}  style={{color: '#FFFFFF'}}> <div>Number of questions</div>
 
                             </Col>
                             <Col span={1}>
                                 <input style={{ marginTop: 10, height: 35, width: 35 }} />
                                 
                             </Col>
-                            <Col span={1}>
+                            <Col span={1} style={{color: '#FFFFFF'}}>
                                 /6
                             </Col>
-                            <Col span={1}>
+                            <Col span={1} style={{ color: '#FFFFFF'}}>
                                 Score
 
                             </Col>
@@ -38,16 +38,17 @@ function Grouplist() {
                                 <input style={{ marginTop: 10, height: 35, width: 35 }} />
 
                             </Col>
-                            <Col span={2}>
-                                <Button type="primary" style={{ marginTop: 10,background:"#FFFFFF"}} ></Button>
+                            <Col span={3} >  <NavLink to="/Question">
+                    
+                                <Button type="primary" style={{ marginTop: 10,background: '#F43A09'}} >Add Question</Button>
+                                </NavLink>
 
                             </Col>
 
                         </Row>
                         
                     </div>
-                    <NavLink to="/InClass">
-                    </NavLink>
+                  
                 </div>
             )
         }

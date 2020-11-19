@@ -13,6 +13,11 @@ import Student from './pages/teacher/Student';
 import Teacher from './pages/teacher/Teacher';
 import TestBank from './pages/teacher/TestBank';
 import UserInfo from './pages/teacher/UserInfo';
+import ScoreTest from './pages/teacher/ScoreTest';
+import ScoreStudent from './pages/teacher/ScoreStudent';
+import ScoreQuestion from './pages/student/ScoreQuestion';
+import Homepage2 from './pages/student/Homepage';
+
 
 function App() {
   return (
@@ -28,8 +33,10 @@ function App() {
         <Route exact path="/Teacher"component={Teacher} />
         <Route exact path="/TestBank"component={TestBank} />
         <Route exact path="/UserInfo"component={UserInfo} />
-        <Route exact path="/ScoreTest"component={UserInfo} />
+        <Route exact path="/ScoreTest"component={ScoreTest} />    
+        <Route exact path="/ScoreQuestion"component={ScoreQuestion} />
         
+        <Route exact path="/s"component={Homepage2} />
       </Router>
   );
 }
