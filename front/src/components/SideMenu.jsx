@@ -243,6 +243,38 @@ function SideMenu(props) {
       );
     }
   }
+  else if (props.form === 6) {
+    return (
+      <Sider
+        width={180}
+        style={{ background: "#70C5FB" }}
+      >
+        <div style={{ height: 50 }}></div>
+        <Center >
+          <div style={{ height: 150 }}>
+            <Branding src={logo} style={{ height: 150 }} />
+          </div>
+          <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[props.keyValue]}>
+            <Menu.Item key="1" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="1" >
+              <NavLink to="/ScoreTest">
+                <MenuIcon src={ScoreTest} style={{marginLeft:10, height: "80px", width: "80px" }} />
+                <br />
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Score Test</span>
+              </NavLink>
+            </Menu.Item>
+            <Menu.Item key="2" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="2" >
+              <NavLink to="/ScoreStudent">
+                <MenuIcon src={Back} style={{ height: "60px", width: "80px" }} />
+                <br />
+                <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Back</span>
+              </NavLink>
+
+            </Menu.Item>
+          </Menu>
+        </Center>
+      </Sider>
+    );
+  }
 
 }
 
