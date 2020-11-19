@@ -61,7 +61,7 @@ function Class() {
               width={1200}
             >
 
-              <div style={{ fontSize: 30, display: "block",textAlign:"center" }} >
+              <div style={{ fontSize: 30, display: "block", textAlign: "center" }} >
                 Add Class
                 </div>
               <div style={{ fontSize: 30, display: "block" }} >
@@ -75,7 +75,15 @@ function Class() {
                 Year : <Input style={{ width: 850 }} />
               </div>
               <div style={{ fontSize: 30, display: "block" }} >
-                Year : <Input style={{ width: 850 }} />
+                Permission :   <Select
+                  labelInValue
+                  defaultValue={{ value: 'private' }}
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                >
+                  <Option value="private">Private</Option>
+                  <Option value="public">Public</Option>
+                </Select>
               </div>
 
             </Modal>

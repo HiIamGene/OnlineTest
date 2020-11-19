@@ -8,7 +8,7 @@ let index = 0;
 
 class Query extends React.Component {
   state = {
-    items: ['jack', 'lucy'],
+    items: ['การออกแบบUI', 'สีกับความรู้สึก'],
     name: '',
   };
 
@@ -31,8 +31,8 @@ class Query extends React.Component {
     const { items, name } = this.state;
     return (
       <Select
-        style={{ width: 240 }}
-        placeholder="custom dropdown render"
+        style={{ width: 540 }}
+        placeholder="Select Group"
         dropdownRender={menu => (
           <div>
             {menu}
