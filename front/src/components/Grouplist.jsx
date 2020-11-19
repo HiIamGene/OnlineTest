@@ -1,9 +1,7 @@
-import { Select, Divider, Input } from 'antd';
+import { Select, Divider, Input, Row, Col, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import React from 'react';
-import { Button } from 'antd';
 import { NavLink } from 'react-router-dom';
-import Student from '../assets/icon/student.png';
 import Query from '../components/Query';
 function Grouplist() {
     const classlist = [{ classId: 90010100, className: "Data computer", year: 2020, }
@@ -16,11 +14,40 @@ function Grouplist() {
         for (i = 0; i < classlist.length; i++) {
             table.push(
                 <div>
-                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}><Query/>
+                    <div style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 80, marginTop: 30, display: "block" }}>
+                        <Row gutter={24} type="flex" justify="space-around">
+                            <Col span={10} offset={1}>
 
-                    </Button>
+                                <Query />
+                            </Col>
+                            <Col span={6} offset={1}> <div>Number of questions</div>
+
+                            </Col>
+                            <Col span={1}>
+                                <input style={{ marginTop: 10, height: 35, width: 35 }} />
+                                
+                            </Col>
+                            <Col span={1}>
+                                /6
+                            </Col>
+                            <Col span={1}>
+                                Score
+
+                            </Col>
+                            <Col span={1}>
+                                <input style={{ marginTop: 10, height: 35, width: 35 }} />
+
+                            </Col>
+                            <Col span={2}>
+                                <Button type="primary" style={{ marginTop: 10,background:"#FFFFFF"}} ></Button>
+
+                            </Col>
+
+                        </Row>
+                        
+                    </div>
                     <NavLink to="/InClass">
-                </NavLink>
+                    </NavLink>
                 </div>
             )
         }

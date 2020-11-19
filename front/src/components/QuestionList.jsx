@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Button, Row } from 'antd';
 import { NavLink } from 'react-router-dom';
-import Student from '../assets/icon/student.png';
 function QuestionList() {
     const QuestionList = [{ Id: 1, name: "สีอะไรคือสีโทนร้อน" }
         , { Id: 2, name: "ทำไมต้องทำ Usability Testing ?" }
