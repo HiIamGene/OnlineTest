@@ -12,7 +12,7 @@ const { Title } = Typography;
 function ScoreTestStudent() {
   const [data, setData] = useState();
   const keyValue = "4";
-  const form = 2;
+  const form = 6;
   return (
     <Container>
       <Layout>   
@@ -22,13 +22,12 @@ function ScoreTestStudent() {
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
 
-              <Col span={4} offset={2}>
-                <div style={{ fontSize: 50, fontWeight: 'bold' }}>90010103  UX&UI</div>
+              <Col span={10} offset={2}>
+                <div style={{ fontSize: 50, fontWeight: 'bold' ,display: "inline-block"  }}>Quiz ครั้งที่ 1</div>
               </Col>
-              <Col span={6} >
-
-              </Col>
+              
               <Col span={12} ></Col>
+              <Col span={22} offset={2}> <div style={{ fontSize: 25, fontWeight: 'bold' ,display: "inline-block"  }}>Student List</div></Col>
               <Col span={22} offset={2} ><ScoreStudentList/></Col>
               
             </Row>

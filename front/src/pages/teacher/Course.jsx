@@ -31,12 +31,12 @@ function Class() {
         <Layout>
           <Head />
           <ContentContainer >
-            <Row>
-              <Col span={4} offset={2}>
-                <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Class</div>
+            <Row >
+              <Col span={5} offset={2}>
+                <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Course</div>
               </Col>
               <Col span={5} >
-                <SearchData style={{marginTop:30,width:"100%"}}/>
+                <SearchData style={{ marginTop: 30, width: "100%" }} />
               </Col>
               <Col span={1} >
                 <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
@@ -51,7 +51,7 @@ function Class() {
               </Col>
             </Row>
             <div style={{ marginLeft: 1250, marginTop: 100 }}>
-              <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} onClick={() => setVisible(true)}>Add Class</Button>
+              <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} onClick={() => setVisible(true)}>Add Course</Button>
             </div>
             <Modal
               centered
@@ -59,32 +59,59 @@ function Class() {
               onOk={() => setVisible(false)}
               onCancel={() => setVisible(false)}
               width={1200}
+
             >
-
-              <div style={{ fontSize: 30, display: "block", textAlign: "center" }} >
-                Add Class
+              <Row gutter={16} type="flex" justify="space-around">
+                <Col span={24}>
+                  <div style={{ fontSize: 30, display: "block", textAlign: "center" }} >
+                    Add Course
+                  </div>
+                </Col>
+                <Col span={4}>
+                  <div style={{ fontSize: 25, display: "block" }} >
+                    Course id :
                 </div>
-              <div style={{ fontSize: 30, display: "block" }} >
-                Course Code : <Input style={{ width: 850 }} />
-              </div>
-              <div style={{ fontSize: 30, display: "block" }} >
-                Classname : <Input style={{ width: 850 }} />
-              </div>
 
-              <div style={{ fontSize: 30, display: "block" }} >
-                Year : <Input style={{ width: 850 }} />
-              </div>
-              <div style={{ fontSize: 30, display: "block" }} >
-                Permission :   <Select
+                </Col>
+                <Col span={20}>
+                  <Input style={{ fontSize: 20, width: 850 }} />
+                </Col>
+                <Col span={4}>
+                  <div style={{ fontSize: 25, display: "block" }} >
+                    Course name :
+                </div>
+
+                </Col>
+                <Col span={20}>
+                  <Input style={{ fontSize: 20, width: 850 }} />
+                </Col>
+                <Col span={4}>
+                  <div style={{ fontSize: 25, display: "block" }} >
+                    Year :
+                </div>
+
+                </Col>
+                <Col span={20}>
+                  <Input style={{ fontSize: 20, width: 850 }} />
+                </Col>
+                <Col span={4}>
+                  <div style={{ fontSize: 25, display: "block" }} >
+                    Permission :
+                    </div>
+                </Col>
+                <Col span={20}><Select
                   labelInValue
                   defaultValue={{ value: 'private' }}
-                  style={{ width: 120 }}
+                  style={{ width: 120 ,fontSize:20 }}
                   onChange={handleChange}
                 >
+
                   <Option value="private">Private</Option>
                   <Option value="public">Public</Option>
                 </Select>
-              </div>
+
+                </Col>
+              </Row>
 
             </Modal>
           </ContentContainer>

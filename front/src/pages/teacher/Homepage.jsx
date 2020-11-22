@@ -60,7 +60,7 @@ function Homepage(props) {
               <Form.Item>
 
                 <a className="login-form-forgot" href="">Forgot password</a>
-                <NavLink to="/class">
+                <NavLink to="/Course">
                   <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 200, height: 50, marginLeft: 565 }} >
                     <div style={{ font: 'Josefin Sans', fontSize: 20 }}>Log in</div>
                   </Button>

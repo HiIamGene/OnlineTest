@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button } from 'antd';
+import { Button, Row, Col } from 'antd';
 import { NavLink } from 'react-router-dom';
 function ScoreTestList() {
     const student = [{ Id: "60010001", Firstname: "Hunt", Lastname: "Danita", status: 0 }
@@ -15,11 +15,11 @@ function ScoreTestList() {
                     {student[i].status == 100 ?
                         <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#AFD36C', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>
                             <Row type="flex" justify="space-around">
-                                <Col span={2}>{student[i].Id}</Col>
-                                <Col span={7}>{student[i].Firstname}</Col>
-                                <Col span={7}>{student[i].Lastname}</Col>
-                                <Col span={2} offset={4} >process : {student[i].status}%</Col>
-                                <Col span={1}></Col>                  
+                                <Col span={3}>{student[i].Id}</Col>
+                                <Col span={3}>{student[i].Firstname}</Col>
+                                <Col span={9}>{student[i].Lastname}</Col>
+                                <Col span={2} offset={5} >process : {student[i].status}%</Col>
+                                <Col span={1}></Col>
                             </Row>
 
                         </Button>
@@ -27,10 +27,10 @@ function ScoreTestList() {
                         <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>
 
                             <Row type="flex" justify="space-around">
-                                <Col span={2}>{student[i].Id}</Col>
-                                <Col span={7}>{student[i].Firstname}</Col>
-                                <Col span={7}>{student[i].Lastname}</Col>
-                                <Col span={2} offset={4} >process : {student[i].status}%</Col>
+                                <Col span={3}>{student[i].Id}</Col>
+                                <Col span={3}>{student[i].Firstname}</Col>
+                                <Col span={9}>{student[i].Lastname}</Col>
+                                <Col span={2} offset={5} >process : {student[i].status}%</Col>
                                 <Col span={1}></Col>
                             </Row>
                         </Button>

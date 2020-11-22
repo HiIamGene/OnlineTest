@@ -50,8 +50,8 @@ function Editbox(props) {
         <Col span={24}>
 
 
-          <div style={{ marginTop: 50, width: 200, height: 60, fontSize: 30, textDecorationLine: 'underline', color: "blue" }} >
-            add
+          <div style={{ marginTop: 25, width: 200, height: 60, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} >
+            add choice
             </div>
         </Col>
 
@@ -79,18 +79,27 @@ function Editbox(props) {
         </Col>
         <Col span={10} style={{ marginTop: 20 }}>
 
-          <Input style={{minWidth: "400"}}></Input>
+          <Input style={{ minWidth: "400" }}></Input>
         </Col>
         <Col span={10} style={{ marginTop: 20 }}>
 
-          <Input style={{minWidth: "400"}}></Input>
+          <Input style={{ minWidth: "400" }}></Input>
+        </Col>
+        <Col span={4} ></Col>
+        <Col span={10} style={{ marginTop: 20 }}>
+
+          <Input style={{ minWidth: "400" }}></Input>
+        </Col>
+        <Col span={10} style={{ marginTop: 20 }}>
+
+          <Input style={{ minWidth: "400" }}></Input>
         </Col>
         <Col span={4} ></Col>
         <Col span={24} >
-        <div style={{ marginTop: 50, width: 200, height: 60, fontSize: 30, textDecorationLine: 'underline' }} >
-          add
+          <div style={{ marginTop: 25, width: 200, height: 60, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} >
+            add choice
             </div>
-            </Col>
+        </Col>
 
 
       </Row>
@@ -110,8 +119,14 @@ function Editbox(props) {
           />
         </div>
         <div>
+          <Row gutter={16} type="flex" justify="space-around">
+            <Col span={12} style={{ marginTop: 20 }}>
 
-          <Input></Input>
+              <Input></Input>
+            </Col>
+            <Col span={12} >
+            </Col>
+          </Row>
         </div>
       </div>
     )
@@ -147,6 +162,7 @@ function Editbox(props) {
               setText(data)
             }}
           />
+
         </div>
 
       </div>

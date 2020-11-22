@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button, Switch } from 'antd';
+import { Layout, Typography, Row, Col, Button, Switch,Input } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
@@ -8,7 +8,7 @@ import Grouplist from '../../components/Grouplist';
 
 const { Title } = Typography;
 
-function Class() {
+function Group() {
   const [data, setData] = useState();
   const keyValue = "2";
   const form = 4;
@@ -22,20 +22,26 @@ function Class() {
 
             <Row gutter={16} type="flex" justify="space-around">
               <Col span={22} offset={2}>
-                <div style={{ fontSize: 50, fontWeight: 'bold' ,color:"#808080"}}>สอบบทที่ 1</div>
-                <div style={{ fontSize: 50, fontWeight: 'bold' ,color:"#808080"}}>จงเลือกคำตอบที่ถูกที่สุด</div>
+                <div style={{ fontSize: 50, fontWeight: 'bold', color: "#808080" }}>สอบบทที่ 1</div>
+                <div style={{marginLeft:2, fontSize: 30, fontWeight: 'bold', color: "#808080" }}>Edit Test</div> 
               </Col>
               <Col span={22} offset={2}>
                 <Grouplist />
               </Col>
-              <Col span={1} offset={17}>
-                <Switch defaultChecked style={{ marginTop: 35 }} />
+              <Col span={1} offset={16}>
+                <div style={{ marginTop: 35 ,fontSize: 30 }}>
+                  Draft
+                </div>
+              </Col>
+              <Col span={1} >
+                <Switch defaultChecked style={{ marginTop: 50 }} />
               </Col>
               <Col span={6}>
-                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 40, marginTop: 30 }} >
-                  <div style={{ font: 'Josefin Sans', fontSize: 20 }}>Save</div>
+                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
+                  <div style={{ fontSize: 30 }}>Save</div>
                 </Button>
               </Col>
+              
             </Row>
 
           </ContentContainer>
@@ -45,4 +51,4 @@ function Class() {
   );
 }
 
-export default Class;
+export default Group;

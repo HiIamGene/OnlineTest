@@ -39,9 +39,9 @@ function Class() {
             <div style={{ height: 20 }}></div>
             <Row>
               <Col span={4} offset={2}>
-                <div style={{ marginLeft: 11, background: "#FFB766", height: 250, width: 250 }}>
+                <div style={{ marginLeft: 20, background: "#FFB766", height: 250, width: 250 }}>
                   <div style={{ height: "15px" }}></div>
-                  <div style={{ fontSize: 30, color: "#ffffff", height: 250, marginLeft: 20, fontWeight: "bold" }}>Announce</div>
+                  <div style={{  color: "#ffffff", height: 250, marginLeft: 20, fontWeight: "bold" }}> <div style={{ fontSize: 30}}>Announce</div><div style={{ fontSize: 15}}>เตรียมตัวสำหรับสอบ</div></div>
                 </div>
               </Col>
               <Col span={15}  >

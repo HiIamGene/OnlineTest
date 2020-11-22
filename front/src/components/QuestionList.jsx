@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import { Button, Row } from 'antd';
 import { NavLink } from 'react-router-dom';
 function QuestionList() {
-    const QuestionList = [{ Id: 1, name: "สีอะไรคือสีโทนร้อน" }
+    const QuestionList = [{ Id: 1, name: "สีอะไรคือสีโทนร้อน?" }
         , { Id: 2, name: "ทำไมต้องทำ Usability Testing ?" }
-        , { Id: 3, name: "Food Science" }
-        , { Id: 4, name: "UX&UI" }]
+        , { Id: 3, name: "Low-fidelity prototype คือ ?" }
+        , { Id: 4, name: "Hi-fidelity prototype  คือ ?" }]
     var i;
     let table = []
     const classlistOut = () => {

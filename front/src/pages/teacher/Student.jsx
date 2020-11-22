@@ -57,11 +57,11 @@ function Class() {
             <Row gutter={16} type="flex" justify="space-around">
               <Col span={18} >
                 <div style={{ color: "#AAAAAA", marginLeft: 140, fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>
-                  Teacher
+                  Student
                   </div>
               </Col>
               <Col span={1}>
-                <div style={{ color: "#AAAAAA", fontSize: 50, fontWeight: 'bold', display: "inline-block" }}> +</div>
+               
               </Col>
               <Col span={4} ></Col>
               <Col span={24} offset={4} >
@@ -76,7 +76,7 @@ function Class() {
                 /></div>
               </Col>
               <Col span={4} offset={2} >
-                <Select mode="tags" style={{ marginLeft: 30, width: '100%', marginTop: 30 }} placeholder="Tags Mode" onChange={handleChange}>
+                <Select mode="tags" style={{ marginLeft: 30, width: '100%', marginTop: 30 }} placeholder="Search" onChange={handleChange}>
                   {children}
                 </Select>
 

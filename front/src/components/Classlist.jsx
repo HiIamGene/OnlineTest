@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Button } from 'antd';
 import { NavLink } from 'react-router-dom';
 function Classlist() {
-    const classlist = [{ classId: 90010100, className: "Data computer", year: 2020, }
+    const classlist = [{ classId: 90010100, className: "Data Communication", year: 2020, }
         , { classId: 90010101, className: "Food Science", year: 2020 }
         , { classId: 90010101, className: "Food Science", year: 2019 }
         , { classId: 90010103, className: "UX&UI", year: 2020 }]
