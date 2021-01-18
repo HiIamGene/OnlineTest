@@ -66,7 +66,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# Eikon Advertiser Website
+
 ### Install dependencies
 ```bash
 npm install
@@ -79,13 +79,13 @@ cp src/constants/env.example src/constants/env.jsx
 - Development
 ```javascript
 export default {
-    BASE_URL: 'https://api-dev.eikon.asia'
+    BASE_URL: ''
 }
 ```
 - Production
 ```javascript
 export default {
-    BASE_URL: 'https://api.eikon.asia'
+    BASE_URL: ''
 }
 ```
 
