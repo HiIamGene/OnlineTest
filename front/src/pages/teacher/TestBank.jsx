@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
-import TestBanklist from '../../components/TestBanklist';
+import TestBanklist from '../../components/testBanklist';
 import SearchData from '../../components/SearchData';
 
 const { Title } = Typography;

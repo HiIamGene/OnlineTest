@@ -7,7 +7,7 @@
     "@ckeditor/ckeditor5-react": "^3.0.0",
     "ant-design-pro": "^2.3.2",
     "antd": "^4.7.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "chart.js": "2.8.0",
     "dotenv": "^8.2.0",

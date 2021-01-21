@@ -1,25 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Button, Input, Form } from 'antd';
-import { Typography } from 'antd';
+import { Typography, message } from 'antd';
+import axios from 'axios';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import writing from '../../assets/img/writing.png'
-import brand from '../../assets/img/brand.png'
+import writing from '../assets/img/writing.png'
+import brand from '../assets/img/brand.png'
 import { NavLink } from 'react-router-dom';
 
 const { Title } = Typography;
 
 function Homepage(props) {
-  const [username, setuername] = useState();
-  const [password, setpassword] = useState();
+  useEffect(() => {
+  if (localStorage.getItem('token') != (null)) {
+    props.history.push(`/Teacher/Course`)
+  }
+  }, []);
+
+  const [data, setdata] = useState({
+    "role": null,
+    "token": null
+  });
   const onFinish = values => {
-    console.log('Success:', values);
+    axios.post("http://142.93.177.152:10000/login", null, {
+      params: {
+        username: values.username
+        ,
+        password: values.password
+      }
+
+    }).then(res => {
+      if (res.data == "Wrong Username or Password") {
+        alert("Wrong Username or Password")
+      }
+      else {
+        localStorage.setItem('token', res.data["token"])
+        if( res.data["role"]=="teacher"){
+          props.history.push(`/Teacher/Course`)
+        }else{
+          props.history.push(`/Student/Course`)
+        }
+        
+      }
+    }).catch(err => {
+      console.warn(err);
+    })
   };
-  const handlepassword = (e) => {
-    setpassword(e)
-  }
-  const handleusername = (e) => {
-    setuername(encodeURIComponent)
-  }
+
+  /*useEffect(() => {
+    Axios.post('142.93.177.152:10000/login?username=testteacher&password=123456').then((resList) => {
+      if (resList.data) {
+        setList(resList.data);
+      }
+    });
+  }, []);*/
+  //alert(JSON.stringify(form))
+
   return (
     <div>
 
@@ -42,7 +77,6 @@ function Homepage(props) {
               >
                 <Input prefix={<UserOutlined className="site-form-item-icon" />}
                   placeholder="Username" style={{ width: 764, height: 66 }}
-                  onChange={handleusername}
                 />
               </Form.Item>
               <Form.Item
@@ -54,17 +88,15 @@ function Homepage(props) {
                   type="password"
                   placeholder="Password"
                   style={{ width: 764, height: 66 }}
-                  onChange={handlepassword}
+
                 />
               </Form.Item>
               <Form.Item>
 
                 <a className="login-form-forgot" href="">Forgot password</a>
-                <NavLink to="/Course">
-                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 200, height: 50, marginLeft: 565 }} >
-                    <div style={{ font: 'Josefin Sans', fontSize: 20 }}>Log in</div>
-                  </Button>
-                </NavLink>
+                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 200, height: 50, marginLeft: 565 }} >
+                  <div style={{ font: 'Josefin Sans', fontSize: 20 }}>Log in</div>
+                </Button>
               </Form.Item>
             </Form>
           </Col>

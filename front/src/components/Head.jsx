@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Avatar } from 'antd';
 import styled from 'styled-components';
 import { Layout, Menu, Typography } from 'antd';
@@ -30,7 +30,18 @@ margin-top:10px;
 
 
 const { Header } = Layout;
-function Head() {
+function Head(props) {
+  const logout = () => {
+    localStorage.removeItem('token')
+    props.history.push(`/`)
+    
+  }
+  useEffect(() => {
+    if (localStorage.getItem('token') ==null){
+      props.history.push(`/`)
+    }
+  }, []);
+  //alert(localStorage.('token'))
   const [Username, setUsername] = useState("T.Somchai")
   return (
     <div>
@@ -42,11 +53,9 @@ function Head() {
           <div style={{ fontSize: 30, marginTop: 55 }}>{Username}</div>
         </Col>
         <Col span={3}>
-          <NavLink to="/">
-            <div  style={{ marginTop: 50, width: 200, height: 60 ,fontSize:30,  textDecorationLine: 'underline'}} >
+            <a onClick={logout} style={{ marginTop: 50, width: 200, height: 60 ,fontSize:30,  textDecorationLine: 'underline'}} >
               Logout
-            </div>
-          </NavLink>
+            </a>
         </Col>
       </Row>
     </div>
