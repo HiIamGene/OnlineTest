@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Layout, Typography, Row, Col, Button, Select, Modal, Input } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
-import SideMenu from '../../components/SideMenu';
+import SideMenu from '../../components/SideMen2';
 import Head from '../../components/Head';
 import Classlist from '../../components/Classlist';
 import Search from 'antd/lib/input/Search';

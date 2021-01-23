@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import axios from 'axios';
 import AddQuestion from './pages/teacher/Addquestion';
 import Course from './pages/teacher/Course';
 import Detail from './pages/teacher/Detail';
@@ -19,7 +19,21 @@ import ScoreQuestion from './pages/teacher/ScoreQuestion';
 import GroupTestBank from './pages/teacher/GroupTestBank';
 import history from "./utils/history";
 import Course2 from './pages/student/Course';
-
+/*const apiUrl = 'http://142.93.177.152:10000';
+axios.interceptors.request.use(
+  config => {
+    const { origin } = new URL(config.url);
+    const allowedOrigins = [apiUrl];
+    const token = localStorage.getItem('token');
+    if (allowedOrigins.includes(origin)) {
+      config.headers.authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);*/
 
 function App() {
   /*const { loggedInStatus, setloggedInStatus } = useState("Not logged in");
@@ -30,25 +44,25 @@ function App() {
   }*/
 
   return (
-      <Router history={history}>
-        <Route exact path="/"exact component={Homepage} />
-        <Route exact path="/Teacher/AddQuestion"exact component={AddQuestion} />
-        <Route exact path="/Teacher/Course"exact component={Course} />
-        <Route exact path="/Teacher/Detail"exact component={Detail} />
-        <Route exact path="/Teacher/Group"exact component={Group} />
-        <Route exact path="/Teacher/InClass"exact component={InClass} />
-        <Route exact path="/Teacher/Question"exact component={Question} />
-        <Route exact path="/Teacher/Student"exact component={Student} />
-        <Route exact path="/Teacher/Teacher"exact component={Teacher} />
-        <Route exact path="/Teacher/TestBank"exact component={TestBank} />
-        <Route exact path="/Teacher/UserInfo"exact component={UserInfo} />
-        <Route exact path="/Teacher/ScoreTest"exact component={ScoreTest} /> 
-        <Route exact path="/Teacher/ScoreStudent"exact component={ScoreStudent} /> 
-        <Route exact path="/Teacher/ScoreQuestion"exact component={ScoreQuestion} />
-        <Route exact path="/Teacher/GroupTestBank"exact component={GroupTestBank} />
-        <Route exact path="/Student/Course"exact component={Course2} />
+    <Router history={history}>
+      <Route exact path="/" exact component={Homepage} />
+      <Route exact path="/Teacher/AddQuestion" exact component={AddQuestion} />
+      <Route exact path="/Teacher/Course" exact component={Course} />
+      <Route exact path="/Teacher/Detail" exact component={Detail} />
+      <Route exact path="/Teacher/Group" exact component={Group} />
+      <Route exact path="/Teacher/InClass" exact component={InClass} />
+      <Route exact path="/Teacher/Question" exact component={Question} />
+      <Route exact path="/Teacher/Student" exact component={Student} />
+      <Route exact path="/Teacher/Teacher" exact component={Teacher} />
+      <Route exact path="/Teacher/TestBank" exact component={TestBank} />
+      <Route exact path="/Teacher/UserInfo" exact component={UserInfo} />
+      <Route exact path="/Teacher/ScoreTest" exact component={ScoreTest} />
+      <Route exact path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
+      <Route exact path="/Teacher/ScoreQuestion" exact component={ScoreQuestion} />
+      <Route exact path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
+      <Route exact path="/Student/Course" exact component={Course2} />
 
-      </Router>
+    </Router>
   );
 }
 

@@ -33,8 +33,9 @@ function Homepage(props) {
         alert("Wrong Username or Password")
       }
       else {
-        localStorage.setItem('token', res.data["token"])
-        if( res.data["role"]=="teacher"){
+        //localStorage.setItem('token',res.data["token"])
+        localStorage.setItem('token',"Bearer "+res.data["token"])
+        if( res.data["role"]==="teacher"){
           props.history.push(`/Teacher/Course`)
         }else{
           props.history.push(`/Student/Course`)

@@ -6,7 +6,7 @@ import "./Editbox.css"
 import { Input, Button, Checkbox, Row, Col } from 'antd';
 function Editbox(props) {
   const [text, setText] = useState("")
-  if (props.value == "Choice") {
+  if (props.value === "Choice") {
     return (
       <Row gutter={16} type="flex" justify="space-around">
         <Col span={24}>
@@ -60,7 +60,7 @@ function Editbox(props) {
       </Row >
     )
   }
-  else if (props.value == "Pair") {
+  else if (props.value === "Pair") {
     return (
       <Row gutter={16} type="flex" justify="space-around">
         <Col span={24}>
@@ -105,7 +105,7 @@ function Editbox(props) {
       </Row>
     )
   }
-  else if (props.value == "ShortAnswer") {
+  else if (props.value === "ShortAnswer") {
     return (
       <div className="Editbox">
         <div className="editor">
@@ -131,7 +131,7 @@ function Editbox(props) {
       </div>
     )
   }
-  else if (props.value == "Write-up") {
+  else if (props.value === "Write-up") {
     return (
       <div className="Editbox">
         <div className="editor">
@@ -150,7 +150,7 @@ function Editbox(props) {
       </div>
     )
   }
-  else if (props.value == "UploadAnswer") {
+  else if (props.value === "UploadAnswer") {
     return (
       <div className="Editbox">
         <div className="editor">
