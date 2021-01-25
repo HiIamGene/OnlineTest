@@ -36,13 +36,10 @@ function Head(props) {
     props.history.push(`/`)
     
   }
-  useEffect(() => {
-    if (localStorage.getItem('token') ==null){
-      props.history.push(`/`)
-    }
-  }, []);
+ 
+
   //alert(localStorage.('token'))
-  const [Username, setUsername] = useState("T.Somchai")
+  const [Username, setUsername] = useState(props.Username)
   return (
     <div>
       <Row>

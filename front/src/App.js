@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from 'axios';
@@ -42,9 +42,14 @@ function App() {
     setloggedInStatus("Logged in")
     setuser(data)
   }*/
-
+  const { username, setUsername }=useState("T.Somchai")
+  useEffect(() => {
+    if (localStorage.getItem('token') ==null){
+      history.push(`/`)
+    }
+  }, []);
   return (
-    <Router history={history}>
+    <Router history={history} username={username}>
       <Route exact path="/" exact component={Homepage} />
       <Route exact path="/Teacher/AddQuestion" exact component={AddQuestion} />
       <Route exact path="/Teacher/Course" exact component={Course} />

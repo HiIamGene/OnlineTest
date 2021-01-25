@@ -6,12 +6,12 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import writing from '../assets/img/writing.png'
 import brand from '../assets/img/brand.png'
 import { NavLink } from 'react-router-dom';
-
+import {API_LOGIN} from "../constants/api.jsx";
 const { Title } = Typography;
 
 function Homepage(props) {
   useEffect(() => {
-  if (localStorage.getItem('token') != (null)) {
+  if (localStorage.getItem('token')) {
     props.history.push(`/Teacher/Course`)
   }
   }, []);
@@ -21,7 +21,7 @@ function Homepage(props) {
     "token": null
   });
   const onFinish = values => {
-    axios.post("http://142.93.177.152:10000/login", null, {
+    axios.post(API_LOGIN, null, {
       params: {
         username: values.username
         ,
@@ -45,6 +45,7 @@ function Homepage(props) {
     }).catch(err => {
       console.warn(err);
     })
+
   };
 
   /*useEffect(() => {

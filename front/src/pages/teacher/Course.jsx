@@ -30,7 +30,7 @@ function Course(props) {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head history={props.history}/>
+          <Head history={props.history} username={props.username}/>
           <ContentContainer >
             <Row >
               <Col span={5} offset={2}>
@@ -48,7 +48,7 @@ function Course(props) {
             </Row>
             <Row>
               <Col span={24} offset={2}>
-                <Classlist />
+                <Classlist username={props.username}/>
               </Col>
             </Row>
             <div style={{ marginLeft: 1250, marginTop: 100 }}>
