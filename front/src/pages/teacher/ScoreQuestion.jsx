@@ -11,7 +11,7 @@ const { Title } = Typography;
 function onShowSizeChange(current, pageSize) {
     console.log(current, pageSize);
 }
-function ScoreQuestion() {
+function ScoreQuestion(props) {
     const [current, setcurrent] = useState(1);
     const keyValue = "4";
     const form = 2;
@@ -24,7 +24,7 @@ function ScoreQuestion() {
             <Layout>
                 <SideMenu keyValue={keyValue} form={form} />
                 <Layout>
-                    <Head />
+                <Head history={props.history}/>
                     <ContentContainer >
                         <Row gutter={16} type="flex" justify="space-around">
                             <Col span={19} offset={2}>

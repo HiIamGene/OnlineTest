@@ -39,7 +39,7 @@ function Head(props) {
  
 
   //alert(localStorage.('token'))
-  const [Username, setUsername] = useState(props.Username)
+
   return (
     <div>
       <Row>
@@ -47,7 +47,7 @@ function Head(props) {
           <img src={Profile} alt="Logo" style={{ width: 40, marginTop: 60, marginLeft: 30 }} />
         </Col>
         <Col span={17} >
-          <div style={{ fontSize: 30, marginTop: 55 }}>{Username}</div>
+          <div style={{ fontSize: 30, marginTop: 55 }}>{props.username}</div>
         </Col>
         <Col span={3}>
             <a onClick={logout} style={{ marginTop: 50, width: 200, height: 60 ,fontSize:30,  textDecorationLine: 'underline'}} >

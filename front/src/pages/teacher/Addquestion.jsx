@@ -10,7 +10,7 @@ import { Select } from 'antd';
 const { Option } = Select;
 const { Title } = Typography;
 
-function Class() {
+function Addquestion(props) {
   const [current, setcurrent] = useState(1);
   const onChangeQues = page => {
     console.log(page);
@@ -40,7 +40,7 @@ function Class() {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head />
+          <Head history={props.history}/>
           <ContentContainer >
 
             <Row gutter={16} type="flex" justify="space-around">
@@ -100,4 +100,4 @@ function Class() {
   );
 }
 
-export default Class;
+export default Addquestion;

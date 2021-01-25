@@ -9,7 +9,7 @@ import { PropertySafetyFilled } from '@ant-design/icons';
 
 const { Title } = Typography;
 
-function ScoreTestStudent() {
+function ScoreTestStudent(props) {
   const [data, setData] = useState();
   const keyValue = "4";
   const form = 6;
@@ -18,7 +18,7 @@ function ScoreTestStudent() {
       <Layout>   
         <SideMenu keyValue={keyValue}  form={form}/>
         <Layout>
-        <Head />
+        <Head history={props.history}/>
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
 

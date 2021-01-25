@@ -42,14 +42,14 @@ function App() {
     setloggedInStatus("Logged in")
     setuser(data)
   }*/
-  const { username, setUsername }=useState("T.Somchai")
+  //const { username, setUsername }=useState("T.Somchai")
   useEffect(() => {
     if (localStorage.getItem('token') ==null){
       history.push(`/`)
     }
   }, []);
   return (
-    <Router history={history} username={username}>
+    <Router history={history} username="T.Somchai">
       <Route exact path="/" exact component={Homepage} />
       <Route exact path="/Teacher/AddQuestion" exact component={AddQuestion} />
       <Route exact path="/Teacher/Course" exact component={Course} />

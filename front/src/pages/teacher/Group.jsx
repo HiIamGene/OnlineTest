@@ -8,7 +8,7 @@ import Grouplist from '../../components/Grouplist';
 
 const { Title } = Typography;
 
-function Group() {
+function Group(props) {
   const [data, setData] = useState();
   const keyValue = "2";
   const form = 4;
@@ -17,7 +17,7 @@ function Group() {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head />
+        <Head history={props.history}/>
           <ContentContainer >
 
             <Row gutter={16} type="flex" justify="space-around">

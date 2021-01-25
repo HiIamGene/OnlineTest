@@ -9,7 +9,7 @@ import Profile from '../../assets/icon/Profile.png';
 
 const { Title } = Typography;
 
-function Class() {
+function Teacher(props) {
   const [data, setData] = useState();
   const keyValue = "1";
   const form = 3;
@@ -18,7 +18,7 @@ function Class() {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head />
+        <Head history={props.history}/>
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
               <Col span={18} >
@@ -52,4 +52,4 @@ function Class() {
   );
 }
 
-export default Class;
+export default Teacher;

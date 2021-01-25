@@ -11,7 +11,7 @@ function onChange(date, dateString) {
   console.log(date, dateString);
 }
 
-function Class() {
+function Detail(props) {
   const [data, setData] = useState();
   const keyValue = "1";
   const form = 4;
@@ -20,7 +20,7 @@ function Class() {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head />
+        <Head history={props.history}/>
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
 
@@ -81,4 +81,4 @@ function Class() {
   );
 }
 
-export default Class;
+export default Detail;

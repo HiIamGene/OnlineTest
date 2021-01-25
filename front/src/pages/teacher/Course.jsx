@@ -8,7 +8,7 @@ import Classlist from '../../components/Classlist';
 import Search from 'antd/lib/input/Search';
 import SearchData from '../../components/SearchData';
 const { Option } = Select;
-
+const username = "testteacher";
 const children = [];
 for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
@@ -30,7 +30,7 @@ function Course(props) {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head history={props.history} username={props.username}/>
+          <Head history={props.history} username={username}/>
           <ContentContainer >
             <Row >
               <Col span={5} offset={2}>
@@ -48,7 +48,7 @@ function Course(props) {
             </Row>
             <Row>
               <Col span={24} offset={2}>
-                <Classlist username={props.username}/>
+                <Classlist username={username}/>
               </Col>
             </Row>
             <div style={{ marginLeft: 1250, marginTop: 100 }}>

@@ -8,7 +8,7 @@ import Head from '../../components/Head';
 
 const { Title } = Typography;
 
-function Class() {
+function InClass(props) {
   const [data, setData] = useState();
   const keyValue = "1";
   const form = 2;
@@ -17,7 +17,7 @@ function Class() {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head />
+        <Head history={props.history}/>
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
               <Col style={{ marginRight: "120px" }} span={18} >
@@ -70,4 +70,4 @@ function Class() {
   );
 }
 
-export default Class;
+export default InClass;

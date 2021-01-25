@@ -14,7 +14,7 @@ for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
 }
 
-function Class() {
+function Student(props) {
   const [visible, setVisible] = useState(false);
   const [data, setData] = useState();
   const keyValue = "2";
@@ -22,7 +22,7 @@ function Class() {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   }
-  const props = {
+  const props2 = {
 
     defaultFileList: [
       {
@@ -52,7 +52,7 @@ function Class() {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head />
+        <Head history={props.history}/>
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
               <Col span={18} >
@@ -118,7 +118,7 @@ function Class() {
               onCancel={() => setVisible(false)}
               width={1200}
             >
-              <Upload {...props}>
+              <Upload {...props2}>
                 <Button icon={<UploadOutlined />}>Upload</Button>
               </Upload>
             </Modal>
@@ -129,4 +129,4 @@ function Class() {
   );
 }
 
-export default Class;
+export default Student;

@@ -9,7 +9,7 @@ import SearchData from '../../components/SearchData';
 
 const { Title } = Typography;
 
-function TestBank() {
+function TestBank(props) {
   const [data, setData] = useState();
   const keyValue = "3";
   const form = 2;
@@ -18,7 +18,7 @@ function TestBank() {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head />
+        <Head history={props.history}/>
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
 

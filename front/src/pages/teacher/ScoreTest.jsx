@@ -9,7 +9,7 @@ import ScoreTestList from '../../components/ScoreTestList';
 
 const { Title } = Typography;
 
-function ScoreTest() {
+function ScoreTest(props) {
   const [data, setData] = useState();
   const keyValue = "4";
   const form = 2;
@@ -18,7 +18,7 @@ function ScoreTest() {
       <Layout>   
         <SideMenu keyValue={keyValue}  form={form}/>
         <Layout>
-        <Head />
+        <Head history={props.history}/>
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
 
