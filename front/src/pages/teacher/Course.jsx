@@ -7,6 +7,8 @@ import Head from '../../components/Head';
 import Classlist from '../../components/Classlist';
 import Search from 'antd/lib/input/Search';
 import SearchData from '../../components/SearchData';
+
+
 const { Option } = Select;
 const username = "testteacher";
 const children = [];
@@ -17,20 +19,39 @@ const { Title } = Typography;
 
 function Course(props) {
   const [visible, setVisible] = useState(false);
-  const [data, setData] = useState();
-
+  const [data, setData] = useState("");
+  const [coursename, setCoursename] = useState("");
+  const [permission, setPermission] = useState("");
+  const [year, setYear] = useState("");
+  const [courseid, setCourseid] = useState("");
   const keyValue = "1";
   const form = 1;
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
+  const updateCourse = (value) => {
+    setCoursename(value.value)
   }
-  
+  const updateYear = (value) => {
+    setYear(value.target)
+  }
+  const updateCourseid = (value) => {
+    setCourseid(value.target)
+  }
+  const handleChange = (value) => {
+    setPermission(value.target)
+  }
+  const addCourse = () => {
+    console.log(coursename)
+    console.log(permission)
+    console.log(year)
+    console.log(courseid)
+    setVisible(false)
+  }
+
   return (
     <Container>
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-          <Head history={props.history} username={username}/>
+          <Head history={props.history} username={username} />
           <ContentContainer >
             <Row >
               <Col span={5} offset={2}>
@@ -48,7 +69,7 @@ function Course(props) {
             </Row>
             <Row>
               <Col span={24} offset={2}>
-                <Classlist username={username}/>
+                <Classlist username={username} />
               </Col>
             </Row>
             <div style={{ marginLeft: 1250, marginTop: 100 }}>
@@ -57,7 +78,7 @@ function Course(props) {
             <Modal
               centered
               visible={visible}
-              onOk={() => setVisible(false)}
+              onOk={addCourse}
               onCancel={() => setVisible(false)}
               width={1200}
 
@@ -75,7 +96,7 @@ function Course(props) {
 
                 </Col>
                 <Col span={20}>
-                  <Input style={{ fontSize: 20, width: 850 }} />
+                  <Input  onChange={updateCourseid}  style={{ fontSize: 20, width: 850 }} />
                 </Col>
                 <Col span={4}>
                   <div style={{ fontSize: 25, display: "block" }} >
@@ -84,16 +105,16 @@ function Course(props) {
 
                 </Col>
                 <Col span={20}>
-                  <Input style={{ fontSize: 20, width: 850 }} />
+                  <Input  onChange={updateCourse} style={{ fontSize: 20, width: 850 }} />
                 </Col>
                 <Col span={4}>
                   <div style={{ fontSize: 25, display: "block" }} >
-                    Year :
-                </div>
+                      Year :
+                  </div>
 
                 </Col>
                 <Col span={20}>
-                  <Input style={{ fontSize: 20, width: 850 }} />
+                  <Input   onChange={updateYear} style={{ fontSize: 20, width: 850 }} />
                 </Col>
                 <Col span={4}>
                   <div style={{ fontSize: 25, display: "block" }} >
@@ -103,7 +124,7 @@ function Course(props) {
                 <Col span={20}><Select
                   labelInValue
                   defaultValue={{ value: 'private' }}
-                  style={{ width: 120 ,fontSize:20 }}
+                  style={{ width: 120, fontSize: 20 }}
                   onChange={handleChange}
                 >
 

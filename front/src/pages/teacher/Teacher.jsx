@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
-import Profile from '../../assets/icon/Profile.png';
 
+import Teacherlist from '../../components/Teacherlist';
 
 const { Title } = Typography;
 
@@ -40,9 +40,7 @@ function Teacher(props) {
                     marginRight: 470
                   }}
                 /></div>
-                <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    T.Somchai  Charoendee </div>
-                <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    T.Anuja  Trelawney</div>
-                <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    T.Antoinette  Morrison</div>
+                  <Teacherlist/>
               </Col>
             </Row>
           </ContentContainer>

@@ -42,8 +42,12 @@ export default {
                 ADDSTUDENT:API_DOMAIN_NAME+'/addstudent',
                 GETTEACHER:API_DOMAIN_NAME+'/getteacherincourse',
                 ADDTEACHER:API_DOMAIN_NAME+'/addteacher',
+            },
+            TEST:{
+                GETTESTLIST:API_DOMAIN_NAME+'/gettestlist'
             }
         },
+        USERNAME: API_DOMAIN_NAME+'getusername',
         LOGIN:API_DOMAIN_NAME+'/login'
     }
 }

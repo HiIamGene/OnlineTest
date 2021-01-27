@@ -6,7 +6,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import writing from '../assets/img/writing.png'
 import brand from '../assets/img/brand.png'
 import { NavLink } from 'react-router-dom';
-import {API_LOGIN} from "../constants/api.jsx";
+import API from "../constants/api.jsx";
 const { Title } = Typography;
 
 function Homepage(props) {
@@ -21,7 +21,7 @@ function Homepage(props) {
     "token": null
   });
   const onFinish = values => {
-    axios.post(API_LOGIN, null, {
+    axios.post(API.V1.LOGIN, null, {
       params: {
         username: values.username
         ,
@@ -47,15 +47,6 @@ function Homepage(props) {
     })
 
   };
-
-  /*useEffect(() => {
-    Axios.post('142.93.177.152:10000/login?username=testteacher&password=123456').then((resList) => {
-      if (resList.data) {
-        setList(resList.data);
-      }
-    });
-  }, []);*/
-  //alert(JSON.stringify(form))
 
   return (
     <div>

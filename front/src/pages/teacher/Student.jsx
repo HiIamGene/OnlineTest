@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button, Select, Modal,Upload } from 'antd';
+import { Layout, Typography, Row, Col, Button, Select, Modal, Upload } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Profile from '../../assets/icon/Profile.png';
 import { UploadOutlined } from '@ant-design/icons';
+import Studentlist from '../../components/Studentlist';
 
 const { Option } = Select;
 const { Title } = Typography;
@@ -25,7 +26,7 @@ function Student(props) {
   const props2 = {
 
     defaultFileList: [
-      {
+      /*{
         uid: '1',
         name: 'xxx.png',
         status: 'done',
@@ -44,7 +45,7 @@ function Student(props) {
         status: 'error',
         response: 'Server Error 500', // custom error message to show
         url: 'http://www.baidu.com/zzz.png',
-      },
+      },*/
     ],
   };
   return (
@@ -52,7 +53,7 @@ function Student(props) {
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
-        <Head history={props.history}/>
+          <Head history={props.history} />
           <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
               <Col span={18} >
@@ -61,7 +62,7 @@ function Student(props) {
                   </div>
               </Col>
               <Col span={1}>
-               
+
               </Col>
               <Col span={4} ></Col>
               <Col span={24} offset={4} >
@@ -95,17 +96,15 @@ function Student(props) {
               </Col>
               <Col span={14}></Col>
               <Col span={24} offset={4} >
-                <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    60010001  Hunt  Danita </div>
-                <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    60010002  Alexander  Shawna</div>
-                <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    60010003  Castillo  Thea</div>
+                <Studentlist status={"ok"} />
               </Col>
               <Col span={24} offset={2}>
                 <div style={{ color: "#AAAAAA", marginLeft: 100, fontSize: 30, fontWeight: 'bold', display: "inline-block" }}>
                   Pending
                   </div>
                 <Col span={24} offset={1} >
-                  <div style={{ marginLeft: 25, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    60010004  Ford  Claudius </div>
-                  <div style={{ marginLeft: 25, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    60010005  Morrison  Leondrea  </div>
+                  <Studentlist status={"pending"} />
+
                 </Col>
 
               </Col>
