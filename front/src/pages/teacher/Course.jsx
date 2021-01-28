@@ -45,6 +45,7 @@ function Course(props) {
     console.log(courseid)
     setVisible(false)
   }
+  
 
   return (
     <Container>

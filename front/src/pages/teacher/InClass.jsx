@@ -6,19 +6,26 @@ import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import axios from 'axios';
 import API from "../../constants/api.jsx";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Testlist from '../../components/Testlist';
+
 const { Title } = Typography;
 
 function InClass(props) {
   const [announce, setAnnounce] = useState();
   const [description, setDescription] = useState();
-  const [couse,setCouse] = useState([]);
+  const [couse, setCouse] = useState([]);
   const keyValue = "1";
   const form = 2;
   useEffect(() => {
+    if(props.location.data){
+    localStorage.setItem('courseName', props.location.data.courseName);
+    localStorage.setItem('courseCode', props.location.data.courseCode);
+    localStorage.setItem('courseID', props.location.data.courseID);
+    }
     axios.post(API.V1.TEACHER.COURSE.GETANNOUNCE, {
-      "CourseCode": "24E2B4"
+
+      "CourseCode":  localStorage.getItem('courseCode')
     }, {
       headers: {
         'Authorization': localStorage.getItem('token'),
@@ -29,7 +36,7 @@ function InClass(props) {
       console.warn(err);
     });
     axios.post(API.V1.TEACHER.COURSE.GETDESCRIPT, {
-      "CourseCode": "24E2B4"
+      "CourseCode": localStorage.getItem('courseCode')
     }, {
       headers: {
         'Authorization': localStorage.getItem('token'),
@@ -41,7 +48,7 @@ function InClass(props) {
     });
 
   }, []);
-  
+
   return (
     <Container>
       <Layout>
@@ -56,10 +63,10 @@ function InClass(props) {
                 <div style={{ background: "#FFB766", height: 250 }}>
                   <div style={{ height: "30px" }}></div>
                   <div style={{ marginLeft: "55px", height: "15px" }}>
-                    <div style={{ fontSize: 30, color: "#ffffff", fontWeight: "bold" }}>UX&UI
+                    <div style={{ fontSize: 30, color: "#ffffff", fontWeight: "bold" }}>{localStorage.getItem('courseName')}
                     </div>
                     <div style={{ fontSize: 30, color: "#ffffff", height: 100 }}>{description}</div>
-                    <div style={{ fontSize: 20, color: "#ffffff" }}>class code: 2n4o5r4</div>
+                    <div style={{ fontSize: 20, color: "#ffffff" }}>class code: {localStorage.getItem('courseCode')}</div>
                   </div>
                 </div>
 
@@ -75,7 +82,7 @@ function InClass(props) {
                 </div>
               </Col>
               <Col span={15}  >
-                <Testlist/>
+                <Testlist  />
               </Col>
             </Row>
             <div style={{ marginLeft: 1250, marginTop: 200 }}>

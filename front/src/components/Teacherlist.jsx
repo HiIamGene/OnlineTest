@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Button } from 'antd';
-import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import API from "../constants/api.jsx";
 import { Link } from 'react-router-dom';
@@ -9,7 +7,7 @@ function Teacherlist(props) {
     const [teacherlist, setTeacherlist] = useState([]);
     useEffect(() => {
         axios.post(API.V1.TEACHER.COURSE.GETTEACHER, {
-            "CourseCode": "5B104D"
+            "CourseCode": localStorage.getItem('courseCode')
         }, {
             headers: {
                 'Authorization': localStorage.getItem('token'),
@@ -29,7 +27,6 @@ function Teacherlist(props) {
         for (i = 0; i < Object.keys(teacherlist).length; i++) {
             table.push(
                 <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    T.{teacherlist[i].Firstname}  {teacherlist[i].Surname}</div>
-
             )
         }
         return table

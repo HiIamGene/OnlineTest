@@ -8,7 +8,7 @@ function Testlist(props) {
     const [testlist, setTestlist] = useState([]);
     useEffect(() => {
         axios.post(API.V1.TEACHER.TEST.GETTESTLIST, {
-            "CourseID": "5B104D"
+            "CourseID": localStorage.getItem('courseID')
         }, {
             headers: {
                 'Authorization': localStorage.getItem('token'),

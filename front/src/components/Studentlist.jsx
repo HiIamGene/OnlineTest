@@ -9,7 +9,7 @@ function Studentlist(props) {
     const [studentlist, setStudentlist] = useState([]);
     useEffect(() => {
         axios.post(API.V1.TEACHER.COURSE.GETSTUDENT, {
-            "CourseCode": "5B104D"
+            "CourseCode": localStorage.getItem('courseCode')
         }, {
             headers: {
                 'Authorization': localStorage.getItem('token'),

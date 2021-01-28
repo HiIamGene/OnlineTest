@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Button } from 'antd';
-import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import API from "../constants/api.jsx";
 import {Link} from 'react-router-dom';
@@ -14,6 +13,7 @@ function Classlist(props) {
             }
         } ).then(res => {
             setclasslist(res.data)
+            
         }).catch(err => {
             console.warn(err);
         })
@@ -26,7 +26,10 @@ function Classlist(props) {
             table.push(
                 <Link to={{
                     pathname:"/Teacher/InClass",
-                    data:{"courseID":classlist[i].CourseID}
+                    data:{"courseID":classlist[i].CourseID,
+                    "courseCode":classlist[i].CourseCode,
+                    "courseName":classlist[i].CourseName
+                }
                 }}>
                     <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{classlist[i].CourseID}  {classlist[i].CourseName}  {classlist[i].Year}
 

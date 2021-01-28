@@ -47,7 +47,7 @@ export default {
                 GETTESTLIST:API_DOMAIN_NAME+'/gettestlist'
             }
         },
-        USERNAME: API_DOMAIN_NAME+'getusername',
+        USERNAME: API_DOMAIN_NAME+'/getusername',
         LOGIN:API_DOMAIN_NAME+'/login'
     }
 }
