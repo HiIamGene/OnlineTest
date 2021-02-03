@@ -19,6 +19,9 @@ function Addquestion(props) {
   const [value, setvalue] = useState("UploadAnswer");
   const keyValue = "2";
   const form = 5;
+  function handleClick(value) {
+    console.log(JSON.stringify(value));
+  }
   function onChange(value) {
     setvalue(value)
     console.log(`selected ${value}`);
@@ -88,7 +91,7 @@ function Addquestion(props) {
                 <Switch defaultChecked style={{ marginTop: 50 }} />
               </Col>
               <Col span={6}>
-                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
+                <Button onClick={handleClick} type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
                   <div style={{ fontSize: 30 }}>Save</div>
                 </Button>
               </Col>

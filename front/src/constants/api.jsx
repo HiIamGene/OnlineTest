@@ -40,6 +40,7 @@ export default {
                 EDITANNOUNCE:API_DOMAIN_NAME+'/editannouncement',
                 GETSTUDENT:API_DOMAIN_NAME+'/getstudentincourse',
                 ADDSTUDENT:API_DOMAIN_NAME+'/addstudent',
+                ADDSTUDENTFILE:API_DOMAIN_NAME+'/addstudentbyfile',
                 GETTEACHER:API_DOMAIN_NAME+'/getteacherincourse',
                 ADDTEACHER:API_DOMAIN_NAME+'/addteacher',
             },

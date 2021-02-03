@@ -7,6 +7,7 @@ import Head from '../../components/Head';
 import Classlist from '../../components/Classlist';
 import Search from 'antd/lib/input/Search';
 import SearchData from '../../components/SearchData';
+import { SecurityScanTwoTone } from '@ant-design/icons';
 
 
 const { Option } = Select;
@@ -17,131 +18,151 @@ for (let i = 10; i < 36; i++) {
 }
 const { Title } = Typography;
 
-function Course(props) {
-  const [visible, setVisible] = useState(false);
-  const [data, setData] = useState("");
-  const [coursename, setCoursename] = useState("");
-  const [permission, setPermission] = useState("");
-  const [year, setYear] = useState("");
-  const [courseid, setCourseid] = useState("");
-  const keyValue = "1";
-  const form = 1;
-  const updateCourse = (value) => {
-    setCoursename(value.value)
+class Course extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      visible: false,
+      data: "",
+      coursename: "",
+      permission: "",
+      year: "",
+      courseid: "",
+      keyValue: "1",
+      form: 1,
+    }
   }
-  const updateYear = (value) => {
-    setYear(value.target)
+  /*updateCourse = (value) => {
+    this.setState({
+      coursename: value.value
+    })
   }
-  const updateCourseid = (value) => {
-    setCourseid(value.target)
+  updateYear = (value) => {
+    this.setState({
+      year: value.target
+    })
   }
-  const handleChange = (value) => {
-    setPermission(value.target)
+  updateCourseid = (value) => {
+    this.setState({
+      courseid: value.target
+    })
+  }*/
+  handleChange = (value) => {
+    this.setState({
+      permission: value.target
+    })
   }
-  const addCourse = () => {
-    console.log(coursename)
+  addCourse = () => {
+    /*console.log(coursename)
     console.log(permission)
     console.log(year)
-    console.log(courseid)
-    setVisible(false)
+    console.log(courseid)*/
+    console.log(this.state.permission)
+    this.setState({
+      visible: false
+    })
   }
-  
 
-  return (
-    <Container>
-      <Layout>
-        <SideMenu keyValue={keyValue} form={form} />
+  render() {
+    return (
+      <Container>
         <Layout>
-          <Head history={props.history} username={username} />
-          <ContentContainer >
-            <Row >
-              <Col span={5} offset={2}>
-                <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Course</div>
-              </Col>
-              <Col span={5} >
-                <SearchData style={{ marginTop: 30, width: "100%" }} />
-              </Col>
-              <Col span={1} >
-                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
-                  <div style={{ font: 'Josefin Sans', fontSize: 10 }}>Search</div>
-                </Button>
-              </Col>
-              <Col span={12} ></Col>
-            </Row>
-            <Row>
-              <Col span={24} offset={2}>
-                <Classlist username={username} />
-              </Col>
-            </Row>
-            <div style={{ marginLeft: 1250, marginTop: 100 }}>
-              <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} onClick={() => setVisible(true)}>Add Course</Button>
-            </div>
-            <Modal
-              centered
-              visible={visible}
-              onOk={addCourse}
-              onCancel={() => setVisible(false)}
-              width={1200}
+          <SideMenu keyValue={this.state.keyValue} form={this.state.form} />
+          <Layout>
+          <Head  />
+            <ContentContainer >
+              <Row >
+                <Col span={5} offset={2}>
+                  <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Course</div>
+                </Col>
+                <Col span={5} >
+                  <SearchData style={{ marginTop: 30, width: "100%" }} />
+                </Col>
+                <Col span={1} >
+                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
+                    <div style={{ font: 'Josefin Sans', fontSize: 10 }}>Search</div>
+                  </Button>
+                </Col>
+                <Col span={12} ></Col>
+              </Row>
+              <Row>
+                <Col span={24} offset={2}>
+                  <Classlist username={username} />
+                </Col>
+              </Row>
+              <div style={{ marginLeft: 1250, marginTop: 100 }}>
+                <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} onClick={()=>this.setState({ visible: true })}>Add Course</Button>
+              </div>
+              <Modal
+                centered
+                visible={this.state.visible}
+                onOk={()=>this.addCourse()}
+                onCancel={()=>this.setState({ visible: false })}
+                width={1200}
 
-            >
-              <Row gutter={16} type="flex" justify="space-around">
-                <Col span={24}>
-                  <div style={{ fontSize: 30, display: "block", textAlign: "center" }} >
-                    Add Course
+              >
+                <Row gutter={16} type="flex" justify="space-around">
+                  <Col span={24}>
+                    <div style={{ fontSize: 30, display: "block", textAlign: "center" }} >
+                      Add Course
                   </div>
-                </Col>
-                <Col span={4}>
-                  <div style={{ fontSize: 25, display: "block" }} >
-                    Course id :
+                  </Col>
+                  <Col span={4}>
+                    <div style={{ fontSize: 25, display: "block" }} >
+                      Course id :
                 </div>
 
-                </Col>
-                <Col span={20}>
-                  <Input  onChange={updateCourseid}  style={{ fontSize: 20, width: 850 }} />
-                </Col>
-                <Col span={4}>
-                  <div style={{ fontSize: 25, display: "block" }} >
-                    Course name :
+                  </Col>
+                  <Col span={20}>
+                    <Input  //onChange={updateCourseid}  
+                      style={{ fontSize: 20, width: 850 }} />
+                  </Col>
+                  <Col span={4}>
+                    <div style={{ fontSize: 25, display: "block" }} >
+                      Course name :
                 </div>
 
-                </Col>
-                <Col span={20}>
-                  <Input  onChange={updateCourse} style={{ fontSize: 20, width: 850 }} />
-                </Col>
-                <Col span={4}>
-                  <div style={{ fontSize: 25, display: "block" }} >
+                  </Col>
+                  <Col span={20}>
+                    <Input  //onChange={updateCourse} 
+                      style={{ fontSize: 20, width: 850 }} />
+                  </Col>
+                  <Col span={4}>
+                    <div style={{ fontSize: 25, display: "block" }} >
                       Year :
                   </div>
 
-                </Col>
-                <Col span={20}>
-                  <Input   onChange={updateYear} style={{ fontSize: 20, width: 850 }} />
-                </Col>
-                <Col span={4}>
-                  <div style={{ fontSize: 25, display: "block" }} >
-                    Permission :
+                  </Col>
+                  <Col span={20}>
+                    <Input   //onChange={updateYear} 
+                      style={{ fontSize: 20, width: 850 }} />
+                  </Col>
+                  <Col span={4}>
+                    <div style={{ fontSize: 25, display: "block" }} >
+                      Permission :
                     </div>
-                </Col>
-                <Col span={20}><Select
-                  labelInValue
-                  defaultValue={{ value: 'private' }}
-                  style={{ width: 120, fontSize: 20 }}
-                  onChange={handleChange}
-                >
+                  </Col>
+                  <Col span={20}><Select
+                    labelInValue
+                    defaultValue={{ value: 'private' }}
+                    style={{ width: 120, fontSize: 20 }}
+                    value={this.state.permission}
+                  >
 
-                  <Option value="private">Private</Option>
-                  <Option value="public">Public</Option>
-                </Select>
+                    <Option value="private">Private</Option>
+                    <Option value="public">Public</Option>
+                  </Select>
 
-                </Col>
-              </Row>
+                  </Col>
+                </Row>
 
-            </Modal>
-          </ContentContainer>
+              </Modal>
+            </ContentContainer>
+          </Layout>
         </Layout>
-      </Layout>
-    </Container>
-  );
+      </Container>
+    );
+  }
 }
 
 export default Course;

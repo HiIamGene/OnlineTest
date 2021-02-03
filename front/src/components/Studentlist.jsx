@@ -27,7 +27,7 @@ function Studentlist(props) {
     let table = []
     const studentlistOut = () => {
         for (i = 0; i < Object.keys(studentlist).length; i++) {
-            if (props.status == studentlist[i].status ) {
+            if (props.status == studentlist[i].Status ) {
                 table.push(
                     <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    {studentlist[i].StudentID}  {studentlist[i].Firstname}  {studentlist[i].Surname} </div>
                 )

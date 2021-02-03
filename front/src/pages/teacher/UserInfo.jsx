@@ -1,92 +1,112 @@
-import React, { useState,useEffect } from 'react';
-import { Layout, Typography, Row, Col, Button } from 'antd';
-import { NavLink } from 'react-router-dom';
-import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
+import React  from 'react';
+import { Layout, Row, Col, Button } from 'antd';
+import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Profile from '../../assets/icon/Profile.png';
 import API from "../../constants/api.jsx";
 import axios from 'axios';
-const { Title } = Typography;
 
-function UserInfo(props) {
-  const [firstname,setFirstname] =useState( )
-  const [surname,setSurname] =useState()
-  const [email,setEmail] =useState( )
-  const [UserInfo,setUserInfo] =useState({})
-  const [ edit, setEdit ] = useState(false);
-  const keyValue = "2";
-  const form = 1;
-  const toggleEdit = () => {
-    if(edit){
-      console.log(firstname)
-      console.log(surname)
-      console.log(email)
+class UserInfo extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstname: "",
+      surname: "",
+      email: "",
+      edit: false,
+      form: 1,
+      key:"2"
     }
-    setEdit(!edit);
-    
+  }
+  toggleEdit = () => {
+    if (this.state.edit) {
+      if (this.state.firstname || this.state.surname || this.state.email) {
+        axios.post(API.V1.TEACHER.INFO.EDITINFO, {
+          "Firstname": this.state.firstname,
+          "Surname": this.state.surname ,
+          "Email":  this.state.email
+          //ไม่ได้เช็คถ้าไม่ได้แก้
+        }, {
+          headers: {
+            'Authorization': localStorage.getItem('token'),
+          }
+        }).then(res => {
+          this.setState({ userinfo: res.data })
+        }).catch(err => {
+          console.warn(err);
+        })
+      }
+    }
+    this.setState({ edit: !this.state.edit });
+
     //props.handleValue(adProp);
   }
-  useEffect(() => {
-    axios.post(API.V1.TEACHER.INFO.GETINFO,{
+  updatefirstname(firstname) {
+    this.setState({ firstname: firstname })
+  }
+  updatesurname(surname) {
+    this.setState({ surname: surname })
+  }
+  updateemail(email) {
+    this.setState({ email: email })
+  }
+  componentWillMount() {
+    axios.post(API.V1.TEACHER.INFO.GETINFO, {
     }, {
-        headers: {
-            'Authorization': localStorage.getItem('token'),
-        }
-    } ).then(res => {
-      setUserInfo(res.data)
+      headers: {
+        'Authorization': localStorage.getItem('token'),
+      }
+    }).then(res => {
+      this.setState({ firstname: res.data.Firstname })
+      this.setState({ surname: res.data.Surname })
+      this.setState({ email: res.data.Email })
     }).catch(err => {
-        console.warn(err);
+      console.warn(err);
     })
-}, []);
-  const getFirstname = (e)=>{
-    setFirstname(e)
   }
-  const getSurname = (e)=>{
-    setEmail(e)
-  }
-  const getEmail = (e)=>{
-    setSurname(e)
-  }
-  return (
-    <Container>
-      <Layout>
-        <SideMenu keyValue={keyValue} form={form} />
+
+  render() {
+    return (
+      <Container>
         <Layout>
-        <Head history={props.history}/>{edit?
-        <div>
-          <ContentContainer >
-            <Row gutter={16} type="flex" justify="space-around">
-            </Row>
-            <img src={Profile} style={{ height: 200, marginLeft: 150 }} />
-            <div style={{ marginLeft: 150, fontSize: 30, fontWeight: "bold" }} >T.testteacher</div>
-            <div style={{ marginLeft: 150, fontSize: 30 }} >Name : <input onChange={getFirstname} defaultValue={UserInfo.Firstname}></input></div>
-            
-            <div style={{ marginLeft: 150, fontSize: 30 }} >Surname : <input onChange={getSurname} defaultValue={UserInfo.Surname}></input></div>
-            <div style={{ marginLeft: 150, fontSize: 30 }} >E-mail : <input onChange={getEmail} defaultValue={UserInfo.Email} tyle={{height:50}}></input></div>
-            <div style={{  marginLeft: 1200,marginTop:200}}>
-              <Button onClick={toggleEdit} style={{background:"#F43A09",color:"#ffffff",width:300,height:70,fontSize:30}}>Save</Button>
-            </div>
-          </ContentContainer>
-        </div>:<div>
-          <ContentContainer >
-            <Row gutter={16} type="flex" justify="space-around">
-            </Row>
-            <img src={Profile} style={{ height: 200, marginLeft: 150 }} />
-            <div style={{ marginLeft: 150, fontSize: 30, fontWeight: "bold" }} >T.testteacher</div>
-            <div style={{ marginLeft: 150, fontSize: 30 }} >Name : {UserInfo.Firstname}</div>
-            
-            <div style={{ marginLeft: 150, fontSize: 30 }} >Surname : {UserInfo.Surname}</div>
-            <div style={{ marginLeft: 150, fontSize: 30 }} >E-mail : {UserInfo.Email}</div>
-            <div style={{  marginLeft: 1200,marginTop:200}}>
-              <Button onClick={toggleEdit} style={{background:"#F43A09",color:"#ffffff",width:300,height:70,fontSize:30}}>Edit</Button>
-            </div>
-          </ContentContainer>
-          </div>}
+          <SideMenu keyValue={this.state.key} form={this.state.form} />
+          <Layout>
+            <Head />{this.state.edit ?
+              <div>
+                <ContentContainer >
+                  <Row gutter={16} type="flex" justify="space-around">
+                  </Row>
+                  <img src={Profile} alt={"Profile"} style={{ height: 200, marginLeft: 150 }} />
+                  <div style={{ marginLeft: 150, fontSize: 30, fontWeight: "bold" }} >T.testteacher</div>
+                  <div style={{ marginLeft: 150, fontSize: 30 }} >Name : <input onChange={e => this.updatefirstname(e.target.value)} defaultValue={this.state.firstname}></input></div>
+
+                  <div style={{ marginLeft: 150, fontSize: 30 }} >Surname : <input onChange={e => this.updatesurname(e.target.value)} defaultValue={this.state.surname}></input></div>
+                  <div style={{ marginLeft: 150, fontSize: 30 }} >E-mail : <input onChange={e => this.updateemail(e.target.value)} defaultValue={this.state.email} tyle={{ height: 50 }}></input></div>
+                  <div style={{ marginLeft: 1200, marginTop: 200 }}>
+                    <Button onClick={() => this.toggleEdit()} style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }}>Save</Button>
+                  </div>
+                </ContentContainer>
+              </div> : <div>
+                <ContentContainer >
+                  <Row gutter={16} type="flex" justify="space-around">
+                  </Row>
+                  <img src={Profile}  alt={"Profile"} style={{ height: 200, marginLeft: 150 }} />
+                  <div style={{ marginLeft: 150, fontSize: 30, fontWeight: "bold" }} >T.testteacher</div>
+                  <div style={{ marginLeft: 150, fontSize: 30 }} >Name : {this.state.firstname}</div>
+
+                  <div style={{ marginLeft: 150, fontSize: 30 }} >Surname : {this.state.surname}</div>
+                  <div style={{ marginLeft: 150, fontSize: 30 }} >E-mail : {this.state.email}</div>
+                  <div style={{ marginLeft: 1200, marginTop: 200 }}>
+                    <Button onClick={() => this.toggleEdit()} style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }}>Edit</Button>
+                  </div>
+                </ContentContainer>
+              </div>}
+          </Layout>
         </Layout>
-      </Layout>
-    </Container>
-  );
+      </Container >
+    );
+  }
 }
 
 export default UserInfo;
