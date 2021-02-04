@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { Layout, Typography, Row, Col, Button, Select, Modal, Input } from 'antd';
-import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Classlist from '../../components/Classlist';
-import Search from 'antd/lib/input/Search';
 import SearchData from '../../components/SearchData';
-import { SecurityScanTwoTone } from '@ant-design/icons';
+import API from "../../constants/api.jsx";
+import axios from 'axios';
 
 
 const { Option } = Select;
@@ -25,39 +24,56 @@ class Course extends React.Component {
       visible: false,
       data: "",
       coursename: "",
-      permission: "",
+      permission: "Private",
       year: "",
       courseid: "",
       keyValue: "1",
       form: 1,
     }
   }
-  /*updateCourse = (value) => {
+  updateCourse = (value) => {
     this.setState({
-      coursename: value.value
+      coursename: value
     })
   }
   updateYear = (value) => {
     this.setState({
-      year: value.target
+      year: value
     })
   }
   updateCourseid = (value) => {
     this.setState({
-      courseid: value.target
+      courseid: value
     })
-  }*/
-  handleChange = (value) => {
+  }
+  updatePermission = (value) => {
     this.setState({
-      permission: value.target
+      permission: value
     })
   }
   addCourse = () => {
-    /*console.log(coursename)
-    console.log(permission)
-    console.log(year)
-    console.log(courseid)*/
-    console.log(this.state.permission)
+    if (this.state.courseid||this.state.year||this.state.coursename){
+      axios.post(API.V1.TEACHER.COURSELIST.CREATECOURSE, {
+        "CourseName": this.state.coursename,
+        "CourseID": this.state.courseid,
+        "Year": this.state.year,
+        "Permission": this.state.permission, 
+        "Announcement": "",
+        "Description": "",
+        
+        //ไม่ได้เช็คถ้าไม่ได้แก้
+      }, {
+        headers: {
+          'Authorization': localStorage.getItem('token'),
+        }
+      }).then(res => {
+        if(res.data.CourseID&&res.data.CourseID!==this.state.courseid){
+          alert(res.data.CourseID)
+        }
+      }).catch(err => {
+        console.warn(err);
+      })
+    }
     this.setState({
       visible: false
     })
@@ -92,7 +108,7 @@ class Course extends React.Component {
               </Row>
               <div style={{ marginLeft: 1250, marginTop: 100 }}>
                 <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} onClick={()=>this.setState({ visible: true })}>Add Course</Button>
-              </div>
+              </div> 
               <Modal
                 centered
                 visible={this.state.visible}
@@ -114,7 +130,7 @@ class Course extends React.Component {
 
                   </Col>
                   <Col span={20}>
-                    <Input  //onChange={updateCourseid}  
+                    <Input  onChange={e=>this.updateCourseid(e.target.value)}  
                       style={{ fontSize: 20, width: 850 }} />
                   </Col>
                   <Col span={4}>
@@ -124,7 +140,7 @@ class Course extends React.Component {
 
                   </Col>
                   <Col span={20}>
-                    <Input  //onChange={updateCourse} 
+                    <Input  onChange={e=>this.updateCourse(e.target.value)} 
                       style={{ fontSize: 20, width: 850 }} />
                   </Col>
                   <Col span={4}>
@@ -134,7 +150,7 @@ class Course extends React.Component {
 
                   </Col>
                   <Col span={20}>
-                    <Input   //onChange={updateYear} 
+                    <Input   onChange={e=>this.updateYear(e.target.value)} 
                       style={{ fontSize: 20, width: 850 }} />
                   </Col>
                   <Col span={4}>
@@ -146,11 +162,11 @@ class Course extends React.Component {
                     labelInValue
                     defaultValue={{ value: 'private' }}
                     style={{ width: 120, fontSize: 20 }}
-                    value={this.state.permission}
+                    onChange={e=>this.updatePermission(e.value)}
                   >
 
-                    <Option value="private">Private</Option>
-                    <Option value="public">Public</Option>
+                    <Option value="Private">Private</Option>
+                    <Option value="Public">Public</Option>
                   </Select>
 
                   </Col>

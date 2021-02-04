@@ -18,14 +18,14 @@ function InClass(props) {
   const keyValue = "1";
   const form = 2;
   useEffect(() => {
-    if(props.location.data){
-    localStorage.setItem('courseName', props.location.data.courseName);
-    localStorage.setItem('courseCode', props.location.data.courseCode);
-    localStorage.setItem('courseID', props.location.data.courseID);
+    if (props.location.data) {
+      localStorage.setItem('courseName', props.location.data.courseName);
+      localStorage.setItem('courseCode', props.location.data.courseCode);
+      localStorage.setItem('courseID', props.location.data.courseID);
     }
     axios.post(API.V1.TEACHER.COURSE.GETANNOUNCE, {
 
-      "CourseCode":  localStorage.getItem('courseCode')
+      "CourseCode": localStorage.getItem('courseCode')
     }, {
       headers: {
         'Authorization': localStorage.getItem('token'),
@@ -82,12 +82,14 @@ function InClass(props) {
                 </div>
               </Col>
               <Col span={15}  >
-                <Testlist  />
+                <Testlist />
               </Col>
             </Row>
-            <div style={{ marginLeft: 1250, marginTop: 200 }}>
-              <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} >Add Test</Button>
-            </div>
+            <Link to={{ pathname: "/Teacher/Detail", }}>
+              <div style={{ marginLeft: 1250, marginTop: 200 }}>
+                <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} >Add Test</Button>
+              </div>
+            </Link>
           </ContentContainer>
         </Layout>
       </Layout>

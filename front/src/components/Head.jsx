@@ -1,13 +1,12 @@
 import React, { useState,useEffect } from 'react';
-import { Avatar } from 'antd';
 import styled from 'styled-components';
 import { Layout, Menu, Typography } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { Row, Col, Button, Input, Form } from 'antd';
 import Profile from '../assets/icon/Profile.png';
-import { UnderlineOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import API from "../constants/api.jsx"
+import history from "./../utils/history";
 const { Text } = Typography;
 const MenuIcon = styled.img`
   width: 30px;
@@ -36,7 +35,7 @@ function Head(props) {
   const [username,setUsername] = useState([])
   const logout = () => {
     localStorage.removeItem('token')
-    props.history.push(`/`)
+    history.push(`/`)
     
     
   }

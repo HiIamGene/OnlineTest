@@ -42,14 +42,14 @@ class UserInfo extends React.Component {
 
     //props.handleValue(adProp);
   }
-  updatefirstname(firstname) {
-    this.setState({ firstname: firstname })
+  updatefirstname(value) {
+    this.setState({ firstname: value })
   }
-  updatesurname(surname) {
-    this.setState({ surname: surname })
+  updatesurname(value) {
+    this.setState({ surname: value })
   }
-  updateemail(email) {
-    this.setState({ email: email })
+  updateemail(value) {
+    this.setState({ email: value })
   }
   componentWillMount() {
     axios.post(API.V1.TEACHER.INFO.GETINFO, {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from 'axios';
 import API from "../constants/api.jsx";
-import { Link } from 'react-router-dom';
 import Profile from '../assets/icon/Profile.png';
 function Teacherlist(props) {
     const [teacherlist, setTeacherlist] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button, Select, Modal, Upload ,message} from 'antd';
+import { Layout, Typography, Row, Col, Button, Select, Modal, Upload, message } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
@@ -24,42 +24,43 @@ class Student extends React.Component {
       visible: false,
       dataUpload: [],
       keyValue: "2",
-      form: 3
+      form: 3,
+      studentID: ""
     }
   }
   toggleVisible = () => {
     if (this.state.visible) {
       if (this.state.dataUpload) {
-       /* const data = new FormData();
-        data.append('file', this.state.dataUpload);
-        axios.post(API.V1.TEACHER.COURSE.ADDSTUDENTFILE, data, {
-          headers: {
-            'Authorization': localStorage.getItem('token'),
-            'CourseCode': "5B104D"
-
-          },
-        }).then(res => {
-          console.log(res.data);
-        }).catch(err => {
-          console.log(err);
-        })*/
+        /* const data = new FormData();
+         data.append('file', this.state.dataUpload);
+         axios.post(API.V1.TEACHER.COURSE.ADDSTUDENTFILE, data, {
+           headers: {
+             'Authorization': localStorage.getItem('token'),
+             'CourseCode': "5B104D"
+ 
+           },
+         }).then(res => {
+           console.log(res.data);
+         }).catch(err => {
+           console.log(err);
+         })*/
 
       }
     }
     this.setState({ visible: !this.state.visible });
   }
   handleChange = (info) => {
-    this.setState({dataUpload:info})
+    this.setState({ dataUpload: info })
   }
   setting = {
     accept: ".xlsx",
-    action: API.V1.TEACHER.COURSE.ADDSTUDENTFILE+"?coursecode=5B104D",
+    action: API.V1.TEACHER.COURSE.ADDSTUDENTFILE,
     headers: {
       'Authorization': localStorage.getItem('token'),
-      'coursecode': "5B104D"
+      'coursecode': localStorage.getItem('courseCode')
     },
 
-    enctype:"multipart/form-data",
+    enctype: "multipart/form-data",
     method: 'POST',
     name: 'myFile',
     onChange(info) {
@@ -83,6 +84,25 @@ class Student extends React.Component {
     /*onChange(info){
       this.setState({dataUpload:info.file})
     }*/
+  }
+  updateStudentid(value) {
+    this.setState({ studentID: value })
+  }
+  addStudent() {
+    if (this.state.studentID) {
+      axios.post(API.V1.TEACHER.COURSE.ADDSTUDENT, {
+        'CourseCode': localStorage.getItem('courseCode'),
+        "StudentID": this.state.studentID
+
+      }, {
+        headers: {
+          'Authorization': localStorage.getItem('token'),
+        }
+      }).then(res => {
+      }).catch(err => {
+        console.warn(err);
+      })
+    }
   }
   render() {
     return (
@@ -114,13 +134,11 @@ class Student extends React.Component {
                   /></div>
                 </Col>
                 <Col span={4} offset={2} >
-                  <Select mode="tags" style={{ marginLeft: 30, width: '100%', marginTop: 30 }} placeholder="Search" onChange={this.handleChange}>
-                    {children}
-                  </Select>
 
+                  <input style={{ marginLeft: 15, width: '100%', marginTop: 32 }} onChange={e => this.updateStudentid(e.target.value)} ></input>
                 </Col>
                 <Col span={1}  >
-                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
+                  <Button onClick={()=>this.addStudent} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
                     <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
                   </Button>
 
