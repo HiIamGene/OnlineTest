@@ -60,8 +60,6 @@ class Course extends React.Component {
         "Permission": this.state.permission, 
         "Announcement": "",
         "Description": "",
-        
-        //ไม่ได้เช็คถ้าไม่ได้แก้
       }, {
         headers: {
           'Authorization': localStorage.getItem('token'),
@@ -70,9 +68,11 @@ class Course extends React.Component {
         if(res.data.CourseID&&res.data.CourseID!==this.state.courseid){
           alert(res.data.CourseID)
         }
+        window.location.reload()
       }).catch(err => {
         console.warn(err);
       })
+      
     }
     this.setState({
       visible: false
@@ -85,7 +85,7 @@ class Course extends React.Component {
         <Layout>
           <SideMenu keyValue={this.state.keyValue} form={this.state.form} />
           <Layout>
-          <Head  />
+          <Head />
             <ContentContainer >
               <Row >
                 <Col span={5} offset={2}>

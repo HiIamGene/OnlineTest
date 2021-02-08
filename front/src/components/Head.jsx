@@ -35,9 +35,8 @@ function Head(props) {
   const [username,setUsername] = useState([])
   const logout = () => {
     localStorage.removeItem('token')
-    history.push(`/`)
-    
-    
+    history.push('/')
+    window.location.reload()
   }
   useEffect(() => {
     axios.post(API.V1.USERNAME,{

@@ -30,7 +30,7 @@ class Student extends React.Component {
   }
   toggleVisible = () => {
     if (this.state.visible) {
-      if (this.state.dataUpload) {
+        window.location.reload()
         /* const data = new FormData();
          data.append('file', this.state.dataUpload);
          axios.post(API.V1.TEACHER.COURSE.ADDSTUDENTFILE, data, {
@@ -45,7 +45,6 @@ class Student extends React.Component {
            console.log(err);
          })*/
 
-      }
     }
     this.setState({ visible: !this.state.visible });
   }
@@ -84,6 +83,7 @@ class Student extends React.Component {
     /*onChange(info){
       this.setState({dataUpload:info.file})
     }*/
+    
   }
   updateStudentid(value) {
     this.setState({ studentID: value })
@@ -99,6 +99,7 @@ class Student extends React.Component {
           'Authorization': localStorage.getItem('token'),
         }
       }).then(res => {
+        window.location.reload()
       }).catch(err => {
         console.warn(err);
       })
@@ -138,13 +139,13 @@ class Student extends React.Component {
                   <input style={{ marginLeft: 15, width: '100%', marginTop: 32 }} onChange={e => this.updateStudentid(e.target.value)} ></input>
                 </Col>
                 <Col span={1}  >
-                  <Button onClick={()=>this.addStudent} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
+                  <Button onClick={()=>this.addStudent} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 32, marginTop: 30 }} >
                     <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
                   </Button>
 
                 </Col>
                 <Col span={3}  >
-                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} onClick={() => this.toggleVisible()} >
+                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF',  height: 32, marginTop: 30 }} onClick={() => this.toggleVisible()} >
                     <div style={{ font: 'Josefin Sans', fontSize: 15 }}>Upload</div>
                   </Button>
 

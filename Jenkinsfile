@@ -1,34 +1,14 @@
-pipeline {
-    agent any
-    tools {
-        go 'go1.15'
+node {    
+    def app     
+    stage('Clone repository') {               
+        checkout scm    
+    }     
+    stage('Build image') {         
+        app = docker.build("jinjustin/omega_web")    
+    }          
+    stage('Push image') {          
+    app.push("${env.BUILD_NUMBER}")            
+    app.push("latest")          
     }
-    stages {        
-        stage('Pre Test') {
-            steps {
-                echo 'Dependencies'
-                sh 'go version'
-                sh 'go get -u golang.org/x/lint/golint'
-            }
-        }
-        
-        stage('Build') {
-            steps {
-                echo 'Compiling and building'
-                sh 'go build'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'go run hello-world.go'
-            }
-        }
-        
-    }
-    post {
-        always {
-            echo 'Finish Pipeline'
-        }
-    }  
+    
 }
