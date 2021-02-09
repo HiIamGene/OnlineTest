@@ -73,7 +73,7 @@ function Group(props) {
               </Col>
               <Col span={6}>
                 <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
-                  <div style={{ fontSize: 30 }}>Save</div>
+                  <div style={{ fontSize: 30 }}>Save.</div>
                 </Button>
               </Col>
               
