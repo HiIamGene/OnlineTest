@@ -5,6 +5,9 @@ import { ContentContainer, Container, HeadlineWrapper } from '../../components/S
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Detail from '../../components/addTest/Detail'
+import Taskapp from '../../components/addTest/task-app'
+import axios from 'axios';
+import API from "../../constants/api.jsx";
 const { Step } = Steps;
 
 const steps = [
@@ -60,37 +63,48 @@ class AddTest extends React.Component {
                   onChange={this.onChange}
                   className="site-navigation-steps"
                 >
-                  <Step status="finish" title="Step 1" />
-                  <Step status="process" title="Step 2" />
-                  <Step status="process" title="Step 3" />
-                  <Step status="process" title="Step 4" />
+                  <Step status="finish" title="Detail" />
+                  <Step status="process" title="Grouo" />
+                  <Step status="process" title="Question list" />
+                  <Step status="process" title="Edit question" />
                 </Steps>
                 <div className="steps-content">
                   {this.state.current === 0 && (
                     <Detail />
-                  )
-
-                  }
+                  )}
+                  {this.state.current === 1 && (
+  <Detail />
+                  )}
+                  {this.state.current === 2 && (
+                    <Detail />
+                  )}
+                  {this.state.current === 3 && (
+                    <Detail />
+                  )}
                 </div>
-
-
-                <div className="steps-action">
+                <div sclassName="steps-action" tyle={{fontSize: 30 }}>
+                    Draft
+               
+                <Switch style={{ margin: '0 8px' }} defaultChecked ></Switch>
+              
                   {this.state.current > 0 && (
-                    <Button onClick={() => this.prev()}>
-                      Previous
+                      <Button onClick={() => this.prev()}>
+                        Previous
                     </Button>
+
                   )}
                   {this.state.current < steps.length - 1 && (
+                       
                     <Button style={{ margin: '0 8px' }} type="primary" onClick={() => this.next()}>
                       Next
                     </Button>
                   )}
                   {this.state.current === steps.length - 1 && (
+
                     <Button style={{ margin: '0 8px' }} type="primary" onClick={() => message.success('Processing complete!')}>
                       Save
                     </Button>
                   )}
-
                 </div>
               </ContentContainer>
             </Layout>

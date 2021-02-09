@@ -2,10 +2,10 @@ import React from 'react';
 import { Row, Col, Button, Input, Form } from 'antd';
 import { Typography } from 'antd';
 import axios from 'axios';
+import API from "../constants/api.jsx";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import writing from '../assets/img/writing.png'
 import brand from '../assets/img/brand.png'
-import API from "../constants/api.jsx";
 const { Title } = Typography;
 
 class Homepage extends React.Component {

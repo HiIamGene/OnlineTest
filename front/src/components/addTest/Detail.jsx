@@ -27,8 +27,7 @@ function Detail(props) {
   return (
     <>
       <Container>
-        <Layout>
-          <Layout>
+
 
             <ContentContainer >
               <Row gutter={16} type="flex" justify="space-around">
@@ -69,23 +68,8 @@ function Detail(props) {
                     <TimePicker onChange={onChange} style={{ width: 850 }} />
                   </div>
                 </Col>
-                <Col span={1} offset={16}>
-                  <div style={{ marginTop: 35, fontSize: 30 }}>
-                    Draft
-                </div>
-                </Col>
-                <Col span={1} >
-                  <Switch defaultChecked style={{ marginTop: 50 }} />
-                </Col>
-                <Col span={6}>
-                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
-                    <div style={{ fontSize: 30 }}>Save</div>
-                  </Button>
-                </Col>
               </Row>
             </ContentContainer>
-          </Layout>
-        </Layout>
       </Container>
 
     </>
