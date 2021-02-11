@@ -1,5 +1,5 @@
 import React  from 'react';
-import { Layout, Row, Col, Button } from 'antd';
+import { Layout, Row,  Button } from 'antd';
 import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';

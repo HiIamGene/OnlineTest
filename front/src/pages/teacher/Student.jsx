@@ -119,10 +119,9 @@ class Student extends React.Component {
                     Student
                   </div>
                 </Col>
-                <Col span={1}>
+                <Col span={6}>
 
                 </Col>
-                <Col span={4} ></Col>
                 <Col span={24} offset={4} >
                   <div><hr
                     style={{

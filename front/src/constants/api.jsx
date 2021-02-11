@@ -49,6 +49,7 @@ export default {
             }
         },
         USERNAME: API_DOMAIN_NAME+'/getusername',
-        LOGIN:API_DOMAIN_NAME+'/login'
+        LOGIN:API_DOMAIN_NAME+'/login',
+        ALERT:API_DOMAIN_NAME+'/acceptjoincourse'
     }
 }

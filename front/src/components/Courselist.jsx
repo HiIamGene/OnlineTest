@@ -3,6 +3,7 @@ import { Button, Popconfirm, Empty } from 'antd';
 import axios from 'axios';
 import API from "../constants/api.jsx";
 import { Link } from 'react-router-dom';
+
 function Classlist(props) {
     const [classlist, setclasslist] = useState([]);
     useEffect(() => {
@@ -19,22 +20,6 @@ function Classlist(props) {
             console.warn(err);
         })
     }, []);
-    const deleteTeacher = (e) => {
-        axios.post(API.V1.TEACHER.COURSELIST.DELETECOURSE, {
-            "CourseCode": e
-        }, {
-            headers: {
-                'Authorization': localStorage.getItem('token'),
-            }
-        }).then(res => {
-
-        }).catch(err => {
-            console.warn(err);
-        })
-        window.location.reload();
-
-        console.log(e)
-    }
     const confirm = (e) => {
         axios.post(API.V1.TEACHER.COURSELIST.DELETECOURSE, {
             "CourseCode": e
@@ -86,7 +71,7 @@ function Classlist(props) {
             return classlist.map((e, index) =>
                 <div key={index}>
                     <Link to={{
-                        pathname: "/Teacher/InClass",
+                        pathname: "/Teacher/InCourse",
                         data: {
                             "courseID": e.CourseID,
                             "courseCode": e.CourseCode,

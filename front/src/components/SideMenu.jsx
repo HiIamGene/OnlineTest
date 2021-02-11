@@ -93,7 +93,7 @@ class SideMenu extends React.Component {
             </div>
             <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[this.props.keyValue]}>
               <Menu.Item key="1" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="1" >
-                <Link to="/Teacher/InClass">
+                <Link to="/Teacher/InCourse">
                   <MenuIcon src={Class} style={{ marginRight: "20px", height: "70px", width: "70px" }} />
                   <br />
                   <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Course</span>
@@ -162,7 +162,7 @@ class SideMenu extends React.Component {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="3" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="3" >
-                  <Link to="/Teacher/InClass">
+                  <Link to="/Teacher/InCourse">
                     <MenuIcon src={Back} style={{ height: "60px", width: "80px" }} />
                     <br />
                     <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Back</span>
@@ -203,7 +203,7 @@ class SideMenu extends React.Component {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="3" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="3" >
-                  <Link to="/Teacher/InClass">
+                  <Link to="/Teacher/InCourse">
                     <MenuIcon src={Back} style={{ height: "74px", width: "74px" }} />
                     <br />
                     <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Back</span>
@@ -269,7 +269,7 @@ class SideMenu extends React.Component {
             </div>
             <Menu style={{ background: "#70C5FB" }} theme="dark" mode="inline" defaultSelectedKeys={[this.props.keyValue]}>
               <Menu.Item key="1" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="1" >
-                <Link to="/Teacher/InClass">
+                <Link to="/Teacher/InCourse">
                   <MenuIcon src={Class} style={{ marginRight: "20px", height: "70px", width: "70px" }} />
                   <br />
                   <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Course</span>

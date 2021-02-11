@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMen2';
 import Head from '../../components/Head';
-import Classlist from '../../components/Classlist';
+import Classlist from '../../components/Courselist';
 import Search from 'antd/lib/input/Search';
 import SearchData from '../../components/SearchData';
 const { Option } = Select;

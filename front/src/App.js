@@ -6,7 +6,8 @@ import Course from './pages/teacher/Course';
 import Detail from './pages/teacher/Detail';
 import Group from './pages/teacher/Group';
 import Homepage from './pages/Homepage';
-import InClass from './pages/teacher/InClass';
+import Accept from './pages/Accept';
+import InClass from './pages/teacher/InCourse';
 import Question from './pages/teacher/Question';
 import Student from './pages/teacher/Student';
 import Teacher from './pages/teacher/Teacher';
@@ -50,11 +51,12 @@ function App() {
   return (
     <Router history={history} username="T.Somchai">
       <Route exact path="/" exact component={Homepage} />
+      <Route exact path="/Accept" exact component={Accept} />
       <Route exact path="/Teacher/AddQuestion" exact component={AddQuestion} />
       <Route exact path="/Teacher/Course" exact component={Course} />
       <Route exact path="/Teacher/Detail" exact component={Detail} />
       <Route exact path="/Teacher/Group" exact component={Group} />
-      <Route exact path="/Teacher/InClass" exact component={InClass} />
+      <Route exact path="/Teacher/InCourse" exact component={InClass} />
       <Route exact path="/Teacher/Question" exact component={Question} />
       <Route exact path="/Teacher/Student" exact component={Student} />
       <Route exact path="/Teacher/Teacher" exact component={Teacher} />

@@ -3,7 +3,7 @@ import { Layout, Typography, Row, Col, Button, Select, Modal, Input } from 'antd
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
-import Classlist from '../../components/Classlist';
+import Courselist from '../../components/Courselist';
 import SearchData from '../../components/SearchData';
 import API from "../../constants/api.jsx";
 import axios from 'axios';
@@ -102,8 +102,8 @@ class Course extends React.Component {
                 <Col span={12} ></Col>
               </Row>
               <Row>
-                <Col span={24} offset={2}>
-                  <Classlist username={username} />
+                <Col span={24} style={{marginLeft:"5%"}}>
+                  <Courselist />
                 </Col>
               </Row>
               <div style={{ marginLeft: 1250, marginTop: 100 }}>
