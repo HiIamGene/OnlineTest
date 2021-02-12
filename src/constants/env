@@ -1,3 +1,0 @@
-export default {
-    API_DOMAIN_NAME: 'http://142.93.177.152:10000'
-}
