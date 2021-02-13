@@ -9,12 +9,13 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY package.json ./
-RUN npm install -g
-
-#RUN npm install react-scripts -g
 
 # add app
 COPY . .
+
+RUN npm install
+RUN npm install react-scripts
+RUN npm run build
 
 # Expose port 3000 to the outside world
 EXPOSE 3000

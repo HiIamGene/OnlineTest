@@ -34,7 +34,7 @@ const { Header } = Layout;
 function Head(props) {
   const [username,setUsername] = useState([])
   const logout = () => {
-    localStorage.removeItem('token')
+    localStorage.clear();
     history.push('/')
     window.location.reload()
   }
@@ -51,7 +51,6 @@ function Head(props) {
     })
 }, []);
 
-  //alert(localStorage.('token'))
 
   return (
     <div>
