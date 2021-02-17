@@ -88,7 +88,6 @@ function Classlist(props) {
     }
     return (
             classlistOut()
-
     )
 }
 

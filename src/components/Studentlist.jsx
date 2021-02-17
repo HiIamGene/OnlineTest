@@ -20,7 +20,8 @@ function Studentlist(props) {
             console.warn(err);
         });
     }, []);
-    const confirm = (e) => {
+    const confirm = (e) => {   
+        console.log(e)
         axios.post(API.V1.TEACHER.COURSE.DELETESTUDENT, {
             "CourseCode": localStorage.getItem('courseCode'),
             "Username":e
@@ -29,11 +30,12 @@ function Studentlist(props) {
                 'Authorization': localStorage.getItem('token'),
             }
         }).then(res => {
+            console.log(res.data)
         }).catch(err => {
             console.warn(err);
         })
 
-       // window.location.reload();
+        window.location.reload();
     }
     const studentlistOut = () => {
         if (studentlist === null) {
@@ -45,7 +47,7 @@ function Studentlist(props) {
                 if (e.Status === props.status) {
                     return(
                     <div key={index} style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    {e.StudentID}  {e.Firstname}  {e.Surname}
-                        <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => confirm(e.Firstname)}>
+                        <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => confirm(e.StudentID)}>
                             <Button type="link" style={{ color: "#AAAAAA", fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>x</Button>
                         </Popconfirm>
                     </div>)
