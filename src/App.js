@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import AddQuestion from './pages/teacher/Addquestion';
 import Course from './pages/teacher/Course';
 import Detail from './pages/teacher/Detail';
@@ -51,24 +51,24 @@ function App() {
   }, []);
   return (
     <Router history={history} username="T.Somchai">
-      <Route exact path="/" exact component={Homepage} />
-      <Route exact path="/Accept" exact component={Accept} />
-      <Route exact path="/Todo" exact component={todo} />
-      <Route exact path="/Teacher/AddQuestion" exact component={AddQuestion} />
-      <Route exact path="/Teacher/Course" exact component={Course} />
-      <Route exact path="/Teacher/Detail" exact component={Detail} />
-      <Route exact path="/Teacher/Group" exact component={Group} />
-      <Route exact path="/Teacher/InCourse" exact component={InClass} />
-      <Route exact path="/Teacher/Question" exact component={Question} />
-      <Route exact path="/Teacher/Student" exact component={Student} />
-      <Route exact path="/Teacher/Teacher" exact component={Teacher} />
-      <Route exact path="/Teacher/TestBank" exact component={TestBank} />
-      <Route exact path="/Teacher/UserInfo" exact component={UserInfo} />
-      <Route exact path="/Teacher/ScoreTest" exact component={ScoreTest} />
-      <Route exact path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
-      <Route exact path="/Teacher/ScoreQuestion" exact component={ScoreQuestion} />
-      <Route exact path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
-      <Route exact path="/Student/Course" exact component={Course2} />
+      <Route  path="/" exact component={Homepage} />
+      <Route  path="/Accept" exact component={Accept} />
+      <Route  path="/Todo" exact component={todo} />
+      <Route  path="/Teacher/AddQuestion" exact component={AddQuestion} />
+      <Route  path="/Teacher/Course" exact component={Course} />
+      <Route  path="/Teacher/Detail" exact component={Detail} />
+      <Route  path="/Teacher/Group" exact component={Group} />
+      <Route  path="/Teacher/InCourse" exact component={InClass} />
+      <Route  path="/Teacher/Question" exact component={Question} />
+      <Route  path="/Teacher/Student" exact component={Student} />
+      <Route  path="/Teacher/Teacher" exact component={Teacher} />
+      <Route  path="/Teacher/TestBank" exact component={TestBank} />
+      <Route  path="/Teacher/UserInfo" exact component={UserInfo} />
+      <Route  path="/Teacher/ScoreTest" exact component={ScoreTest} />
+      <Route  path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
+      <Route  path="/Teacher/ScoreQuestion" exact component={ScoreQuestion} />
+      <Route  path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
+      <Route  path="/Student/Course" exact component={Course2} />
 
     </Router>
   );

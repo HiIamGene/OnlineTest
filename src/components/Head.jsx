@@ -1,25 +1,12 @@
 import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
-import { Layout, Menu, Typography } from 'antd';
-import { NavLink } from 'react-router-dom';
-import { Row, Col, Button, Input, Form } from 'antd';
+import { Row, Col } from 'antd';
 import Profile from '../assets/icon/Profile.png';
 import axios from 'axios';
 import API from "../constants/api.jsx"
 import history from "./../utils/history";
-const { Text } = Typography;
-const MenuIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-`
 
-const ContainerName = styled.div`
-  padding: 0;
-  width: "100%";
-  margin-left: 120px;  
-  
-`
+
 const ContainerHead = styled.div`
 padding: 20;
 width: "100%";
@@ -29,8 +16,6 @@ margin-top:10px;
 
 `
 
-
-const { Header } = Layout;
 function Head(props) {
   const [username,setUsername] = useState([])
   const logout = () => {

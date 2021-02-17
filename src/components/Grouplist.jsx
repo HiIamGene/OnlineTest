@@ -12,7 +12,7 @@ function Grouplist() {
     let table = []
     const classlistOut = () => {
         for (i = 0; i < classlist.length; i++) {
-            if(i==0){
+            if(i===0){
             table.push(
                 <div>
                     <Row gutter={24} type="flex" justify="space-around">
@@ -88,9 +88,7 @@ function Grouplist() {
     
                             </div>
                             <table style={{ marginTop:20,marginLeft: 10, fontSize: 30 }}>
-                                <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>
-                                    +
-                                    </Button>
+                                <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>+</Button>
                                 <br />
                                 <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>
                                     Tt

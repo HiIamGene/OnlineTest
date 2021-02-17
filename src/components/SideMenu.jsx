@@ -39,12 +39,6 @@ class SideMenu extends React.Component {
 
     }
   }
-  componentWillMount() {
-    /*if (!this.props.couseCode) {
-       history.push(`/Teacher/Course`)
-     }*/
-
-  }
   render() {
     if (this.props.form === 1) {
       return (

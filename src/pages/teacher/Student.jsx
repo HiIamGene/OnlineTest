@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button, Select, Modal, Upload, message } from 'antd';
-import { NavLink } from 'react-router-dom';
-import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
+import React from 'react';
+import { Layout, Row, Col, Button, Select, Modal, Upload, message } from 'antd';
+import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
-import Profile from '../../assets/icon/Profile.png';
 import { UploadOutlined } from '@ant-design/icons';
 import Studentlist from '../../components/Studentlist';
 import API from "../../constants/api.jsx";
 import axios from 'axios';
 
-const { Option } = Select;
-const { Title } = Typography;
+/*const { Option } = Select;
 const children = [];
 for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-}
+}*/
 
 class Student extends React.Component {
   constructor(props) {
