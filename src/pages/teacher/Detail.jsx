@@ -5,7 +5,7 @@ import { ContentContainer, Container, HeadlineWrapper } from '../../components/S
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Detail from '../../components/addTest/Detail'
-import Taskapp from '../../components/addTest/task-app'
+import Group from '../../components/addTest/group'
 import axios from 'axios';
 import API from "../../constants/api.jsx";
 const { Step } = Steps;
@@ -64,7 +64,7 @@ class AddTest extends React.Component {
                   className="site-navigation-steps"
                 >
                   <Step status="finish" title="Detail" />
-                  <Step status="process" title="Grouo" />
+                  <Step status="process" title="Group" />
                   <Step status="process" title="Question list" />
                   <Step status="process" title="Edit question" />
                 </Steps>
@@ -73,7 +73,7 @@ class AddTest extends React.Component {
                     <Detail />
                   )}
                   {this.state.current === 1 && (
-  <Detail />
+                    <Group />
                   )}
                   {this.state.current === 2 && (
                     <Detail />

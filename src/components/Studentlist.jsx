@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { Button } from 'antd';
-import { NavLink } from 'react-router-dom';
+import { Button , Popconfirm } from 'antd';
 import axios from 'axios';
 import API from "../constants/api.jsx";
-import { Link } from 'react-router-dom';
 import Profile from '../assets/icon/Profile.png';
 function Studentlist(props) {
     const [studentlist, setStudentlist] = useState([]);
@@ -22,23 +20,45 @@ function Studentlist(props) {
             console.warn(err);
         });
     }, []);
-
-    var i;
-    let table = []
-    const studentlistOut = () => {
-        for (i = 0; i < Object.keys(studentlist).length; i++) {
-            if (props.status == studentlist[i].Status ) {
-                table.push(
-                    <div style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    {studentlist[i].StudentID}  {studentlist[i].Firstname}  {studentlist[i].Surname} </div>
-                )
+    const confirm = (e) => {   
+        console.log(e)
+        axios.post(API.V1.TEACHER.COURSE.DELETESTUDENT, {
+            "CourseCode": localStorage.getItem('courseCode'),
+            "Username":e
+        }, {
+            headers: {
+                'Authorization': localStorage.getItem('token'),
             }
+        }).then(res => {
+            console.log(res.data)
+        }).catch(err => {
+            console.warn(err);
+        })
+
+        window.location.reload();
+    }
+    const studentlistOut = () => {
+        if (studentlist === null) {
+            return null
         }
-        return table
+        else {
+            return studentlist.map((e, index) => {
+
+                if (e.Status === props.status) {
+                    return(
+                    <div key={index} style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    {e.StudentID}  {e.Firstname}  {e.Surname}
+                        <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => confirm(e.StudentID)}>
+                            <Button type="link" style={{ color: "#AAAAAA", fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>x</Button>
+                        </Popconfirm>
+                    </div>)
+                }
+
+            }
+            )
+        }
     }
     return (
-        <table>
-            {studentlistOut()}
-        </table>
+            studentlistOut()
     )
 }
 

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button, Select, Modal, Input } from 'antd';
-import { NavLink } from 'react-router-dom';
-import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
+import { Layout, Row, Col, Button, Select, Modal, Input } from 'antd';
+import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMen2';
 import Head from '../../components/Head';
 import Classlist from '../../components/Courselist';
-import Search from 'antd/lib/input/Search';
 import SearchData from '../../components/SearchData';
 const { Option } = Select;
 
@@ -13,11 +11,9 @@ const children = [];
 for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
 }
-const { Title } = Typography;
 
 function Course(props) {
   const [visible, setVisible] = useState(false);
-  const [data, setData] = useState();
 
   const keyValue = "1";
   const form = 1;

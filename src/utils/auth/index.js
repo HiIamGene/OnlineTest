@@ -1,12 +1,12 @@
 import { Component } from 'react'
-import Router from 'next/router'
-import nextCookie from 'next-cookies'
+import Router from '../../../../git new/src/utils/auth/node_modules/next/router'
+import nextCookie from '../../../../git new/src/utils/auth/node_modules/next-cookies'
 import cookie from 'js-cookie'
 import React from "react"
 import axios from "axios"
 import {API_USER_PROFILE_V010001} from "../../constant/ENV"
 import {setProfile} from "../../redux/actions/profileAction"
-import { destroyCookie } from 'nookies'
+import { destroyCookie } from '../../../../git new/src/utils/auth/node_modules/nookies'
 import {COOKIE_LANG, COOKIE_TOKEN} from "../../constant"
 import {_error_handler} from "../errorHandler";
 

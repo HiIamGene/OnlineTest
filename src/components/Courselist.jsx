@@ -14,7 +14,6 @@ function Classlist(props) {
             }
         }).then(res => {
             setclasslist(res.data)
-            console.log(res.data)
 
         }).catch(err => {
             console.warn(err);
@@ -28,15 +27,13 @@ function Classlist(props) {
                 'Authorization': localStorage.getItem('token'),
             }
         }).then(res => {
-            console.log(res.data)
         }).catch(err => {
             console.warn(err);
         })
         console.log(e)
         window.location.reload();
     }
-    var i;
-    let table = []
+
 
 
     const classlistOut = () => {
@@ -90,9 +87,7 @@ function Classlist(props) {
         }
     }
     return (
-        <table>
-            {classlistOut()}
-        </table>
+            classlistOut()
     )
 }
 

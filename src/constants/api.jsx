@@ -41,8 +41,10 @@ export default {
                 GETSTUDENT:API_DOMAIN_NAME+'/getstudentincourse',
                 ADDSTUDENT:API_DOMAIN_NAME+'/addstudent',
                 ADDSTUDENTFILE:API_DOMAIN_NAME+'/addstudentbyfile',
+                DELETESTUDENT:API_DOMAIN_NAME+'/deletestudentincourse',
                 GETTEACHER:API_DOMAIN_NAME+'/getteacherincourse',
                 ADDTEACHER:API_DOMAIN_NAME+'/addteacher',
+                DELETETEACHER:API_DOMAIN_NAME+'/deleteteacherincourse'
             },
             TEST:{
                 GETTESTLIST:API_DOMAIN_NAME+'/gettestlist'

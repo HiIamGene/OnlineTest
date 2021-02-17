@@ -23,7 +23,7 @@ class Teacher extends React.Component {
     if (this.state.studentID) {
       axios.post(API.V1.TEACHER.COURSE.ADDTEACHER, {
         'CourseCode': localStorage.getItem('courseCode'),
-        "StudentID": this.state.teacherID
+        "Username": this.state.teacherID
 
       }, {
         headers: {
@@ -66,10 +66,10 @@ class Teacher extends React.Component {
               </Col>
               <Col span={4} offset={2} >
 
-                <input style={{ marginLeft: 15, width: '100%', marginTop: 32 }} onChange={e => this.updateStudentid(e.target.value)} ></input>
+                <input style={{ marginLeft: 15, width: '100%', marginTop: 32 }} onChange={e => this.updateTeacherid(e.target.value)} ></input>
               </Col>
               <Col span={1}  >
-                <Button onClick={()=>this.addTeacher} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 32, marginTop: 30 }} >
+                <Button onClick={()=>this.addTeacher()} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 32, marginTop: 30 }} >
                   <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
                 </Button>
 

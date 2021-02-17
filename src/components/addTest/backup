@@ -1,0 +1,35 @@
+  <div style={{ fontSize: 23, background: '#F4A940', width: 1400, height: 135, marginTop: 30, display: "block" }}>
+                              <Row gutter={4} type="flex" justify="space-around">
+                                <Col span={23} offset={1} style={{ color: '#FFFFFF', fontWeight: "bold", marginTop: 20 }} >
+                                  Group
+                                </Col>
+                                <Col span={9} offset={1}>
+                                  <Query />
+                                </Col>
+                                <Col span={5} offset={1} style={{ color: '#FFFFFF' }}>
+                                  <div>Number of questions</div>
+                                </Col>
+                                <Col span={1}>
+                                  <input style={{ height: 30, width: 30 }} />
+                                </Col>
+                                <Col span={1} style={{ color: '#FFFFFF' }}>
+                                  /6
+                                </Col>
+                                <Col span={1} style={{ color: '#FFFFFF' }}>
+                                  Score
+                                </Col>
+                                <Col span={1}>
+                                  <input style={{ height: 30, width: 30 }} />
+                                </Col>
+                                <Col span={3} >
+                                  <Link to="/Question">
+                                    <Button type="primary" style={{ background: '#F43A09' }} >Add Question</Button>
+                                  </Link>
+                                </Col>
+                                <Col span={1} >
+                                  <Button type="link" style={{ fontSize: 23, color: '#FFFFFF' }}>
+                                    x
+                                  </Button>
+                                </Col>
+                                </Row>
+                              </div>
