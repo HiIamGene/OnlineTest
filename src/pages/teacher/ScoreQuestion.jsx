@@ -21,11 +21,12 @@ function ScoreQuestion(props) {
     };
     return (
         <Container>
-            <Layout>
+            <Layout >
                 <SideMenu keyValue={keyValue} form={form} />
-                <Layout>
+                <Layout  style={{ marginLeft: 180 }}>
+                <ContentContainer >
                 <Head history={props.history}/>
-                    <ContentContainer >
+
                         <Row gutter={16} type="flex" justify="space-around">
                             <Col span={19} offset={2}>
                                 <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>Data Communication - 60010001</div>

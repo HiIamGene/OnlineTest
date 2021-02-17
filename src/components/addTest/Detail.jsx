@@ -11,7 +11,12 @@ function onChange(date, dateString) {
 }
 
 function Detail(props) {
-  const [data, setData] = useState();
+  const [topic, settopic] = useState();
+  const [description, setdescription] = useState();
+  const [dateStart, setDateStart] = useState();
+  const [duration, setDuration] = useState();
+  const [timeStart, setTimeStart] = useState();
+
   const keyValue = "1";
   const form = 4;
   const [current, setCurrent] = React.useState(0);
@@ -25,11 +30,8 @@ function Detail(props) {
   };
 
   return (
-    <>
-      <Container>
 
-
-            <ContentContainer >
+  
               <Row gutter={16} type="flex" justify="space-around">
 
                 <div style={{ height: 30 }} ></div>
@@ -69,10 +71,7 @@ function Detail(props) {
                   </div>
                 </Col>
               </Row>
-            </ContentContainer>
-      </Container>
 
-    </>
   );
 };
 

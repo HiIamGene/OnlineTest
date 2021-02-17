@@ -32,7 +32,7 @@ function Teacherlist(props) {
         });
     }, []);
     const confirm = (e) => {
-        axios.post(API.V1.TEACHER.COURSELIST.DELETECOURSE, {
+        axios.post(API.V1.TEACHER.COURSE.DELETETEACHER, {
             "CourseCode":  localStorage.getItem('courseCode'),
             "Username":e
             
@@ -61,7 +61,7 @@ function Teacherlist(props) {
             return teacherlist.map((e, index) =>
                 <div key={index} style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    {e.Firstname}  {e.Surname}
                 {(username===e.Firstname)?
-                    <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => confirm(e.Firstname)}>
+                    <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => confirm(e.Username)}>
                         <Button type="link" style={{ color: "#AAAAAA", fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>x</Button>
                     </Popconfirm>:<div></div>
         }

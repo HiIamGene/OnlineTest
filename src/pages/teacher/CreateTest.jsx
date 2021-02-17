@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react"
 import { Steps, Button, message } from 'antd';
 import { Layout, Typography, Row, Col, Input, DatePicker, TimePicker, Switch } from 'antd';
-import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
+import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Detail from '../../components/addTest/Detail'
 import Group from '../../components/addTest/group'
+import Question from '../../components/addTest/question'
 import axios from 'axios';
 import API from "../../constants/api.jsx";
 const { Step } = Steps;
-
+const { Header, Content, Footer, Sider } = Layout;
 const steps = [
   {
-
+    title: 'first',
+    content: 'Second-content',
   },
   {
     title: 'Second',
@@ -50,13 +52,13 @@ class AddTest extends React.Component {
   };
   render() {
     return (
-      <>
+
         <Container>
           <Layout>
             <SideMenu keyValue={this.state.keyValue} form={this.state.form} />
-            <Layout>
+            <Layout className="site-layout" style={{ marginLeft: 180 }}>
+            <ContentContainer style={{ margin: '24px 16px 0', overflow: 'initial' }} >
               <Head />
-              <ContentContainer >
                 <Steps
                   type="navigation"
                   current={this.state.current}
@@ -76,34 +78,24 @@ class AddTest extends React.Component {
                     <Group />
                   )}
                   {this.state.current === 2 && (
-                    <Detail />
+                    <Question />
                   )}
                   {this.state.current === 3 && (
                     <Detail />
                   )}
                 </div>
-                <div sclassName="steps-action" tyle={{fontSize: 30 }}>
-                    Draft
-               
+                <div sclassName="steps-action" tyle={{fontSize: 30 }}>Draft
                 <Switch style={{ margin: '0 8px' }} defaultChecked ></Switch>
-              
                   {this.state.current > 0 && (
-                      <Button onClick={() => this.prev()}>
-                        Previous
-                    </Button>
-
+                      <Button onClick={() => this.prev()}>Previous</Button>
                   )}
                   {this.state.current < steps.length - 1 && (
                        
-                    <Button style={{ margin: '0 8px' }} type="primary" onClick={() => this.next()}>
-                      Next
-                    </Button>
+                    <Button style={{ margin: '0 8px' }} type="primary" onClick={() => this.next()}>Next</Button>
                   )}
                   {this.state.current === steps.length - 1 && (
 
-                    <Button style={{ margin: '0 8px' }} type="primary" onClick={() => message.success('Processing complete!')}>
-                      Save
-                    </Button>
+                    <Button style={{ margin: '0 8px' }} type="primary" onClick={() => message.success('Processing complete!')}>Save</Button>
                   )}
                 </div>
               </ContentContainer>
@@ -111,7 +103,6 @@ class AddTest extends React.Component {
           </Layout>
         </Container>
 
-      </>
     );
   }
 };

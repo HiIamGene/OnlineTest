@@ -3,12 +3,12 @@ import './App.css';
 import { Router, Route } from "react-router-dom";
 import AddQuestion from './pages/teacher/Addquestion';
 import Course from './pages/teacher/Course';
-import Detail from './pages/teacher/Detail';
+import CreateTest from './pages/teacher/CreateTest';
 import Group from './pages/teacher/Group';
 import Homepage from './pages/Homepage';
 import Accept from './pages/Accept';
 import InClass from './pages/teacher/InCourse';
-import Question from './pages/teacher/Question';
+import Question from './components/addTest/Question2';
 import Student from './pages/teacher/Student';
 import Teacher from './pages/teacher/Teacher';
 import TestBank from './pages/teacher/TestBank';
@@ -19,7 +19,6 @@ import ScoreQuestion from './pages/teacher/ScoreQuestion';
 import GroupTestBank from './pages/teacher/GroupTestBank';
 import history from "./utils/history";
 import Course2 from './pages/student/Course';
-import todo from './pages/Todo'
 /*const apiUrl = 'http://142.93.177.152:10000';
 axios.interceptors.request.use(
   config => {
@@ -53,10 +52,9 @@ function App() {
     <Router history={history} username="T.Somchai">
       <Route  path="/" exact component={Homepage} />
       <Route  path="/Accept" exact component={Accept} />
-      <Route  path="/Todo" exact component={todo} />
       <Route  path="/Teacher/AddQuestion" exact component={AddQuestion} />
       <Route  path="/Teacher/Course" exact component={Course} />
-      <Route  path="/Teacher/Detail" exact component={Detail} />
+      <Route  path="/Teacher/Detail" exact component={CreateTest} />
       <Route  path="/Teacher/Group" exact component={Group} />
       <Route  path="/Teacher/InCourse" exact component={InClass} />
       <Route  path="/Teacher/Question" exact component={Question} />

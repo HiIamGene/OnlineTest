@@ -38,7 +38,7 @@ function Head(props) {
 
 
   return (
-    <div>
+    <div >
       <Row>
         <Col span={1} offset={2}>
           <img src={Profile} alt="Logo" style={{ width: 40, marginTop: 60, marginLeft: 30 }} />

@@ -95,10 +95,10 @@ class InCourse extends React.Component {
     return (
       <Container>
         <Layout>
-          <SideMenu keyValue={this.state.keyValue} form={this.state.form} />
-          <Layout>
+          <SideMenu keyValue={this.state.keyValue} form={this.state.form} />    
+          <Layout  style={{ marginLeft: 180 }}>
+          <ContentContainer >
             <Head />
-            <ContentContainer >
               <Row gutter={16} type="flex" justify="space-around">
                 <Col style={{ marginRight: "120px" }} span={18} >
                   <div style={{ height: 10 }}>
@@ -128,7 +128,7 @@ class InCourse extends React.Component {
                   <Col span={4} offset={2} style={{ marginTop: "2%" }}>
                     <div style={{ marginLeft: 20, background: "#FFB766", height: "400%", width: "100%" }}>
                       <div style={{ height: "15px" }}></div>
-                      <div style={{ color: "#ffffff", height: "70%", marginLeft: 20, fontWeight: "bold" }}>
+                      <div style={{ color: "#ffffff", minHeight: 150, marginLeft: 20, fontWeight: "bold" }}>
                         <div style={{ fontSize: 30 }}>Announce</div>
                         {this.state.editAnnounce ?
                           <TextArea rows={4} style={{ width: "90%" }} defaultValue={this.state.announce} onChange={e => this.setState({ announce: e.target.value })} />

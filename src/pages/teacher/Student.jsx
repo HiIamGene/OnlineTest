@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, Button, Select, Modal, Upload, message } from 'antd';
+import { Layout, Row, Col, Button, Modal, Upload, message } from 'antd';
 import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
@@ -27,20 +27,20 @@ class Student extends React.Component {
   }
   toggleVisible = () => {
     if (this.state.visible) {
-        window.location.reload()
-        /* const data = new FormData();
-         data.append('file', this.state.dataUpload);
-         axios.post(API.V1.TEACHER.COURSE.ADDSTUDENTFILE, data, {
-           headers: {
-             'Authorization': localStorage.getItem('token'),
-             'CourseCode': "5B104D"
+      window.location.reload()
+      /* const data = new FormData();
+       data.append('file', this.state.dataUpload);
+       axios.post(API.V1.TEACHER.COURSE.ADDSTUDENTFILE, data, {
+         headers: {
+           'Authorization': localStorage.getItem('token'),
+           'CourseCode': "5B104D"
  
-           },
-         }).then(res => {
-           console.log(res.data);
-         }).catch(err => {
-           console.log(err);
-         })*/
+         },
+       }).then(res => {
+         console.log(res.data);
+       }).catch(err => {
+         console.log(err);
+       })*/
 
     }
     this.setState({ visible: !this.state.visible });
@@ -80,7 +80,7 @@ class Student extends React.Component {
     /*onChange(info){
       this.setState({dataUpload:info.file})
     }*/
-    
+
   }
   updateStudentid(value) {
     this.setState({ studentID: value })
@@ -107,24 +107,21 @@ class Student extends React.Component {
       <Container>
         <Layout>
           <SideMenu keyValue={this.state.keyValue} form={this.state.form} />
-          <Layout>
+          <Layout  style={{ marginLeft: 180 }}>
+          <ContentContainer >
             <Head />
-            <ContentContainer >
+
               <Row gutter={16} type="flex" justify="space-around">
                 <Col span={18} >
-                  <div style={{ color: "#AAAAAA", marginLeft: 140, fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>
-                    Student
-                  </div>
+                  <div style={{ color: "#AAAAAA", marginLeft: 140, fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>Student</div>
                 </Col>
-                <Col span={6}>
-
-                </Col>
-                <Col span={24} offset={4} >
+                <Col span={6}></Col>
+                <Col span={22} offset={2} >
                   <div><hr
                     style={{
                       color: "#AAAAAA",
                       backgroundColor: "#AAAAAA",
-                      width: 1200,
+                      width: "100%",
                       height: 5,
                       marginRight: 470
                     }}
@@ -134,30 +131,26 @@ class Student extends React.Component {
                   <input style={{ marginLeft: 15, width: '100%', marginTop: 32 }} onChange={e => this.updateStudentid(e.target.value)} ></input>
                 </Col>
                 <Col span={1}  >
-                  <Button onClick={()=>this.addStudent()} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 32, marginTop: 30 }} >
+                  <Button onClick={() => this.addStudent()} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 32, marginTop: 30 }} >
                     <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
                   </Button>
 
                 </Col>
                 <Col span={3}  >
-                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF',  height: 32, marginTop: 30 }} onClick={() => this.toggleVisible()} >
+                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 32, marginTop: 30 }} onClick={() => this.toggleVisible()} >
                     <div style={{ font: 'Josefin Sans', fontSize: 15 }}>Upload</div>
                   </Button>
 
                 </Col>
                 <Col span={14}></Col>
-                <Col span={24} offset={4} >
-                  <Studentlist status={"join"} />
+                <Col span={22} offset={2} >
+                  <Studentlist status={"pending"} />
                 </Col>
-                <Col span={24} offset={2}>
-                  <div style={{ color: "#AAAAAA", marginLeft: 100, fontSize: 30, fontWeight: 'bold', display: "inline-block" }}>
-                    Pending
-                  </div>
-                  <Col span={24} offset={1} >
-                    <Studentlist status={"pending"} />
-
+                <Col span={22} offset={2}>
+                  <div style={{ color: "#AAAAAA", marginLeft: 10, fontSize: 30, fontWeight: 'bold', display: "inline-block" }}>Pending</div>
                   </Col>
-
+                  <Col span={22} offset={2} >
+                    <Studentlist status={"pending"} />
                 </Col>
               </Row>
               <Modal

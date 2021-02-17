@@ -10,9 +10,13 @@ export const Container = styled.div`
 
 export const ContentContainer = styled(Content)`
   padding: 20px;
-  height: 100vh;
+  min-height: 100vh;
 `
-
+export const SiderBlue = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
 export const HeadlineWrapper = styled.div`
   display: flex;
   flex-direction: row;

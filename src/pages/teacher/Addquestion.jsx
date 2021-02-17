@@ -8,7 +8,6 @@ import Editbox from '../../components/Editbox';
 import { Select } from 'antd';
 
 const { Option } = Select;
-const { Title } = Typography;
 
 function Addquestion(props) {
   const [current, setcurrent] = useState(1);
@@ -42,7 +41,7 @@ function Addquestion(props) {
     <Container>
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
-        <Layout>
+        <Layout  style={{ marginLeft: 180 }}>
           <Head history={props.history}/>
           <ContentContainer >
 

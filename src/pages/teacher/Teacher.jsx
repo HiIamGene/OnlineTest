@@ -41,9 +41,10 @@ class Teacher extends React.Component {
       <Container>
       <Layout>
         <SideMenu keyValue={this.state.keyValue} form={this.state.form} />
-        <Layout>
+        <Layout  style={{ marginLeft: 180 }}>
+        <ContentContainer >
           <Head />
-          <ContentContainer >
+
             <Row gutter={16} type="flex" justify="space-around">
               <Col span={18} >
                 <div style={{ color: "#AAAAAA", marginLeft: 140, fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>

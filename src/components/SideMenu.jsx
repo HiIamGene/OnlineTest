@@ -13,7 +13,6 @@ import Member from '../assets/icon/Member.png';
 import Info from '../assets/icon/Info.png';
 import logo from '../assets/icon/Logo-b.png';
 import ScoreTest from '../assets/icon/ScoreTest.png';
-import history from "./../utils/history";
 const { Sider } = Layout;
 
 
@@ -43,8 +42,14 @@ class SideMenu extends React.Component {
     if (this.props.form === 1) {
       return (
         <Sider
-          width={180}
-          style={{ background: "#70C5FB" }}
+
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+            background: "#70C5FB"
+          }}
         >
           <div style={{ height: 50 }}>
 
@@ -77,8 +82,14 @@ class SideMenu extends React.Component {
     else if (this.props.form === 2) {
       return (
         <Sider
-          width={180}
-          style={{ background: "#70C5FB" }}
+
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+            background: "#70C5FB"
+          }}
         >
           <div style={{ height: 50 }}></div>
           <Center >
@@ -131,8 +142,14 @@ class SideMenu extends React.Component {
       {
         return (
           <Sider
-            width={180}
-            style={{ background: "#70C5FB" }}
+
+            style={{
+              overflow: 'auto',
+              height: '100vh',
+              position: 'fixed',
+              left: 0,
+              background: "#70C5FB"
+            }}
           >
             <div style={{ height: 50 }}></div>
             <Center >
@@ -172,8 +189,14 @@ class SideMenu extends React.Component {
       {
         return (
           <Sider
-            width={180}
-            style={{ background: "#70C5FB" }}
+
+            style={{
+              overflow: 'auto',
+              height: '100vh',
+              position: 'fixed',
+              left: 0,
+              background: "#70C5FB"
+            }}
           >
             <div style={{ height: 50 }}></div>
             <Center >
@@ -213,8 +236,14 @@ class SideMenu extends React.Component {
       {
         return (
           <Sider
-            width={180}
-            style={{ background: "#70C5FB" }}
+    
+            style={{
+              overflow: 'auto',
+              height: '100vh',
+              position: 'fixed',
+              left: 0,
+              background: "#70C5FB"
+            }}
           >
             <div style={{ height: 50 }}></div>
             <Center >
@@ -253,8 +282,14 @@ class SideMenu extends React.Component {
     else if (this.props.form === 6) {
       return (
         <Sider
-          width={180}
-          style={{ background: "#70C5FB" }}
+
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+            background: "#70C5FB"
+          }}
         >
           <div style={{ height: 50 }}></div>
           <Center >
@@ -306,8 +341,14 @@ class SideMenu extends React.Component {
     else if (this.props.form === 7) {
       return (
         <Sider
-          width={180}
-          style={{ background: "#70C5FB" }}
+
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+            background: "#70C5FB"
+          }}
         >
           <div style={{ height: 50 }}></div>
           <Center >

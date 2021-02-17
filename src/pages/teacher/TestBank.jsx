@@ -15,11 +15,12 @@ function TestBank(props) {
   const form = 2;
   return (
     <Container>
-      <Layout>
+      <Layout  style={{ marginLeft: 180 }}>
         <SideMenu keyValue={keyValue} form={form} />
         <Layout>
+        <ContentContainer >
         <Head history={props.history}/>
-          <ContentContainer >
+
             <Row gutter={16} type="flex" justify="space-around">
 
               <Col span={4} offset={2}>
