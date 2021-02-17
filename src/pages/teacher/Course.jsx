@@ -84,9 +84,10 @@ class Course extends React.Component {
       <Container>
         <Layout>
           <SideMenu keyValue={this.state.keyValue} form={this.state.form} />
-          <Layout>
+          <Layout  style={{ marginLeft: 180 }}>
+          <ContentContainer >
           <Head />
-            <ContentContainer >
+
               <Row >
                 <Col span={5} offset={2}>
                   <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Course</div>
@@ -99,10 +100,8 @@ class Course extends React.Component {
                     <div style={{ font: 'Josefin Sans', fontSize: 10 }}>Search</div>
                   </Button>
                 </Col>
-                <Col span={12} ></Col>
-              </Row>
-              <Row>
-                <Col span={24} style={{marginLeft:"5%"}}>
+                <Col span={11} ></Col>
+                <Col span={23} offset={1}>
                   <Courselist />
                 </Col>
               </Row>

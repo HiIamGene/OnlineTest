@@ -16,10 +16,9 @@ function Group(props) {
     <Container>
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
-        <Layout>
+        <Layout  style={{ marginLeft: 180 }}>
+        <ContentContainer >
         <Head history={props.history}/>
-          <ContentContainer >
-
             <Row gutter={16} type="flex" justify="space-around">
               <Col span={22} offset={2}>
                 <div style={{ fontSize: 50, fontWeight: 'bold', color: "#808080" }}>สอบบทที่ 1</div>

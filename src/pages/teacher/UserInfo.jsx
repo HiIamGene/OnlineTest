@@ -71,10 +71,11 @@ class UserInfo extends React.Component {
       <Container>
         <Layout>
           <SideMenu keyValue={this.state.key} form={this.state.form} />
-          <Layout>
+          <Layout  style={{ marginLeft: 180 }}>
+          <ContentContainer >
             <Head />{this.state.edit ?
               <div>
-                <ContentContainer >
+
                   <Row gutter={16} type="flex" justify="space-around">
                   </Row>
                   <img src={Profile} alt={"Profile"} style={{ height: 200, marginLeft: 150 }} />
@@ -86,9 +87,9 @@ class UserInfo extends React.Component {
                   <div style={{ marginLeft: 1200, marginTop: 200 }}>
                     <Button onClick={() => this.toggleEdit()} style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }}>Save</Button>
                   </div>
-                </ContentContainer>
+
               </div> : <div>
-                <ContentContainer >
+
                   <Row gutter={16} type="flex" justify="space-around">
                   </Row>
                   <img src={Profile}  alt={"Profile"} style={{ height: 200, marginLeft: 150 }} />
@@ -100,8 +101,9 @@ class UserInfo extends React.Component {
                   <div style={{ marginLeft: 1200, marginTop: 200 }}>
                     <Button onClick={() => this.toggleEdit()} style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }}>Edit</Button>
                   </div>
-                </ContentContainer>
+
               </div>}
+              </ContentContainer >
           </Layout>
         </Layout>
       </Container >

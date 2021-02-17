@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Layout, Typography, Row, Col, Button,Switch } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
-import SideMenu from '../../components/SideMenu';
-import Head from '../../components/Head';
-import QuestionList from '../../components/QuestionList';
-
-const { Title } = Typography;
+import { ContentContainer, Container, HeadlineWrapper } from '../Styles';
+import SideMenu from '../SideMenu';
+import Head from '../Head';
+import QuestionList from '../QuestionList';
 
 function Question(props) {
   const [data, setData] = useState();
@@ -17,8 +15,8 @@ function Question(props) {
       <Layout>   
         <SideMenu keyValue={keyValue}  form={form}/>
         <Layout>
+        <ContentContainer >
         <Head history={props.history}/>
-          <ContentContainer >
             <Row gutter={16} type="flex" justify="space-around">
             <Col span={22} offset={2}>
                 <div style={{ fontSize: 50, fontWeight: 'bold' }}>การออกแบบUI</div>

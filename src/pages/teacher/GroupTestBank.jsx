@@ -17,9 +17,10 @@ function GroupTestBank(props) {
     <Container>
       <Layout>
         <SideMenu keyValue={keyValue} form={form} />
-        <Layout>
-        <Head history={props.history}/>
+        <Layout style={{ marginLeft: 180 }}>
           <ContentContainer >
+            <Head history={props.history} />
+
             <Row gutter={16} type="flex" justify="space-around">
 
               <Col span={4} offset={2}>
@@ -38,10 +39,10 @@ function GroupTestBank(props) {
               <Col span={22} offset={2} >
                 <GroupTestBankList />
               </Col>
-              <Col span={24} style={{height:300}}></Col>
+              <Col span={24} style={{ height: 300 }}></Col>
               <Col span={1} offset={16}>
                 <div style={{ marginTop: 30, fontSize: 30 }}>
-                  <Button type="primary" shape="circle" size="large" style={{  justifyContent: 'center', alignContent: 'center', background: '#F43A09', color: '#FFFFFF', width: 70, height: 70 }}>
+                  <Button type="primary" shape="circle" size="large" style={{ justifyContent: 'center', alignContent: 'center', background: '#F43A09', color: '#FFFFFF', width: 70, height: 70 }}>
                     <div style={{ fontSize: 30 }}>+</div>
                   </Button>
                 </div>
