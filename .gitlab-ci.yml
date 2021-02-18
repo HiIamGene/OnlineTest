@@ -28,7 +28,7 @@ deploy_development:
   - master
   script:
   - export SSHPASS=$DEV_SSH_PASSWORD
-  - sshpass -e ssh -o "StrictHostKeyChecking=no" $DEV_SSH_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && cd ~/eikon-advertiser-web && git checkout . && git pull && rm -rf package-lock.json && rm -rf dist && npm cache clean --force && npm install && npm run build && pm2 restart advertiser-dev'
+  - sshpass -e ssh -o "StrictHostKeyChecking=no" $DEV_SSH_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && cd ~/Omaga && git checkout . && git pull && rm -rf package-lock.json && rm -rf dist && npm cache clean --force && npm install && npm run build && pm2 restart advertiser-dev'
 
 deploy_production:
   stage: deploy
@@ -36,4 +36,4 @@ deploy_production:
   - production
   script:
   - export SSHPASS=$PROD_SSH_PASSWORD
-  - sshpass -e ssh -o "StrictHostKeyChecking=no" $PROD_SSH_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && cd ~/eikon-advertiser-web && git checkout . && git pull && rm -rf package-lock.json && rm -rf dist && npm cache clean --force && npm install && npm run build && pm2 restart advertiser-prod'
+  - sshpass -e ssh -o "StrictHostKeyChecking=no" $PROD_SSH_HOST 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && cd ~/Omaga && git checkout . && git pull && rm -rf package-lock.json && rm -rf dist && npm cache clean --force && npm install && npm run build && pm2 restart advertiser-prod'

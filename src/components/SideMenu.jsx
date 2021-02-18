@@ -51,7 +51,7 @@ class SideMenu extends React.Component {
             background: "#70C5FB"
           }}
         >
-          <div style={{ height: 50 }}>
+          <div style={{ height: 40 }}>
 
           </div>
           <Center >
@@ -91,7 +91,7 @@ class SideMenu extends React.Component {
             background: "#70C5FB"
           }}
         >
-          <div style={{ height: 50 }}></div>
+          <div style={{ height: 40 }}></div>
           <Center >
             <div style={{ height: 150 }}>
               <Branding src={logo} style={{ height: 150 }} />
@@ -151,7 +151,7 @@ class SideMenu extends React.Component {
               background: "#70C5FB"
             }}
           >
-            <div style={{ height: 50 }}></div>
+            <div style={{ height: 40 }}></div>
             <Center >
               <div style={{ height: 150 }}>
                 <Branding src={logo} style={{ height: 150 }} />
@@ -198,7 +198,7 @@ class SideMenu extends React.Component {
               background: "#70C5FB"
             }}
           >
-            <div style={{ height: 50 }}></div>
+            <div style={{ height: 40 }}></div>
             <Center >
               <div style={{ height: 150 }}>
                 <Branding src={logo} style={{ height: 150 }} />
@@ -245,7 +245,7 @@ class SideMenu extends React.Component {
               background: "#70C5FB"
             }}
           >
-            <div style={{ height: 50 }}></div>
+            <div style={{ height: 40 }}></div>
             <Center >
               <div style={{ height: 150 }}>
                 <Branding src={logo} style={{ height: 150 }} />
@@ -291,7 +291,7 @@ class SideMenu extends React.Component {
             background: "#70C5FB"
           }}
         >
-          <div style={{ height: 50 }}></div>
+          <div style={{ height: 40 }}></div>
           <Center >
             <div style={{ height: 150 }}>
               <Branding src={logo} style={{ height: 150 }} />
@@ -350,7 +350,7 @@ class SideMenu extends React.Component {
             background: "#70C5FB"
           }}
         >
-          <div style={{ height: 50 }}></div>
+          <div style={{ height: 40 }}></div>
           <Center >
             <div style={{ height: 150 }}>
               <Branding src={logo} style={{ height: 150 }} />
