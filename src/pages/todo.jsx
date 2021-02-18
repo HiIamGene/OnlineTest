@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-
+import axios from 'axios';
 const itemsFromBackend = [
-  { id: "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55",content: "First task" },
-  { id: "17acf9a1-b2c7-46c6-b975-759b9d9f538d", content: "Second task" },
-  { id: "07710f91-7969-44a8-8576-280fd534bb3a", content: "Third task" },
-  { id: "dfb58089-f603-4140-ae83-886f8abbc064", content: "Fourth task" },
-  { id: "8938ec37-8d73-4fbe-9202-936d88437022", content: "Fifth task" }
+  { id: "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", groupName: "First task" , numQuestion: "First task" ,score:"First task"},
+  { id: "17acf9a1-b2c7-46c6-b975-759b9d9f538d", groupName: "First task" , numQuestion: "First task" ,score:"First task" },
+  { id: "07710f91-7969-44a8-8576-280fd534bb3a", groupName: "First task" , numQuestion: "First task" ,score:"First task" },
+  { id: "dfb58089-f603-4140-ae83-886f8abbc064", groupName: "First task" , numQuestion: "First task" ,score:"First task" },
+  { id: "8938ec37-8d73-4fbe-9202-936d88437022", groupName: "First task" , numQuestion: "First task" ,score:"First task" }
 ];
 
 const columnsFromBackend = {
@@ -67,6 +67,18 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function Todo() {
   const [columns, setColumns] = useState(columnsFromBackend);
+  /*useEffect(() => {
+    axios.post("http://142.93.177.152:10000/grouptestlistupdate",
+    columnsFromBackend
+    , {
+    }).then(res => {
+      console.log(res.data)
+      //setColumns(res.data)
+    }).catch(err => {
+      console.warn(err);
+    })
+  }, []);*/
+  
   return (
     <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
       <DragDropContext

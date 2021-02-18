@@ -7,22 +7,31 @@ const { Option } = Select;
 let index = 0;
 
 class Query extends React.Component {
-  state = {
-    items: ['การออกแบบUI', 'สีกับความรู้สึก'],
-    name: '',
-  };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: ['การออกแบบUI', 'สีกับความรู้สึก'],
+      name: '',
+    };
+  }
   onNameChange = event => {
     this.setState({
       name: event.target.value,
     });
-  };
 
+
+  };
+  updateColumn= (e)=>{
+    let temp = this.props.columns
+    temp[this.props.columnId].items[this.props.index].groupName=e
+    this.props.handlesetColumns({ ...temp })
+  }
   addItem = () => {
     console.log('addItem');
-    const { items, name } = this.setState;
+    //const { items, name } = this.setState;
     this.setState({
-      items: [...items, name || `New item ${index++}`],
+      items: [...this.state.items, this.state.name || `New item ${index++}`],
       name: '',
     });
   };
@@ -33,12 +42,14 @@ class Query extends React.Component {
       <Select
         style={{ width: 540 }}
         placeholder="Select Group"
+        defaultValue={this.props.defaultValue}
+        onSelect={e=>this.updateColumn(e)}
         dropdownRender={menu => (
           <div>
             {menu}
-            <Divider style={{ margin: '4px 0' }} />
+            <Divider style={{ margin: '4px 0' }}  />
             <div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
-              <Input style={{ flex: 'auto' }} value={name} onChange={this.onNameChange} />
+              <Input style={{ flex: 'auto' }}  value = {name}onChange={this.onNameChange} />
               <a
                 style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
                 onClick={this.addItem}

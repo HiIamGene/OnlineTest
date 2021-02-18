@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { Router, Route } from "react-router-dom";
-import AddQuestion from './pages/teacher/Addquestion';
 import Course from './pages/teacher/Course';
 import CreateTest from './pages/teacher/CreateTest';
 import Group from './pages/teacher/Group';
@@ -19,6 +18,7 @@ import ScoreQuestion from './pages/teacher/ScoreQuestion';
 import GroupTestBank from './pages/teacher/GroupTestBank';
 import history from "./utils/history";
 import Course2 from './pages/student/Course';
+import Todo from './pages/todo';
 /*const apiUrl = 'http://142.93.177.152:10000';
 axios.interceptors.request.use(
   config => {
@@ -52,7 +52,6 @@ function App() {
     <Router history={history} username="T.Somchai">
       <Route  path="/" exact component={Homepage} />
       <Route  path="/Accept" exact component={Accept} />
-      <Route  path="/Teacher/AddQuestion" exact component={AddQuestion} />
       <Route  path="/Teacher/Course" exact component={Course} />
       <Route  path="/Teacher/Detail" exact component={CreateTest} />
       <Route  path="/Teacher/Group" exact component={Group} />
@@ -67,6 +66,7 @@ function App() {
       <Route  path="/Teacher/ScoreQuestion" exact component={ScoreQuestion} />
       <Route  path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
       <Route  path="/Student/Course" exact component={Course2} />
+      <Route  path="/Todo" exact component={Todo} />
 
     </Router>
   );

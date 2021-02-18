@@ -1,46 +1,51 @@
-import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button,Switch } from 'antd';
+import React, { useState } from "react"
+import { Button, Row } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { ContentContainer, Container, HeadlineWrapper } from '../Styles';
-import SideMenu from '../SideMenu';
-import Head from '../Head';
-import QuestionList from '../QuestionList';
+function QuestionList() {
+    const QuestionList = [{ Id: 1, name: "สีอะไรคือสีโทนร้อน?" }
+        , { Id: 2, name: "ทำไมต้องทำ Usability Testing ?" }
+        , { Id: 3, name: "Low-fidelity prototype คือ ?" }
+        , { Id: 4, name: "Hi-fidelity prototype  คือ ?" }]
+        
+    var i;
+    let table = []
+    const classlistOut = () => {
+        for (i = 0; i < QuestionList.length; i++) {
+            table.push(
+                <div>
+                    <Row>
+                        <NavLink to="/AddQuestion">
+                            <div style={{ fontSize: 30, fontWeight: "bold", display: "block", color: "#000000" }} >{QuestionList[i].Id}.
+                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1330, height: 100, marginTop: 30, textAlign: 'left' }}>
+                                    {QuestionList[i].name}
+                                </Button>
 
-function Question(props) {
-  const [data, setData] = useState();
-  const keyValue = "2";
-  const form = 4;
-  return (
-    <Container>
-      <Layout>   
-        <SideMenu keyValue={keyValue}  form={form}/>
-        <Layout>
-        <ContentContainer >
-        <Head history={props.history}/>
-            <Row gutter={16} type="flex" justify="space-around">
-            <Col span={22} offset={2}>
-                <div style={{ fontSize: 50, fontWeight: 'bold' }}>การออกแบบUI</div>
-              </Col>
-              <QuestionList/>
-              <Col span={1} offset={16}>
-                <div style={{ marginTop: 35 ,fontSize: 30 }}>
-                  Draft
+                            </div>
+                        </NavLink>
+                        <table style={{ marginTop: 30, marginLeft: 20 }}>
+                            <div>
+                                <Button type="primary" shape="circle" size="large" style={{ backgroundColor: '#F4A940', justifyContent: 'center', alignContent: 'center', background: '#F4A940', color: '#FFFFFF', width: 50, height: 50 }}>
+                                    <div style={{ fontSize: 30 }}>+</div>
+                                </Button>
+                            </div>
+                            <div>
+                                <Button type="primary" shape="circle" size="large" style={{ backgroundColor: '#F4A940', justifyContent: 'center', alignContent: 'center', background: '#F4A940', color: '#FFFFFF', width: 50, height: 50 }}>
+                                    <div style={{ fontSize: 30 }}>x</div>
+                                </Button>
+                            </div>
+                        </table>
+                    </Row>
                 </div>
-              </Col>
-              <Col span={1} >
-                <Switch defaultChecked style={{ marginTop: 50 }} />
-              </Col>
-              <Col span={6}>
-                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
-                  <div style={{ fontSize: 30 }}>Save</div>
-                </Button>
-              </Col>
-            </Row>
-          </ContentContainer>
-        </Layout>
-      </Layout>
-    </Container>
-  );
+            )
+        }
+        return table
+    }
+    return (
+        <table>
+            {classlistOut()}
+        </table>
+    )
 }
 
-export default Question;
+
+export default QuestionList
