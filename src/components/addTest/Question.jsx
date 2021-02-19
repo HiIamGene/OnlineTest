@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Input, Row, Col, Button } from 'antd';
+import { Input, Row, Col, Button, Result } from 'antd';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from "uuid";
@@ -27,23 +27,19 @@ const newForm = {
   },
 
 };
-const onDragEnd = (result, selectColumn, setSelectColumn) => {
-  if (!result.destination) return;
-  const { source, destination } = result;
-  /*const copiedItems = [...selectColumn.items];
-  const [removed] = copiedItems.splice(source.index, 1);
-  copiedItems.splice(destination.index, 0, removed);
-  setSelectColumn({
-    [source.droppableId]: {
-      ...selectColumn,
-      items: copiedItems
-    }
-  });*/
 
-};
 function Question(props) {
   const [columns, setColumns] = useState(columnsFromBackend);
   const [selectColumn, setSelectColumn] = useState([]);
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
+    const { source, destination } = result;
+    const copiedItems = Array.from(selectColumn);
+    const [removed] = copiedItems.splice(source.index, 1);
+    copiedItems.splice(destination.index, 0, removed);
+    setSelectColumn([...copiedItems]);
+
+  };
   useEffect(() => {
     let temp = []
     for (const [columnId, column] of Object.entries(columns)) {
@@ -54,7 +50,7 @@ function Question(props) {
         //delete temp[columnId]
       }
     }
-    /*if (!temp) {
+    /*if (!selectColumn) {
       temp = newForm
       setSelectColumn({ ...temp })
     }*/
@@ -63,14 +59,14 @@ function Question(props) {
   const onClickAddColumn = () => {
     let temp = selectColumn
     temp.push({ id: uuid(), name: "Please enter question" })
-    setSelectColumn([...temp ])
+    setSelectColumn([...temp])
 
   }
   const onClickdeletColumn = (index) => {
     let temp = selectColumn
     //let select= temp[e].items[column]
     temp.splice(index, 1)
-    setSelectColumn([...temp ])
+    setSelectColumn([...temp])
 
   }
 
@@ -86,73 +82,72 @@ function Question(props) {
         </div>
         <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
           <DragDropContext
-            onDragEnd={result => onDragEnd(result, selectColumn, setSelectColumn)}
+            onDragEnd={onDragEnd}
           >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center"
-                  }}
-                >
-                  <div style={{ margin: 8 }}>
-                    <Droppable >
-                      {(provided, snapshot) => {
-                        return (
-                          <div
-                            {...provided.droppableProps} ref={provided.innerRef} style={{ background: snapshot.isDraggingOver ? "lightblue" : "lightgrey", padding: 4, minWidth: 1470, minHeight: 50, display: "flex", flexDirection: "column", alignItems: "center" }}
-                          >
-                            {selectColumn.map((item, index) => {
-                              return (
-                                <Draggable
-                                  key={item.id}
-                                  draggableId={item.id}
-                                  index={index}
-                                >
-                                  {(provided, snapshot) => {
-                                    return (
-                                      <div
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        style={{
-                                          userSelect: "none",
-                                          padding: 16,
-                                          margin: "0 0 8px 0",
-                                          minHeight: "50px",
-                                          backgroundColor: snapshot.isDragging
-                                            ? "#263B4A"
-                                            : "#456C86",
-                                          color: "white",
-                                          ...provided.draggableProps.style
-                                        }}
-                                      >
-                                        <div>
-
-                                          <Row>
-                                            <div style={{ fontSize: 30, fontWeight: "bold", display: "block", color: "#000000" }} >{index + 1}.
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+              }}
+            >
+              <div style={{ margin: 8 }}>
+                <Droppable  droppableId="selectColumn" >
+                  {(provided, snapshot) => {
+                    return (
+                      <div
+                        {...provided.droppableProps} ref={provided.innerRef} style={{ background: snapshot.isDraggingOver ? "lightblue" : "lightgrey", padding: 4, minWidth: 1470, minHeight: 50, display: "flex", flexDirection: "column", alignItems: "center" }}
+                      >
+                        {selectColumn.map((item, index) => {
+                          return (
+                            <Draggable
+                              key={item.id}
+                              draggableId={item.id}
+                              index={index}
+                            >
+                              {(provided, snapshot) => {
+                                return (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    style={{
+                                      userSelect: "none",
+                                      padding: 16,
+                                      margin: "0 0 8px 0",
+                                      minHeight: "50px",
+                                      backgroundColor: snapshot.isDragging
+                                        ? "#263B4A"
+                                        : "#456C86",
+                                      color: "white",
+                                      ...provided.draggableProps.style
+                                    }}
+                                  >
+                                    <div>
+                                      <Row>
+                                        <div style={{ fontSize: 30, fontWeight: "bold", display: "block", color: "#000000" }} >{index + 1}.
                                           <Button onClick={() => props.onSelectquestionName(selectColumn[index].name, index + 1)} type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1330, height: 100, marginTop: 30, textAlign: 'left' }}>{item.name}</Button>
-                                            </div>
-                                            <table style={{ marginTop: 30, marginLeft: 20 }}>
-                                              <div style={{ marginTop: 40, marginLeft: 10, fontSize: 30 }}>
-                                                <Button onClick={() => onClickdeletColumn(index)} type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
-                                              </div>
-                                            </table>
-                                          </Row>
                                         </div>
-                                      </div>
-                                    );
-                                  }}
-                                </Draggable>
-                              );
-                            })}
-                            {provided.placeholder}
-                          </div>
-                        );
-                      }}
-                    </Droppable>
-                  </div>
-                </div>
+                                        <table style={{ marginTop: 30, marginLeft: 20 }}>
+                                          <div style={{ marginTop: 40, marginLeft: 10, fontSize: 30 }}>
+                                            <Button onClick={() => onClickdeletColumn(index)} type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
+                                          </div>
+                                        </table>
+                                      </Row>
+                                    </div>
+                                  </div>
+                                );
+                              }}
+                            </Draggable>
+                          );
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    );
+                  }}
+                </Droppable>
+              </div>
+            </div>
           </DragDropContext>
         </div>
       </Col>
