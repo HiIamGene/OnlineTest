@@ -21,6 +21,7 @@ function Editbox(props) {
                 onChange={(event, editor) => {
                   const data = editor.getData()
                   setText(data)
+                  //console.log(editor)
                 }}
               />
             </div>
