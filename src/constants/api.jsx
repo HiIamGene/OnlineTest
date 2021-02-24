@@ -44,7 +44,16 @@ export default {
                 DELETESTUDENT:API_DOMAIN_NAME+'/deletestudentincourse',
                 GETTEACHER:API_DOMAIN_NAME+'/getteacherincourse',
                 ADDTEACHER:API_DOMAIN_NAME+'/addteacher',
-                DELETETEACHER:API_DOMAIN_NAME+'/deleteteacherincourse'
+                DELETETEACHER:API_DOMAIN_NAME+'/deleteteacherincourse',
+                TEST:{
+                    GROUPSTESTLISTUPDATE:API_DOMAIN_NAME+'/grouptestlistupdate',
+                    ALLGROUPTESTLISTestlist:API_DOMAIN_NAME+'/allgrouptestlist',
+                    POSTDETAILLIST:API_DOMAIN_NAME+'/postdetailtest',
+                    GETDETAILTEST:API_DOMAIN_NAME+'/getdetailtest',
+                    UPLOADPIC:API_DOMAIN_NAME+'/uploadpic'
+
+                }
+                
             },
             TEST:{
                 GETTESTLIST:API_DOMAIN_NAME+'/gettestlist'

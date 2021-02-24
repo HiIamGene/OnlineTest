@@ -11,6 +11,7 @@ import Question from './components/addTest/Question2';
 import Student from './pages/teacher/Student';
 import Teacher from './pages/teacher/Teacher';
 import TestBank from './pages/teacher/TestBank';
+import QuestionTestBank from './pages/teacher/QuestionTestBank';
 import UserInfo from './pages/teacher/UserInfo';
 import ScoreTest from './pages/teacher/ScoreTest';
 import ScoreStudent from './pages/teacher/ScoreStudent';
@@ -18,7 +19,8 @@ import ScoreQuestion from './pages/teacher/ScoreQuestion';
 import GroupTestBank from './pages/teacher/GroupTestBank';
 import history from "./utils/history";
 import Course2 from './pages/student/Course';
-import Todo from './pages/todo';
+//import Todo from './pages/todo';
+import Todo from './pages/Example';
 /*const apiUrl = 'http://142.93.177.152:10000';
 axios.interceptors.request.use(
   config => {
@@ -60,6 +62,7 @@ function App() {
       <Route  path="/Teacher/Student" exact component={Student} />
       <Route  path="/Teacher/Teacher" exact component={Teacher} />
       <Route  path="/Teacher/TestBank" exact component={TestBank} />
+      <Route  path="/Teacher/QuestionTestBank" exact component={QuestionTestBank} />
       <Route  path="/Teacher/UserInfo" exact component={UserInfo} />
       <Route  path="/Teacher/ScoreTest" exact component={ScoreTest} />
       <Route  path="/Teacher/ScoreStudent" exact component={ScoreStudent} />

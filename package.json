@@ -5,6 +5,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-basic-styles": "^25.0.0",
     "@ckeditor/ckeditor5-build-classic": "^23.1.0",
+    "@ckeditor/ckeditor5-easy-image": "^25.0.0",
     "@ckeditor/ckeditor5-editor-classic": "^25.0.0",
     "@ckeditor/ckeditor5-react": "^3.0.1",
     "alloyeditor": "^2.11.16",

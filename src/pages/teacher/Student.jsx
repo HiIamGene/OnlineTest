@@ -154,7 +154,7 @@ class Student extends React.Component {
                 </Col>
               </Row>
               <Modal
-                title="Add Student by upload .XML file"
+                title="Add Student by upload .xlsx file"
                 centered
                 visible={this.state.visible}
                 onOk={() => this.toggleVisible()}

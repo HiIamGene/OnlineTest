@@ -212,13 +212,6 @@ class SideMenu extends React.Component {
                     <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Info</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="2" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="2" >
-                  <Link to="/Teacher/Group">
-                    <MenuIcon src={Group} style={{ height: "60px", width: "80px" }} />
-                    <br />
-                    <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Group</span>
-                  </Link>
-                </Menu.Item>
                 <Menu.Item key="3" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="3" >
                   <Link to="/Teacher/InCourse">
                     <MenuIcon src={Back} style={{ height: "74px", width: "74px" }} />
@@ -259,13 +252,7 @@ class SideMenu extends React.Component {
                     <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Info</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="2" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="2" >
-                  <Link to="/Teacher/Group">
-                    <MenuIcon src={Group} style={{ height: "60px", width: "80px" }} />
-                    <br />
-                    <span style={{ fontSize: 25, color: 'white', fontWeight: "bold" }}>Group</span>
-                  </Link>
-                </Menu.Item>
+
                 <Menu.Item key="3" style={{ height: "140px", display: "flex", justifyContent: "center", alignItems: "center" }} value="3" >
                   <Link to="/Teacher/Question">
                     <MenuIcon src={Back} style={{ height: "74px", width: "74px" }} />

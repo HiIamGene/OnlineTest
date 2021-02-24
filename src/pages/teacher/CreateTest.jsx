@@ -8,6 +8,7 @@ import Detail from '../../components/addTest/Detail'
 import Group from '../../components/addTest/Group'
 import Question from '../../components/addTest/Question'
 import AddQuestion from '../../components/addTest/Addquestion'
+import Preview from '../../components/addTest/Preview'
 import axios from 'axios';
 import API from "../../constants/api.jsx";
 import { v4 as uuid } from "uuid";
@@ -153,12 +154,19 @@ function CreateTest(props) {
   //EditQuestion
   const [questionName, setQuestionName] = useState("");
   const [num, setNum] = useState(0);
-  const onSelectquestionName =  (e,value) => {
+  const [maxNum, setMaxNum] = useState(0);
+  const [preview, setPreview] = useState("");
+  const updatePreview = (e) =>{
+    setPreview(e)
+  }
+  const onSelectquestionName =  (e,value,maxNum) => {
     setNum(value)
     setEditqStatus(false)
-    setQuestionName(e)  
+    setMaxNum(maxNum)
+    //setQuestionName(e)  
     next()
   }
+  //var res = str.split("</",1);
   return (
 
     <Container>
@@ -207,21 +215,17 @@ function CreateTest(props) {
                 <AddQuestion 
                   questionName={questionName}
                   num={num}
+                  maxNum={maxNum}
+                  updatePreview={updatePreview}
                 />
               )}
               {current === 4 && (
-                <AddQuestion />
+                              <Preview preview={preview}/>
+               
               )}
             </div>
             <div sclassName="steps-action" tyle={{ fontSize: 30 }}>Draft
                 <Switch style={{ margin: '0 8px' }} defaultChecked ></Switch>
-              {current > 0 && (
-                <Button onClick={() => prev()}>Previous</Button>
-              )}
-              {current < steps.length - 1 && (
-
-                <Button style={{ margin: '0 8px' }} type="primary" onClick={() => next()}>Next</Button>
-              )}
               {current === steps.length - 1 && (
 
                 < Button style={{ margin: '0 8px' }} type="primary" onClick={() => message.success('Processing complete!')}>Save</Button>
