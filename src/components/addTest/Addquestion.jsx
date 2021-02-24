@@ -61,13 +61,13 @@ function Addquestion(props) {
       <Col span={20} offset={2}>
         <div style={{ width: "100%", background: "#FFB766" }}>
           <div style={{ marginLeft: 110, paddingTop: 20, paddingBottom: 20 }}>
-            <Editbox value={value} questionName={props.questionName}/>
+            <Editbox value={value} questionName={props.questionName} updatePreview={props.updatePreview}/>
           </div>
         </div>
       </Col>
       <Col span={2} ></Col>
       <Col span={14} offset={10} >
-        <Pagination simple defaultCurrent={props.num} onChange={onChangeQues} total={10} />
+        <Pagination simple defaultCurrent={props.num} onChange={onChangeQues} total={props.maxNum*10} />
       </Col>
 
 
