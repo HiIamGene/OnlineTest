@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Steps, Button, message } from 'antd';
-import { Layout, Typography, Row, Col, Input, DatePicker, TimePicker, Switch } from 'antd';
+import { Layout , Switch } from 'antd';
 import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
@@ -41,20 +41,20 @@ const steps = [
 
 
 const columnsFromBackend = {
-  ["31ded736-4076-4b1c-b38f-7e8d9fa78b41"]: {
-    name: "จงเลือกคำตอบที่ถูกที่สุด",
-    items: [
-      { id: "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", groupName: "การออกแบบUI", numQuestion: "5", score: "6" },
-      { id: "17acf9a1-b2c7-46c6-b975-759b9d9f538d", groupName: "สีกับความรู้สึก", numQuestion: "2", score: "4" },
+  "31ded736-4076-4b1c-b38f-7e8d9fa78b41": {
+    "name": "จงเลือกคำตอบที่ถูกที่สุด",
+    "items": [
+      { "id": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "groupName": "การออกแบบUI", "numQuestion": "5", "score": "6" },
+      { "id": "17acf9a1-b2c7-46c6-b975-759b9d9f538d", "groupName": "สีกับความรู้สึก", "numQuestion": "2", "score": "4" },
     ]
   },
-  ["115f7d04-3075-408a-b8ce-c6e46fe6053f"]: {
-    name: "",
-    items: []
+  "115f7d04-3075-408a-b8ce-c6e46fe6053f": {
+    "name": "",
+    "items": []
   },
-  ["9bcf1415-3a41-43b6-a871-8de1939a75c4"]: {
-    name: "",
-    items: []
+  "9bcf1415-3a41-43b6-a871-8de1939a75c4": {
+    "name": "",
+    "items": []
   }
 };
 function CreateTest(props) {
@@ -64,6 +64,16 @@ function CreateTest(props) {
   const form = 4 ;
   useEffect(() => {
     setColumns(columnsFromBackend)
+    axios.post("http://142.93.177.152:10000/test",columnsFromBackend
+    , {
+        headers: {
+            'Authorization': localStorage.getItem('token'),
+        }
+    } ).then(res => {
+      console.log(res.data)
+    }).catch(err => {
+        console.warn(err);
+    })
   }, []);
   //Group
   const onDragEnd = (result, columns) => {
@@ -117,7 +127,6 @@ function CreateTest(props) {
       items: []
     }
     setColumns({ ...temp })
-
   }
   const onClickAddColumn = (e) => {
     let temp = columns
@@ -224,7 +233,7 @@ function CreateTest(props) {
                
               )}
             </div>
-            <div sclassName="steps-action" tyle={{ fontSize: 30 }}>Draft
+            <div className="steps-action" tyle={{ fontSize: 30 }}>Draft
                 <Switch style={{ margin: '0 8px' }} defaultChecked ></Switch>
               {current === steps.length - 1 && (
 

@@ -1,7 +1,7 @@
 //import ENV from './env'
-
-//const API_DOMAIN_NAME = ENV.API_DOMAIN_NAME;
-const API_DOMAIN_NAME = "http://142.93.177.152:10000";
+import api_instance from "./action"
+//const API_DOM IN_NAME = ENV.API_DOMAIN_NAME;
+const API_DOMAIN_NAME = api_instance;
 /************************** API USER ******************************************************/
 export const API_LOGIN=`${API_DOMAIN_NAME}/login`
 /************************** API TEACHER ******************************************************/
@@ -62,5 +62,6 @@ export default {
         USERNAME: API_DOMAIN_NAME+'/getusername',
         LOGIN:API_DOMAIN_NAME+'/login',
         ALERT:API_DOMAIN_NAME+'/acceptjoincourse'
-    }
+    },
+    TEST:API_DOMAIN_NAME+'/test'
 }

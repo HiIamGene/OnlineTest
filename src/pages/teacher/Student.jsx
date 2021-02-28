@@ -26,23 +26,6 @@ class Student extends React.Component {
     }
   }
   toggleVisible = () => {
-    if (this.state.visible) {
-      window.location.reload()
-      /* const data = new FormData();
-       data.append('file', this.state.dataUpload);
-       axios.post(API.V1.TEACHER.COURSE.ADDSTUDENTFILE, data, {
-         headers: {
-           'Authorization': localStorage.getItem('token'),
-           'CourseCode': "5B104D"
- 
-         },
-       }).then(res => {
-         console.log(res.data);
-       }).catch(err => {
-         console.log(err);
-       })*/
-
-    }
     this.setState({ visible: !this.state.visible });
   }
   handleChange = (info) => {
@@ -77,10 +60,6 @@ class Student extends React.Component {
       strokeWidth: 3,
       format: percent => `${parseFloat(percent.toFixed(2))}%`,
     },
-    /*onChange(info){
-      this.setState({dataUpload:info.file})
-    }*/
-
   }
   updateStudentid(value) {
     this.setState({ studentID: value })

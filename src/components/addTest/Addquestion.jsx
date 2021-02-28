@@ -8,7 +8,6 @@ const { Option } = Select;
 function Addquestion(props) {
   const [current, setcurrent] = useState(1);
   const onChangeQues = page => {
-    console.log(page);
     setcurrent(page);
   };
   const [value, setvalue] = useState("UploadAnswer");
@@ -19,16 +18,9 @@ function Addquestion(props) {
   }
   function onChange(value) {
     setvalue(value)
-    console.log(`selected ${value}`);
   }
 
-  function onBlur() {
-    console.log('blur');
-  }
 
-  function onFocus() {
-    console.log('focus');
-  }
 
   function onSearch(val) {
     console.log('search:', val);
@@ -43,8 +35,6 @@ function Addquestion(props) {
           placeholder="type of test"
           optionFilterProp="children"
           onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
           onSearch={onSearch}
           filterOption={(input, option) =>
             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -57,10 +47,9 @@ function Addquestion(props) {
           <Option value="UploadAnswer">Upload Answer</Option>
         </Select>
       </Col>
-
       <Col span={20} offset={2}>
         <div style={{ width: "100%", background: "#FFB766" }}>
-          <div style={{ marginLeft: 110, paddingTop: 20, paddingBottom: 20 }}>
+          <div style={{ marginLeft: 50, paddingTop: 20, paddingBottom: 20 }}>
             <Editbox value={value} questionName={props.questionName} updatePreview={props.updatePreview}/>
           </div>
         </div>
@@ -69,9 +58,6 @@ function Addquestion(props) {
       <Col span={14} offset={10} >
         <Pagination simple defaultCurrent={props.num} onChange={onChangeQues} total={props.maxNum*10} />
       </Col>
-
-
-
     </Row>
   );
 }

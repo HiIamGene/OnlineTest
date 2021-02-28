@@ -18,7 +18,8 @@ import ScoreStudent from './pages/teacher/ScoreStudent';
 import ScoreQuestion from './pages/teacher/ScoreQuestion';
 import GroupTestBank from './pages/teacher/GroupTestBank';
 import history from "./utils/history";
-import Course2 from './pages/student/Course';
+import Course_S from './pages/student/Course';
+import UserInfo_S from './pages/student/Course';
 //import Todo from './pages/todo';
 import Todo from './pages/Example';
 /*const apiUrl = 'http://142.93.177.152:10000';
@@ -68,7 +69,8 @@ function App() {
       <Route  path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
       <Route  path="/Teacher/ScoreQuestion" exact component={ScoreQuestion} />
       <Route  path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
-      <Route  path="/Student/Course" exact component={Course2} />
+      <Route  path="/Student/UserInfo" exact component={UserInfo_S} />
+      <Route  path="/Student/Course" exact component={Course_S} />
       <Route  path="/Todo" exact component={Todo} />
 
     </Router>
