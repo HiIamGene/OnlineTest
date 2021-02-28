@@ -11,7 +11,7 @@
     "alloyeditor": "^2.11.16",
     "alloyeditor-react-component": "^1.1.0",
     "antd": "^4.12.3",
-    "axios": "^0.21.1",
+    "instance": "^0.21.1",
     "chart.js": "2.8.0",
     "create-react-class": "^15.7.0",
     "fetch-jsonp": "^1.1.3",

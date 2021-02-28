@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import ckeditor, { CKEditor } from '@ckeditor/ckeditor5-react'
-import axios from 'axios';
+import instance from '../constants/action.js';
 
 function Example() {
     const [content, setContent] = useState("")
@@ -89,7 +89,7 @@ class MyUploadAdapter {
            data.append('file', result);
            }
          )
-         axios.post(`http://142.93.177.152:10000/test`, data, {
+         instance.post(`http://142.93.177.152:10000/test`, data, {
      
        }).then(res => {
          console.log(res.data)

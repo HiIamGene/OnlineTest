@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { Button , Popconfirm } from 'antd';
-import axios from 'axios';
+import instance from '../constants/action.js';
 import API from "../constants/api.jsx";
 import Profile from '../assets/icon/Profile.png';
 function Studentlist(props) {
     const [studentlist, setStudentlist] = useState([]);
     useEffect(() => {
-        axios.post(API.V1.TEACHER.COURSE.GETSTUDENT, {
+        instance.post(API.V1.TEACHER.COURSE.GETSTUDENT, {
             "CourseCode": localStorage.getItem('courseCode')
         }, {
-            headers: {
-                'Authorization': localStorage.getItem('token'),
-            }
         }).then(res => {
             if (res.data) {
                 setStudentlist(res.data)
@@ -22,13 +19,11 @@ function Studentlist(props) {
     }, []);
     const confirm = (e) => {   
         console.log(e)
-        axios.post(API.V1.TEACHER.COURSE.DELETESTUDENT, {
+        instance.post(API.V1.TEACHER.COURSE.DELETESTUDENT, {
             "CourseCode": localStorage.getItem('courseCode'),
             "Username":e
         }, {
-            headers: {
-                'Authorization': localStorage.getItem('token'),
-            }
+
         }).then(res => {
             console.log(res.data)
         }).catch(err => {

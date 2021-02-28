@@ -3,10 +3,9 @@ import { Layout, Row, Col, Button } from 'antd';
 import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
-
 import Teacherlist from '../../components/Teacherlist';
 import API from "../../constants/api.jsx";
-import axios from 'axios';
+import instance from '../../constants/action.js';
 class Teacher extends React.Component {
   constructor(props) {
     super(props)
@@ -21,14 +20,11 @@ class Teacher extends React.Component {
   }
   addTeacher() {
     if (this.state.studentID) {
-      axios.post(API.V1.TEACHER.COURSE.ADDTEACHER, {
+      instance.post(API.V1.TEACHER.COURSE.ADDTEACHER, {
         'CourseCode': localStorage.getItem('courseCode'),
         "Username": this.state.teacherID
 
       }, {
-        headers: {
-          'Authorization': localStorage.getItem('token'),
-        }
       }).then(res => {
         window.location.reload()
       }).catch(err => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Button, Popconfirm, Empty } from 'antd';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import instance from '../constants/action.js';
 import API from "../constants/api.jsx";
 
 function TestBanklist() {

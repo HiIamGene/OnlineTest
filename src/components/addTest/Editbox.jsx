@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import "./Editbox.css"
 import { Input, Button, Checkbox, Row, Col, Upload ,Modal ,Popconfirm } from 'antd';
 import ckeditor, { CKEditor } from '@ckeditor/ckeditor5-react'
-import axios from 'axios';
+import instance from '../../constants/action.js';
 import API from "../../constants/api.jsx";
 import { PlusOutlined } from '@ant-design/icons';
 function getBase64(file) {
@@ -48,7 +48,7 @@ class MyUploadAdapter {
        data.append('file', result);
        }
      )
-     axios.post(`http://142.93.177.152:10000/test`, data, {
+     instance.post(`http://142.93.177.152:10000/test`, data, {
  
    }).then(res => {
      console.log(res.data)

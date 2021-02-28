@@ -6,7 +6,7 @@ import Head from '../../components/Head';
 import { UploadOutlined } from '@ant-design/icons';
 import Studentlist from '../../components/Studentlist';
 import API from "../../constants/api.jsx";
-import axios from 'axios';
+import instance from '../../constants/action.js';
 
 /*const { Option } = Select;
 const children = [];
@@ -35,7 +35,6 @@ class Student extends React.Component {
     accept: ".xlsx",
     action: API.V1.TEACHER.COURSE.ADDSTUDENTFILE,
     headers: {
-      'Authorization': localStorage.getItem('token'),
       'coursecode': localStorage.getItem('courseCode')
     },
 
@@ -66,14 +65,12 @@ class Student extends React.Component {
   }
   addStudent() {
     if (this.state.studentID) {
-      axios.post(API.V1.TEACHER.COURSE.ADDSTUDENT, {
+      instance.post(API.V1.TEACHER.COURSE.ADDSTUDENT, {
         'CourseCode': localStorage.getItem('courseCode'),
         "StudentID": this.state.studentID
 
       }, {
-        headers: {
-          'Authorization': localStorage.getItem('token'),
-        }
+
       }).then(res => {
         window.location.reload()
       }).catch(err => {

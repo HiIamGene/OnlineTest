@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import axios from 'axios';
+import instance from '../constants/action.js';
 const itemsFromBackend = [
   { id: "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", groupName: "First task" , numQuestion: "First task" ,score:"First task"},
   { id: "17acf9a1-b2c7-46c6-b975-759b9d9f538d", groupName: "First task" , numQuestion: "First task" ,score:"First task" },
@@ -68,7 +68,7 @@ const onDragEnd = (result, columns, setColumns) => {
 function Todo() {
   const [columns, setColumns] = useState(columnsFromBackend);
   /*useEffect(() => {
-    axios.post("http://142.93.177.152:10000/grouptestlistupdate",
+    instance.post("http://142.93.177.152:10000/grouptestlistupdate",
     columnsFromBackend
     , {
     }).then(res => {

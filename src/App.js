@@ -23,7 +23,7 @@ import UserInfo_S from './pages/student/Course';
 //import Todo from './pages/todo';
 import Todo from './pages/Example';
 /*const apiUrl = 'http://142.93.177.152:10000';
-axios.interceptors.request.use(
+instance.interceptors.request.use(
   config => {
     const { origin } = new URL(config.url);
     const allowedOrigins = [apiUrl];

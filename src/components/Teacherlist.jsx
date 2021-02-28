@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import axios from 'axios';
+import instance from '../constants/action.js';
 import API from "../constants/api.jsx";
 import Profile from '../assets/icon/Profile.png';
 import { Button, Popconfirm } from 'antd';
@@ -7,7 +7,7 @@ function Teacherlist(props) {
     const [teacherlist, setTeacherlist] = useState([]);
     const [username,setUsername]=useState("");
     useEffect(() => {
-        axios.post(API.V1.USERNAME,{
+        instance.post(API.V1.USERNAME,{
         }, {
             headers: {
                 'Authorization': localStorage.getItem('token'),
@@ -17,7 +17,7 @@ function Teacherlist(props) {
         }).catch(err => {
             console.warn(err);
         })
-        axios.post(API.V1.TEACHER.COURSE.GETTEACHER, {
+        instance.post(API.V1.TEACHER.COURSE.GETTEACHER, {
             "CourseCode": localStorage.getItem('courseCode')
         }, {
             headers: {
@@ -32,7 +32,7 @@ function Teacherlist(props) {
         });
     }, []);
     const confirm = (e) => {
-        axios.post(API.V1.TEACHER.COURSE.DELETETEACHER, {
+        instance.post(API.V1.TEACHER.COURSE.DELETETEACHER, {
             "CourseCode":  localStorage.getItem('courseCode'),
             "Username":e
             

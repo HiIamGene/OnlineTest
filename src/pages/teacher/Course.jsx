@@ -6,7 +6,7 @@ import Head from '../../components/Head';
 import Courselist from '../../components/Courselist';
 import SearchData from '../../components/SearchData';
 import API from "../../constants/api.jsx";
-import axios from 'axios';
+import instance from "../../constants/api.jsx";
 
 
 const { Option } = Select;
@@ -53,7 +53,7 @@ class Course extends React.Component {
   }
   addCourse = () => {
     if (this.state.courseid||this.state.year||this.state.coursename){
-      axios.post(API.V1.TEACHER.COURSELIST.CREATECOURSE, {
+      instance.post(API.V1.TEACHER.COURSELIST.CREATECOURSE, {
         "CourseName": this.state.coursename,
         "CourseID": this.state.courseid,
         "Year": this.state.year,
@@ -61,9 +61,7 @@ class Course extends React.Component {
         "Announcement": "",
         "Description": "",
       }, {
-        headers: {
-          'Authorization': localStorage.getItem('token'),
-        }
+
       }).then(res => {
         if(res.data.CourseID&&res.data.CourseID!==this.state.courseid){
           alert(res.data.CourseID)

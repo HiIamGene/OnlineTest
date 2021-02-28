@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
-import axios from 'axios';
+import instance from "../../constants/action.js";
 import API from "../../constants/api.jsx";
 import { Link } from 'react-router-dom';
 import Testlist from '../../components/Testlist';
@@ -30,24 +30,19 @@ class InCourse extends React.Component {
       localStorage.setItem('courseCode', this.props.location.data.courseCode);
       localStorage.setItem('courseID', this.props.location.data.courseID);
     }
-    axios.post(API.V1.TEACHER.COURSE.GETANNOUNCE, {
+    instance.post(API.V1.TEACHER.COURSE.GETANNOUNCE, {
 
       "CourseCode": localStorage.getItem('courseCode')
     }, {
-      headers: {
-        'Authorization': localStorage.getItem('token'),
-      }
+
     }).then(res => {
       this.setState({ announce: res.data })
     }).catch(err => {
       console.warn(err);
     });
-    axios.post(API.V1.TEACHER.COURSE.GETDESCRIPT, {
+    instance.post(API.V1.TEACHER.COURSE.GETDESCRIPT, {
       "CourseCode": localStorage.getItem('courseCode')
     }, {
-      headers: {
-        'Authorization': localStorage.getItem('token'),
-      }
     }).then(res => {
       this.setState({ description: res.data })
     }).catch(err => {
@@ -57,13 +52,11 @@ class InCourse extends React.Component {
   }
   toggleAnnounce() {
     if (this.state.editAnnounce) {
-      axios.post(API.V1.TEACHER.COURSE.EDITANNOUNCE, {
+      instance.post(API.V1.TEACHER.COURSE.EDITANNOUNCE, {
         "CourseCode": localStorage.getItem('courseCode'),
         "Announcement": this.state.announce
       }, {
-        headers: {
-          'Authorization': localStorage.getItem('token'),
-        }
+
       }).then(res => {
 
       }).catch(err => {
@@ -76,13 +69,11 @@ class InCourse extends React.Component {
 
     if (this.state.description) {
 
-      axios.post(API.V1.TEACHER.COURSE.EDITDESCRIPT, {
+      instance.post(API.V1.TEACHER.COURSE.EDITDESCRIPT, {
         "CourseCode": localStorage.getItem('courseCode'),
         "Description": this.state.description
       }, {
-        headers: {
-          'Authorization': localStorage.getItem('token'),
-        }
+
       }).then(res => {
 
       }).catch(err => {

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { Button } from 'antd';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import instance from '../constants/action.js';
 import API from "../constants/api.jsx";
 import { Link } from 'react-router-dom';
 function Testlist(props) {
     const [testlist, setTestlist] = useState([]);
     useEffect(() => {
-        axios.post(API.V1.TEACHER.TEST.GETTESTLIST, {
+        instance.post(API.V1.TEACHER.TEST.GETTESTLIST, {
             "CourseID": localStorage.getItem('courseID')
         }, {
-            headers: {
-                'Authorization': localStorage.getItem('token'),
-            }
+
         }).then(res => {
             if(res.data){
             setTestlist(res.data)

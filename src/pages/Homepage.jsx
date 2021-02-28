@@ -1,56 +1,49 @@
-import React from 'react';
+import React , {useEffect, useState} from 'react';
 import { Row, Col, Button, Input, Form } from 'antd';
 import { Typography } from 'antd';
-import axios from 'axios';
+import instance from '../constants/action.js';
 import API from "../constants/api.jsx";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import writing from '../assets/img/writing.png'
 import brand from '../assets/img/brand.png'
 const { Title } = Typography;
 
-class Homepage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-    }
-  }
-
-  componentWillMount() {
+function Homepage (props){
+  const [token,setToken]=useState("")
+  const [password,setPassword]=useState("")
+  useEffect(() => {
     if (localStorage.getItem('token')) {
-      this.props.history.push(`/Teacher/Course`)
+      if (localStorage.getItem("role") === "teacher") {
+        props.history.push(`/Teacher/Course`)
+      } 
+      else if (localStorage.getItem("role") === "student"){
+        props.history.push(`/Student/Course`)
+      }
     }
-  }
-  onFinish = values => {
-    axios.post(API.V1.LOGIN, null, {
+  }, [token]);
+  const onFinish = values => {
+    instance.post(API.V1.LOGIN, null, {
       params: {
         username: values.username
         ,
         password: values.password
       }
 
-    }).then(res => {
+    }).then( res => {
       if (res.data === "Wrong Username or Password") {
         alert("Wrong Username or Password")
       }
       else {
-        //localStorage.setItem('token',res.data["token"])
+        setToken( res.data["token"])
         localStorage.setItem('token', "Bearer " + res.data["token"])
-        if (res.data["role"] === "teacher") {
-          this.props.history.push(`/Teacher/Course`)
-        } else {
-          this.props.history.push(`/Student/Course`)
-        }
-
+        localStorage.setItem('role', res.data["role"])
       }
     }).catch(err => {
       console.warn(err);
     })
-
   };
-  render() {
     return (
       <div>
-
         <Row style={{ background: '#ffffff', marginTop: 90 }}>
           <Col span={14} offset={0}>
             < img src={brand} alt="Logo" style={{ width: 482 }} />
@@ -61,7 +54,7 @@ class Homepage extends React.Component {
                 name="normal_login"
                 className="login-form"
                 initialValues={{ remember: true }}
-                onFinish={this.onFinish}
+                onFinish={onFinish}
 
               >
                 <Form.Item
@@ -101,6 +94,6 @@ class Homepage extends React.Component {
         </Row>
       </div>
     )
-  }
+  
 }
 export default Homepage;
