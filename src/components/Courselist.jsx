@@ -27,9 +27,6 @@ function Classlist(props) {
         console.log(e)
         window.location.reload();
     }
-
-
-
     const classlistOut = () => {
         if (classlist === null) {
             return <Empty style={{

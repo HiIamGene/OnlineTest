@@ -120,7 +120,7 @@ class Student extends React.Component {
                 </Col>
                 <Col span={14}></Col>
                 <Col span={22} offset={2} >
-                  <Studentlist status={"pending"} />
+                  <Studentlist status={"่join"} />
                 </Col>
                 <Col span={22} offset={2}>
                   <div style={{ color: "#AAAAAA", marginLeft: 10, fontSize: 30, fontWeight: 'bold', display: "inline-block" }}>Pending</div>

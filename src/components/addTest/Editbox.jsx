@@ -2,7 +2,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
 import parse from "html-react-parser"
 import React, { useState, useEffect } from "react"
 import "./Editbox.css"
-import { Input, Button, Checkbox, Row, Col, Upload ,Modal ,Popconfirm } from 'antd';
+import { Input, Button, Checkbox, Row, Col, Upload, Modal, Popconfirm } from 'antd';
 import ckeditor, { CKEditor } from '@ckeditor/ckeditor5-react'
 import instance from '../../constants/action.js';
 import API from "../../constants/api.jsx";
@@ -120,6 +120,12 @@ class MyUploadAdapter {
 }
 function Editbox(props) {
   const [content, setContent] = useState("")
+  const [choice, setChoice] = useState([
+    { input: "asd" },
+    { input: "bbc" },
+    { input: "rrd" }
+  ])
+
   const [fileList, setFileList] = useState(
     [
       {
@@ -129,7 +135,7 @@ function Editbox(props) {
         url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       },
     ]
-    )
+  )
 
   const handleChange = (event, editor) => {
     const data = editor.getData();
@@ -137,7 +143,7 @@ function Editbox(props) {
 
   }
   const onhandleChange = ({ fileList: newFileList }) => {//setFileList(fileList );
-  setFileList(newFileList )
+    setFileList(newFileList)
   }
   const custom_config = {
     extraPlugins: [MyCustomUploadAdapterPlugin],
@@ -174,6 +180,12 @@ function Editbox(props) {
     //setText(props.questionName)
     props.updatePreview(content)
   }, [content]);
+
+  const addChoice = ( )=>{
+    
+    setChoice([...choice,{ input: "rrdasd"}])
+
+  }
   return (
     <>
       <div className="Editbox">
@@ -189,48 +201,39 @@ function Editbox(props) {
       </div>
       <div>
         {props.value === "Choice" && (
+          <>
+            {choice.map((item, index) => {
+              return (
+                <Row gutter={16} type="flex" justify="space-around">
+                  <Col span={12} style={{ marginTop: 20 }}>
+                    <Input defaultValue={item.input}></Input>
+                  </Col>
+                  <Col span={1} style={{ marginTop: 20 }} > 
+                    <Checkbox ></Checkbox>
+                  </Col>
+                  <Col span={11} style={{ maxHeight: 10 }}>
+                    <Upload
+                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                      listType="picture-card"
+                      fileList={fileList}
+                      onChange={onhandleChange}
+                      name="myfile"
+                      maxCount={1}
+                    >
+                      {fileList.length >= 1 ? null : uploadButton}
+                    </Upload>
+                    <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" //onConfirm={() => props.onClickdeleteHeader(columnId)}
+                    >
+                      <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
+                    </Popconfirm>
 
-          <Row gutter={16} type="flex" justify="space-around">
-            <Col span={12} style={{ marginTop: 20 }}>
-              <Input></Input>
-            </Col>
-            <Col span={1} style={{ marginTop: 20 }} >
-              <Checkbox ></Checkbox>
-              </Col>
-              <Col span={11}  style={{maxHeight:10}}>
-              <Upload
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture-card"
-                fileList={fileList}
-                onChange={onhandleChange}
-                name="myfile"
-                maxCount={1}
-              >
-                {fileList.length >=1? null : uploadButton}
-              </Upload>
-              <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" //onConfirm={() => props.onClickdeleteHeader(columnId)}
-              >
-                    <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
-                  </Popconfirm>
+                  </Col>
+                </Row>
+              )
+            })}
+            <Button type="link" style={{ marginTop: 25, width: 200, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} onClick={()=>addChoice()}>add choice</Button>
 
-            </Col>
-            <Col span={12} style={{ marginTop: 20 }}>
-              <Input></Input>
-            </Col>
-            <Col span={12} style={{ marginTop: 20 }}>
-              <Checkbox ></Checkbox>
-            </Col>
-            <Col span={12} style={{ marginTop: 20 }}>
-              <Input></Input>
-            </Col>
-            <Col span={12} style={{ marginTop: 20 }}>
-              <Checkbox ></Checkbox>
-            </Col>
-            <Col span={24}>
-              <div style={{ marginTop: 25, width: 200, height: 60, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} >add choice</div>
-            </Col>
-          </Row>
-
+          </>
         )}
         {props.value === "Pair" && (
           <Row gutter={16} type="flex" justify="space-around">

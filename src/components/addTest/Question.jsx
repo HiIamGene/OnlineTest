@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Input, Row, Col, Button, Result ,Popconfirm } from 'antd';
+import { Input, Row, Col, Button, Result, Popconfirm } from 'antd';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from "uuid";
@@ -92,7 +92,7 @@ function Question(props) {
               }}
             >
               <div style={{ margin: 8 }}>
-                <Droppable  droppableId="selectColumn" >
+                <Droppable droppableId="selectColumn" >
                   {(provided, snapshot) => {
                     return (
                       <div
@@ -126,14 +126,14 @@ function Question(props) {
                                     <div>
                                       <Row>
                                         <div style={{ fontSize: 30, fontWeight: "bold", display: "block", color: "#000000" }} >{index + 1}.
-                                          <Button onClick={() => props.onSelectquestionName(selectColumn[index].name, index + 1,selectColumn.length)} type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1330, height: 100, marginTop: 30, textAlign: 'left' }}>{item.name}</Button>
+                                          <Button onClick={() => props.onSelectquestionName(selectColumn[index].name, index + 1, selectColumn.length)} type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1330, height: 100, marginTop: 30, textAlign: 'left' }}>{item.name}</Button>
                                         </div>
                                         <table style={{ marginTop: 30, marginLeft: 20 }}>
                                           <div style={{ marginTop: 40, marginLeft: 10, fontSize: 30 }}>
-                                          <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => onClickdeletColumn(index)}>
-                                                                                                            <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
-                                                                                                        </Popconfirm>
-                                           
+                                            <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => onClickdeletColumn(index)}>
+                                              <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
+                                            </Popconfirm>
+
                                           </div>
                                         </table>
                                       </Row>

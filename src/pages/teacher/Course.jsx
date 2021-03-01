@@ -29,6 +29,7 @@ class Course extends React.Component {
       courseid: "",
       keyValue: "1",
       form: 1,
+      courseAddid: "",
     }
   }
   updateCourse = (value) => {
@@ -51,7 +52,15 @@ class Course extends React.Component {
       permission: value
     })
   }
-  addCourse = () => {
+  updateAddCourse =(value)=>{
+    this.setState({
+      courseAddid: value
+    })
+  }
+  addCourse = () =>{
+
+  }
+  addNewCourse = () => {
     if (this.state.courseid||this.state.year||this.state.coursename){
       instance.post(API.V1.TEACHER.COURSELIST.CREATECOURSE, {
         "CourseName": this.state.coursename,
@@ -91,11 +100,11 @@ class Course extends React.Component {
                   <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Course</div>
                 </Col>
                 <Col span={5} >
-                  <SearchData style={{ marginTop: 30, width: "100%" }} />
+                  <Input style={{ marginTop: 30, width: "100%" }} onChange={(e)=>this.updateAddCourse(e.value.target)}/>
                 </Col>
                 <Col span={1} >
-                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
-                    <div style={{ font: 'Josefin Sans', fontSize: 10 }}>Search</div>
+                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} onClick={()=>this.addCourse}>
+                    <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
                   </Button>
                 </Col>
                 <Col span={11} ></Col>
@@ -109,7 +118,7 @@ class Course extends React.Component {
               <Modal
                 centered
                 visible={this.state.visible}
-                onOk={()=>this.addCourse()}
+                onOk={()=>this.addNewCourse()}
                 onCancel={()=>this.setState({ visible: false })}
                 width={1200}
 

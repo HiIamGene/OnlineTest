@@ -9,7 +9,7 @@ import Group from '../../components/addTest/Group'
 import Question from '../../components/addTest/Question'
 import AddQuestion from '../../components/addTest/Addquestion'
 import Preview from '../../components/addTest/Preview'
-import instance from "../../constants/api.jsx";
+import instance from "../../constants/action.js";
 import API from "../../constants/api.jsx";
 import { v4 as uuid } from "uuid";
 import Column from "antd/lib/table/Column";
@@ -64,7 +64,7 @@ function CreateTest(props) {
   const form = 4 ;
   useEffect(() => {
     setColumns(columnsFromBackend)
-    instance.post("http://142.93.177.152:10000/test",columnsFromBackend
+    instance.post("/test",columnsFromBackend
     , {
 
     } ).then(res => {
