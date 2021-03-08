@@ -7,7 +7,6 @@ export default (state=data, action) => {
         case "DECREMENT":
             return  {...state,count:state.count-1};
         case "change":
-
             return  {...state,value:action.value};
         default:
             return state;

@@ -48,12 +48,15 @@ export default {
                     ALLGROUPTESTLISTestlist:'/allgrouptestlist',
                     POSTDETAILLIST:'/postdetailtest',
                     GETDETAILTEST:'/getdetailtest',
-                    UPLOADPIC:'/uploadpic'
+                    UPLOADPIC:'/uploadpic',
+                    GROUPTESTLIST:"/grouptestlistupdate",
+                    
 
                 }
                 
             },
             TEST:{
+                ALLGROUPINTESTBANK:'/testbankupdate',
                 GETTESTLIST:'/gettestlist'
             }
         },

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Steps, Button, message } from 'antd';
-import { Layout , Switch } from 'antd';
+import { Layout, Switch } from 'antd';
 import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
@@ -13,8 +13,9 @@ import instance from "../../constants/action.js";
 import API from "../../constants/api.jsx";
 import { v4 as uuid } from "uuid";
 import Column from "antd/lib/table/Column";
+
+import { connect } from 'react-redux';
 const { Step } = Steps;
-const { Header, Content, Footer, Sider } = Layout;
 const steps = [
   {
     title: 'first',
@@ -37,15 +38,28 @@ const steps = [
     content: 'Last-content',
   },
 ];
+const mapStateToProps = state => {
+  return {
+    groups: state.createTest.groups,
+    maxQuestion: state.createTest.maxQuestion,
+    testID : state.createTest.testID
+  };
+};
 
-
-
+const mapDispatchToProps = dispatch => {
+  return {
+    setGroups: (value) => dispatch({ type: 'setGroups', groups: value }),
+    setMaxQuestion: (value) => dispatch({ type: 'setMaxQuestion', maxQuestion: value }),
+    setQuestionCurrent :  (value) => dispatch({ type: 'setQuestionCurrent', questionCurrent: value }),
+    setHeader: (value) => dispatch({ type: 'setStateHeaders', headers: value }),
+  };
+}
 const columnsFromBackend = {
   "31ded736-4076-4b1c-b38f-7e8d9fa78b41": {
     "name": "จงเลือกคำตอบที่ถูกที่สุด",
     "items": [
-      { "id": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "groupName": "การออกแบบUI", "numQuestion": "5", "score": "6" },
-      { "id": "17acf9a1-b2c7-46c6-b975-759b9d9f538d", "groupName": "สีกับความรู้สึก", "numQuestion": "2", "score": "4" },
+      { "id": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "groupName": "การออกแบบUI", "numQuestion": "5", "score": "6" ,"question":[]},
+      { "id": "17acf9a1-b2c7-46c6-b975-759b9d9f538d", "groupName": "สีกับความรู้สึก", "numQuestion": "2", "score": "4" ,"question":[]},
     ]
   },
   "115f7d04-3075-408a-b8ce-c6e46fe6053f": {
@@ -60,24 +74,28 @@ const columnsFromBackend = {
 function CreateTest(props) {
   const [columns, setColumns] = useState([]);
   const [current, setCurrent] = useState(0);
-  const keyValue= "1";
-  const form = 4 ;
+  const [draft,setDraft] = useState(true);
+  const keyValue = "1";
+  const form = 4;
   useEffect(() => {
-    setColumns(columnsFromBackend)
-    instance.post("/test",columnsFromBackend
-    , {
-
-    } ).then(res => {
-      console.log(res.data)
-    }).catch(err => {
+    if(props.testID){
+      instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, {
+        "TestId": props.testID,
+        "CourseCode": localStorage.getItem('courseCode')
+      }, {
+  
+      }).then(res => {
+        props.setHeader({ ...props.headers })
+      }).catch(err => {
         console.warn(err);
-    })
+      });
+    }
   }, []);
   //Group
   const onDragEnd = (result, columns) => {
     if (!result.destination) return;
     const { source, destination } = result;
-  
+
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
@@ -110,37 +128,16 @@ function CreateTest(props) {
       });
     }
   };
-
-  const onClickdeleteHeader = (e) => {
-    let temp = columns
-    delete temp[e]
-    setColumns({ ...temp })
-
+  const onHandleDraft = (e) =>{
+    setDraft(e)
   }
-
-  const onClickAddHeader = (e) => {
-    let temp = columns
-    temp[uuid()] = {
-      name: "",
-      items: []
-    }
-    setColumns({ ...temp })
+  const onClickSave = ()=>{
+    message.success('Processing complete!')
   }
-  const onClickAddColumn = (e) => {
-    let temp = columns
-    temp[e].items.push({ id: uuid(), groupName: "", numQuestion: "", score: "" })
-    setColumns({ ...temp })
-
-  }
-  const onClickdeletColumn = (e, column) => {
-    let temp = columns
-    temp[e].items.splice(column, 1)
-    setColumns({ ...temp })
-
-  }
-  const onSelectgroupName =  (e, column) => {
+  const onSelectgroupName = (columns, e, column) => {
     setQuestionStatus(false)
-    setGroupName(columns[e].items[column].groupName)  
+    console.log(columns[e].items[column])
+    
     next()
   }
   //QuestionList
@@ -149,27 +146,26 @@ function CreateTest(props) {
   const [questionStatus, setQuestionStatus] = useState(true);
   const [editqStatus, setEditqStatus] = useState(true);
   const next = () => {
-    setCurrent(current + 1 );
+    setCurrent(current + 1);
   };
 
   const prev = () => {
-    setCurrent(current - 1 );
+    setCurrent(current - 1);
   };
   const onChange = (current) => {
     setCurrent(current);
   };
   //EditQuestion
   const [questionName, setQuestionName] = useState("");
-  const [num, setNum] = useState(0);
-  const [maxNum, setMaxNum] = useState(0);
   const [preview, setPreview] = useState("");
-  const updatePreview = (e) =>{
+  const updatePreview = (e) => {
     setPreview(e)
   }
-  const onSelectquestionName =  (e,value,maxNum) => {
-    setNum(value)
+  const onSelectquestionName = (e, value, maxNum) => {
+    props.setMaxQuestion(maxNum)
+    props.setQuestionCurrent(e)
     setEditqStatus(false)
-    setMaxNum(maxNum)
+    //setMaxNum(maxNum)
     //setQuestionName(e)  
     next()
   }
@@ -199,43 +195,38 @@ function CreateTest(props) {
                 <Detail />
               )}
               {current === 1 && (
-                <Group 
+                <Group
                   handlesetColumns={setColumns}
                   onSelectgroupName={onSelectgroupName}
-                  onDragEnd={onDragEnd} 
-                  onClickAddHeader={onClickAddHeader}
-                  onClickdeleteHeader={onClickdeleteHeader}
-                  onClickdeletColumn={onClickdeletColumn}
-                  onClickAddColumn={onClickAddColumn}
+                  onDragEnd={onDragEnd}
                   columns={columns}
 
                 />
               )}
               {current === 2 && (
-                <Question 
-                onSelectquestionName={onSelectquestionName}
-                groupName={groupName}
-                
+                <Question
+                  onSelectquestionName={onSelectquestionName}
+                  groupName={groupName}
+
                 />
               )}
               {current === 3 && (
-                <AddQuestion 
-                  questionName={questionName}
-                  num={num}
-                  maxNum={maxNum}
+                <AddQuestion
                   updatePreview={updatePreview}
                 />
               )}
               {current === 4 && (
-                              <Preview preview={preview}/>
-               
+                <Preview preview={preview} />
+
               )}
             </div>
-            <div className="steps-action" tyle={{ fontSize: 30 }}>Draft
-                <Switch style={{ margin: '0 8px' }} defaultChecked ></Switch>
+            <div className="steps-action" tyle={{ fontSize: 30 }}>
+              <Switch style={{ margin: '0 8px' }} defaultChecked onChange={e=>onHandleDraft(e)}></Switch>
+              Draft
+
               {current === steps.length - 1 && (
 
-                < Button style={{ margin: '0 8px' }} type="primary" onClick={() => message.success('Processing complete!')}>Save</Button>
+                < Button style={{ margin: '0 8px' }} type="primary" onClick={() => onClickSave()}>Save</Button>
               )}
             </div>
           </ContentContainer>
@@ -246,5 +237,4 @@ function CreateTest(props) {
   );
 
 };
-
-export default CreateTest
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTest);

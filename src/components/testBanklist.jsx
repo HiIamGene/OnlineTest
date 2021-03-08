@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { Button, Popconfirm, Empty } from 'antd';
 import { Link } from 'react-router-dom';
-import instance from '../constants/action.js';
-import API from "../constants/api.jsx";
 
-function TestBanklist() {
-    const listGroupTest = [{ id: 90010100, groupName: "Data Communication" }
-        , { id: 90010101, groupName: "Food Science" }
-        , { id: 90010102, groupName: "Food Science" }
-        , { id: 90010103, groupName: "UX&UI" }]
-    const confirm = (e) => {
 
-    }
+function TestBanklist(props) {
+    const confirm = () => {}
     const listGroupOut = () => {
-        if (listGroupTest === null) {
+        if (props.listGroupTest === null) {
             return <Empty style={{
                 marginLeft: "auto",
                 marginRight: "auto"
@@ -21,7 +14,7 @@ function TestBanklist() {
                 description={false} />
         }
         else {
-            return listGroupTest.map((e, index) =>
+            return props.listGroupTest.map((e, index) =>
                 <div key={index}>
                     <Link to={{
                         pathname: "/Teacher/QuestionTestBank",

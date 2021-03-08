@@ -236,27 +236,54 @@ function Editbox(props) {
           </>
         )}
         {props.value === "Pair" && (
-          <Row gutter={16} type="flex" justify="space-around">
-            <Col span={10} style={{ marginTop: 20 }}>
-              <Input style={{ minWidth: "400" }}></Input>
-            </Col>
-            <Col span={10} style={{ marginTop: 20 }}>
-              <Input style={{ minWidth: "400" }}></Input>
-            </Col>
-            <Col span={4} ></Col>
-            <Col span={10} style={{ marginTop: 20 }}>
+          <>
+          {choice.map((item, index) => {
+              return (
+                <Row gutter={16} type="flex" justify="space-around">
+                  <Col span={8} style={{ marginTop: 20 }}>
+                    <Input defaultValue={item.input}></Input>
+                  </Col>
+                  <Col span={3} style={{ maxHeight: 10 }}>
+                    <Upload
+                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                      listType="picture-card"
+                      fileList={fileList}
+                      onChange={onhandleChange}
+                      name="myfile"
+                      maxCount={1}
+                    >
+                      {fileList.length >= 1 ? null : uploadButton}
+                    </Upload>
 
-              <Input style={{ minWidth: "400" }}></Input>
-            </Col>
-            <Col span={10} style={{ marginTop: 20 }}>
-
-              <Input style={{ minWidth: "400" }}></Input>
-            </Col>
-            <Col span={4} ></Col>
-            <Col span={24} >
-              <div style={{ marginTop: 25, width: 200, height: 60, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} >add choice</div>
-            </Col>
-          </Row>
+                  </Col>
+                  <Col span={8} style={{ marginTop: 20 }}>
+                    <Input defaultValue={item.input}></Input>
+                  </Col>
+                  <Col span={3} style={{ maxHeight: 10 }}>
+                    <Upload
+                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                      listType="picture-card"
+                      fileList={fileList}
+                      onChange={onhandleChange}
+                      name="myfile"
+                      maxCount={1}
+                    >
+                      {fileList.length >= 1 ? null : uploadButton}
+                    </Upload>
+                  </Col>
+                  <Col span={1} style={{ maxHeight: 10 }}>
+                  <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" //onConfirm={() => props.onClickdeleteHeader(columnId)}
+                    >
+                      <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
+                    </Popconfirm>
+                    </Col>
+                    <Col span={1} >
+                    </Col>
+                </Row>
+              )
+            })}
+            <Button type="link" style={{ marginTop: 25, width: 200, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} onClick={()=>addChoice()}>add choice</Button>
+          </>
         )}
         {props.value === "ShortAnswer" && (
           <Row gutter={16} type="flex" justify="space-around">

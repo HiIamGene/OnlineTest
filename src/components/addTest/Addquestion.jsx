@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button, Switch, Pagination } from 'antd';
+import React, { useState ,useEffect } from 'react';
+import {Row, Col, Pagination } from 'antd';
 import Editbox from './Editbox';
 import { Select } from 'antd';
-
+import { connect } from 'react-redux';
 const { Option } = Select;
+const mapStateToProps = state => {
+  return {
+    maxQuestion: state.createTest.maxQuestion,
+    questionCurrent: state.createTest.questionCurrent,
+    groups: state.createTest.groups
 
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setGroups: (value) => dispatch({ type: 'setGroups', groups: value }),
+  };
+}
 function Addquestion(props) {
-  const [current, setcurrent] = useState(1);
+  useEffect(() => {
+    if(props.groups.questionList){
+      setQuestion(props.groups.questionList[current])
+    }
+
+  }, []);
+  const [question, setQuestion] = useState("");
+  const [current, setcurrent] = useState(props.questionCurrent);
   const onChangeQues = page => {
     setcurrent(page);
   };
@@ -56,10 +76,10 @@ function Addquestion(props) {
       </Col>
       <Col span={2} ></Col>
       <Col span={14} offset={10} >
-        <Pagination simple defaultCurrent={props.num} onChange={onChangeQues} total={props.maxNum*10} />
+        <Pagination simple defaultCurrent={props.questionCurrent} onChange={onChangeQues} total={props.maxQuestion*10}  hideOnSinglePage={true}/>
       </Col>
     </Row>
   );
 }
 
-export default Addquestion;
+export default connect(mapStateToProps, mapDispatchToProps)(Addquestion);
