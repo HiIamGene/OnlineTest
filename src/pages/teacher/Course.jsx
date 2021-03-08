@@ -6,7 +6,7 @@ import Head from '../../components/Head';
 import Courselist from '../../components/Courselist';
 import SearchData from '../../components/SearchData';
 import API from "../../constants/api.jsx";
-import instance from "../../constants/api.jsx";
+import instance from "../../constants/action.js";
 
 
 const { Option } = Select;

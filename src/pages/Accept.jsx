@@ -20,7 +20,7 @@ class Accept extends React.Component {
         //console.log(URLSearchParams)
         const query = new URLSearchParams(this.props.location.search);
         if (query.get('studentid') && query.get('coursecode')) {
-            /*instance.post(API.V1.ALERT, null, {
+            instance.post(API.V1.ALERT, null, {
                 params: {
                     studentid: query.get('studentid')
                     ,
@@ -30,7 +30,7 @@ class Accept extends React.Component {
                 .catch(err => {
                     console.warn(err);
                 })
-                */
+                
                this.setState({
                     status: "success",
                     title: "Success",

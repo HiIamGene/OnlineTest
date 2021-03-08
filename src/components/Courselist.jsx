@@ -25,7 +25,7 @@ function Classlist(props) {
             console.warn(err);
         })
         console.log(e)
-        window.location.reload();
+        //window.location.reload();
     }
     const classlistOut = () => {
         if (classlist === null) {
