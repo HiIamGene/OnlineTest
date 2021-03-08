@@ -11,7 +11,7 @@ function Classlist(props) {
         }, {
         }).then(res => {
             setclasslist(res.data)
-
+            console.log(res.data)
         }).catch(err => {
             console.warn(err);
         })
@@ -21,11 +21,11 @@ function Classlist(props) {
             "CourseCode": e
         }, {
         }).then(res => {
+            console.log(res.data)
         }).catch(err => {
             console.warn(err);
         })
-        console.log(e)
-        //window.location.reload();
+        window.location.reload();
     }
     const classlistOut = () => {
         if (classlist === null) {

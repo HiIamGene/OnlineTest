@@ -57,9 +57,13 @@ const onDragEnd = (result, columns, setHeader) => {
 };
 function Group(props) {
   const setDefaultValue = (index,columnId,e) => {
+    console.log('header before temp: ',props.headers)
     let temp = props.headers
-    temp[columnId].items[index].groupName = e
-    props.setHeader({ ...temp })
+    // console.log('header before temp: ',props.headers)
+     temp[columnId].items[index] = { "id": uuid(), "groupName": e, "numQuestion": "0", "maxQuestion": "0", "score": "", "questionList": [] }
+    console.log('header before : ',props.headers)
+     props.setHeader({ ...temp })
+    console.log('header after :',props.headers)
   }
   const onClickAddHeader = () => {
     let temp = props.headers
@@ -77,7 +81,7 @@ function Group(props) {
   }
   const onClickAddColumn = (e) => {
     let temp = props.headers
-    temp[e].items.push({ "id": uuid(), "groupName": "", "numQuestion": "0", "maxQuestion": "0", "score": "", "question": [] })
+    temp[e].items.push({ "id": uuid(), "groupName": "", "numQuestion": "0", "maxQuestion": "0", "score": "", "questionList": [] })
     props.setHeader({ ...temp })
 
   }
