@@ -68,6 +68,7 @@ const data = {
 
 //export const countReducer = function (state=data, action) {
 export default (state = data, action) => {
+    // console.log(action)
     switch (action.type) {
         case "setStateHeaders":
             return { ...state, headers: action.headers };

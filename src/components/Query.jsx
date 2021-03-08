@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setGroupsTestbank: (value) => dispatch({ type: 'setStateGroups', groupsTestbank: value }),
     setGroupsSelect: (value) => dispatch({ type: 'setStateGroupSelect', groupSelect: value }),
-    setStateHeaders: (value) => dispatch({ type: 'setStateHeaders', grouheaderspSelect: value }),
+    setStateHeaders: (value) => dispatch({ type: 'setStateHeaders', headers: value }),
   };
 }
 function Query(props) {
@@ -26,28 +26,43 @@ function Query(props) {
 
   });*/
   const [name, setName] = useState("")
+  const [fixbug,setFixbug] = useState(0)
   const onNameChange = event => {
     setName(event.target.value)
+    // console.log(event.target.value, name)
+
   };
+
   const onSelectGroup = (e) => {
-    props.setDefaultValue(props.index, props.columnId, e)
-    if (props.groupsTestbank.map(function (el) { return el.groupName; }).includes(e)) {
-      for (const [columnId, column] of Object.entries(props.groupsTestbank)) {
-        if(props.groupsTestbank[columnId].groupName===e){
-          let temp = props.headers
-          temp[props.columnId].items[props.index]=props.groupsTestbank[columnId].groupName
-          props.setStateHeaders({...temp})
+    
+    for (const [column, data] of Object.entries(props.groupsTestbank)){
+      if(props.groupsTestbank[column].groupName===e){
+        let temp = props.headers
+        temp[props.columnId].items[props.index] = data
+        //console.log(temp)
+        props.setStateHeaders({...temp})
+      }
+    }
+    /*if (props.headers[props.columnId].map(function (el) { return el.groupName; }).includes(e)) {
+      for (const [columnId, column] of Object.entries(props.herders)) {
+        if (props.herders[columnId].items[props.index].groupName === e) {
+          //props.setDefaultValue(props.index, props.columnId, e)
+          props.herders[columnId].items[props.index].groupName
+          //let temp = props.headers
+          //temp[props.columnId].items[props.index] = props.groupsTestbank[columnId].groupName
+         // props.setStateHeaders({ ...temp })
         }
       }
       //let temp = props.headers
-     // temp[props.columnId].items[props.index].groupName = e
-     // console.log( props.groupsTestbank.groupName[])
+      // temp[props.columnId].items[props.index].groupName = e
+      // console.log( props.groupsTestbank.groupName[])
       //setStateHeaders
       //props.setStateHeaders({...temp})
-    }
+    }*/
   }
+
   const addItem = () => {
-    if (!props.groupsTestbank.map(function (el) { return el.groupName; }).includes(name)) {
+    if (!props.groupsTestbank.filter(function (el) { return el.groupName; }).includes(name)) {
       let temp = props.groupsTestbank
       temp.push({
         "id": uuid(),
@@ -55,9 +70,13 @@ function Query(props) {
         "questionList": []
       })
       props.setGroupsTestbank(temp)
+    //   console.log(typeof temp)
+    // console.log(temp, props.groupsTestbank)
+      setFixbug(fixbug+1)
       //props.setGroupsTestbank({...temp})
     }
   };
+
 
   return (
     <Select
@@ -81,9 +100,14 @@ function Query(props) {
         </div>
       )}
     >
-      {props.groupsTestbank.map(function (el) { return el.groupName; }).map(item => (
-        <Option key={item}>{item}</Option>
-      ))}
+      {
+        props.groupsTestbank.map((data) => {
+          // console.log(data)
+          return (<Option key={data.groupName}>{data.groupName}</Option>)
+        }
+        )
+      }
+
     </Select>
   );
 
