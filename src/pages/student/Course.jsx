@@ -37,7 +37,7 @@ function Course(props) {
               </Col>
               <Col span={1} >
                 <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
-                  <div style={{ font: 'Josefin Sans', fontSize: 10 }}>Search</div>
+                  <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
                 </Button>
               </Col>
               <Col span={12} ></Col>

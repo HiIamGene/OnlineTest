@@ -6,7 +6,7 @@ import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Profile from '../../assets/icon/Profile.png';
 import API from "../../constants/api.jsx";
-import axios from 'axios';
+import instance from '../constants/action.js';
 const { Title } = Typography;
 
 function UserInfo(props) {
@@ -15,12 +15,10 @@ function UserInfo(props) {
   const keyValue = "2";
   const form = 1;
   useEffect(() => {
-    axios.post(API.V1.TEACHER.INFO.GETINFO,{
+    instance.post(API.V1.TEACHER.INFO.GETINFO,{
         "Username": "testteacher"
     }, {
-        headers: {
-            'Authorization': localStorage.getItem('token'),
-        }
+
     } ).then(res => {
       setUserInfo(res.data)
     }).catch(err => {

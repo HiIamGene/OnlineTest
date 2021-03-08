@@ -6,7 +6,7 @@ import Head from '../../components/Head';
 import { UploadOutlined } from '@ant-design/icons';
 import Studentlist from '../../components/Studentlist';
 import API from "../../constants/api.jsx";
-import axios from 'axios';
+import instance from '../../constants/action.js';
 
 /*const { Option } = Select;
 const children = [];
@@ -26,23 +26,6 @@ class Student extends React.Component {
     }
   }
   toggleVisible = () => {
-    if (this.state.visible) {
-      window.location.reload()
-      /* const data = new FormData();
-       data.append('file', this.state.dataUpload);
-       axios.post(API.V1.TEACHER.COURSE.ADDSTUDENTFILE, data, {
-         headers: {
-           'Authorization': localStorage.getItem('token'),
-           'CourseCode': "5B104D"
- 
-         },
-       }).then(res => {
-         console.log(res.data);
-       }).catch(err => {
-         console.log(err);
-       })*/
-
-    }
     this.setState({ visible: !this.state.visible });
   }
   handleChange = (info) => {
@@ -52,7 +35,6 @@ class Student extends React.Component {
     accept: ".xlsx",
     action: API.V1.TEACHER.COURSE.ADDSTUDENTFILE,
     headers: {
-      'Authorization': localStorage.getItem('token'),
       'coursecode': localStorage.getItem('courseCode')
     },
 
@@ -77,24 +59,18 @@ class Student extends React.Component {
       strokeWidth: 3,
       format: percent => `${parseFloat(percent.toFixed(2))}%`,
     },
-    /*onChange(info){
-      this.setState({dataUpload:info.file})
-    }*/
-
   }
   updateStudentid(value) {
     this.setState({ studentID: value })
   }
   addStudent() {
     if (this.state.studentID) {
-      axios.post(API.V1.TEACHER.COURSE.ADDSTUDENT, {
+      instance.post(API.V1.TEACHER.COURSE.ADDSTUDENT, {
         'CourseCode': localStorage.getItem('courseCode'),
         "StudentID": this.state.studentID
 
       }, {
-        headers: {
-          'Authorization': localStorage.getItem('token'),
-        }
+
       }).then(res => {
         window.location.reload()
       }).catch(err => {
@@ -144,7 +120,7 @@ class Student extends React.Component {
                 </Col>
                 <Col span={14}></Col>
                 <Col span={22} offset={2} >
-                  <Studentlist status={"pending"} />
+                  <Studentlist status={"่join"} />
                 </Col>
                 <Col span={22} offset={2}>
                   <div style={{ color: "#AAAAAA", marginLeft: 10, fontSize: 30, fontWeight: 'bold', display: "inline-block" }}>Pending</div>

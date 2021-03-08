@@ -5,7 +5,7 @@ import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Profile from '../../assets/icon/Profile.png';
 import API from "../../constants/api.jsx";
-import axios from 'axios';
+import instance from '../../constants/action.js';
 
 class UserInfo extends React.Component {
   constructor(props) {
@@ -22,15 +22,12 @@ class UserInfo extends React.Component {
   toggleEdit = () => {
     if (this.state.edit) {
       if (this.state.firstname || this.state.surname || this.state.email) {
-        axios.post(API.V1.TEACHER.INFO.EDITINFO, {
+        instance.post(API.V1.TEACHER.INFO.EDITINFO, {
           "Firstname": this.state.firstname,
           "Surname": this.state.surname ,
           "Email":  this.state.email
           //ไม่ได้เช็คถ้าไม่ได้แก้
         }, {
-          headers: {
-            'Authorization': localStorage.getItem('token'),
-          }
         }).then(res => {
           this.setState({ userinfo: res.data })
         }).catch(err => {
@@ -52,11 +49,8 @@ class UserInfo extends React.Component {
     this.setState({ email: value })
   }
   componentWillMount() {
-    axios.post(API.V1.TEACHER.INFO.GETINFO, {
+    instance.post(API.V1.TEACHER.INFO.GETINFO, {
     }, {
-      headers: {
-        'Authorization': localStorage.getItem('token'),
-      }
     }).then(res => {
       this.setState({ firstname: res.data.Firstname })
       this.setState({ surname: res.data.Surname })

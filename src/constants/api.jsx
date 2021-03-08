@@ -1,6 +1,6 @@
 //import ENV from './env'
 
-//const API_DOMAIN_NAME = ENV.API_DOMAIN_NAME;
+//const API_DOM IN_NAME = ENV.API_DOMAIN_NAME;
 const API_DOMAIN_NAME = "http://142.93.177.152:10000";
 /************************** API USER ******************************************************/
 export const API_LOGIN=`${API_DOMAIN_NAME}/login`
@@ -18,49 +18,51 @@ export const API_TEACHER_COURSE_GETSTUDENT=`${API_DOMAIN_NAME}/getstudentincours
 export const API_TEACHER_COURSE_ADDSTUDENT=`${API_DOMAIN_NAME}/addstudent`
 export const API_TEACHER_COURSE_GETTEACHER=`${API_DOMAIN_NAME}/getteacherincourse`
 export const API_TEACHER_COURSE_ADDTEACHER=`${API_DOMAIN_NAME}/addteacher`
-
-
 export default {
     API_DOMAIN_NAME,
     V1: {
         TEACHER: {
             COURSELIST: {
-               CREATECOURSE :API_DOMAIN_NAME+'/createcourse',
-               GETCOURSE:API_DOMAIN_NAME+'/getcourselist',
-               DELETECOURSE:API_DOMAIN_NAME+'/deletecourse'
+               CREATECOURSE :'/createcourse',
+               GETCOURSE:'/getcourselist',
+               DELETECOURSE:'/deletecourse'
             },
             INFO: {
-                GETINFO: API_DOMAIN_NAME+'/getteacherinfo',
-                EDITINFO: API_DOMAIN_NAME+'/editteacherinfo'
+                GETINFO: '/getteacherinfo',
+                EDITINFO: '/editteacherinfo'
             },
             COURSE:{
-                GETDESCRIPT:API_DOMAIN_NAME+'/getdescription',
-                EDITDESCRIPT:API_DOMAIN_NAME+'/editdescription',
-                GETANNOUNCE:API_DOMAIN_NAME+'/getannouncement',
-                EDITANNOUNCE:API_DOMAIN_NAME+'/editannouncement',
-                GETSTUDENT:API_DOMAIN_NAME+'/getstudentincourse',
-                ADDSTUDENT:API_DOMAIN_NAME+'/addstudent',
-                ADDSTUDENTFILE:API_DOMAIN_NAME+'/addstudentbyfile',
-                DELETESTUDENT:API_DOMAIN_NAME+'/deletestudentincourse',
-                GETTEACHER:API_DOMAIN_NAME+'/getteacherincourse',
-                ADDTEACHER:API_DOMAIN_NAME+'/addteacher',
-                DELETETEACHER:API_DOMAIN_NAME+'/deleteteacherincourse',
+                GETDESCRIPT:'/getdescription',
+                EDITDESCRIPT:'/editdescription',
+                GETANNOUNCE:'/getannouncement',
+                EDITANNOUNCE:'/editannouncement',
+                GETSTUDENT:'/getstudentincourse',
+                ADDSTUDENT:'/addstudent',
+                ADDSTUDENTFILE:'/addstudentbyfile',
+                DELETESTUDENT:'/deletestudentincourse',
+                GETTEACHER:'/getteacherincourse',
+                ADDTEACHER:'/addteacher',
+                DELETETEACHER:'/deleteteacherincourse',
                 TEST:{
-                    GROUPSTESTLISTUPDATE:API_DOMAIN_NAME+'/grouptestlistupdate',
-                    ALLGROUPTESTLISTestlist:API_DOMAIN_NAME+'/allgrouptestlist',
-                    POSTDETAILLIST:API_DOMAIN_NAME+'/postdetailtest',
-                    GETDETAILTEST:API_DOMAIN_NAME+'/getdetailtest',
-                    UPLOADPIC:API_DOMAIN_NAME+'/uploadpic'
+                    GROUPSTESTLISTUPDATE:'/grouptestlistupdate',
+                    ALLGROUPTESTLISTestlist:'/allgrouptestlist',
+                    POSTDETAILLIST:'/postdetailtest',
+                    GETDETAILTEST:'/getdetailtest',
+                    UPLOADPIC:'/uploadpic',
+                    GROUPTESTLIST:"/grouptestlistupdate",
+                    
 
                 }
                 
             },
             TEST:{
-                GETTESTLIST:API_DOMAIN_NAME+'/gettestlist'
+                ALLGROUPINTESTBANK:'/testbankupdate',
+                GETTESTLIST:'/gettestlist'
             }
         },
-        USERNAME: API_DOMAIN_NAME+'/getusername',
-        LOGIN:API_DOMAIN_NAME+'/login',
-        ALERT:API_DOMAIN_NAME+'/acceptjoincourse'
-    }
+        USERNAME: '/getusername',
+        LOGIN:'/login',
+        ALERT:'/acceptjoincourse'
+    },
+    TEST:'/test'
 }

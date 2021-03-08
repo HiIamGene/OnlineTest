@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
 import { Row, Col } from 'antd';
 import Profile from '../assets/icon/Profile.png';
-import axios from 'axios';
+import instance from '../constants/action.js';
 import API from "../constants/api.jsx"
 import history from "./../utils/history";
 
@@ -21,14 +21,19 @@ function Head(props) {
   const logout = () => {
     localStorage.clear();
     history.push('/')
-    window.location.reload()
   }
   useEffect(() => {
-    axios.post(API.V1.USERNAME,{
+    /*if (localStorage.getItem('token')) {
+      if (localStorage.getItem["role"] === "teacher") {
+        props.history.push(`/Teacher/Course`)
+      } 
+      else if (localStorage.getItem["role"] === "student"){
+        props.history.push(`/Student/Course`)
+      }
+    }*/
+    instance.post(API.V1.USERNAME,{
     }, {
-        headers: {
-            'Authorization': localStorage.getItem('token'),
-        }
+
     } ).then(res => {
       setUsername(res.data)
     }).catch(err => {
