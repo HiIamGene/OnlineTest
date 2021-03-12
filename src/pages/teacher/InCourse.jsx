@@ -86,12 +86,12 @@ class InCourse extends React.Component {
     return (
       <Container>
         <Layout>
-          <SideMenu keyValue={this.state.keyValue} form={this.state.form} />    
-          <Layout  style={{ marginLeft: 180 }}>
-          <ContentContainer >
-            <Head />
-              <Row gutter={16} type="flex" justify="space-around">
-                <Col style={{ marginRight: "120px" }} span={18} >
+          <SideMenu keyValue={this.state.keyValue} form={this.state.form} />
+          <Layout style={{ marginLeft: 180 }}>
+            <ContentContainer >
+              <Head />
+              <Row >
+                <Col  span={20} offset={2}>
                   <div style={{ height: 10 }}>
                   </div>
                   <div style={{ background: "#FFB766", height: 250 }}>
@@ -114,29 +114,29 @@ class InCourse extends React.Component {
                   </div>
 
                 </Col>
-                <Col span={5} ></Col>
-                <Col span={24} >
-                  <Col span={4} offset={2} style={{ marginTop: "2%" }}>
-                    <div style={{ marginLeft: 20, background: "#FFB766", height: "400%", width: "100%" }}>
-                      <div style={{ height: "15px" }}></div>
-                      <div style={{ color: "#ffffff", minHeight: 150, marginLeft: 20, fontWeight: "bold" }}>
-                        <div style={{ fontSize: 30 }}>Announce</div>
-                        {this.state.editAnnounce ?
-                          <TextArea rows={4} style={{ width: "90%" }} defaultValue={this.state.announce} onChange={e => this.setState({ announce: e.target.value })} />
-                          :
-                          <div style={{ fontSize: 15 }}>{this.state.announce}</div>
-                        }
-                      </div>
-                      <Button type="link" onClick={() => { this.toggleAnnounce() }} style={{ fontSize: 20, color: "#ffffff", marginLeft: "70%" }}>edit</Button>
+                <Col span={2} ></Col>
+
+                <Col span={4} offset={2} style={{ marginTop: "2%" }}>
+                  <div style={{ background: "#FFB766", height: 250, width: "100%" }}>
+                    <div style={{ height: "15px" }}></div>
+                    <div style={{ color: "#ffffff", minHeight: 150, marginLeft: 20, fontWeight: "bold" }}>
+                      <div style={{ fontSize: 30 }}>Announce</div>
+                      {this.state.editAnnounce ?
+                        <TextArea rows={4} style={{ width: "90%" }} defaultValue={this.state.announce} onChange={e => this.setState({ announce: e.target.value })} />
+                        :
+                        <div style={{ fontSize: 15 }}>{this.state.announce}</div>
+                      }
                     </div>
-                  </Col>
-                  <Col span={20}  >
-                    <Testlist />
-                  </Col>
+                    <Button type="link" onClick={() => { this.toggleAnnounce() }} style={{ fontSize: 20, color: "#ffffff", marginLeft: "70%" }}>edit</Button>
+                  </div>
                 </Col>
+                <Col span={16}   >
+                  <Testlist />  
+                </Col>
+                <Col span={2} ></Col>
                 <Link to={{ pathname: "/Teacher/Detail", }}>
                   <div style={{ marginLeft: 1250, marginTop: 200 }}>
-                    <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} >Add Test</Button>
+                    <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} onClick={localStorage.setItem('testID', "")}>Add Test</Button>
                   </div>
                 </Link>
               </Row>

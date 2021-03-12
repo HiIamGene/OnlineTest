@@ -1,7 +1,6 @@
 import React from "react"
 import { Row, Col, Input, DatePicker, TimePicker } from 'antd';
 import { connect } from 'react-redux';
-//spiltทิ้ง
 const mapStateToProps = state => {
   return {
     detail: state.createTest.detail,
@@ -10,14 +9,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateDetail: (value) => dispatch({ type: 'setStateHeaders', detail: value }),
+    updateDetail: (value) => dispatch({ type: 'updateDetail', detail: value }),
   };
 }
 
 function Detail(props) {
   const updateTopic= (e) =>{
     let temp = props.detail
-    temp.description=e
+    temp.topic=e
     props.updateDetail(temp)
   }
   const updateDescription= (e) =>{
@@ -27,7 +26,7 @@ function Detail(props) {
   }
   const updateDateStart= (date, dateString) =>{
     let temp = props.detail
-    temp.timeStart=dateString
+    temp.dateStart=dateString
     props.updateDetail(temp)
   }
   const updateTimeStart= (time,timeString) =>{
@@ -48,35 +47,35 @@ function Detail(props) {
         <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
           Topic :
                   <br />
-          <Input style={{ width: 850 }} onChange={e=>updateTopic(e.target.value)}/>
+          <Input style={{ width: 850 }} defaultValue={props.detail.topic} onChange={e=>updateTopic(e.target.value)}/>
         </div>
       </Col>
       <Col span={22} offset={2} >
-        <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
+        <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }}  >
           Description :
                   <br />
-          <Input style={{ width: 850 }} onChange={e=>updateDescription(e.target.value)}/>
+          <Input style={{ width: 850 }} defaultValue={props.detail.description} onChange={e=>updateDescription(e.target.value)}/>
         </div>
       </Col>
       <Col span={22} offset={2} >
         <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
           Date start :
                   <br />
-          <DatePicker style={{ width: 850 }} onChange={updateDateStart}/>
+          <DatePicker style={{ width: 850 }} defaultValue={props.detail.dateStart} onChange={updateDateStart}/>
         </div>
       </Col>
       <Col span={22} offset={2} >
         <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
           Duration :
                   <br />
-          <Input style={{ width: 850 }} onChange={e=>updateDuration(e.target.value)}/>
+          <Input style={{ width: 850 }} defaultValue={props.detail.duration} onChange={e=>updateDuration(e.target.value)}/>
         </div>
       </Col>
       <Col span={22} offset={2} >
         <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
           Time start :
                   <br />
-          <TimePicker  style={{ width: 850 }} onChange={updateTimeStart}/>
+          <TimePicker  style={{ width: 850 }} defaultValue={props.detail.timeStart} onChange={updateTimeStart}/>
         </div>
       </Col>
     </Row>

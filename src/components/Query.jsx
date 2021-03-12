@@ -29,8 +29,7 @@ function Query(props) {
   const [fixbug,setFixbug] = useState(0)
   const onNameChange = event => {
     setName(event.target.value)
-    // console.log(event.target.value, name)
-
+    //console.log(event.target.value, name)
   };
 
   const onSelectGroup = (e) => {

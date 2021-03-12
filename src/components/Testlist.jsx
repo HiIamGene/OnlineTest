@@ -1,51 +1,50 @@
 import React, { useEffect, useState } from "react"
-import { Button } from 'antd';
-import { NavLink } from 'react-router-dom';
+import { Button, Popconfirm } from 'antd';
 import instance from '../constants/action.js';
 import API from "../constants/api.jsx";
-import { Link } from 'react-router-dom';
+import history from "./../utils/history";
 function Testlist(props) {
     const [testlist, setTestlist] = useState([]);
     useEffect(() => {
-        instance.post(API.V1.TEACHER.TEST.GETTESTLIST, {
-            "CourseID": localStorage.getItem('courseID')
-        }, {
-
+        instance.get(API.V1.TEACHER.COURSE.GETTESTLIST, {
+            headers: {
+                "CourseCode": localStorage.getItem('courseCode'),
+            }
         }).then(res => {
-            if(res.data){
             setTestlist(res.data)
-        }
         }).catch(err => {
             console.warn(err);
         });
     }, []);
-
-    var i;
-    let table = []
+    const onClickTest =(e)=>{
+        localStorage.setItem('testID',e)
+        history.push(`/Teacher/Detail`)
+    }
     const testlistOut = () => {
-        for (i = 0; i < Object.keys(testlist).length; i++) {
-            table.push(
-                <div>
-                    <div style={{ marginLeft: 11, marginRight: 62, background: "#FFB766", height: 125 , width: 978}}>
-                    <NavLink to="/Teacher/Detail">
-                        
-                            <div style={{ height: "15px" }}></div>
-                            <div style={{ fontSize: 30, color: "#ffffff", marginLeft: 40, fontWeight: "bold" }}>{testlist[i].name}</div>
-                            <div style={{ fontSize: 20, color: "#ffffff", marginLeft: 80, fontWeight: "bold" }}>{testlist[i].date}</div>
-                        
-                    </NavLink>
-                    </div>
-                    <div style={{ height: 20 }}></div>
-                </div>
+        if (testlist === null) {
+            return null
+        }
+        else {
+            return testlist.map((e, index) =>
+                <div key={index}>
 
+                    <Button onClick={()=>onClickTest(e.TestID)} type="primary" htmlType="submit" className="login-form-button" style={{ marginLeft: 11, background: "#FFB766", height: 125, width: "93%", marginTop: 30, textAlign: 'left' }}>
+
+                        <div style={{ height: "15px" }}></div>
+                        <div style={{ fontSize: 30, color: "#ffffff", marginLeft: 20, fontWeight: "bold" }}>{e.Topic}</div>
+                        <div style={{ fontSize: 20, color: "#ffffff", marginLeft: 10, fontWeight: "bold" }}>{e.Datestart} {e.Timestart}</div>
+
+                    </Button>
+                    <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" >
+                        <Button type="link" style={{ color: "#AAAAAA", fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>x</Button>
+                    </Popconfirm>
+
+                </div>
             )
         }
-        return table
     }
     return (
-        <table>
-            {testlistOut()}
-        </table>
+        testlistOut()
     )
 }
 

@@ -57,13 +57,10 @@ const onDragEnd = (result, columns, setHeader) => {
 };
 function Group(props) {
   const setDefaultValue = (index,columnId,e) => {
-    console.log('header before temp: ',props.headers)
     let temp = props.headers
     // console.log('header before temp: ',props.headers)
      temp[columnId].items[index] = { "id": uuid(), "groupName": e, "numQuestion": "0", "maxQuestion": "0", "score": "", "questionList": [] }
-    console.log('header before : ',props.headers)
      props.setHeader({ ...temp })
-    console.log('header after :',props.headers)
   }
   const onClickAddHeader = () => {
     let temp = props.headers

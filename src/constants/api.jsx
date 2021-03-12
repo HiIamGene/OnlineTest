@@ -43,11 +43,12 @@ export default {
                 GETTEACHER:'/getteacherincourse',
                 ADDTEACHER:'/addteacher',
                 DELETETEACHER:'/deleteteacherincourse',
+                GETTESTLIST:'/getalltestincourse',
                 TEST:{
                     GROUPSTESTLISTUPDATE:'/grouptestlistupdate',
                     ALLGROUPTESTLISTestlist:'/allgrouptestlist',
-                    POSTDETAILLIST:'/postdetailtest',
-                    GETDETAILTEST:'/getdetailtest',
+                    UPDATEDETAILLIST:'/updatedetailtest',
+                    UPDATEDRAFT :'/changedraftstatus',
                     UPLOADPIC:'/uploadpic',
                     GROUPTESTLIST:"/grouptestlistupdate",
                     
@@ -55,9 +56,9 @@ export default {
                 }
                 
             },
-            TEST:{
+            TESTBANK:{
                 ALLGROUPINTESTBANK:'/testbankupdate',
-                GETTESTLIST:'/gettestlist'
+                
             }
         },
         USERNAME: '/getusername',

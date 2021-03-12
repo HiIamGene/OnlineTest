@@ -13,7 +13,6 @@ import instance from "../../constants/action.js";
 import API from "../../constants/api.jsx";
 import { v4 as uuid } from "uuid";
 import Column from "antd/lib/table/Column";
-
 import { connect } from 'react-redux';
 const { Step } = Steps;
 const steps = [
@@ -42,16 +41,21 @@ const mapStateToProps = state => {
   return {
     groups: state.createTest.groups,
     maxQuestion: state.createTest.maxQuestion,
-    testID : state.createTest.testID
-  };
+    headers : state.createTest.headers,
+    detail :state.createTest.detail,
+    draft:state.createTest.draft,
+    currentQuestion : state.createTest.currentQuestion
 };
-
+//localStorage.getItem('courseCode')
+}
 const mapDispatchToProps = dispatch => {
   return {
     setGroups: (value) => dispatch({ type: 'setGroups', groups: value }),
     setMaxQuestion: (value) => dispatch({ type: 'setMaxQuestion', maxQuestion: value }),
     setQuestionCurrent :  (value) => dispatch({ type: 'setQuestionCurrent', questionCurrent: value }),
     setHeader: (value) => dispatch({ type: 'setStateHeaders', headers: value }),
+    setCurrentQuestion: (value) => dispatch({ type: 'setCurrentQuestion', currentQuestion: value }),
+
   };
 }
 const columnsFromBackend = {
@@ -78,9 +82,9 @@ function CreateTest(props) {
   const keyValue = "1";
   const form = 4;
   useEffect(() => {
-    if(props.testID){
+    if(localStorage.getItem('testID')){
       instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, {
-        "TestId": props.testID,
+        "TestId": localStorage.getItem('testID'),
         "CourseCode": localStorage.getItem('courseCode')
       }, {
   
@@ -131,42 +135,65 @@ function CreateTest(props) {
   const onHandleDraft = (e) =>{
     setDraft(e)
   }
-  const onClickSave = ()=>{
+  const onClickSave = async()=>{
+    let testNewId =""
+    
+    await instance.post(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE,props.headers, {
+      headers: {
+        "TestId": localStorage.getItem('testID'),
+        "CourseCode": localStorage.getItem('courseCode'),
+        "CourseID":localStorage.getItem('courseID'),
+      }
+
+    },).then(res => {
+      testNewId=res.data
+    }).catch(err => {
+      console.warn(err);
+    });
+    if(testNewId===""){
+      testNewId = props.localStorage.getItem('testID')
+    }
+    await instance.post(API.V1.TEACHER.COURSE.TEST.UPDATEDETAILLIST,props.detail, { headers: {
+      "TestId": testNewId,
+      "CourseCode": localStorage.getItem('courseCode'),
+    }
+    },).then(res => {
+    }).catch(err => {
+      console.warn(err);
+    });
+    await instance.post(API.V1.TEACHER.COURSE.TEST.UPDATEDRAFT,{}, { headers: {
+      "TestId": testNewId,
+      "CourseCode": localStorage.getItem('courseCode'),
+      "Status": props.draft,
+    }
+    },).then(res => {
+    }).catch(err => {
+      console.warn(err);
+    });
+
     message.success('Processing complete!')
   }
   const onSelectgroupName = (columns, e, column) => {
     setQuestionStatus(false)
-    console.log(columns[e].items[column])
-    
     next()
   }
   //QuestionList
   const [groupName, setGroupName] = useState("");
   //This page
   const [questionStatus, setQuestionStatus] = useState(true);
-  const [editqStatus, setEditqStatus] = useState(true);
+  const [editqStatus, setEditqStatus] = useState(false);
   const next = () => {
     setCurrent(current + 1);
   };
 
-  const prev = () => {
-    setCurrent(current - 1);
-  };
   const onChange = (current) => {
     setCurrent(current);
   };
   //EditQuestion
-  const [questionName, setQuestionName] = useState("");
-  const [preview, setPreview] = useState("");
-  const updatePreview = (e) => {
-    setPreview(e)
-  }
-  const onSelectquestionName = (e, value, maxNum) => {
+  const onSelectquestionName = (e, index, maxNum) => {
     props.setMaxQuestion(maxNum)
-    props.setQuestionCurrent(e)
+    props.setCurrentQuestion(index+1)
     setEditqStatus(false)
-    //setMaxNum(maxNum)
-    //setQuestionName(e)  
     next()
   }
   //var res = str.split("</",1);
@@ -207,17 +234,14 @@ function CreateTest(props) {
                 <Question
                   onSelectquestionName={onSelectquestionName}
                   groupName={groupName}
-
                 />
               )}
               {current === 3 && (
                 <AddQuestion
-                  updatePreview={updatePreview}
                 />
               )}
               {current === 4 && (
-                <Preview preview={preview} />
-
+                <Preview />
               )}
             </div>
             <div className="steps-action" tyle={{ fontSize: 30 }}>

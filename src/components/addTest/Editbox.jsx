@@ -7,6 +7,19 @@ import ckeditor, { CKEditor } from '@ckeditor/ckeditor5-react'
 import instance from '../../constants/action.js';
 import API from "../../constants/api.jsx";
 import { PlusOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
+const mapStateToProps = state => {
+  return {
+    groups: state.createTest.groups,
+    currentQuestion: state.createTest.currentQuestion,
+};
+//localStorage.getItem('courseCode')
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    setGroups: (value) => dispatch({ type: 'setGroups', groups: value }),
+  };
+}
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -43,18 +56,6 @@ class MyUploadAdapter {
         this._initListeners(resolve, reject, file);
         this._sendRequest(file);
       }));
-    /* const data = new FormData();
-     this.loader.file.then(result => {
-       data.append('file', result);
-       }
-     )
-     instance.post(`http://142.93.177.152:10000/test`, data, {
- 
-   }).then(res => {
-     console.log(res.data)
-   }).catch(err => {
-     console.warn(err);
-   })*/
   }
 
   // Aborts the upload process.
@@ -119,7 +120,18 @@ class MyUploadAdapter {
 
 }
 function Editbox(props) {
+
   const [content, setContent] = useState("")
+  useEffect(() => {
+    if(props.questionInfo.length!==0){
+      setContent(props.questionInfo[props.currentQuestion-1].data)
+    }
+  }, [content]);
+  useEffect(() => {
+    if(props.questionInfo.length!==0){
+      setContent(props.questionInfo[props.currentQuestion-1].data)
+    }
+  }, [props.questionInfo]);
   const [choice, setChoice] = useState([
     { input: "asd" },
     { input: "bbc" },
@@ -139,6 +151,9 @@ function Editbox(props) {
 
   const handleChange = (event, editor) => {
     const data = editor.getData();
+    let temp = props.questionInfo
+    temp[props.currentQuestion-1].data=data
+    props.setQuestionInfo(temp)
     setContent(data)
 
   }
@@ -175,12 +190,7 @@ function Editbox(props) {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-  const [text, setText] = useState(props.questionName)
-  useEffect(() => {
-    //setText(props.questionName)
-    props.updatePreview(content)
-  }, [content]);
-
+  const [text, setText] = useState("")
   const addChoice = ( )=>{
     
     setChoice([...choice,{ input: "rrdasd"}])
@@ -305,4 +315,4 @@ function Editbox(props) {
 }
 
 
-export default Editbox
+export default connect(mapStateToProps, mapDispatchToProps)(Editbox);
