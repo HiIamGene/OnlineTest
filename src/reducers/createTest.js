@@ -14,15 +14,18 @@ const data = {
                 {
                     "id": "115f7d04-3075-408a-b8ce-c6e46fe6053f",
                     "groupName": "การออกแบบUI",
+                    "numQuestion": "0",
+                    "maxQuestion": "0",
+                    "score": "",
                     "questionList": [
-                        { "id": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" }
+                        { "questionID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" },
+                        { "questionID": "c7ac5b7f-59b0-45e3-82fb-abcdefc05f02", "question": "Test Question 6" }
                     ]
                 }
 
             ]
         },
     },
-    testID:"",
     // { "id": uuid(), "groupName": "aaa", "numQuestion": "0", "maxQuestion": "0", "score": "", "question": [{ "id": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" }] },
     /*
   "31ded736-4076-4b1c-b38f-7e8d9fa78b41": {
@@ -41,29 +44,44 @@ const data = {
 }
 };
  */
-
     groups: {}
 
     ,
+
     groupsTestbank: [{
         "id": "115f7d04-3075-408a-b8ce-c6e46fe6053f",
         "groupName": "การออกแบบUI",
         "questionList": [
-            { "id": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" }
+            { "questionID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" },
+            { "questionID": "c7ac5b7f-59b0-45e3-82fb-abcdefc05f02", "question": "Test Question 6" }
         ]
     }
     ],
     questionsTestbank:
         [
-
-        ],
+            {
+                "questionID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55",
+                "groupID": "115f7d04-3075-408a-b8ce-c6e46fe6053f",
+                "question": "การออกแบบUI",
+                "type": "",
+                "data": "",
+                "choice": []
+            },
+            {
+                "questionID": "c7ac5b7f-59b0-45e3-82fb-abcdefc05f02",
+                "groupID": "115f7d04-3075-408a-b8ce-c6e46fe6053f",
+                "question": "Test Question 6",
+                "type": "",
+                "data": "",
+                "choice": []
+            }
+        ]
+    ,
     value: "",
     groupSelect: "",
     draft: "true",
-    testID: "",
     maxQuestion: 0,
-    questionCurrent: 0,
-
+    currentQuestion: 0,
 }
 
 //export const countReducer = function (state=data, action) {
@@ -82,8 +100,12 @@ export default (state = data, action) => {
             return { ...state, groups: action.groups };
         case "setMaxQuestion":
             return { ...state, maxQuestion: action.maxQuestion };
-        case "setQuestionCurrent":
-            return { ...state, questionCurrent: action.questionCurrent };
+        case "setCurrentQuestion":
+            return { ...state, currentQuestion: action.currentQuestion };
+        case "setQuestionsTestbank":
+            return { ...state, questionsTestbank: action.questionsTestbank }
+        case "setDraft":
+            return { ...state, draft: action.draft }
         default:
             return state;
     }

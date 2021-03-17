@@ -7,6 +7,20 @@ import ckeditor, { CKEditor } from '@ckeditor/ckeditor5-react'
 import instance from '../../constants/action.js';
 import API from "../../constants/api.jsx";
 import { PlusOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
+import { v4 as uuid } from "uuid";
+const mapStateToProps = state => {
+  return {
+    groups: state.createTest.groups,
+    currentQuestion: state.createTest.currentQuestion,
+  };
+  //localStorage.getItem('courseCode')
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    setGroups: (value) => dispatch({ type: 'setGroups', groups: value }),
+  };
+}
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -43,18 +57,6 @@ class MyUploadAdapter {
         this._initListeners(resolve, reject, file);
         this._sendRequest(file);
       }));
-    /* const data = new FormData();
-     this.loader.file.then(result => {
-       data.append('file', result);
-       }
-     )
-     instance.post(`http://142.93.177.152:10000/test`, data, {
- 
-   }).then(res => {
-     console.log(res.data)
-   }).catch(err => {
-     console.warn(err);
-   })*/
   }
 
   // Aborts the upload process.
@@ -119,31 +121,41 @@ class MyUploadAdapter {
 
 }
 function Editbox(props) {
+  const token ={'Authorization':localStorage.getItem('token')}
   const [content, setContent] = useState("")
+  useEffect(() => {
+    if (props.questionInfo.length !== 0) {
+      setContent(props.questionInfo[props.currentQuestion - 1].data)
+      setChoice(props.questionInfo[props.currentQuestion - 1].choice)
+    }
+  }, [content]);
+  useEffect(() => {
+    if (props.questionInfo.length !== 0) {
+      setContent(props.questionInfo[props.currentQuestion - 1].data)
+      setChoice(props.questionInfo[props.currentQuestion - 1].choice)
+    }
+  }, [props.currentQuestion]);
   const [choice, setChoice] = useState([
-    { input: "asd" },
-    { input: "bbc" },
-    { input: "rrd" }
+
   ])
 
   const [fileList, setFileList] = useState(
     [
-      {
-        uid: '-1',
-        name: 'image.png',
-        status: 'done',
-        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-      },
+
     ]
   )
 
   const handleChange = (event, editor) => {
     const data = editor.getData();
+    let temp = props.questionInfo
+    temp[props.currentQuestion - 1].data = data
+    props.setQuestionInfo(temp)
     setContent(data)
 
   }
   const onhandleChange = ({ fileList: newFileList }) => {//setFileList(fileList );
     setFileList(newFileList)
+    console.log(newFileList)
   }
   const custom_config = {
     extraPlugins: [MyCustomUploadAdapterPlugin],
@@ -175,16 +187,15 @@ function Editbox(props) {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-  const [text, setText] = useState(props.questionName)
-  useEffect(() => {
-    //setText(props.questionName)
-    props.updatePreview(content)
-  }, [content]);
+  const [text, setText] = useState("")
+  const addChoice = () => {
 
-  const addChoice = ( )=>{
-    
-    setChoice([...choice,{ input: "rrdasd"}])
+    setChoice([...choice, { "choiceID": uuid(), "questionID": "", "data": "", "imageLink": "", "check": "False" }])
 
+  }
+  const onChangeInput =(value,index) =>{
+    choice[index].data = value
+    setChoice({...choice})
   }
   return (
     <>
@@ -206,22 +217,25 @@ function Editbox(props) {
               return (
                 <Row gutter={16} type="flex" justify="space-around">
                   <Col span={12} style={{ marginTop: 20 }}>
-                    <Input defaultValue={item.input}></Input>
+                    <Input defaultValue={item.data} onChange={e=>onChangeInput(e.target.value,index)}></Input>
                   </Col>
-                  <Col span={1} style={{ marginTop: 20 }} > 
+                  <Col span={1} style={{ marginTop: 20 }} >
                     <Checkbox ></Checkbox>
                   </Col>
-                  <Col span={11} style={{ maxHeight: 10 }}>
+                  <Col span={3}>
                     <Upload
-                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                      action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
                       listType="picture-card"
                       fileList={fileList}
                       onChange={onhandleChange}
-                      name="myfile"
+                      headers={token}
+                      name="myFile"
                       maxCount={1}
                     >
                       {fileList.length >= 1 ? null : uploadButton}
                     </Upload>
+                  </Col>
+                  <Col span={8} style={{ marginTop: 20 }}>
                     <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" //onConfirm={() => props.onClickdeleteHeader(columnId)}
                     >
                       <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
@@ -231,25 +245,26 @@ function Editbox(props) {
                 </Row>
               )
             })}
-            <Button type="link" style={{ marginTop: 25, width: 200, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} onClick={()=>addChoice()}>add choice</Button>
+            <Button type="link" style={{ marginTop: 25, width: 200, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} onClick={() => addChoice()}>add choice</Button>
 
           </>
         )}
         {props.value === "Pair" && (
           <>
-          {choice.map((item, index) => {
+            {choice.map((item, index) => {
               return (
                 <Row gutter={16} type="flex" justify="space-around">
                   <Col span={8} style={{ marginTop: 20 }}>
-                    <Input defaultValue={item.input}></Input>
+                    <Input defaultValue={item.data} onChange={e=>onChangeInput(e.target.value,index)}></Input>
                   </Col>
                   <Col span={3} style={{ maxHeight: 10 }}>
                     <Upload
-                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                      action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
                       listType="picture-card"
                       fileList={fileList}
+                      headers={token}
                       onChange={onhandleChange}
-                      name="myfile"
+                      name="myFile"
                       maxCount={1}
                     >
                       {fileList.length >= 1 ? null : uploadButton}
@@ -257,38 +272,39 @@ function Editbox(props) {
 
                   </Col>
                   <Col span={8} style={{ marginTop: 20 }}>
-                    <Input defaultValue={item.input}></Input>
+                    <Input defaultValue={item.data} onChange={e=>onChangeInput(e.target.value,index)}></Input>
                   </Col>
                   <Col span={3} style={{ maxHeight: 10 }}>
                     <Upload
-                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                      action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
                       listType="picture-card"
                       fileList={fileList}
+                      headers={token}
                       onChange={onhandleChange}
-                      name="myfile"
+                      name="myFile"
                       maxCount={1}
                     >
                       {fileList.length >= 1 ? null : uploadButton}
                     </Upload>
                   </Col>
                   <Col span={1} style={{ maxHeight: 10 }}>
-                  <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" //onConfirm={() => props.onClickdeleteHeader(columnId)}
+                    <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" //onConfirm={() => props.onClickdeleteHeader(columnId)}
                     >
                       <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
                     </Popconfirm>
-                    </Col>
-                    <Col span={1} >
-                    </Col>
+                  </Col>
+                  <Col span={1} >
+                  </Col>
                 </Row>
               )
             })}
-            <Button type="link" style={{ marginTop: 25, width: 200, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} onClick={()=>addChoice()}>add choice</Button>
+            <Button type="link" style={{ marginTop: 25, width: 200, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} onClick={() => addChoice()}>add choice</Button>
           </>
         )}
         {props.value === "ShortAnswer" && (
           <Row gutter={16} type="flex" justify="space-around">
             <Col span={12} style={{ marginTop: 20 }}>
-              <Input></Input>
+              <Input defaultValue={choice[0].data} onChange={e=>onChangeInput(e.target.value,0)}></Input>
             </Col>
             <Col span={12} >
             </Col>
@@ -305,4 +321,4 @@ function Editbox(props) {
 }
 
 
-export default Editbox
+export default connect(mapStateToProps, mapDispatchToProps)(Editbox);

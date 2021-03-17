@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 import Query from '../Query';
 import { v4 as uuid } from "uuid";
 import { connect } from 'react-redux';
+
 const mapStateToProps = state => {
   return {
     headers: state.createTest.headers,
     groups: state.createTest.groups,
-    
+
   };
 };
 
@@ -56,14 +57,11 @@ const onDragEnd = (result, columns, setHeader) => {
   }
 };
 function Group(props) {
-  const setDefaultValue = (index,columnId,e) => {
-    console.log('header before temp: ',props.headers)
+  const setDefaultValue = (index, columnId, e) => {
     let temp = props.headers
     // console.log('header before temp: ',props.headers)
-     temp[columnId].items[index] = { "id": uuid(), "groupName": e, "numQuestion": "0", "maxQuestion": "0", "score": "", "questionList": [] }
-    console.log('header before : ',props.headers)
-     props.setHeader({ ...temp })
-    console.log('header after :',props.headers)
+    temp[columnId].items[index] = { "id": uuid(), "groupName": e, "numQuestion": "0", "maxQuestion": "0", "score": "", "questionList": [] }
+    props.setHeader({ ...temp })
   }
   const onClickAddHeader = () => {
     let temp = props.headers
@@ -93,9 +91,14 @@ function Group(props) {
   }
 
   const handleNumQ = (numQ, columnId, index) => {
-    let temp = props.headers
-    temp[columnId].items[index].numQuestion = numQ
-    props.setHeader({ ...temp })
+    if (parseInt(numQ) <= parseInt(props.headers[columnId].items[index].maxQuestion)) {
+      let temp = props.headers
+      temp[columnId].items[index].numQuestion = numQ
+      props.setHeader({ ...temp })
+    }
+    else{
+      alert(numQ+" is more than max of question")
+    }
   }
   const handleScore = (score, columnId, index) => {
     let temp = props.headers
@@ -107,8 +110,8 @@ function Group(props) {
     temp[columnId].name = header
     props.setHeader({ ...temp })
   }
-  const selectAddQuestion = (columns, e, column)=> {
-    props.setGroups({...columns[e].items[column]})
+  const selectAddQuestion = (columns, e, column) => {
+    props.setGroups({ ...columns[e].items[column] })
     props.onSelectgroupName(columns, e, column)
   }
   return (
