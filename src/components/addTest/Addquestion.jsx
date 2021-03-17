@@ -10,7 +10,6 @@ const mapStateToProps = state => {
     currentQuestion: state.createTest.currentQuestion,
     groups: state.createTest.groups,
     questionsTestbank: state.createTest.questionsTestbank
-
   };
 };
 
@@ -23,23 +22,25 @@ const mapDispatchToProps = dispatch => {
 }
 function Addquestion(props) {
   useEffect(() => {
-    
+    setQuestionInfo([])
     props.groups.questionList.map(question => {
-      props.questionsTestbank.map(questionTestbank => {
+      props.questionsTestbank.map((questionTestbank, index) => {
+
         if (question.questionID === questionTestbank.questionID) {
-          questionInfo.push(questionTestbank)
-          setQuestionInfo({ ...questionInfo })
+          setQuestionInfo(questionInfo => [...questionInfo, questionTestbank])
         }
       })
     })
-    console.log(props.questionsTestbank)
-  }, []);
+    if (questionInfo) {
+      console.log(questionInfo)
+    }
+  }, [props.currentQuestion]);
   const [questionInfo, setQuestionInfo] = useState([]);
   const onChangeQues = page => {
-    console.log(questionInfo)
     props.setCurrentQuestion(page);
   };
   const [value, setvalue] = useState("");
+
   const setQuestionInfoFunc = (e) => {
     let temp = props.questionsTestbank
     if (props.questionsTestbank.length !== 0) {
@@ -65,30 +66,52 @@ function Addquestion(props) {
     props.setQuestionsTestbank(temp)
     setvalue(value)
   }
-  function onSearch(val) {
-    console.log('search:', val);
-  }
   return (
 
     <Row gutter={16} type="flex" justify="space-around">
       <Col span={22} offset={2}>
-        <Select
-          showSearch
-          style={{ width: 200 }}
-          placeholder="type of test"
-          optionFilterProp="children"
-          onChange={onChange}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          <Option value="Choice">Choice</Option>
-          <Option value="Pair">Pair</Option>
-          <Option value="ShortAnswer">Short Answer</Option>
-          <Option value="Write-up">Write-up</Option>
-          <Option value="UploadAnswer">Upload Answer</Option>
-        </Select>
+        {questionInfo ?
+          <Select
+            showSearch
+            style={{ width: 200 }}
+            placeholder="type of test"
+            optionFilterProp="children"
+            onChange={onChange}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            <Option value="Choice">Choice</Option>
+            <Option value="Pair">Pair</Option>
+            <Option value="ShortAnswer">Short Answer</Option>
+            <Option value="Write-up">Write-up</Option>
+            <Option value="UploadAnswer">Upload Answer</Option>
+          </Select>
+          :
+          <div>
+
+            <Select
+              showSearch
+              style={{ width: 200 }}
+              optionFilterProp="children"
+              onChange={onChange}
+              defaultValue={{ value: questionInfo[props.currentQuestion - 1].type }}
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value="Choice">Choice</Option>
+              <Option value="Pair">Pair</Option>
+              <Option value="ShortAnswer">Short Answer</Option>
+              <Option value="Write-up">Write-up</Option>
+              <Option value="UploadAnswer">Upload Answer</Option>
+            </Select>
+
+
+          </div>
+        }
+
+
       </Col>
       <Col span={20} offset={2}>
         <div style={{ width: "100%", background: "#FFB766" }}>

@@ -14,8 +14,12 @@ const data = {
                 {
                     "id": "115f7d04-3075-408a-b8ce-c6e46fe6053f",
                     "groupName": "การออกแบบUI",
+                    "numQuestion": "0",
+                    "maxQuestion": "0",
+                    "score": "",
                     "questionList": [
-                        { "questionID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" }
+                        { "questionID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" },
+                        { "questionID": "c7ac5b7f-59b0-45e3-82fb-abcdefc05f02", "question": "Test Question 6" }
                     ]
                 }
 
@@ -48,7 +52,8 @@ const data = {
         "id": "115f7d04-3075-408a-b8ce-c6e46fe6053f",
         "groupName": "การออกแบบUI",
         "questionList": [
-            { "questionID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" }
+            { "questionID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "question": "การออกแบบUI" },
+            { "questionID": "c7ac5b7f-59b0-45e3-82fb-abcdefc05f02", "question": "Test Question 6" }
         ]
     }
     ],
@@ -56,7 +61,7 @@ const data = {
         [
             {
                 "questionID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55",
-                "groupID": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f56",
+                "groupID": "115f7d04-3075-408a-b8ce-c6e46fe6053f",
                 "question": "การออกแบบUI",
                 "type": "",
                 "data": "",
@@ -64,7 +69,7 @@ const data = {
             },
             {
                 "questionID": "c7ac5b7f-59b0-45e3-82fb-abcdefc05f02",
-                "groupID": "caac5b7f-59b0-45e3-82fb-b3b0afc05f56",
+                "groupID": "115f7d04-3075-408a-b8ce-c6e46fe6053f",
                 "question": "Test Question 6",
                 "type": "",
                 "data": "",
@@ -99,6 +104,8 @@ export default (state = data, action) => {
             return { ...state, currentQuestion: action.currentQuestion };
         case "setQuestionsTestbank":
             return { ...state, questionsTestbank: action.questionsTestbank }
+        case "setDraft":
+            return { ...state, draft: action.draft }
         default:
             return state;
     }

@@ -41,58 +41,85 @@ const mapStateToProps = state => {
   return {
     groups: state.createTest.groups,
     maxQuestion: state.createTest.maxQuestion,
-    headers : state.createTest.headers,
-    detail :state.createTest.detail,
-    draft:state.createTest.draft,
-    currentQuestion : state.createTest.currentQuestion
-};
-//localStorage.getItem('courseCode')
+    headers: state.createTest.headers,
+    detail: state.createTest.detail,
+    draft: state.createTest.draft,
+    currentQuestion: state.createTest.currentQuestion
+  };
+  //localStorage.getItem('courseCode')
 }
 const mapDispatchToProps = dispatch => {
   return {
+    setDraft: (value) => dispatch({ type: 'setDraft', draft: value }),
     setGroups: (value) => dispatch({ type: 'setGroups', groups: value }),
     setMaxQuestion: (value) => dispatch({ type: 'setMaxQuestion', maxQuestion: value }),
-    setQuestionCurrent :  (value) => dispatch({ type: 'setQuestionCurrent', questionCurrent: value }),
+    setQuestionCurrent: (value) => dispatch({ type: 'setQuestionCurrent', questionCurrent: value }),
     setHeader: (value) => dispatch({ type: 'setStateHeaders', headers: value }),
     setCurrentQuestion: (value) => dispatch({ type: 'setCurrentQuestion', currentQuestion: value }),
-
+    setQuestionsTestbank: (value) => dispatch({ type: 'setQuestionsTestbank', questionsTestbank: value }),
+    setGroupsTestbank: (value) => dispatch({ type: 'setStateGroups', groupsTestbank: value }),
+    setDetail: (value) => dispatch({ type: 'updateDetail', detail: value }),
   };
 }
-const columnsFromBackend = {
-  "31ded736-4076-4b1c-b38f-7e8d9fa78b41": {
-    "name": "จงเลือกคำตอบที่ถูกที่สุด",
-    "items": [
-      { "id": "c7ac5b7f-59b0-45e3-82fb-b3b0afc05f55", "groupName": "การออกแบบUI", "numQuestion": "5", "score": "6" ,"question":[]},
-      { "id": "17acf9a1-b2c7-46c6-b975-759b9d9f538d", "groupName": "สีกับความรู้สึก", "numQuestion": "2", "score": "4" ,"question":[]},
-    ]
-  },
-  "115f7d04-3075-408a-b8ce-c6e46fe6053f": {
-    "name": "",
-    "items": []
-  },
-  "9bcf1415-3a41-43b6-a871-8de1939a75c4": {
-    "name": "",
-    "items": []
-  }
-};
 function CreateTest(props) {
   const [columns, setColumns] = useState([]);
   const [current, setCurrent] = useState(0);
-  const [draft,setDraft] = useState(true);
   const keyValue = "1";
   const form = 4;
   useEffect(() => {
-    if(localStorage.getItem('testID')){
-      instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, {
-        "TestId": localStorage.getItem('testID'),
-        "CourseCode": localStorage.getItem('courseCode')
-      }, {
-  
-      }).then(res => {
-        props.setHeader({ ...props.headers })
+    console.log(localStorage.getItem('testID'))
+    if (localStorage.getItem('testID')) {
+      instance.get(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE,
+        {
+          headers: {
+            "TestId": localStorage.getItem('testID'),
+            "CourseCode": localStorage.getItem('courseCode')
+          }
+        }).then(res => {
+        console.log(res.data)
+        props.setHeader(res.data)
       }).catch(err => {
         console.warn(err);
       });
+      instance.get(API.V1.TEACHER.COURSE.TEST.UPDATEDRAFT, {},
+        {
+          headers: {
+            "TestId": localStorage.getItem('testID'),
+            "CourseCode": localStorage.getItem('courseCode')
+          }
+        }).then(res => {
+        props.setDraft(res.data)
+      }).catch(err => {
+        console.warn(err);
+      });
+      instance.get(API.V1.TEACHER.COURSE.TEST.UPDATEDETAILLIST,{},
+        {
+          headers: {
+            "TestId": localStorage.getItem('testID'),
+            "CourseCode": localStorage.getItem('courseCode')
+          }
+        }).then(res => {
+        console.log(res.data)
+        props.setDetail(res.data)
+      }).catch(err => {
+        console.warn(err);
+      });
+
+    }
+    else {
+      instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST,{},
+        {
+          headers: {
+            "TestId": localStorage.getItem('testID'),
+            "CourseCode": localStorage.getItem('courseCode')
+          }
+        }).then(res => {
+        props.setQuestionsTestbank(res.data)
+      }).catch(err => {
+        console.warn(err);
+      });
+      props.setHeader([])
+
     }
   }, []);
   //Group
@@ -132,41 +159,44 @@ function CreateTest(props) {
       });
     }
   };
-  const onHandleDraft = (e) =>{
-    setDraft(e)
+  const onHandleDraft = (e) => {
+    props.setDraft(e.toString())
+
   }
-  const onClickSave = async()=>{
-    let testNewId =""
-    
-    await instance.post(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE,props.headers, {
+  const onClickSave = async () => {
+    let testNewId = ""
+
+    await instance.post(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE, props.headers, {
       headers: {
         "TestId": localStorage.getItem('testID'),
         "CourseCode": localStorage.getItem('courseCode'),
-        "CourseID":localStorage.getItem('courseID'),
+        "CourseID": localStorage.getItem('courseID'),
       }
 
-    },).then(res => {
-      testNewId=res.data
+    }).then(res => {
+      testNewId = res.data
     }).catch(err => {
       console.warn(err);
     });
-    if(testNewId===""){
-      testNewId = props.localStorage.getItem('testID')
+    if (testNewId === "") {
+      testNewId = localStorage.getItem('testID')
     }
-    await instance.post(API.V1.TEACHER.COURSE.TEST.UPDATEDETAILLIST,props.detail, { headers: {
-      "TestId": testNewId,
-      "CourseCode": localStorage.getItem('courseCode'),
-    }
-    },).then(res => {
+    await instance.post(API.V1.TEACHER.COURSE.TEST.UPDATEDETAILLIST, props.detail, {
+      headers: {
+        "TestId": testNewId,
+        "CourseCode": localStorage.getItem('courseCode'),
+      }
+    }).then(res => {
     }).catch(err => {
       console.warn(err);
     });
-    await instance.post(API.V1.TEACHER.COURSE.TEST.UPDATEDRAFT,{}, { headers: {
-      "TestId": testNewId,
-      "CourseCode": localStorage.getItem('courseCode'),
-      "Status": props.draft,
-    }
-    },).then(res => {
+    await instance.post(API.V1.TEACHER.COURSE.TEST.UPDATEDRAFT, {}, {
+      headers: {
+        "TestId": testNewId,
+        "CourseCode": localStorage.getItem('courseCode'),
+        "Status": props.draft,
+      }
+    }).then(res => {
     }).catch(err => {
       console.warn(err);
     });
@@ -181,7 +211,7 @@ function CreateTest(props) {
   const [groupName, setGroupName] = useState("");
   //This page
   const [questionStatus, setQuestionStatus] = useState(true);
-  const [editqStatus, setEditqStatus] = useState(false);
+  const [editqStatus, setEditqStatus] = useState(true);
   const next = () => {
     setCurrent(current + 1);
   };
@@ -192,7 +222,7 @@ function CreateTest(props) {
   //EditQuestion
   const onSelectquestionName = (e, index, maxNum) => {
     props.setMaxQuestion(maxNum)
-    props.setCurrentQuestion(index+1)
+    props.setCurrentQuestion(index + 1)
     setEditqStatus(false)
     next()
   }
@@ -245,7 +275,7 @@ function CreateTest(props) {
               )}
             </div>
             <div className="steps-action" tyle={{ fontSize: 30 }}>
-              <Switch style={{ margin: '0 8px' }} defaultChecked onChange={e=>onHandleDraft(e)}></Switch>
+              <Switch style={{ margin: '0 8px' }} defaultChecked={(props.draft === 'true')} onChange={e => onHandleDraft(e)}></Switch>
               Draft
 
               {current === steps.length - 1 && (

@@ -50,15 +50,13 @@ export default {
                     UPDATEDETAILLIST:'/updatedetailtest',
                     UPDATEDRAFT :'/changedraftstatus',
                     UPLOADPIC:'/uploadpic',
-                    GROUPTESTLIST:"/grouptestlistupdate",
-                    
-
-                }
-                
+                    GROUPTESTLIST:"/grouptestlistupdate", 
+                    ALLQUESTIONINGROUP:"/allquestioningroup",
+                    TESTBANKUPDATE:"/testbankupdate"
+                }               
             },
             TESTBANK:{
                 ALLGROUPINTESTBANK:'/testbankupdate',
-                
             }
         },
         USERNAME: '/getusername',

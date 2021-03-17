@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react"
 import { connect } from 'react-redux';
 import { Upload, Input, Button } from 'antd';
@@ -8,17 +7,14 @@ const mapStateToProps = state => {
     return {
         headers: state.createTest.headers,
         questionsTestbank: state.createTest.questionsTestbank,
-
     };
 };
-//<div dangerouslySetInnerHTML={{__html: props.preview}} />
 const mapDispatchToProps = dispatch => {
     return {
     };
 }
 
 function Preview(props) {
-    var parse = require('html-react-parser')
     useEffect(() => {
 
     }, []);
@@ -44,7 +40,6 @@ function Preview(props) {
                                                                     <div style={{ background: '70C5FB', fontSize: 25 }}>
 
                                                                         {name + 1}.
-
                                                                         <div
                                                                             dangerouslySetInnerHTML={{
                                                                                 __html: questionTestbank.data
@@ -61,7 +56,7 @@ function Preview(props) {
 
                                                                             </div>
                                                                         )}
-                                                                        {questionTestbank.type === "Short Answer" && (
+                                                                        {questionTestbank.type === "ShortAnswer" && (
 
                                                                             <Input>
 
@@ -100,6 +95,4 @@ function Preview(props) {
         </div >
     )
 }
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Preview)
