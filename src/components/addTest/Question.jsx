@@ -47,7 +47,7 @@ function Question(props) {
     let temp = props.groups
     let id = uuid()
     temp.questionList.push({ "questionID": id, "question": "Please edit this question before save" })
-    props.questionsTestbank.push({ "questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice": [] })
+    props.questionsTestbank.push({ "questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice": [{"choiceID":"","questionID":id,"data":"","imageLink":""}] })
     props.setQuestionsTestbank(props.questionsTestbank)
     temp.maxQuestion=temp.questionList.length.toString()
     props.setGroups({ ...temp })
@@ -69,7 +69,6 @@ function Question(props) {
       <Col span={24} >
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button onClick={() => { onClickAddColumn() }} type="primary" size="large" style={{ alignItems: "center", background: '#F43A09' }}>Add Question</Button>
-
         </div>
         <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
           <DragDropContext

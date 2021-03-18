@@ -58,7 +58,7 @@ function Preview(props) {
                                                                         )}
                                                                         {questionTestbank.type === "ShortAnswer" && (
 
-                                                                            <Input>
+                                                                            <Input style={{width:800}}>
 
                                                                             </Input>
                                                                         )}
