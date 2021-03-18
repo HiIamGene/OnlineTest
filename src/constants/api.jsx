@@ -44,15 +44,16 @@ export default {
                 ADDTEACHER:'/addteacher',
                 DELETETEACHER:'/deleteteacherincourse',
                 GETTESTLIST:'/getalltestincourse',
+                DELETETEST:"/deletetest",
                 TEST:{
                     GROUPSTESTLISTUPDATE:'/grouptestlistupdate',
                     ALLGROUPTESTLISTestlist:'/allgrouptestlist',
                     UPDATEDETAILLIST:'/updatedetailtest',
                     UPDATEDRAFT :'/changedraftstatus',
                     UPLOADPIC:'/uploadpic',
-                    GROUPTESTLIST:"/grouptestlistupdate", 
-                    ALLQUESTIONINGROUP:"/allquestioningroup",
-                    TESTBANKUPDATE:"/testbankupdate"
+                    GROUPTESTLIST:"/testbankupdate ", //check
+                    ALLQUESTIONINGROUP:"/updateallquestionintest",
+                    TESTBANKUPDATE:"/testbankupdate "
                 }               
             },
             TESTBANK:{

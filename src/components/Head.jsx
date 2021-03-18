@@ -31,10 +31,7 @@ function Head(props) {
         props.history.push(`/Student/Course`)
       }
     }*/
-    instance.post(API.V1.USERNAME,{
-    }, {
-
-    } ).then(res => {
+    instance.post(API.V1.USERNAME).then(res => {
       setUsername(res.data)
     }).catch(err => {
         console.warn(err);

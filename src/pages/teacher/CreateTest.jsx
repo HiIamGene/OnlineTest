@@ -10,6 +10,7 @@ import Question from '../../components/addTest/Question'
 import AddQuestion from '../../components/addTest/Addquestion'
 import Preview from '../../components/addTest/Preview'
 import instance from "../../constants/action.js";
+import axios from "axios"
 import API from "../../constants/api.jsx";
 import { v4 as uuid } from "uuid";
 import Column from "antd/lib/table/Column";
@@ -44,7 +45,8 @@ const mapStateToProps = state => {
     headers: state.createTest.headers,
     detail: state.createTest.detail,
     draft: state.createTest.draft,
-    currentQuestion: state.createTest.currentQuestion
+    currentQuestion: state.createTest.currentQuestion,
+    groupsTestbank: state.createTest.groupsTestbank
   };
   //localStorage.getItem('courseCode')
 }
@@ -67,61 +69,94 @@ function CreateTest(props) {
   const keyValue = "1";
   const form = 4;
   useEffect(() => {
-    console.log(localStorage.getItem('testID'))
     if (localStorage.getItem('testID')) {
       instance.get(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE,
         {
           headers: {
             "TestId": localStorage.getItem('testID'),
-            "CourseCode": localStorage.getItem('courseCode')
+            "CourseCode": localStorage.getItem('courseCode'),
+            "CourseID": localStorage.getItem('CourseID'),
           }
         }).then(res => {
-        console.log(res.data)
-        props.setHeader(res.data)
-      }).catch(err => {
-        console.warn(err);
-      });
-      instance.get(API.V1.TEACHER.COURSE.TEST.UPDATEDRAFT, {},
+          console.log(res.data)
+          props.setHeader(res.data)
+        }).catch(err => {
+          console.warn(err);
+        });
+      instance.get(API.V1.TEACHER.COURSE.TEST.UPDATEDETAILLIST,
         {
           headers: {
             "TestId": localStorage.getItem('testID'),
-            "CourseCode": localStorage.getItem('courseCode')
+            "CourseCode": localStorage.getItem('courseCode'),
+            "Access-Control-Allow-Headers": "*"
           }
         }).then(res => {
-        props.setDraft(res.data)
-      }).catch(err => {
-        console.warn(err);
-      });
-      instance.get(API.V1.TEACHER.COURSE.TEST.UPDATEDETAILLIST,{},
+          console.log(res.data)
+          props.setDetail(res.data)
+        }).catch(err => {
+          console.warn(err);
+        });
+      instance.get(API.V1.TEACHER.COURSE.TEST.UPDATEDRAFT,
         {
           headers: {
             "TestId": localStorage.getItem('testID'),
-            "CourseCode": localStorage.getItem('courseCode')
+            "CourseCode": localStorage.getItem('courseCode'),
+            "Access-Control-Allow-Headers": "*"
           }
         }).then(res => {
-        console.log(res.data)
-        props.setDetail(res.data)
-      }).catch(err => {
-        console.warn(err);
-      });
-
+          console.log(res.data)
+          props.setDraft(res.data)
+        }).catch(err => {
+          console.warn(err);
+        });
     }
     else {
-      instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST,{},
-        {
-          headers: {
-            "TestId": localStorage.getItem('testID'),
-            "CourseCode": localStorage.getItem('courseCode')
-          }
-        }).then(res => {
-        props.setQuestionsTestbank(res.data)
+      props.setHeader([])
+      props.setDetail({
+        "topic": "",
+        "description": "",
+        "dateStart": "",
+        "timeStart": "",
+        "duration": ""
+      })
+      props.setDraft("true")
+    }
+    instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST,
+      {
+        headers: {
+          "TestId": localStorage.getItem('testID'),
+          "CourseID": localStorage.getItem('courseID'),
+          "Access-Control-Allow-Headers": "*"
+        }
+      }).then(res => {
+        if (res.data) {
+          props.setGroupsTestbank(res.data)
+        }
+        else {
+          props.setGroupsTestbank([])
+        }
       }).catch(err => {
         console.warn(err);
       });
-      props.setHeader([])
+    instance.get(API.V1.TEACHER.COURSE.TEST.ALLQUESTIONINGROUP,
+      {
+        headers: {
+          "TestId": localStorage.getItem('testID'),
+          "CourseID": localStorage.getItem('courseID'),
+          "Access-Control-Allow-Headers": "*"
+        }
+      }).then(res => {
+        if (res.data) {
+          props.setQuestionsTestbank(res.data)
+        } else {
+          props.setGroupsTestbank([])
+        }
+      }).catch(err => {
+        console.warn(err);
+      });
+  }
 
-    }
-  }, []);
+    , []);
   //Group
   const onDragEnd = (result, columns) => {
     if (!result.destination) return;
@@ -165,7 +200,24 @@ function CreateTest(props) {
   }
   const onClickSave = async () => {
     let testNewId = ""
+    await instance.post(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, props.groupsTestbank, {
+      headers: {
+        "CourseID": localStorage.getItem('courseID'),
+      }
 
+    }).then(res => {
+    }).catch(err => {
+      console.warn(err);
+    });
+    await instance.post(API.V1.TEACHER.COURSE.TEST.ALLQUESTIONINGROUP, props.questionsTestbank, {
+      headers: {
+        "CourseID": localStorage.getItem('courseID'),
+      }
+
+    }).then(res => {
+    }).catch(err => {
+      console.warn(err);
+    });
     await instance.post(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE, props.headers, {
       headers: {
         "TestId": localStorage.getItem('testID'),
@@ -267,8 +319,7 @@ function CreateTest(props) {
                 />
               )}
               {current === 3 && (
-                <AddQuestion
-                />
+                <AddQuestion />
               )}
               {current === 4 && (
                 <Preview />

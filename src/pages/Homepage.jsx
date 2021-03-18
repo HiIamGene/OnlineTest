@@ -10,7 +10,6 @@ const { Title } = Typography;
 
 function Homepage (props){
   const [token,setToken]=useState("")
-  const [password,setPassword]=useState("")
   useEffect(() => {
     if (localStorage.getItem('token')) {
       if (localStorage.getItem("role") === "teacher") {
@@ -55,7 +54,6 @@ function Homepage (props){
                 className="login-form"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
-
               >
                 <Form.Item
                   name="username"

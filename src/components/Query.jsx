@@ -68,11 +68,11 @@ function Query(props) {
         "groupName": name,
         "questionList": []
       })
-      props.setGroupsTestbank(temp)
+      //props.setGroupsTestbank(temp)
     //   console.log(typeof temp)
     // console.log(temp, props.groupsTestbank)
-      setFixbug(fixbug+1)
-      //props.setGroupsTestbank({...temp})
+      //setFixbug(fixbug+1)
+      props.setGroupsTestbank([...temp])
     }
   };
 
