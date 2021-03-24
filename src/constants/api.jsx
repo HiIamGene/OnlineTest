@@ -25,7 +25,8 @@ export default {
             COURSELIST: {
                CREATECOURSE :'/createcourse',
                GETCOURSE:'/getcourselist',
-               DELETECOURSE:'/deletecourse'
+               DELETECOURSE:'/deletecourse',
+               TEACHERADDCOURSE:'/teacheraddcourse'
             },
             INFO: {
                 GETINFO: '/getteacherinfo',
@@ -59,6 +60,10 @@ export default {
             TESTBANK:{
                 ALLGROUPINTESTBANK:'/testbankupdate',
             }
+        },
+        STUDENT:{
+            TESTLIST:"/studentgettestlist",
+            GETSTUDENTINFO:"/getstudentinfo",
         },
         USERNAME: '/getusername',
         LOGIN:'/login',

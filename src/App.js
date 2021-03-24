@@ -14,12 +14,14 @@ import TestBank from './pages/teacher/TestBank';
 import QuestionTestBank from './pages/teacher/QuestionTestBank';
 import UserInfo from './pages/teacher/UserInfo';
 import ScoreTest from './pages/teacher/ScoreTest';
-import ScoreStudent from './pages/teacher/ScoreStudent';
 import ScoreQuestion from './pages/teacher/ScoreQuestion';
 import GroupTestBank from './pages/teacher/GroupTestBank';
 import history from "./utils/history";
+import ScoreStudent from './pages/teacher/ScoreStudent';
 import Course_S from './pages/student/Course';
-import UserInfo_S from './pages/student/Course';
+import UserInfo_S from './pages/student/UserInfo';
+import Test from './pages/student/Test';
+import DoTest from './pages/student/DoTest';
 //import Todo from './pages/todo';
 import Todo from './pages/Example';
 /*const apiUrl = 'http://142.93.177.152:10000';
@@ -39,13 +41,6 @@ instance.interceptors.request.use(
 );*/
 
 function App() {
-  /*const { loggedInStatus, setloggedInStatus } = useState("Not logged in");
-  const handleLogin = (data) => {
-
-    setloggedInStatus("Logged in")
-    setuser(data)
-  }*/
-  //const { username, setUsername }=useState("T.Somchai")
   useEffect(() => {
     if (localStorage.getItem('token') ==null){
       history.push(`/`)
@@ -71,7 +66,10 @@ function App() {
       <Route  path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
       <Route  path="/Student/UserInfo" exact component={UserInfo_S} />
       <Route  path="/Student/Course" exact component={Course_S} />
+      <Route  path="/Student/Test" exact component={Test} />
+      <Route  path="/Student/DoTest" exact component={DoTest} />  
       <Route  path="/Todo" exact component={Todo} />
+
 
     </Router>
   );

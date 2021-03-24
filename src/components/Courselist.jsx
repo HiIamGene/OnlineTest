@@ -5,6 +5,7 @@ import API from "../constants/api.jsx";
 import { Link } from 'react-router-dom';
 
 function Classlist(props) {
+
     const [classlist, setclasslist] = useState([]);
     useEffect(() => {
         instance.post(API.V1.TEACHER.COURSELIST.GETCOURSE, {
@@ -16,6 +17,7 @@ function Classlist(props) {
             console.warn(err);
         })
     }, []);
+
     const confirm = (e) => {
         instance.post(API.V1.TEACHER.COURSELIST.DELETECOURSE, {
             "CourseCode": e
@@ -58,7 +60,7 @@ function Classlist(props) {
         }
     }
     return (
-            classlistOut()
+        classlistOut()
     )
 }
 

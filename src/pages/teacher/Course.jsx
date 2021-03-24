@@ -58,7 +58,19 @@ class Course extends React.Component {
     })
   }
   addCourse = () => {
+    instance.post(API.V1.TEACHER.COURSELIST.TEACHERADDCOURSE, {
+      headers:{
+      "CourseCode": this.state.courseAddid,
+    }}, {
 
+    }).then(res => {
+      if (res.data.CourseID && res.data.CourseID !== this.state.courseid) {
+        alert(res.data.CourseID)
+      }
+      window.location.reload()
+    }).catch(err => {
+      console.warn(err);
+    })
   }
   addNewCourse = () => {
     if (this.state.courseid || this.state.year || this.state.coursename) {

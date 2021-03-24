@@ -111,7 +111,7 @@ function Addquestion(props) {
               placeholder="type of test"
               optionFilterProp="children"
               onChange={onChange}
-              //defaultValue={{ value: questionInfo[props.currentQuestion - 1].type }}
+              defaultValue={questionInfo[props.currentQuestion - 1].type}
               filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
@@ -128,7 +128,7 @@ function Addquestion(props) {
           <Col span={20} offset={2}>
             <div style={{ width: "100%", background: "#FFB766" }}>
               <div style={{ marginLeft: 50, paddingTop: 20, paddingBottom: 20 }}>
-                <Editbox value={value} setQuestionInfo={setQuestionInfoFunc} questionInfo={questionInfo} />
+                <Editbox value={questionInfo[props.currentQuestion - 1].type} setQuestionInfo={setQuestionInfoFunc} questionInfo={questionInfo} />
               </div>
             </div>
           </Col>
