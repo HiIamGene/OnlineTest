@@ -19,8 +19,7 @@ function TestBanklist(props) {
                     <Link to={{
                         pathname: "/Teacher/QuestionTestBank",
                         data: {
-                            "id": e.id,
-                            "groupName": e.groupName
+                            "questionList": e
                         }
                     }}>
                         <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{e.groupName}

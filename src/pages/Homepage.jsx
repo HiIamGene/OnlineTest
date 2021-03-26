@@ -16,8 +16,12 @@ function Homepage (props){
         props.history.push(`/Teacher/Course`)
       } 
       else if (localStorage.getItem("role") === "student"){
-        props.history.push(`/Student/Course`)
+        props.history.push(`/Student/Test`)
       }
+      else if (localStorage.getItem("role") === "admin"){
+        props.history.push(`/Admin`)
+      }
+      
     }
   }, [token]);
   const onFinish = values => {

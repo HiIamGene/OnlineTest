@@ -25,7 +25,8 @@ export default {
             COURSELIST: {
                CREATECOURSE :'/createcourse',
                GETCOURSE:'/getcourselist',
-               DELETECOURSE:'/deletecourse'
+               DELETECOURSE:'/deletecourse',
+               TEACHERADDCOURSE:'/teacheraddcourse'
             },
             INFO: {
                 GETINFO: '/getteacherinfo',
@@ -50,7 +51,7 @@ export default {
                     ALLGROUPTESTLISTestlist:'/allgrouptestlist',
                     UPDATEDETAILLIST:'/updatedetailtest',
                     UPDATEDRAFT :'/changedraftstatus',
-                    UPLOADPIC:'/uploadpic',
+                    UPLOADPIC:API_DOMAIN_NAME+'/uploadpic',
                     GROUPTESTLIST:"/testbankupdate ", //check
                     ALLQUESTIONINGROUP:"/updateallquestionintest",
                     TESTBANKUPDATE:"/testbankupdate "
@@ -59,6 +60,10 @@ export default {
             TESTBANK:{
                 ALLGROUPINTESTBANK:'/testbankupdate',
             }
+        },
+        STUDENT:{
+            TESTLIST:"/studentgettestlist",
+            GETSTUDENTINFO:"/getstudentinfo",
         },
         USERNAME: '/getusername',
         LOGIN:'/login',

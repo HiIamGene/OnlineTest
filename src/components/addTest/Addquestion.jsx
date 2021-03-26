@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   };
 }
 function Addquestion(props) {
-
+  
   useEffect(() => {
     setQuestionInfo([])
     props.groups.questionList.map((question, index) => {
@@ -43,6 +43,7 @@ function Addquestion(props) {
     }
   }, [props.currentQuestion]);
   const [questionInfo, setQuestionInfo] = useState([]);
+
   useEffect(() => {
     try {
       if (questionInfo.length > 0) {
@@ -84,7 +85,7 @@ function Addquestion(props) {
       })
 
     }
-    props.setQuestionsTestbank(temp)
+    props.setQuestionsTestbank([...temp])
     setQuestionInfo(e)
   }
   function onChange(value) {
@@ -96,7 +97,7 @@ function Addquestion(props) {
         }
       })
     }
-    props.setQuestionsTestbank(temp)
+    props.setQuestionsTestbank([...temp])
     setvalue(value)
   }
   return (
@@ -111,7 +112,7 @@ function Addquestion(props) {
               placeholder="type of test"
               optionFilterProp="children"
               onChange={onChange}
-              //defaultValue={{ value: questionInfo[props.currentQuestion - 1].type }}
+              defaultValue={questionInfo[props.currentQuestion - 1].type}
               filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }

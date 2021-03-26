@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"
+import React, { useState,useEffect } from "react"
 import { connect } from 'react-redux';
-import { Upload, Input, Button } from 'antd';
+import { Upload, Input, Button ,Radio} from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 const { TextArea } = Input;
 const mapStateToProps = state => {
@@ -15,7 +15,12 @@ const mapDispatchToProps = dispatch => {
 }
 
 function Preview(props) {
+    const [part,setPart] = useState(0)
+    const [allPart,setAllPart] = useState(0)
     useEffect(() => {
+        Object.entries(props.headers).map(([columnId, column], index) => {
+            console.log(props.headers.key)
+        })
 
     }, []);
     return (
@@ -24,8 +29,8 @@ function Preview(props) {
                 {Object.entries(props.headers).map(([columnId, column], index) => {
                     return (
                         <div>
-                            <div style={{ marginTop: 30, background: "#FFB766", height: 100, width: "93%",fontWeight: 'bold', display: "inline-block"  }}>
-                                <div style={{ marginLeft:30,color: "#ffffff", fontSize: 60 }}>{column.name}</div>
+                            <div style={{ marginTop: 30, background: "#FFB766", height: 100, width: "93%", fontWeight: 'bold', display: "inline-block" }}>
+                                <div style={{ marginLeft: 30, color: "#ffffff", fontSize: 60 }}>{column.name}</div>
                             </div>
                             {column.items.map((item, key) => {
                                 return (
@@ -38,27 +43,33 @@ function Preview(props) {
                                                             <>
                                                                 {questionTestbank.questionID === question.questionID && (
                                                                     <div style={{ background: '70C5FB', fontSize: 25 }}>
-
                                                                         {name + 1}.
                                                                         <div
                                                                             dangerouslySetInnerHTML={{
                                                                                 __html: questionTestbank.data
                                                                             }}></div>
                                                                         {questionTestbank.type === "Pair" && (
-
-                                                                            <div>
-
-                                                                            </div>
+                                                                            <>                                             
+                                                                            </>
                                                                         )}
                                                                         {questionTestbank.type === "Choice" && (
 
-                                                                            <div>
+                                                                            <>
 
-                                                                            </div>
+                                                                                {questionTestbank.choice.map((choice, index) => {
+                                                                                    return (
+                                                                                        <div>
+                                                                                        <Radio>
+                                                                                        {choice.data}
+                                                                                        </Radio>
+                                                                                        </div>
+                                                                                    )
+                                                                                }
+                                                                                )}                                                      </>
                                                                         )}
                                                                         {questionTestbank.type === "ShortAnswer" && (
 
-                                                                            <Input style={{width:800}}>
+                                                                            <Input style={{ width: 800 }}>
 
                                                                             </Input>
                                                                         )}

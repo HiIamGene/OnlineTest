@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Steps, Button, message } from 'antd';
+import { Steps, Button, message, Spin } from 'antd';
 import { Layout, Switch } from 'antd';
 import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
@@ -46,7 +46,8 @@ const mapStateToProps = state => {
     detail: state.createTest.detail,
     draft: state.createTest.draft,
     currentQuestion: state.createTest.currentQuestion,
-    groupsTestbank: state.createTest.groupsTestbank
+    groupsTestbank: state.createTest.groupsTestbank,
+    questionsTestbank:state.createTest.questionsTestbank,
   };
   //localStorage.getItem('courseCode')
 }
@@ -66,6 +67,7 @@ const mapDispatchToProps = dispatch => {
 function CreateTest(props) {
   const [columns, setColumns] = useState([]);
   const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(true);
   const keyValue = "1";
   const form = 4;
   useEffect(() => {
@@ -75,7 +77,7 @@ function CreateTest(props) {
           headers: {
             "TestId": localStorage.getItem('testID'),
             "CourseCode": localStorage.getItem('courseCode'),
-            "CourseID": localStorage.getItem('CourseID'),
+            "CourseID": localStorage.getItem('courseID'),
           }
         }).then(res => {
           console.log(res.data)
@@ -91,7 +93,6 @@ function CreateTest(props) {
             "Access-Control-Allow-Headers": "*"
           }
         }).then(res => {
-          console.log(res.data)
           props.setDetail(res.data)
         }).catch(err => {
           console.warn(err);
@@ -104,7 +105,6 @@ function CreateTest(props) {
             "Access-Control-Allow-Headers": "*"
           }
         }).then(res => {
-          console.log(res.data)
           props.setDraft(res.data)
         }).catch(err => {
           console.warn(err);
@@ -113,11 +113,11 @@ function CreateTest(props) {
     else {
       props.setHeader([])
       props.setDetail({
-        "topic": "",
-        "description": "",
-        "dateStart": "",
-        "timeStart": "",
-        "duration": ""
+        "Topic": "",
+        "Description": "",
+        "Datestart": "2021-03-03",
+        "Timestart": "12:00",
+        "Duration": ""
       })
       props.setDraft("true")
     }
@@ -147,6 +147,7 @@ function CreateTest(props) {
         }
       }).then(res => {
         if (res.data) {
+          console.log(res.data)
           props.setQuestionsTestbank(res.data)
         } else {
           props.setGroupsTestbank([])
@@ -154,8 +155,9 @@ function CreateTest(props) {
       }).catch(err => {
         console.warn(err);
       });
+      setLoading(false)
   }
-
+ 
     , []);
   //Group
   const onDragEnd = (result, columns) => {
@@ -209,6 +211,7 @@ function CreateTest(props) {
     }).catch(err => {
       console.warn(err);
     });
+    console.log(props.questionsTestbank)
     await instance.post(API.V1.TEACHER.COURSE.TEST.ALLQUESTIONINGROUP, props.questionsTestbank, {
       headers: {
         "CourseID": localStorage.getItem('courseID'),
@@ -299,41 +302,46 @@ function CreateTest(props) {
               <Step status="process" disabled={editqStatus} title="Edit question" />
               <Step status="process" disabled={editqStatus} title="Preview" />
             </Steps>
-            <div className="steps-content">
-              {current === 0 && (
-                <Detail />
-              )}
-              {current === 1 && (
-                <Group
-                  handlesetColumns={setColumns}
-                  onSelectgroupName={onSelectgroupName}
-                  onDragEnd={onDragEnd}
-                  columns={columns}
+            {loading ?
+              <Spin /> :
+              <>
+                <div className="steps-content">
+                  {current === 0 && (
+                    <Detail />
+                  )}
+                  {current === 1 && (
+                    <Group
+                      handlesetColumns={setColumns}
+                      onSelectgroupName={onSelectgroupName}
+                      onDragEnd={onDragEnd}
+                      columns={columns}
 
-                />
-              )}
-              {current === 2 && (
-                <Question
-                  onSelectquestionName={onSelectquestionName}
-                  groupName={groupName}
-                />
-              )}
-              {current === 3 && (
-                <AddQuestion />
-              )}
-              {current === 4 && (
-                <Preview />
-              )}
-            </div>
-            <div className="steps-action" tyle={{ fontSize: 30 }}>
-              <Switch style={{ margin: '0 8px' }} defaultChecked={(props.draft === 'true')} onChange={e => onHandleDraft(e)}></Switch>
+                    />
+                  )}
+                  {current === 2 && (
+                    <Question
+                      onSelectquestionName={onSelectquestionName}
+                      groupName={groupName}
+                    />
+                  )}
+                  {current === 3 && (
+                    <AddQuestion />
+                  )}
+                  {current === 4 && (
+                    <Preview />
+                  )}
+                </div>
+                <div className="steps-action" tyle={{ fontSize: 30 }}>
+                  <Switch style={{ margin: '0 8px' }} defaultChecked={(props.draft === 'true')} onChange={e => onHandleDraft(e)}></Switch>
               Draft
 
               {current === steps.length - 1 && (
 
-                < Button style={{ margin: '0 8px' }} type="primary" onClick={() => onClickSave()}>Save</Button>
-              )}
-            </div>
+                    < Button style={{ margin: '0 8px' }} type="primary" onClick={() => onClickSave()}>Save</Button>
+                  )}
+                </div>
+              </>
+            }
           </ContentContainer>
         </Layout>
       </Layout>

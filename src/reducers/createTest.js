@@ -3,8 +3,8 @@ const data = {
     detail: {
         "topic": "",
         "description": "",
-        "dateStart": "",
-        "timeStart": "",
+        "dateStart": "2021-03-03",
+        "timeStart": "00:00",
         "duration": ""
     },
     headers: {
