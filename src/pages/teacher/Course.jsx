@@ -10,7 +10,6 @@ import instance from "../../constants/action.js";
 
 
 const { Option } = Select;
-const username = "testteacher";
 const children = [];
 for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
@@ -112,7 +111,7 @@ class Course extends React.Component {
                   <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Course</div>
                 </Col>
                 <Col span={5} >
-                  <Input style={{ marginTop: 30, width: "100%" }} onChange={(e) => this.updateAddCourse(e.value.target)} />
+                  <Input style={{ marginTop: 30, width: "100%" }} onChange={e => this.updateAddCourse(e.target.value)} />
                 </Col>
                 <Col span={1} >
                   <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} onClick={() => this.addCourse}>

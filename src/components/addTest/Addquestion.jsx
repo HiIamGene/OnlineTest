@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   };
 }
 function Addquestion(props) {
-
+  
   useEffect(() => {
     setQuestionInfo([])
     props.groups.questionList.map((question, index) => {
@@ -43,6 +43,7 @@ function Addquestion(props) {
     }
   }, [props.currentQuestion]);
   const [questionInfo, setQuestionInfo] = useState([]);
+
   useEffect(() => {
     try {
       if (questionInfo.length > 0) {
@@ -84,7 +85,7 @@ function Addquestion(props) {
       })
 
     }
-    props.setQuestionsTestbank(temp)
+    props.setQuestionsTestbank([...temp])
     setQuestionInfo(e)
   }
   function onChange(value) {
@@ -96,7 +97,7 @@ function Addquestion(props) {
         }
       })
     }
-    props.setQuestionsTestbank(temp)
+    props.setQuestionsTestbank([...temp])
     setvalue(value)
   }
   return (
@@ -128,7 +129,7 @@ function Addquestion(props) {
           <Col span={20} offset={2}>
             <div style={{ width: "100%", background: "#FFB766" }}>
               <div style={{ marginLeft: 50, paddingTop: 20, paddingBottom: 20 }}>
-                <Editbox value={questionInfo[props.currentQuestion - 1].type} setQuestionInfo={setQuestionInfoFunc} questionInfo={questionInfo} />
+                <Editbox value={value} setQuestionInfo={setQuestionInfoFunc} questionInfo={questionInfo} />
               </div>
             </div>
           </Col>

@@ -51,7 +51,7 @@ export default {
                     ALLGROUPTESTLISTestlist:'/allgrouptestlist',
                     UPDATEDETAILLIST:'/updatedetailtest',
                     UPDATEDRAFT :'/changedraftstatus',
-                    UPLOADPIC:'/uploadpic',
+                    UPLOADPIC:API_DOMAIN_NAME+'/uploadpic',
                     GROUPTESTLIST:"/testbankupdate ", //check
                     ALLQUESTIONINGROUP:"/updateallquestionintest",
                     TESTBANKUPDATE:"/testbankupdate "

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Typography, Row, Col, Button } from 'antd';
+import { Layout, Typography, Row, Col, Button,Input} from 'antd';
 import { Link } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
@@ -13,33 +13,43 @@ const { Title } = Typography;
 function TestBank(props) {
   useEffect(() => {
 
-    instance.get(API.V1.TEACHER.COURSE.TEST.ALLGROUPTESTLISTestlist, {
-      "CourseCode": localStorage.getItem('courseCode')
-    }, {
-    }).then(res => {
-      setListGroupTest(res.data)
-    }).catch(err => {
-      console.warn(err);
-    });
+    instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST,
+      {
+        headers: {
+          "TestId": localStorage.getItem('testID'),
+          "CourseID": localStorage.getItem('courseID'),
+          "Access-Control-Allow-Headers": "*"
+        }
+      }).then(res => {
+        console.log(res.data)
+        setListGroupTest(res.data)
+      }).catch(err => {
+        console.warn(err);
+      });
   }, []);
-  const newGroup = 
-{
-  "id": uuid(),
-  "groupName": "",
-  "questionList": []
-}
-  const AddGroups =()=>{
-    setListGroupTest({...listGroupTest,newGroup})
-    instance.post(API.V1.TEACHER.COURSE.TEST.ALLGROUPTESTLISTestlist, listGroupTest,{
-      "CourseCode": localStorage.getItem('courseCode')
-    }, {
-    }).then(res => {
+  const DeleteGroup=()=>{
+
+  }
+  const AddGroups = () => {
+    listGroupTest.push(newGroup)
+    console.log(listGroupTest)
+    setListGroupTest([ ...listGroupTest ])
+    instance.post(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, listGroupTest, {headers: {
+      "CourseID": localStorage.getItem('courseID'),
+      "Access-Control-Allow-Headers": "*"
+    }}).then(res => {
     }).catch(err => {
       console.warn(err);
     });
   }
   const [listGroupTest, setListGroupTest] = useState([])
-  const [data, setData] = useState();
+  const [input, setInput] = useState("");
+  const newGroup =
+  {
+    "id": uuid(),
+    "groupName": input,
+    "questionList": []
+  }
   const keyValue = "3";
   const form = 2;
   return (
@@ -55,18 +65,19 @@ function TestBank(props) {
               <Col span={4} offset={2}>
                 <div style={{ fontSize: 50, fontWeight: 'bold' }}>TestBank</div>
               </Col>
-
+              <Col span={5} style={{ marginTop: 30 }} >
+                <Input onChange={e=>setInput(e.target.value)}></Input>
+              </Col>
               <Col span={1} >
                 <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
-                  <div style={{ font: 'Josefin Sans', fontSize: 10 }} onClick={()=>AddGroups()}>+</div>
+                  <div style={{ font: 'Josefin Sans', fontSize: 10 }} onClick={() => AddGroups()}>+</div>
                 </Button>
               </Col>
-              <Col span={5} >
-              </Col>
+             
               <Col span={12} ></Col>
 
               <Col span={22} offset={2} >
-                <TestBanklist listGroupTest={listGroupTest}/>
+                <TestBanklist listGroupTest={listGroupTest} />
               </Col>
 
             </Row>

@@ -24,6 +24,7 @@ import Test from './pages/student/Test';
 import DoTest from './pages/student/DoTest';
 //import Todo from './pages/todo';
 import Todo from './pages/Example';
+import Admin from './pages/admin/Admin';
 /*const apiUrl = 'http://142.93.177.152:10000';
 instance.interceptors.request.use(
   config => {
@@ -68,9 +69,8 @@ function App() {
       <Route  path="/Student/Course" exact component={Course_S} />
       <Route  path="/Student/Test" exact component={Test} />
       <Route  path="/Student/DoTest" exact component={DoTest} />  
+      <Route  path="/admin" exact component={Admin} />  
       <Route  path="/Todo" exact component={Todo} />
-
-
     </Router>
   );
 }

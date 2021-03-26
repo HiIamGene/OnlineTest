@@ -18,6 +18,10 @@ function Homepage (props){
       else if (localStorage.getItem("role") === "student"){
         props.history.push(`/Student/Test`)
       }
+      else if (localStorage.getItem("role") === "admin"){
+        props.history.push(`/Admin`)
+      }
+      
     }
   }, [token]);
   const onFinish = values => {
