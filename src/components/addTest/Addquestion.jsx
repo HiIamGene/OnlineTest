@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   };
 }
 function Addquestion(props) {
-  
+
   useEffect(() => {
     setQuestionInfo([])
     props.groups.questionList.map((question, index) => {
@@ -36,6 +36,7 @@ function Addquestion(props) {
     try {
       if (questionInfo.length > 0) {
         setLoading(false)
+        setvalue(questionInfo[props.currentQuestion - 1].type)
       }
     }
     catch (err) {
@@ -48,6 +49,7 @@ function Addquestion(props) {
     try {
       if (questionInfo.length > 0) {
         setLoading(false)
+        setvalue(questionInfo[props.currentQuestion - 1].type)
       }
     }
     catch (err) {
@@ -100,6 +102,7 @@ function Addquestion(props) {
     props.setQuestionsTestbank([...temp])
     setvalue(value)
   }
+  console.log(questionInfo)
   return (
     <>
       {!loading ?
@@ -112,16 +115,16 @@ function Addquestion(props) {
               placeholder="type of test"
               optionFilterProp="children"
               onChange={onChange}
-              defaultValue={questionInfo[props.currentQuestion - 1].type}
+              value={questionInfo[props.currentQuestion - 1].type}
               filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
             >
               <Option value="Choice">Choice</Option>
               <Option value="Pair">Pair</Option>
-              <Option value="ShortAnswer">Short Answer</Option>
+              <Option value="Short Answer">Short Answer</Option>
               <Option value="Write-up">Write-up</Option>
-              <Option value="UploadAnswer">Upload Answer</Option>
+              <Option value="Upload Answer">Upload Answer</Option>
             </Select>
 
 

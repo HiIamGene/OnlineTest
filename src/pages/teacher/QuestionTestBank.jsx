@@ -5,42 +5,55 @@ import { Link } from 'react-router-dom';
 import { v4 as uuid } from "uuid";
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
+import { connect } from 'react-redux';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
-const itemsFromBackend = [
-    { id: uuid(), name: "สีอะไรคือสีโทนร้อน?" }
-    , { id: uuid(), name: "ทำไมต้องทำ Usability Testing ?" }
-    , { id: uuid(), name: "Low-fidelity prototype คือ ?" }
-    , { id: uuid(), name: "Hi-fidelity prototype  คือ ?" }]
-
+import axios from "axios"
+import API from "../../constants/api.jsx";
+const mapStateToProps = state => {
+    return {
+        selectColumn: state.testBank.selectColumn,
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        setSelectColumn: (value) => dispatch({ type: 'setSelectColumn', selectColumn: value }),
+    };
+  }
 function Question(props) {
     const keyValue = "3";
     const form = 2;
-    const [selectColumn, setSelectColumn] = useState([]);
     const onDragEnd = (result) => {
         if (!result.destination) return;
         const { source, destination } = result;
-        const copiedItems = Array.from(selectColumn);
+        const copiedItems = Array.from(props.selectColumn);
         const [removed] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removed);
-        setSelectColumn([...copiedItems]);
+        props.setSelectColumn([...copiedItems]);
 
     };
     useEffect(() => {
-        console.log(props.location.data.questionList.questionList)
-        setSelectColumn(props.location.data.questionList.questionList)
+        props.setSelectColumn(props.location.data.questionList.questionList)
 
     }, [props.location.data.questionList]);
+    useEffect(() => {
+
+
+    }, [props.selectColumn]);
     const onClickAddColumn = () => {
-        let temp = selectColumn
+        let temp = props.selectColumn
         temp.push({ id: uuid(), name: "Please enter question" })
-        setSelectColumn([...temp])
+        props.setSelectColumn([...temp])
 
     }
     const onClickdeletColumn = (index) => {
-        let temp = selectColumn
+        let temp = props.selectColumn
         //let select= temp[e].items[column]
         temp.splice(index, 1)
-        setSelectColumn([...temp])
+        props.setSelectColumn([...temp])
+
+    }
+    const onSelectquestionName = () =>{
 
     }
 
@@ -77,11 +90,11 @@ function Question(props) {
                                                             <div
                                                                 {...provided.droppableProps} ref={provided.innerRef} style={{ background: snapshot.isDraggingOver ? "lightblue" : "lightgrey", padding: 4, minWidth: 1470, minHeight: 50, display: "flex", flexDirection: "column", alignItems: "center" }}
                                                             >
-                                                                {selectColumn.map((item, index) => {
+                                                                {props.selectColumn.map((item, index) => {
                                                                     return (
                                                                         <Draggable
-                                                                            key={item.id}
-                                                                            draggableId={item.id}
+                                                                            key={item.questionID}
+                                                                            draggableId={item.questionID}
                                                                             index={index}
                                                                         >
                                                                             {(provided, snapshot) => {
@@ -105,7 +118,7 @@ function Question(props) {
                                                                                         <div>
                                                                                             <Row>
                                                                                                 <div style={{ fontSize: 30, fontWeight: "bold", display: "block", color: "#000000" }} >{index + 1}.
-                                                                                                    <Button onClick={() => props.onSelectquestionName(selectColumn[index].name, index + 1)} type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1330, height: 100, marginTop: 30, textAlign: 'left' }}>{item.question}</Button>
+                                                                                                    <Button onClick={() => onSelectquestionName(props.selectColumn[index].name, index + 1)} type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1330, height: 100, marginTop: 30, textAlign: 'left' }}>{item.question}</Button>
                                                                                                 </div>
                                                                                                 <table style={{ marginTop: 30, marginLeft: 20 }}>
                                                                                                     <div style={{ marginTop: 40, marginLeft: 10, fontSize: 30 }}>
@@ -142,4 +155,4 @@ function Question(props) {
     );
 }
 
-export default Question;
+export default connect(mapStateToProps, mapDispatchToProps)(Question);

@@ -33,6 +33,11 @@ function Question(props) {
     props.setGroups({ ...props.groups });
   };
   useEffect(() => {
+    props.groups.maxQuestion=props.groups.questionList.length.toString()
+    props.setGroups({ ...props.groups })
+  }, []);
+  useEffect(() => {
+
     for (const [items,name ] of Object.entries(props.headers)) {
       for (const [columnId, column] of Object.entries(props.headers[items].items)) {
         if (props.groups.id === props.headers[items].items[columnId].id) {
@@ -47,7 +52,7 @@ function Question(props) {
     let temp = props.groups
     let id = uuid()
     temp.questionList.push({ "questionID": id, "question": "Please edit this question before save" })
-    props.questionsTestbank.push({ groupID: "115f7d04-3075-408a-b8ce-c6e46fe6053f","questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice": [{"choiceID":"","questionID":id,"data":"","imageLink":[]}] })
+    props.questionsTestbank.push({ "groupID":props.groups.id ,"questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice": [{"choiceID":"","questionID":id,"data":"","imageLink":[]}] })
     props.setQuestionsTestbank(props.questionsTestbank)
     temp.maxQuestion=temp.questionList.length.toString()
     props.setGroups({ ...temp })
