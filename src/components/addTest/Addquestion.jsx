@@ -36,6 +36,7 @@ function Addquestion(props) {
     try {
       if (questionInfo.length > 0) {
         setLoading(false)
+        setvalue(questionInfo[props.currentQuestion - 1].type)
       }
     }
     catch (err) {
@@ -48,6 +49,7 @@ function Addquestion(props) {
     try {
       if (questionInfo.length > 0) {
         setLoading(false)
+        setvalue(questionInfo[props.currentQuestion - 1].type)
       }
     }
     catch (err) {
@@ -119,9 +121,9 @@ function Addquestion(props) {
             >
               <Option value="Choice">Choice</Option>
               <Option value="Pair">Pair</Option>
-              <Option value="ShortAnswer">Short Answer</Option>
+              <Option value="Short Answer">Short Answer</Option>
               <Option value="Write-up">Write-up</Option>
-              <Option value="UploadAnswer">Upload Answer</Option>
+              <Option value="Upload Answer">Upload Answer</Option>
             </Select>
 
 

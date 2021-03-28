@@ -20,6 +20,7 @@ import history from "./utils/history";
 import ScoreStudent from './pages/teacher/ScoreStudent';
 import Course_S from './pages/student/Course';
 import UserInfo_S from './pages/student/UserInfo';
+import InClass_s from './pages/teacher/InCourse';
 import Test from './pages/student/Test';
 import DoTest from './pages/student/DoTest';
 //import Todo from './pages/todo';
@@ -67,6 +68,7 @@ function App() {
       <Route  path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
       <Route  path="/Student/UserInfo" exact component={UserInfo_S} />
       <Route  path="/Student/Course" exact component={Course_S} />
+      <Route  path="/Student/InCourse" exact component={InClass_s} />
       <Route  path="/Student/Test" exact component={Test} />
       <Route  path="/Student/DoTest" exact component={DoTest} />  
       <Route  path="/admin" exact component={Admin} />  

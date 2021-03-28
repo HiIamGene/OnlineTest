@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Typography, Row, Col, Button, Pagination } from 'antd';
+import { Layout, Typography, Row, Col, Button, Pagination,Select } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
@@ -29,7 +29,7 @@ function ScoreQuestion(props) {
 
                         <Row gutter={16} type="flex" justify="space-around">
                             <Col span={19} offset={2}>
-                                <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>Data Communication - 60010001</div>
+                                <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>Data Communication - <Select style={{width:200}}></Select></div>
                             </Col>
 
                             <Col span={2} ></Col>

@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { connect } from 'react-redux';
-import { Upload, Input, Button ,Radio} from 'antd';
+import { Upload, Input, Button, Radio, Image ,message} from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 const { TextArea } = Input;
 const mapStateToProps = state => {
@@ -15,18 +15,29 @@ const mapDispatchToProps = dispatch => {
 }
 
 function Preview(props) {
-    const [part,setPart] = useState(0)
-    const [allPart,setAllPart] = useState(0)
-    useEffect(() => {
+    const [part, setPart] = useState(0)
+    const [allPart, setAllPart] = useState(0)
+    const [current, setCurrent] = useState(0);
+    const next = () => {
+        setCurrent(current + 1);
+    };
+    const prev = () => {
+        setCurrent(current - 1);
+    };
+    useEffect(()=>{
+        //setCurrent()
         Object.entries(props.headers).map(([columnId, column], index) => {
-            console.log(props.headers.key)
-        })
 
-    }, []);
+            setPart(index)
+        })
+        console.log(part)
+    })
+
     return (
         <div style={{ justifyContent: "center", height: "100%", width: "100%" }}>
             <div>
                 {Object.entries(props.headers).map(([columnId, column], index) => {
+                    if(index===current){
                     return (
                         <div>
                             <div style={{ marginTop: 30, background: "#FFB766", height: 100, width: "93%", fontWeight: 'bold', display: "inline-block" }}>
@@ -40,16 +51,16 @@ function Preview(props) {
                                                 <>
                                                     {props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
                                                         return (
-                                                            <>
+                                                            <div style={{ fontSize: 30, background: '#FFFFFF', margin: 30, textAlign: 'left' }}>
                                                                 {questionTestbank.questionID === question.questionID && (
-                                                                    <div style={{ background: '70C5FB', fontSize: 25 }}>
+                                                                    <div style={{ margin: 30 }}>
                                                                         {name + 1}.
-                                                                        <div
+                                                                        <p
                                                                             dangerouslySetInnerHTML={{
                                                                                 __html: questionTestbank.data
-                                                                            }}></div>
+                                                                            }} />
                                                                         {questionTestbank.type === "Pair" && (
-                                                                            <>                                             
+                                                                            <>
                                                                             </>
                                                                         )}
                                                                         {questionTestbank.type === "Choice" && (
@@ -59,17 +70,28 @@ function Preview(props) {
                                                                                 {questionTestbank.choice.map((choice, index) => {
                                                                                     return (
                                                                                         <div>
-                                                                                        <Radio>
-                                                                                        {choice.data}
-                                                                                        </Radio>
+                                                                                            <Radio>
+                                                                                                {choice.data}
+                                                                                            </Radio>
+                                                                                            {choice.imageLink.length >= 1 && (
+                                                                                                <div>
+                                                                                                    <Image
+                                                                                                        width={200}
+                                                                                                        src={choice.imageLink[0].url}
+                                                                                                    />
+                                                                                                </div>
+                                                                                            )
+
+                                                                                            }
+
                                                                                         </div>
                                                                                     )
                                                                                 }
                                                                                 )}                                                      </>
                                                                         )}
-                                                                        {questionTestbank.type === "ShortAnswer" && (
+                                                                        {questionTestbank.type === "Short Answer" && (
 
-                                                                            <Input style={{ width: 800 }}>
+                                                                            <Input style={{ width: 800 }} placeholder="Your answer">
 
                                                                             </Input>
                                                                         )}
@@ -89,7 +111,7 @@ function Preview(props) {
                                                                     </div>
                                                                 )
                                                                 }
-                                                            </>
+                                                            </div>
                                                         )
                                                     })}
                                                 </>
@@ -100,9 +122,28 @@ function Preview(props) {
                             })}
 
                         </div>)
+                    }
 
                 })}
             </div>
+            <div className="steps-action">
+            {current > 0 && (
+                <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
+                    Previous
+                </Button>
+            )}
+            {current < part - 1 && (
+                <Button type="primary" onClick={() => next()}>
+                    Next
+                </Button>
+            )}
+            {current === part - 1 && (
+                <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                    Done
+                </Button>
+            )}
+
+        </div>
         </div >
     )
 }

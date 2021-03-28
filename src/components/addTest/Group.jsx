@@ -96,8 +96,8 @@ function Group(props) {
       temp[columnId].items[index].numQuestion = numQ
       props.setHeader({ ...temp })
     }
-    else{
-      alert(numQ+" is more than max of question")
+    else {
+      alert(numQ + " is more than max of question")
     }
   }
   const handleScore = (score, columnId, index) => {
