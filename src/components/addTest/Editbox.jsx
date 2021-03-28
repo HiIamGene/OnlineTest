@@ -128,7 +128,6 @@ function Editbox(props) {
         props.questionInfo[props.currentQuestion - 1].choice.map((item, index) => {
         })
       }
-      console.log(props.value)
       setLoading(false)
     }
   }, [content]);
@@ -137,7 +136,6 @@ function Editbox(props) {
     if (props.questionInfo.length !== 0) {
       setContent(props.questionInfo[props.currentQuestion - 1].data)
       setChoice(props.questionInfo[props.currentQuestion - 1].choice)
-      console.log(props.value)
       setLoading(false)
     }
   }, [props.currentQuestion]);

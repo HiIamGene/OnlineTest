@@ -58,7 +58,11 @@ export default {
                 }               
             },
             TESTBANK:{
-                ALLGROUPINTESTBANK:'/testbankupdate',
+                ALLTESTINTESTBANK:'/getallfinishedtest',
+                ALLHEADERTESTBANK:'/getallheaderintest',
+                ALLSTUDENTTESTBANK:'/getallstudentanswerinformation',
+                ALLANSWER:	'/getstudentAnswer'
+
             }
         },
         STUDENT:{

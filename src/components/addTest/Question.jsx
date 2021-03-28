@@ -22,7 +22,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 function Question(props) {
-  console.log(props.groups)
   //const [selectColumn, setSelectColumn] = useState(props.groups.questionList);
   const onDragEnd = (result) => {
     if (!result.destination) return;

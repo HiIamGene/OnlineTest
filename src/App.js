@@ -18,6 +18,7 @@ import ScoreQuestion from './pages/teacher/ScoreQuestion';
 import GroupTestBank from './pages/teacher/GroupTestBank';
 import history from "./utils/history";
 import ScoreStudent from './pages/teacher/ScoreStudent';
+import ScoreHeader from './pages/teacher/ScoreHeader';
 import Course_S from './pages/student/Course';
 import UserInfo_S from './pages/student/UserInfo';
 import InClass_s from './pages/teacher/InCourse';
@@ -66,6 +67,8 @@ function App() {
       <Route  path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
       <Route  path="/Teacher/ScoreQuestion" exact component={ScoreQuestion} />
       <Route  path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
+      <Route  path="/Teacher/ScoreHeader" exact component={ScoreHeader} />
+      <Route  path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
       <Route  path="/Student/UserInfo" exact component={UserInfo_S} />
       <Route  path="/Student/Course" exact component={Course_S} />
       <Route  path="/Student/InCourse" exact component={InClass_s} />
