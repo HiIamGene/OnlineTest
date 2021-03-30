@@ -55,7 +55,7 @@ function ScoreTestList(props) {
                                 <Row type="flex" justify="space-around">
                                     <Col span={9}>{e.topic}</Col>
                                     <Col span={1} offset={6}><img style={{ width: 37, height: 27 }} src={userInfo} /></Col>
-                                    <Col span={3} >{e.paticipant}</Col>
+                                    <Col span={3} >{e.paticipant.replace(":", "/")}</Col>
                                     <Col span={2}>process : {e.process}%</Col>
                                     <Col span={1}></Col>
                                 </Row>
@@ -65,7 +65,7 @@ function ScoreTestList(props) {
                                 <Row type="flex" justify="space-around">
                                     <Col span={9}>{e.topic}</Col>
                                     <Col span={1} offset={6}><img style={{ width: 37, height: 27 }} src={userInfo} /></Col>
-                                    <Col span={3} >{e.paticipant}</Col>
+                                    <Col span={3} >{e.paticipant.replace(":", "/")}</Col>
                                     <Col span={2}>process : {e.process}%</Col>
                                     <Col span={1}></Col>
                                 </Row>

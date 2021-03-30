@@ -147,7 +147,14 @@ function Editbox(props) {
     const data = editor.getData();
     setContent(data)
     props.questionInfo[props.currentQuestion - 1].data = data
-    props.questionInfo[props.currentQuestion - 1].question = data.split("</", 1)[0];
+    if (data!=="") {
+      if(data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length-1].length<=60){
+        props.questionInfo[props.currentQuestion - 1].question = data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length-1]
+      }
+      else{
+        props.questionInfo[props.currentQuestion - 1].question = data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length-1].slice(0,60)+"..."
+      }
+    }
     props.setQuestionInfo([...props.questionInfo])
 
   }

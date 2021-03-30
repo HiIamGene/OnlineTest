@@ -8,12 +8,15 @@ import { PropertySafetyFilled } from '@ant-design/icons';
 import API from "../../constants/api.jsx";
 import instance from '../../constants/action.js';
 import { connect } from 'react-redux';
+
+const { Option } = Select;
+
 const mapStateToProps = state => {
     return {
         student: state.scoreTest.student,
         test: state.scoreTest.test,
-        ScoreQuestion:state.scoreTest.ScoreQuestion,
-        header:state.scoreTest.header
+        ScoreQuestion: state.scoreTest.ScoreQuestion,
+        header: state.scoreTest.header
     };
 };
 
@@ -23,13 +26,13 @@ const mapDispatchToProps = dispatch => {
     };
 }
 function ScoreQuestion(props) {
-    useEffect(() => {
+    useEffect(() => {   
         instance.get(API.V1.TEACHER.TESTBANK.ALLANSWER,
             {
                 headers: {
                     "TestId": props.test.testID,
                     "StudentID": props.student.student,
-                    "uuid" :props.header.uuid,
+                    "uuid": props.header.uuid,
                     "Access-Control-Allow-Headers": "*"
                 }
             }).then(res => {
@@ -38,7 +41,7 @@ function ScoreQuestion(props) {
                 console.warn(err);
             });
     }, []);
-    const onChangeScore = () =>{
+    const onChangeScore = () => {
 
     }
     const [current, setcurrent] = useState(1);
@@ -47,6 +50,10 @@ function ScoreQuestion(props) {
     const onChange = page => {
         setcurrent(page);
     };
+    const children = [];
+    for (let i = 10; i < 36; i++) {
+        children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+    }
     return (
         <Container>
             <Layout >
@@ -57,7 +64,9 @@ function ScoreQuestion(props) {
 
                         <Row gutter={16} type="flex" justify="space-around">
                             <Col span={19} offset={2}>
-                                <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>{props.test.topic} - <Select style={{ width: 200 }}></Select></div>
+                                <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>{props.test.topic} - <Select style={{ width: 200 }}>
+                                    {children}
+                                </Select></div>
                             </Col>
 
                             <Col span={2} ></Col>

@@ -137,11 +137,7 @@ function Preview(props) {
                     Next
                 </Button>
             )}
-            {current === part - 1 && (
-                <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                    Done
-                </Button>
-            )}
+
 
         </div>
         </div >

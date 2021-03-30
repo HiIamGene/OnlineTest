@@ -44,17 +44,13 @@ function ScoreTestStudent(props) {
         <Layout style={{ marginLeft: 180 }}>
           <ContentContainer >
             <Head history={props.history} />
-
             <Row gutter={16} type="flex" justify="space-around">
-
               <Col span={10} offset={2}>
                 <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>{props.header.name}</div>
               </Col>
-
               <Col span={12} ></Col>
               <Col span={22} offset={2}> <div style={{ fontSize: 25, fontWeight: 'bold', display: "inline-block" }}>Student List</div></Col>
               <Col span={22} offset={2} ><ScoreStudentList /></Col>
-
             </Row>
           </ContentContainer>
         </Layout>
