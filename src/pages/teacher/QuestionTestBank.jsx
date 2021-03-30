@@ -21,6 +21,9 @@ const mapStateToProps = state => {
     };
   }
 function Question(props) {
+    useEffect(() => {
+console.log(props.selectColumn)
+      }, []);
     const keyValue = "3";
     const form = 2;
     const onDragEnd = (result) => {
@@ -32,14 +35,6 @@ function Question(props) {
         props.setSelectColumn([...copiedItems]);
 
     };
-    useEffect(() => {
-        props.setSelectColumn(props.location.data.questionList.questionList)
-
-    }, [props.location.data.questionList]);
-    useEffect(() => {
-
-
-    }, [props.selectColumn]);
     const onClickAddColumn = () => {
         let temp = props.selectColumn
         temp.push({ id: uuid(), name: "Please enter question" })
@@ -51,7 +46,6 @@ function Question(props) {
         //let select= temp[e].items[column]
         temp.splice(index, 1)
         props.setSelectColumn([...temp])
-
     }
     const onSelectquestionName = () =>{
 
@@ -66,7 +60,7 @@ function Question(props) {
                         <Head history={props.history} />
                         <Row gutter={16} type="flex" justify="space-around">
                             <Col span={22} offset={2}>
-                                <div style={{ fontSize: 50, fontWeight: 'bold' }}>{props.location.data.groupName}</div>
+                                <div style={{ fontSize: 50, fontWeight: 'bold' }}>{props.selectColumn.groupName}</div>
                             </Col>
                             <Col span={24} >
                                 <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -90,7 +84,7 @@ function Question(props) {
                                                             <div
                                                                 {...provided.droppableProps} ref={provided.innerRef} style={{ background: snapshot.isDraggingOver ? "lightblue" : "lightgrey", padding: 4, minWidth: 1470, minHeight: 50, display: "flex", flexDirection: "column", alignItems: "center" }}
                                                             >
-                                                                {props.selectColumn.map((item, index) => {
+                                                                {props.selectColumn.questionList.map((item, index) => {
                                                                     return (
                                                                         <Draggable
                                                                             key={item.questionID}

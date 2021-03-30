@@ -21,10 +21,10 @@ function ScoreTest(props) {
         <ContentContainer >
         <Head history={props.history}/>
             <Row gutter={16} type="flex" justify="space-around">
-              <Col span={4} offset={2}>
-                <div style={{ fontSize: 50, fontWeight: 'bold' }}>Data Communication</div>
+              <Col span={10} offset={2}>
+                <div style={{ fontSize: 50, fontWeight: 'bold' }}>{localStorage.getItem('courseName')}</div>
               </Col>
-              <Col span={18} ></Col>
+              <Col span={12} ></Col>
               <Col span={8} offset={2} style={{ fontSize: 20, fontWeight: 'bold' }}> Test Name</Col>
               <Col span={3} offset={4} style={{ fontSize: 20, fontWeight: 'bold' }}> Member</Col>
               <Col span={7}  style={{ fontSize: 20, fontWeight: 'bold' }}>Process</Col>

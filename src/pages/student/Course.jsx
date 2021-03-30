@@ -4,7 +4,6 @@ import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMen2';
 import Head from '../../components/Head';
 import Classlist from '../../components/Courselist_s';
-import SearchData from '../../components/SearchData';
 const { Option } = Select;
 
 const children = [];

@@ -31,7 +31,6 @@ function Detail(props) {
     props.updateDetail({...temp})
   }
   const updateTimeStart= (time,timeString) =>{
-   
     let temp = props.detail
     temp.Timestart=timeString
     props.updateDetail({...temp})
@@ -63,7 +62,7 @@ function Detail(props) {
         <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
           Date start :
                   <br />
-          <DatePicker style={{ width: 850 }} value={moment(props.detail.Datestart, 'YYYY-MM-DD')} onChange={e=>updateDateStart(e)}/>
+          <DatePicker style={{ width: 850 }} value={moment(props.detail.Datestart, 'YYYY-MM-DD')} onChange={(e,dateString)=>updateDateStart(e,dateString)}/>
         </div>
       </Col>
       <Col span={22} offset={2} >
@@ -77,7 +76,7 @@ function Detail(props) {
         <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
           Time start :
                   <br />
-          <TimePicker format="h:mm" style={{ width: 850 }} value={moment(props.detail.Timestart, 'h:mm')} onChange={e=>updateTimeStart(e)}/>
+          <TimePicker format="h:mm" style={{ width: 850 }} value={moment(props.detail.Timestart, 'h:mm')} onChange={(e,timeString)=>updateTimeStart(e,timeString)}/>
         </div>
       </Col>
     </Row>

@@ -8,25 +8,21 @@ import TestBanklist from '../../components/testBanklist';
 import instance from '../../constants/action.js';
 import API from "../../constants/api.jsx";
 import { v4 as uuid } from "uuid";
+import { connect } from 'react-redux';
 const { Title } = Typography;
+const mapStateToProps = state => {
+  return {
+
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+      
+  };
+}
 
 function TestBank(props) {
-  useEffect(() => {
 
-    instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST,
-      {
-        headers: {
-          "TestId": localStorage.getItem('testID'),
-          "CourseID": localStorage.getItem('courseID'),
-          "Access-Control-Allow-Headers": "*"
-        }
-      }).then(res => {
-        console.log(res.data)
-        setListGroupTest(res.data)
-      }).catch(err => {
-        console.warn(err);
-      });
-  }, []);
   const DeleteGroup=()=>{
 
   }
@@ -77,7 +73,7 @@ function TestBank(props) {
               <Col span={12} ></Col>
 
               <Col span={22} offset={2} >
-                <TestBanklist listGroupTest={listGroupTest} />
+                <TestBanklist/>
               </Col>
 
             </Row>
@@ -88,4 +84,4 @@ function TestBank(props) {
   );
 }
 
-export default TestBank;
+export default connect(mapStateToProps, mapDispatchToProps)(TestBank);
