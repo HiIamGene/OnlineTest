@@ -2,11 +2,24 @@ import React, { useEffect, useState } from "react"
 import { Button, Popconfirm, Empty, Modal } from 'antd';
 import instance from '../constants/action.js';
 import API from "../constants/api.jsx";
-import { Link } from 'react-router-dom';
+import history from "../utils/history";
+import { connect } from 'react-redux';
 
+const mapStateToProps = state => {
+    return {
+
+    };
+
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setSelectTest:  (value) => dispatch({ type: 'setSelectTest', selectTest: value }),
+    };
+}
 function TestInterface(props) {
     const [testList, setTestList] = useState([]);
-    const [selectTest, setSelectTest] = useState([]);
+    const [selectTest, setTest] = useState([]);
     const [visible, setVisible] = useState(false);
     useEffect(() => {
         instance.get(API.V1.STUDENT.TESTLIST, {
@@ -19,10 +32,11 @@ function TestInterface(props) {
         })
     }, []);
     const handleOk = () => {
-
+        props.setSelectTest(selectTest)
+        history.push(`/Student/DoTest`)
     };
     const handleOpen = (item) => {
-        setSelectTest(item)
+        setTest(item)
         setVisible(true)
     }
     const classlistOut = () => {
@@ -57,12 +71,6 @@ function TestInterface(props) {
                 title={selectTest.Topic}
                 onCancel={() => setVisible(false)}
                 footer={[
-                    <Link to={{
-                        pathname: "/Student/DoTest",
-                        data: {
-                            "selectTest":selectTest
-                        }
-                    }}>
                         <Button
                             type="primary"
                             onCam
@@ -70,7 +78,6 @@ function TestInterface(props) {
                         >
                             Start Test
                         </Button>
-                    </Link>
                 ]}
             >
                 <p>{selectTest.Description}</p>
@@ -81,6 +88,4 @@ function TestInterface(props) {
 
     )
 }
-
-
-export default TestInterface
+export default connect(mapStateToProps, mapDispatchToProps)(TestInterface)

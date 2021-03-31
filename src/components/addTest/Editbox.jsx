@@ -223,7 +223,7 @@ function Editbox(props) {
 
   }
   const deleteChoice = (index) => {
-    if (choice.length < 1) {
+    if (choice.length < 2) {
       alert("You must have more than 1 choice")
     } else {
       props.questionInfo[props.currentQuestion - 1].choice.splice(index, 1)

@@ -68,8 +68,10 @@ export default {
         STUDENT:{
             TESTLIST:"/studentgettestlist",
             GETSTUDENTINFO:"/getstudentinfo",
-            ALLQUESTIONFORTEST:"/getallquestionfortest"
+            ALLQUESTIONFORTEST:"/getallquestionfortest",
+            UPDATEINPUTEXAM:"/inputexam"
         },
+        ADMIN:"/addteachertosystem",
         USERNAME: '/getusername',
         LOGIN:'/login',
         ALERT:'/acceptjoincourse'
