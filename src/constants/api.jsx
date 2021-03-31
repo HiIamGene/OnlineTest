@@ -48,12 +48,12 @@ export default {
                 DELETETEST:"/deletetest",
                 TEST:{
                     GROUPSTESTLISTUPDATE:'/grouptestlistupdate',
-                    ALLGROUPTESTLISTestlist:'/allgrouptestlist',
+                    ALLGROUPTESTBANK:'/allgrouptestlist',
                     UPDATEDETAILLIST:'/updatedetailtest',
                     UPDATEDRAFT :'/changedraftstatus',
                     UPLOADPIC:API_DOMAIN_NAME+'/uploadpic',
                     GROUPTESTLIST:"/testbankupdate ", //check
-                    ALLQUESTIONINGROUP:"/updateallquestionintest",
+                    ALLQUESTIONINTESTBANK:"/updateallquestionintest",
                     TESTBANKUPDATE:"/testbankupdate "
                 }               
             },
@@ -68,6 +68,7 @@ export default {
         STUDENT:{
             TESTLIST:"/studentgettestlist",
             GETSTUDENTINFO:"/getstudentinfo",
+            ALLQUESTIONFORTEST:"/getallquestionfortest"
         },
         USERNAME: '/getusername',
         LOGIN:'/login',

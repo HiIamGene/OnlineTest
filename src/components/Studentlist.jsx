@@ -38,7 +38,6 @@ function Studentlist(props) {
         }
         else {
             return studentlist.map((e, index) => {
-
                 if (e.Status === props.status) {
                     return(
                     <div key={index} style={{ marginLeft: 30, paddingTop: 10, fontSize: 30, textAlign: 'left' }}><img src={Profile} style={{ width: 50, height: 50 }}></img>    {e.StudentID}  {e.Firstname}  {e.Surname}
