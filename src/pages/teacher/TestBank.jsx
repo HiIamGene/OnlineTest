@@ -12,25 +12,22 @@ import { connect } from 'react-redux';
 const { Title } = Typography;
 const mapStateToProps = state => {
   return {
-
+    groupTestList: state.testBank.groupTestList,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-      
+    setGroupTestList:  (value) => dispatch({ type: 'setGroupTestList', groupTestList: value }),
   };
 }
 
 function TestBank(props) {
 
-  const DeleteGroup=()=>{
 
-  }
   const AddGroups = () => {
-    listGroupTest.push(newGroup)
-    console.log(listGroupTest)
-    setListGroupTest([ ...listGroupTest ])
-    instance.post(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, listGroupTest, {headers: {
+    props.groupTestList.push(newGroup)
+    props.setGroupTestList([ ...props.groupTestList ])
+    instance.post(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, props.groupTestList, {headers: {
       "CourseID": localStorage.getItem('courseID'),
       "Access-Control-Allow-Headers": "*"
     }}).then(res => {
@@ -38,13 +35,16 @@ function TestBank(props) {
       console.warn(err);
     });
   }
-  const [listGroupTest, setListGroupTest] = useState([])
+
   const [input, setInput] = useState("");
   const newGroup =
   {
     "id": uuid(),
     "groupName": input,
-    "questionList": []
+    "numQuestion":"",
+    "maxQuestion":"",
+    "score":"",
+    "questionList":[]
   }
   const keyValue = "3";
   const form = 2;

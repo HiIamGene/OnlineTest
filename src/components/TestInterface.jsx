@@ -18,17 +18,6 @@ function TestInterface(props) {
             console.warn(err);
         })
     }, []);
-    const confirm = (e) => {
-        instance.get(API.V1.TEACHER.COURSELIST.DELETECOURSE, {
-            "CourseCode": e
-        }, {
-        }).then(res => {
-            console.log(res.data)
-        }).catch(err => {
-            console.warn(err);
-        })
-        window.location.reload();
-    }
     const handleOk = () => {
 
     };
@@ -36,9 +25,6 @@ function TestInterface(props) {
         setSelectTest(item)
         setVisible(true)
     }
-    const handleCancel = () => {
-        setVisible(false)
-    };
     const classlistOut = () => {
         if (testList === null) {
             return <Empty style={{
@@ -54,16 +40,8 @@ function TestInterface(props) {
                     {column.map((item, index) => {
                         return (
                             <div key={index}>
-
-
-                                <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => handleOpen(item)} style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{item.Topic}
-
+                                <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => handleOpen(item)} style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{item.Timestart} {item.Topic}
                                 </Button>
-
-                                <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => confirm()}>
-                                    <Button type="link" style={{ color: "#AAAAAA", fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>x</Button>
-                                </Popconfirm>
-
                             </div>
                         )
                     })}
@@ -88,7 +66,7 @@ function TestInterface(props) {
                         <Button
                             type="primary"
                             onCam
-                            onClick={handleOk}
+                            onClick={()=>handleOk()}
                         >
                             Start Test
                         </Button>
