@@ -1,6 +1,6 @@
 import React from 'react';
 import { Result, Button } from 'antd';
-import instance from '../constants/action.js';
+import axios from 'axios'
 import API from "../constants/api.jsx";
 import queryString from 'query-string';
 
@@ -20,7 +20,7 @@ class Accept extends React.Component {
         //console.log(URLSearchParams)
         const query = new URLSearchParams(this.props.location.search);
         if (query.get('studentid') && query.get('coursecode')) {
-            instance.post(API.V1.ALERT, null, {
+            axios.post(API.V1.ALERT, null, {
                 params: {
                     studentid: query.get('studentid')
                     ,
