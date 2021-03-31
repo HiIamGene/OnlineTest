@@ -20,7 +20,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setQuestionsTestbank: (value) => dispatch({ type: 'setQuestionsTestbank', questionTestbank: value }),
+    setQuestionsTestbank: (value) => dispatch({ type: 'setQuestionsTestbank', questionsTestbank: value }),
     setSelectColumn: (value) => dispatch({ type: 'setSelectColumn', selectColumn: value }),
     setCurrentQuestion: (value) => dispatch({ type: 'setCurrentQuestion', currentQuestion: value }),
     setGroupTestList: (value) => dispatch({ type: 'setGroupTestList', groupTestList: value }),
@@ -137,6 +137,8 @@ function Newone(props) {
 
     message.success('Processing complete!')
   }
+  console.log(props.selectColumn)
+  console.log(props.setQuestionsTestbank)
   return (
     <Container>
       <Layout>
