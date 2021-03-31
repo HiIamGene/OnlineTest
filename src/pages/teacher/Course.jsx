@@ -4,7 +4,6 @@ import { ContentContainer, Container, HeadlineWrapper } from '../../components/S
 import SideMenu from '../../components/SideMenu';
 import Head from '../../components/Head';
 import Courselist from '../../components/Courselist';
-import SearchData from '../../components/SearchData';
 import API from "../../constants/api.jsx";
 import instance from "../../constants/action.js";
 

@@ -47,7 +47,7 @@ const mapStateToProps = state => {
     draft: state.createTest.draft,
     currentQuestion: state.createTest.currentQuestion,
     groupsTestbank: state.createTest.groupsTestbank,
-    questionsTestbank:state.createTest.questionsTestbank,
+    questionsTestbank: state.createTest.questionsTestbank,
   };
   //localStorage.getItem('courseCode')
 }
@@ -80,7 +80,6 @@ function CreateTest(props) {
             "CourseID": localStorage.getItem('courseID'),
           }
         }).then(res => {
-          console.log(res.data)
           props.setHeader(res.data)
         }).catch(err => {
           console.warn(err);
@@ -105,7 +104,7 @@ function CreateTest(props) {
             "Access-Control-Allow-Headers": "*"
           }
         }).then(res => {
-          props.setDraft(res.data)
+          props.setDraft(res.data.toString())
         }).catch(err => {
           console.warn(err);
         });
@@ -121,10 +120,11 @@ function CreateTest(props) {
       })
       props.setDraft("true")
     }
-    instance.get(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST,
+
+    instance.get(API.V1.TEACHER.COURSE.TEST.ALLGROUPTESTBANK,
       {
         headers: {
-          "TestId": localStorage.getItem('testID'),
+
           "CourseID": localStorage.getItem('courseID'),
           "Access-Control-Allow-Headers": "*"
         }
@@ -138,16 +138,14 @@ function CreateTest(props) {
       }).catch(err => {
         console.warn(err);
       });
-    instance.get(API.V1.TEACHER.COURSE.TEST.ALLQUESTIONINGROUP,
+    instance.get(API.V1.TEACHER.COURSE.TEST.ALLQUESTIONINTESTBANK,
       {
         headers: {
-          "TestId": localStorage.getItem('testID'),
           "CourseID": localStorage.getItem('courseID'),
           "Access-Control-Allow-Headers": "*"
         }
       }).then(res => {
         if (res.data) {
-          console.log(res.data)
           props.setQuestionsTestbank(res.data)
         } else {
           props.setGroupsTestbank([])
@@ -155,9 +153,9 @@ function CreateTest(props) {
       }).catch(err => {
         console.warn(err);
       });
-      setLoading(false)
+    setLoading(false)
   }
- 
+
     , []);
   //Group
   const onDragEnd = (result, columns) => {
@@ -202,7 +200,7 @@ function CreateTest(props) {
   }
   const onClickSave = async () => {
     let testNewId = ""
-    await instance.post(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, props.groupsTestbank, {
+    await instance.post(API.V1.TEACHER.COURSE.TEST.ALLGROUPTESTBANK, props.groupsTestbank, {
       headers: {
         "CourseID": localStorage.getItem('courseID'),
       }
@@ -211,20 +209,11 @@ function CreateTest(props) {
     }).catch(err => {
       console.warn(err);
     });
-    console.log(props.questionsTestbank)
-    await instance.post(API.V1.TEACHER.COURSE.TEST.ALLQUESTIONINGROUP, props.questionsTestbank, {
-      headers: {
-        "CourseID": localStorage.getItem('courseID'),
-      }
+    // console.log(props.questionsTestbank)
 
-    }).then(res => {
-    }).catch(err => {
-      console.warn(err);
-    });
-    await instance.post(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE, props.headers, {
+    await instance.post(API.V1.TEACHER.COURSE.TEST.ALLQUESTIONINTESTBANK, props.questionsTestbank, {
       headers: {
         "TestId": localStorage.getItem('testID'),
-        "CourseCode": localStorage.getItem('courseCode'),
         "CourseID": localStorage.getItem('courseID'),
       }
 
@@ -236,6 +225,19 @@ function CreateTest(props) {
     if (testNewId === "") {
       testNewId = localStorage.getItem('testID')
     }
+    await instance.post(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE, props.headers, {
+      headers: {
+        "TestId": testNewId,
+        "CourseCode": localStorage.getItem('courseCode'),
+        "CourseID": localStorage.getItem('courseID'),
+      }
+
+    }).then(res => {
+    }).catch(err => {
+      console.warn(err);
+    });
+
+
     await instance.post(API.V1.TEACHER.COURSE.TEST.UPDATEDETAILLIST, props.detail, {
       headers: {
         "TestId": testNewId,
@@ -332,7 +334,7 @@ function CreateTest(props) {
                   )}
                 </div>
                 <div className="steps-action" tyle={{ fontSize: 30 }}>
-                  <Switch style={{ margin: '0 8px' }} defaultChecked={(props.draft === 'true')} onChange={e => onHandleDraft(e)}></Switch>
+                  <Switch style={{ margin: '0 8px' }} checked={(props.draft === 'true')} onChange={e => onHandleDraft(e)}></Switch>
               Draft
 
               {current === steps.length - 1 && (
