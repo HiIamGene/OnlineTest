@@ -65,10 +65,9 @@ function Question(props) {
 
     }
     const onClickdeletColumn = (index) => {
-        let temp = props.selectColumn
         //let select= temp[e].items[column]
-        temp.splice(index, 1)
-        props.setSelectColumn([...temp])
+        props.selectColumn.questionList.splice(index-1, 1)
+        props.setSelectColumn({...props.selectColumn})
     }
     const onSelectquestionName = (index) =>{
         props.selectColumn.maxQuestion=props.selectColumn.questionList.length.toString()

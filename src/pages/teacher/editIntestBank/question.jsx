@@ -137,8 +137,6 @@ function Newone(props) {
 
     message.success('Processing complete!')
   }
-  console.log(props.selectColumn)
-  console.log(props.setQuestionsTestbank)
   return (
     <Container>
       <Layout>

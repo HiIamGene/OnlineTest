@@ -41,9 +41,8 @@ function TestBanklist(props) {
         history.push(`/Teacher/QuestionTestBank`)
     }
     const confirm = (e) => { 
-        let temp = props.groupTestList
-        temp.splice(e, 1)
-        props.setGroupTestList([ ...temp ])
+        props.groupTestList.splice(e, 1)
+        props.setGroupTestList([ ...props.groupTestList ])
         instance.post(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, props.groupTestList, {headers: {
             "CourseID": localStorage.getItem('courseID'),
             "Access-Control-Allow-Headers": "*"
