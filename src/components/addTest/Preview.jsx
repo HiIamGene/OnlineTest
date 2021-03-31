@@ -28,9 +28,8 @@ function Preview(props) {
         //setCurrent()
         Object.entries(props.headers).map(([columnId, column], index) => {
 
-            setPart(index)
+            setPart(index+1)
         })
-        console.log(part)
     })
 
     return (

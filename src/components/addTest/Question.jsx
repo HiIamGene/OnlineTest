@@ -52,7 +52,12 @@ function Question(props) {
     let temp = props.groups
     let id = uuid()
     temp.questionList.push({ "questionID": id, "question": "Please edit this question before save" })
-    props.questionsTestbank.push({ "groupID":props.groups.id ,"questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice": [] })
+    props.questionsTestbank.push({ "groupID":props.groups.id ,"questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice": 
+    [{"check": "false",
+    "choiceID":  uuid(),
+    "data": "",
+    "imageLink": [],
+    "questionID": ""}] })
     props.setQuestionsTestbank(props.questionsTestbank)
     temp.maxQuestion=temp.questionList.length.toString()
     props.setGroups({ ...temp })
