@@ -40,7 +40,19 @@ function TestBanklist(props) {
         props.setSelectColumn(e)
         history.push(`/Teacher/QuestionTestBank`)
     }
-    const confirm = () => { }
+    const confirm = (e) => { 
+        let temp = props.groupTestList
+        temp.splice(e, 1)
+        props.setGroupTestList([ ...temp ])
+        instance.post(API.V1.TEACHER.COURSE.TEST.GROUPTESTLIST, props.groupTestList, {headers: {
+            "CourseID": localStorage.getItem('courseID'),
+            "Access-Control-Allow-Headers": "*"
+          }}).then(res => {
+          }).catch(err => {
+            console.warn(err);
+          });
+
+    }
     const listGroupOut = () => {
         if (props.groupTestList === null) {
             return <Empty style={{
@@ -53,7 +65,7 @@ function TestBanklist(props) {
             return props.groupTestList.map((e, index) =>
                 <div key={index}>
                     <Button onClick={() => onClickTest(e)} type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{e.groupName}</Button>
-                    <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => confirm(e.CourseCode)}>
+                    <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => confirm(index)}>
                         <Button type="link" style={{ color: "#AAAAAA", fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>x</Button>
                     </Popconfirm>
                 </div>

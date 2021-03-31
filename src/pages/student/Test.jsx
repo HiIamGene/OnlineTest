@@ -30,18 +30,10 @@ function Test(props) {
           <ContentContainer >
           <Head />
             <Row >
-              <Col span={5} offset={2}>
+              <Col span={24} offset={2}>
                 <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Test</div>
               </Col>
-              <Col span={5} >
-                <SearchData style={{ marginTop: 30, width: "100%" }} />
-              </Col>
-              <Col span={1} >
-                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
-                  <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
-                </Button>
-              </Col>
-              <Col span={11} ></Col>
+
             </Row>
             <Row>
               <Col span={23} offset={2}>
