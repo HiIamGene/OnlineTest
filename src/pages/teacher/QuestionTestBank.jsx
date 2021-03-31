@@ -58,7 +58,7 @@ function Question(props) {
         let id = uuid()
         props.selectColumn.questionList.push({ "questionID": id, "question": "Please edit this question before save" })
         props.questionsTestbank.push({ "groupID":props.selectColumn.id ,"questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice": [] })
-        props.setQuestionsTestbank(props.questionsTestbank)
+        props.setQuestionsTestbank([...props.questionsTestbank])
         props.selectColumn.maxQuestion=props.selectColumn.questionList.length.toString()
         props.setSelectColumn({ ...props.selectColumn })
 

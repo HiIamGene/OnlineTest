@@ -17,7 +17,7 @@ export default (state = data, action) => {
         case "setCurrentQuestion":
             return { ...state, currentQuestion: action.currentQuestion };
         case "setQuestionsTestbank":
-            return { ...state, questionTestbank: action.questionTestbank };
+            return { ...state, questionsTestbank: action.questionsTestbank };
         default:
             return state;
     }
