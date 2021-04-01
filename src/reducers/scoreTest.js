@@ -4,8 +4,9 @@ const data = {
     header: {},
     test: {},
     studentList: [],
-    ScoreQuestion: [],
-    student: {}
+    scoreQuestion: null,
+    student: {},
+    currentQuestion: 0
 }
 
 //export const countReducer = function (state=data, action) {
@@ -23,7 +24,9 @@ export default (state = data, action) => {
         case "setStudent":
             return { ...state, student: action.student };
         case "setScoreQuestion":
-            return { ...state, ScoreQuestion: action.ScoreQuestion };
+            return { ...state, scoreQuestion: action.scoreQuestion };
+        case "setCurrentQuestion":
+            return { ...state, currentQuestion: action.currentQuestion };
         default:
             return state;
     }

@@ -25,6 +25,7 @@ import InClass_s from './pages/teacher/InCourse';
 import questionNewone from './pages/teacher/editIntestBank/question';
 import Test from './pages/student/Test';
 import DoTest from './pages/student/DoTest';
+import Score from './pages/student/Score';
 //import Todo from './pages/todo';
 import Todo from './pages/Example';
 import Admin from './pages/admin/Admin';
@@ -67,6 +68,9 @@ function App() {
       <Route  path="/Teacher/ScoreTest" exact component={ScoreTest} />
       <Route  path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
       <Route  path="/Teacher/ScoreQuestion" exact component={ScoreQuestion} />
+
+
+      
       <Route  path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
       <Route  path="/Teacher/ScoreHeader" exact component={ScoreHeader} />
       <Route  path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
@@ -75,6 +79,7 @@ function App() {
       <Route  path="/Student/Course" exact component={Course_S} />
       <Route  path="/Student/InCourse" exact component={InClass_s} />
       <Route  path="/Student/Test" exact component={Test} />
+      <Route  path="/Student/Score" exact component={Score} />
       <Route  path="/Student/DoTest" exact component={DoTest} />  
       <Route  path="/admin" exact component={Admin} />  
       <Route  path="/Todo" exact component={Todo} />

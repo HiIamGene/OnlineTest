@@ -4,6 +4,7 @@ import { Upload, Input, Button, Checkbox, Image, message, Layout, Select } from 
 import { UploadOutlined } from '@ant-design/icons';
 import instance from '../../constants/action.js';
 import API from "../../constants/api.jsx";
+import history from "../../utils/history";
 const { TextArea } = Input;
 const mapStateToProps = state => {
     return {
@@ -63,19 +64,52 @@ function DoTest(props) {
     const prev = () => {
         setCurrent(current - 1);
     };
-    const onChangeChoice = (e, questionTestbankId, index) => {
+    const update =()=>{
+        instance.post(API.V1.STUDENT.UPDATEINPUTEXAM,props.questionsTestbank,
+            {
+                headers: {
+                    "TestId": props.selectTest.TestID,
+                    "CourseID": props.selectTest.CourseID,
+                }
+            }).then(res => {
+        
+            }).catch(err => {
+                console.warn(err);
+            });
+        
+    }
+    const onChangeChoice = (e, index, questionTestbankId) => {
         props.questionsTestbank[questionTestbankId].choice[index].answer = e.toString()
         props.setQuestionsTestbank([...props.questionsTestbank])
+        update()
     }
-    const onChangeShortAnswer = (e, questionTestbankId, index) => {
-        props.questionsTestbank[questionTestbankId].choice[index].answer = e.toString()
+    const onChangeShortAnswer = (e, questionTestbankId) => {
+        
+        props.questionsTestbank[questionTestbankId].choice[0].answer = e
         props.setQuestionsTestbank([...props.questionsTestbank])
+        update()
     }
-    const onChangeWriteup = (e, questionTestbankId, index) => {
-        props.questionsTestbank[questionTestbankId].choice[index].answer = e.toString()
+    const onChangeWriteup = (e, questionTestbankId) => {
+        props.questionsTestbank[questionTestbankId].choice[0].answer = e
         props.setQuestionsTestbank([...props.questionsTestbank])
+        update()
     }
-console.log(props.questionsTestbank)
+    const saveAll = () =>{
+        instance.post(API.V1.STUDENT.SUBMIT,props.questionsTestbank,
+            {
+                headers: {
+                    "TestId": props.selectTest.TestID,
+                    "CourseID": props.selectTest.CourseID,
+                }
+            }).then(res => {
+        
+            }).catch(err => {
+                console.warn(err);
+            });
+        history.push(`/`)
+        message.success('Processing complete!')
+    }
+   
     return (
         <Layout>
             <div style={{ justifyContent: "center", height: "100%", width: "100%" }}>
@@ -99,10 +133,10 @@ console.log(props.questionsTestbank)
                                                                         {questionTestbank.questionID === question.questionID && (
                                                                             <div style={{ margin: 30 }}>
                                                                                 {name + 1}.
-                                                                                <p
-                                                                                    dangerouslySetInnerHTML={{
-                                                                                        __html: questionTestbank.data
-                                                                                    }} />
+                                                                                    <p
+                                                                                        dangerouslySetInnerHTML={{
+                                                                                            __html: questionTestbank.data
+                                                                                        }} />
                                                                                 {questionTestbank.type === "Pair" && (
                                                                                     <>
                                                                                     </>
@@ -115,7 +149,7 @@ console.log(props.questionsTestbank)
                                                                                             return (
                                                                                                 <div>
                                                                                                     <Checkbox
-                                                                                                        value={(choice.answer == "true")}
+                                                                                                        checked={(choice.answer == "true")}
                                                                                                         onChange={e => onChangeChoice(e.target.checked, index, questionTestbankId)} //value={this.state.value1}
                                                                                                     >
                                                                                                         {choice.data}
@@ -138,13 +172,13 @@ console.log(props.questionsTestbank)
                                                                                 )}
                                                                                 {questionTestbank.type === "Short Answer" && (
 
-                                                                                    <Input value={questionTestbank.choice[0].answer} onChange={e => onChangeShortAnswer(e.target.value, index, questionTestbankId)} style={{ width: 800 }} placeholder="Your answer">
+                                                                                    <Input value={questionTestbank.choice[0].answer} onChange={e => onChangeShortAnswer(e.target.value, questionTestbankId)} style={{ width: 800 }} placeholder="Your answer">
 
                                                                                     </Input>
                                                                                 )}
                                                                                 {questionTestbank.type === "Write-up" && (
 
-                                                                                    <TextArea value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value, index, questionTestbankId)} rows={4}>
+                                                                                    <TextArea value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value,  questionTestbankId)} rows={4}>
 
                                                                                     </TextArea>
                                                                                 )}
@@ -185,7 +219,7 @@ console.log(props.questionsTestbank)
                         </Button>
                     )}
                     {current === part - 1 && (
-                        <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                        <Button type="primary" onClick={() => saveAll()}>
                             Done
                         </Button>
                     )}

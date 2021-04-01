@@ -26,7 +26,6 @@ function TestInterface(props) {
         }, {
         }).then(res => {
             setTestList(res.data)
-            console.log(res.data)
         }).catch(err => {
             console.warn(err);
         })

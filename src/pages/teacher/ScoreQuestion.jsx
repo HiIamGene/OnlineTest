@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Typography, Row, Col, Button, Pagination, Select } from 'antd';
+import { Layout, Typography, Row, Col, Button, Pagination, Select, Spin } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
@@ -15,23 +15,27 @@ const mapStateToProps = state => {
     return {
         student: state.scoreTest.student,
         test: state.scoreTest.test,
-        ScoreQuestion: state.scoreTest.ScoreQuestion,
-        header: state.scoreTest.header
+        scoreQuestion: state.scoreTest.scoreQuestion,
+        header: state.scoreTest.header,
+        studentList: state.scoreTest.studentList,
+        currentQuestion: state.scoreTest.currentQuestion
+
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        setScoreQuestion: (value) => dispatch({ type: 'setScoreQuestion', studentList: value }),
+        setScoreQuestion: (value) => dispatch({ type: 'setScoreQuestion', scoreQuestion: value }),
+        setCurrentQuestion: (value) =>dispatch({ type: 'setCurrentQuestion', currentQuestion: value }),
     };
 }
 function ScoreQuestion(props) {
-    useEffect(() => {   
+    useEffect(() => {
         instance.get(API.V1.TEACHER.TESTBANK.ALLANSWER,
             {
                 headers: {
                     "TestId": props.test.testID,
-                    "StudentID": props.student.student,
+                    "StudentID": props.student.studentID,
                     "uuid": props.header.uuid,
                     "Access-Control-Allow-Headers": "*"
                 }
@@ -41,9 +45,18 @@ function ScoreQuestion(props) {
                 console.warn(err);
             });
     }, []);
-    const onChangeScore = () => {
+    useEffect(() => {
+        if (props.scoreQuestion) {
+            console.log(props.scoreQuestion)
+            setLoading(true)
+        }
 
+    }, [props.scoreQuestion]);
+    const onChangeScore = (e) => {
+        props.scoreQuestion[0].score =e
+        props.setScoreQuestion([... props.scoreQuestion])
     }
+    const [loading, setLoading] = useState(false);
     const [current, setcurrent] = useState(1);
     const keyValue = "4";
     const form = 2;
@@ -51,58 +64,84 @@ function ScoreQuestion(props) {
         setcurrent(page);
     };
     const children = [];
-    for (let i = 10; i < 36; i++) {
-        children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+    props.studentList.map((student)=>{
+        children.push(<Option key={student.studentID}>{student.studentID}</Option>);
+    })
+    const onSave = ()=>{
+        instance.post(API.V1.TEACHER.SCORETEST,{
+            "questionID":props.scoreQuestion[current-1].questionID,
+            "score":props.scoreQuestion[current-1].score
+        },
+            {
+                headers: {
+                    "TestId": props.test.testID,
+                    "StudentID": props.student.studentID,
+                    "Access-Control-Allow-Headers": "*"
+                }
+            }).then(res => {
+            }).catch(err => {
+                console.warn(err);
+            });
     }
+
     return (
         <Container>
             <Layout >
                 <SideMenu keyValue={keyValue} form={form} />
                 <Layout style={{ marginLeft: 180 }}>
                     <ContentContainer >
+
                         <Head history={props.history} />
+                        {loading ?
+                            <Row gutter={16} type="flex" justify="space-around">
+                                <Col span={19} offset={2}>
+                                    <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>{props.test.topic} - 
+                                    <Select value= { props.student.studentID} style={{ width: 200 }}>
+                                        {children}
+                                    </Select></div>
+                                </Col>
 
-                        <Row gutter={16} type="flex" justify="space-around">
-                            <Col span={19} offset={2}>
-                                <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>{props.test.topic} - <Select style={{ width: 200 }}>
-                                    {children}
-                                </Select></div>
-                            </Col>
+                                <Col span={2} ></Col>
+                                <Col span={21} offset={2}>
+                                    <div style={{ fontSize: 40 }}>     <p
+                                        dangerouslySetInnerHTML={{
+                                            __html: props.scoreQuestion[current-1].data
+                                        }} />   </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <div style={{ fontSize: 30 }}>Answer: {props.scoreQuestion[current-1].answer}</div>
 
-                            <Col span={2} ></Col>
-                            <Col span={21} offset={2}>
-                                <div style={{ fontSize: 40 }}>1. Data Communication ในมุมมองของนักศึกษาหมายถึงอะไร ?</div>
-                                <br />
-                                <br />
-                                <br />
-                                <div style={{ fontSize: 30 }}>Answer: การส่งเนื้อหาข้อมูลจากฝ่ายหนึ่งไปยังอีกฝ่ายหนึ่งในรูปแบบใดก็ได้</div>
-
-                            </Col>
-                            <Col span={24} style={{ height: 300 }}></Col>
-                            <Col span={2} offset={19} style={{ fontSize: 30 }}>
-                                Score
-
-                            </Col>
-                            <Col span={1} style={{ fontSize: 30 }}>
-                                <input style={{ marginTop: 10, height: 35, width: 35 }} />
-
-                            </Col>
-                            <Col span={1} style={{ fontSize: 30 }}>
-                                /6
+                                </Col>
+                                <Col span={24} style={{ height: 300 }}></Col>
+                                <Col span={2} offset={19} style={{ fontSize: 30 }}>
+                                    Score
 
                             </Col>
-                            <Col span={1}></Col>
-                            <Col span={5}>
-                                <Pagination current={current} onChange={onChange} total={50} />
-                            </Col>
-                            <Col span={6} offset={18}>
+                                <Col span={1} style={{ fontSize: 30 }}>
+                                    <input value={props.scoreQuestion[0].score} onChange={e => onChangeScore(e.target.value)} style={{ marginTop: 10, height: 35, width: 35 }} />
+
+                                </Col>
+                                <Col span={1} style={{ fontSize: 30 }}>
+                                    /{props.scoreQuestion[current-1].maxscore}
+
+                                </Col>
+                                <Col span={1}></Col>
+                                <Col span={5}>
+                                    <Pagination current={current} onChange={onChange} total={props.scoreQuestion.length*10} />
+                                </Col>
+                                <Col span={6} offset={18}>
 
 
-                                <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
-                                    <div style={{ fontSize: 30 }}>Save</div>
-                                </Button>
-                            </Col>
-                        </Row>
+                                    <Button onClick={()=>onSave()} type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
+                                        <div style={{ fontSize: 30 }}>Save</div>
+                                    </Button>
+                                </Col>
+                            </Row>
+                            :
+
+                            <Spin />
+                        }
                     </ContentContainer>
                 </Layout>
             </Layout>
