@@ -30,6 +30,7 @@ function DoTest(props) {
                     "CourseID": props.selectTest.CourseID,
                 }
             }).then(res => {
+               
                 props.setStateHeaders(res.data)
             }).catch(err => {
                 console.warn(err);
@@ -42,6 +43,7 @@ function DoTest(props) {
                     "StudentID": props.selectTest.CourseID
                 }
             }).then(res => {
+                console.log(res.data)
                 props.setQuestionsTestbank(res.data)
 
             }).catch(err => {

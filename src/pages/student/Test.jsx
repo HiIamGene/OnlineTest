@@ -30,13 +30,13 @@ function Test(props) {
           <ContentContainer >
           <Head />
             <Row >
-              <Col span={24} offset={2}>
+              <Col span={22} offset={2}>
                 <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Test</div>
               </Col>
 
             </Row>
             <Row>
-              <Col span={23} offset={2}>
+              <Col span={22} offset={2}>
                 <TestInterface />
               </Col>
             </Row>
