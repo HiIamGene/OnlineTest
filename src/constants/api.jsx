@@ -63,13 +63,17 @@ export default {
                 ALLSTUDENTTESTBANK:'/getallstudentanswerinformation',
                 ALLANSWER:	'/getstudentAnswer'
 
-            }
+            },
+            SCORETEST:"/scoreAnswer"
+
         },
         STUDENT:{
             TESTLIST:"/studentgettestlist",
             GETSTUDENTINFO:"/getstudentinfo",
             ALLQUESTIONFORTEST:"/getallquestionfortest",
-            UPDATEINPUTEXAM:"/inputexam"
+            UPDATEINPUTEXAM:"/inputexam",
+            SUBMIT:"/submitanswer",
+            SCORE:"/studentgetscore"
         },
         ADMIN:"/addteachertosystem",
         USERNAME: '/getusername',
