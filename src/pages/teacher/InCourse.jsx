@@ -91,7 +91,7 @@ class InCourse extends React.Component {
             <ContentContainer >
               <Head />
               <Row >
-                <Col  span={20} offset={2}>
+                <Col span={20} offset={2}>
                   <div style={{ height: 10 }}>
                   </div>
                   <div style={{ background: "#FFB766", height: 250 }}>
@@ -131,14 +131,16 @@ class InCourse extends React.Component {
                   </div>
                 </Col>
                 <Col span={16}   >
-                  <Testlist />  
+                  <Testlist />
                 </Col>
                 <Col span={2} ></Col>
-                <Link to={{ pathname: "/Teacher/Detail", }}>
-                  <div style={{ marginLeft: 1250, marginTop: 200 }}>
+
+                <div style={{ marginLeft: 1250, marginTop: 200 }}>
+                  <Link to={{ pathname: "/Teacher/Detail", }}>
                     <Button style={{ background: "#F43A09", color: "#ffffff", width: 300, height: 70, fontSize: 30 }} onClick={localStorage.setItem('testID', "")}>Add Test</Button>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
+
               </Row>
             </ContentContainer>
           </Layout>

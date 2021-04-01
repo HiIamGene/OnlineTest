@@ -11,18 +11,8 @@ function Homepage(props) {
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
     const [token, setToken] = useState("")
-    useEffect(() => {
-        /*if (localStorage.getItem('token')) {
-            if (localStorage.getItem("role") === "teacher") {
-                props.history.push(`/Teacher/Course`)
-            }
-            else if (localStorage.getItem("role") === "student") {
-                props.history.push(`/Student/Test`)
-            }
-        }*/
-    }, [token]);
-    const onFinish = values => {
-        instance.post(API.V1.LOGIN, null, {
+    const onAdd = values => {
+        instance.post(API.V1.ADMIN, null, {
             params: {
                 username: values.username
                 ,
@@ -52,7 +42,7 @@ function Homepage(props) {
                     Username:<Input onChange={e=>setUsername(e.target.value)}/>
                     Password:<Input onChange={e=>setPassword(e.target.value)}/>
                     Email:<Input onChange={e=>setEmail(e.target.value)}/>
-                    <Button>
+                    <Button onClick={()=>onAdd()}>
                         <div style={{ font: 'Josefin Sans', fontSize: 20 }}>Add Teacher</div>
                     </Button>
                 </Col>

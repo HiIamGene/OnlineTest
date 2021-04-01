@@ -78,7 +78,7 @@ export default {
         ADMIN:"/addteachertosystem",
         USERNAME: '/getusername',
         LOGIN:'/login',
-        ALERT:'/acceptjoincourse'
+        ALERT:API_DOMAIN_NAME+'/acceptjoincourse'
     },
     TEST:'/test'
 }
