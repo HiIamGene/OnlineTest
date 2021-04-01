@@ -39,8 +39,8 @@ function Preview(props) {
                     if(index===current){
                     return (
                         <div>
-                            <div style={{ marginTop: 30, background: "#FFB766", height: 100, width: "93%", fontWeight: 'bold', display: "inline-block" }}>
-                                <div style={{ marginLeft: 30, color: "#ffffff", fontSize: 60 }}>{column.name}</div>
+                            <div style={{ marginTop: 30, background: "#FFB766", width: "100%", fontWeight: 'bold', display: "inline-block" }}>
+                                <div style={{ marginLeft: 30, color: "#ffffff", fontSize: 50 }}>{column.name}</div>
                             </div>
                             {column.items.map((item, key) => {
                                 return (
@@ -53,11 +53,10 @@ function Preview(props) {
                                                             <div style={{ fontSize: 30, background: '#FFFFFF', margin: 30, textAlign: 'left' }}>
                                                                 {questionTestbank.questionID === question.questionID && (
                                                                     <div style={{ margin: 30 }}>
-                                                                        {name + 1}.
                                                                         <p
                                                                             dangerouslySetInnerHTML={{
                                                                                 __html: questionTestbank.data
-                                                                            }} />
+                                                                            }}/> 
                                                                         {questionTestbank.type === "Pair" && (
                                                                             <>
                                                                             </>

@@ -67,7 +67,7 @@ function Detail(props) {
       </Col>
       <Col span={22} offset={2} >
         <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
-          Duration :
+          Duration (Minute) :
                   <br />
           <Input style={{ width: 850 }} value={props.detail.Duration} onChange={e=>updateDuration(e.target.value)}/>
         </div>
