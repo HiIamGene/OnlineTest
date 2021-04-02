@@ -74,7 +74,7 @@ function DoTest(props) {
                     }
                 })
             })
-            
+
             props.setQuestionsTestbank([...props.questionsTestbank])
             setPart(index + 1)
         })
@@ -170,7 +170,7 @@ function DoTest(props) {
                                                                     <div style={{ fontSize: 30, background: '#FFFFFF', margin: 30, textAlign: 'left' }}>
                                                                         {questionTestbank.questionID === question.questionID && (
                                                                             <div style={{ margin: 30 }}>
-                                                                                {name+1}.
+                                                                                {name + 1}.
                                                                                 <span
                                                                                     dangerouslySetInnerHTML={{
                                                                                         __html: questionTestbank.data
@@ -191,9 +191,8 @@ function DoTest(props) {
                                                                                                         onChange={e => onChangeChoice(e.target.checked, index, questionTestbankId)}
                                                                                                         style={{ fontSize: 25 }}
                                                                                                     >
-                                                                                                       
-                                                                                                    </Checkbox>
-                                                                                                    {String.fromCharCode(index + 97)}.) {choice.data}
+
+                                                                                                    </Checkbox>     {String.fromCharCode(index + 97)}.) {choice.data}
                                                                                                     {choice.imageLink.length >= 1 && (
                                                                                                         <div>
                                                                                                             <Image
@@ -212,7 +211,7 @@ function DoTest(props) {
                                                                                 )}
                                                                                 {questionTestbank.type === "Short Answer" && (
 
-                                                                                    <Input value={questionTestbank.choice[0].answer} onChange={e => onChangeShortAnswer(e.target.value, questionTestbankId)} style={{ fontSize:30,width: 800 }} placeholder="Your answer">
+                                                                                    <Input value={questionTestbank.choice[0].answer} onChange={e => onChangeShortAnswer(e.target.value, questionTestbankId)} style={{ fontSize: 30, width: 800 }} placeholder="Your answer">
 
                                                                                     </Input>
                                                                                 )}

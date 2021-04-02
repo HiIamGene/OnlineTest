@@ -29,7 +29,7 @@ function Score(props) {
             <Head />
             <Row >
               <Col span={22} offset={2}>
-                <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Test</div>
+                <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Score</div>
               </Col>
 
               {
@@ -41,8 +41,17 @@ function Score(props) {
                       <p>mean : {data.mean}</p>
                       <p>sd : {data.sd}</p>
                     </div>} title={data.topic}>
-                    <Button disabled type="primary" htmlType="submit" className="login-form-button"  style={{ fontSize: 30, background: '#989898', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{data.topic} {data.totalScore} </Button>
+                      <Col span={22} offset={2}>
+                        <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#989898', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>
+
+                          <Row>
+                            <Col span={10}>{data.topic} </Col>
+                            <Col span={14}>Score : {data.totalScore}</Col>
+                          </Row>
+                        </Button>
+                      </Col>
                     </Popover>
+
                   )
                 })
               }
