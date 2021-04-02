@@ -133,9 +133,9 @@ function Group(props) {
               <Row gutter={2} type="flex" justify="space-around">
                 <div style={{ fontSize: 25, background: '#F4A940', width: 1400, height: 50, marginTop: 30, display: "block" }}>
                   <Row gutter={2} type="flex" justify="space-around">
-                    <Col span={3} offset={1} style={{ color: '#FFFFFF', fontWeight: "bold", marginTop: 5 }} >Header :</Col>
+                    <Col span={3} offset={1} style={{ color: '#FFFFFF', fontWeight: "bold", marginTop: 5 }} >Part :</Col>
                     <Col span={12} >
-                      <Input defaultValue={props.headers[columnId].name} onChange={e => { handleHeader(e.target.value, columnId) }}></Input>
+                      <Input style={{ fontSize: 20 ,marginTop:5}} defaultValue={props.headers[columnId].name} onChange={e => { handleHeader(e.target.value, columnId) }}></Input>
                     </Col>
                     <Col span={8}></Col>
                   </Row>
@@ -182,16 +182,17 @@ function Group(props) {
                                                 setDefaultValue={setDefaultValue}
                                                 columnId={columnId}
                                                 index={index}
+                                                style={{fontSize:25}}
                                               />
                                             </Col>
                                             <Col span={5} offset={1} style={{ color: '#FFFFFF' }}><div>Number of questions</div></Col>
                                             <Col span={1} style={{ color: '#000000' }}>
-                                              <input defaultValue={props.headers[columnId].items[index].numQuestion} onChange={e => handleNumQ(e.target.value, columnId, index)} style={{ marginTop: 10, height: 35, width: 35 }} />
+                                              <input defaultValue={props.headers[columnId].items[index].numQuestion} onChange={e => handleNumQ(e.target.value, columnId, index)} style={{  marginLeft:20, height: 35, width: 35 }} />
                                             </Col>
                                             <Col span={1} style={{ color: '#FFFFFF' }}>/{props.headers[columnId].items[index].maxQuestion}</Col>
                                             <Col span={1} style={{ color: '#FFFFFF' }}>Score</Col>
                                             <Col span={1} style={{ color: '#000000' }}>
-                                              <input defaultValue={props.headers[columnId].items[index].score} onChange={e => handleScore(e.target.value, columnId, index)} style={{ marginTop: 10, height: 35, width: 35 }} />
+                                              <input  defaultValue={props.headers[columnId].items[index].score} onChange={e => handleScore(e.target.value, columnId, index)} style={{ marginLeft:10, height: 35, width: 35 }} />
                                             </Col>
                                             <Col span={3} >
                                               <Button onClick={() => selectAddQuestion(props.headers, columnId, index)} type="primary" style={{ marginTop: 10, background: '#F43A09' }} >Add Question</Button>

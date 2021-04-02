@@ -30,7 +30,7 @@ function Head(props) {
       else if (localStorage.getItem["role"] === "student"){
         props.history.push(`/Student/Course`)
       }
-    }*/
+    }*/ 
     instance.post(API.V1.USERNAME).then(res => {
       setUsername(res.data)
     }).catch(err => {
@@ -40,21 +40,21 @@ function Head(props) {
 
 
   return (
-    <div >
-      <Row>
-        <Col span={1} offset={2}>
-          <img src={Profile} alt="Logo" style={{ width: 40, marginTop: 60, marginLeft: 30 }} />
+
+      <Row style={{ marginTop:50 }}>
+        <Col span={1} offset={1}>
+          <img src={Profile} alt="Logo" style={{ width: 40 }} />
         </Col>
-        <Col span={17} >
-          <div style={{ fontSize: 30, marginTop: 55 }}>{username}</div>
+        <Col span={18} >
+          <div style={{ fontSize: 30,marginRight:50}}>{username}</div>
         </Col>
-        <Col span={3}>
-            <a onClick={logout} style={{ marginTop: 50, width: 200, height: 60 ,fontSize:30,  textDecorationLine: 'underline'}} >
+        <Col span={4}>
+            <a onClick={logout} style={{ fontSize:30,  textDecorationLine: 'underline'}} >
               Logout
             </a>
         </Col>
       </Row>
-    </div>
+
   );
 }
 

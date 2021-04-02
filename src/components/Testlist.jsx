@@ -39,17 +39,14 @@ function Testlist(props) {
             return testlist.map((e, index) =>
                 <div key={index}>
 
-                    <Button onClick={()=>onClickTest(e.TestID)} type="primary" htmlType="submit" className="login-form-button" style={{ marginLeft: 11, background: "#FFB766", height: 125, width: "93%", marginTop: 30, textAlign: 'left' }}>
-
+                    <Button onClick={()=>onClickTest(e.TestID)} type="primary" htmlType="submit" className="login-form-button" style={{ marginLeft: 16, background: "#FFB766", height: 125, width: "93%", marginTop: 30, textAlign: 'left' }}>
                         <div style={{ height: "15px" }}></div>
                         <div style={{ fontSize: 30, color: "#ffffff", marginLeft: 20, fontWeight: "bold" }}>{e.Topic}</div>
-                        <div style={{ fontSize: 20, color: "#ffffff", marginLeft: 10, fontWeight: "bold" }}>{e.Datestart} {e.Timestart}</div>
-
+                        <div style={{ fontSize: 20, color: "#ffffff", marginLeft: 20, fontWeight: "bold" }}>{e.Datestart} {e.Timestart}</div>
                     </Button>
                     <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => onClickDelete(e.TestID)}>
                         <Button type="link" style={{ color: "#AAAAAA", fontSize: 50, fontWeight: 'bold', display: "inline-block" }} >x</Button>
                     </Popconfirm>
-
                 </div>
             )
         }

@@ -53,20 +53,20 @@ function ScoreTestList(props) {
 
                             <Button onClick={()=>onClickTest(e)} type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#AFD36C', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>
                                 <Row type="flex" justify="space-around">
-                                    <Col span={9}>{e.topic}</Col>
+                                    <Col span={8}>{e.topic}</Col>
                                     <Col span={1} offset={6}><img style={{ width: 37, height: 27 }} src={userInfo} /></Col>
                                     <Col span={3} >{e.paticipant.replace(":", "/")}</Col>
-                                    <Col span={2}>process : {e.process}%</Col>
+                                    <Col span={3}>process : {e.process}%</Col>
                                     <Col span={1}></Col>
                                 </Row>
                             </Button>
                         :
                             <Button onClick={()=>onClickTest(e)} type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>
                                 <Row type="flex" justify="space-around">
-                                    <Col span={9}>{e.topic}</Col>
+                                    <Col span={8}>{e.topic}</Col>
                                     <Col span={1} offset={6}><img style={{ width: 37, height: 27 }} src={userInfo} /></Col>
                                     <Col span={3} >{e.paticipant.replace(":", "/")}</Col>
-                                    <Col span={2}>process : {e.process}%</Col>
+                                    <Col span={3}>process : {e.process}%</Col>
                                     <Col span={1}></Col>
                                 </Row>
                             </Button>

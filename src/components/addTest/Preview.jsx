@@ -31,7 +31,6 @@ function Preview(props) {
             setPart(index+1)
         })
     })
-console.log(props.questionsTestbank)
     return (
         <div style={{ justifyContent: "center", height: "100%", width: "100%" }}>
             <div>

@@ -6,6 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import{ Provider, connect }from 'react-redux'
 import { createStore } from 'redux'
 import { store } from './configure-store.js';
+
+import './assets/fonts/Mitr-Bold.ttf'
+import './assets/fonts/Mitr-ExtraLight.ttf'
+import './assets/fonts/Mitr-Light.ttf'
+import './assets/fonts/Mitr-Bold.ttf'
+import './assets/fonts/Mitr-Bold.ttf'
+import './assets/fonts/Mitr-Bold.ttf'
 const MyApp = () => (
     <Provider store={store}>
         <App />

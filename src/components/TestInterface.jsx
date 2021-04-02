@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setSelectTest:  (value) => dispatch({ type: 'setSelectTest', selectTest: value }),
+        setSelectTest: (value) => dispatch({ type: 'setSelectTest', selectTest: value }),
     };
 }
 function TestInterface(props) {
@@ -25,6 +25,7 @@ function TestInterface(props) {
         instance.get(API.V1.STUDENT.TESTLIST, {
         }, {
         }).then(res => {
+
             setTestList(res.data)
         }).catch(err => {
             console.warn(err);
@@ -51,12 +52,22 @@ function TestInterface(props) {
                 <div style={{ fontSize: 50 }}>
                     {columnId}
                     {column.map((item, index) => {
-                        return (
-                            <div key={index}>
-                                <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => handleOpen(item)} style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{item.Timestart} {item.Topic}
-                                </Button>
-                            </div>
-                        )
+                        if (item.Situation === "start") {
+                            return (
+                                <div key={index}>
+                                    <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => handleOpen(item)} style={{ fontSize: 30, background: '#F4A940', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{item.Timestart} {item.Topic}
+                                    </Button>
+                                </div>
+                            )
+                        }
+                        else {
+                            return (
+                                <div key={index}>
+                                    <Button disabled type="primary" htmlType="submit" className="login-form-button" onClick={() => handleOpen(item)} style={{ fontSize: 30, background: '#989898', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{item.Timestart} {item.Topic}
+                                    </Button>
+                                </div>
+                            )
+                        }
                     })}
                 </div>
             )
@@ -70,12 +81,12 @@ function TestInterface(props) {
                 title={selectTest.Topic}
                 onCancel={() => setVisible(false)}
                 footer={[
-                        <Button
-                            type="primary"
-                            onCam
-                            onClick={()=>handleOk()}
-                        >
-                            Start Test
+                    <Button
+                        type="primary"
+                        onCam
+                        onClick={() => handleOk()}
+                    >
+                        Start Test
                         </Button>
                 ]}
             >

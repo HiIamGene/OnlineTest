@@ -62,12 +62,11 @@ class Teacher extends React.Component {
                 /></div>
               </Col>
               <Col span={4} offset={2} >
-
-                <input style={{ marginLeft: 15, width: '100%', marginTop: 32 }} onChange={e => this.updateTeacherid(e.target.value)} ></input>
+                <input placeholder="Teacher ID" style={{ marginLeft: 15, width: '100%', marginTop: 32 ,fontSize:20}} onChange={e => this.updateTeacherid(e.target.value)} ></input>
               </Col>
               <Col span={1}  >
-                <Button onClick={()=>this.addTeacher()} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 32, marginTop: 30 }} >
-                  <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
+                <Button onClick={()=>this.addTeacher()} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 40, marginTop: 30 }} >
+                  <div style={{ fontSize: 20 }}>+</div>
                 </Button>
 
               </Col>
