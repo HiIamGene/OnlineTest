@@ -147,12 +147,12 @@ function Editbox(props) {
     const data = editor.getData();
     setContent(data)
     props.questionInfo[props.currentQuestion - 1].data = data
-    if (data!=="") {
-      if(data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length-1].length<=60){
-        props.questionInfo[props.currentQuestion - 1].question = data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length-1]
+    if (data !== "") {
+      if (data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length - 1].length <= 60) {
+        props.questionInfo[props.currentQuestion - 1].question = data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length - 1]
       }
-      else{
-        props.questionInfo[props.currentQuestion - 1].question = data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length-1].slice(0,60)+"..."
+      else {
+        props.questionInfo[props.currentQuestion - 1].question = data.split("</", 1)[0].split(">")[data.split("</", 1)[0].split(">").length - 1].slice(0, 60) + "..."
       }
     }
     props.setQuestionInfo([...props.questionInfo])
@@ -194,8 +194,44 @@ function Editbox(props) {
     },
     table: {
       contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-    }
+    },
+    image: {
+      styles: [
+        'alignLeft', 'alignCenter', 'alignRight'
+      ],
+
+      resizeOptions: [
+        {
+          name: 'resizeImage:original',
+          label: 'Original',
+          value: null
+        },
+        {
+          name: 'resizeImage:50',
+          label: '50%',
+          value: '50'
+        },
+        {
+          name: 'resizeImage:75',
+          label: '75%',
+          value: '75'
+        }
+      ],
+      toolbar: [
+        'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+        '|',
+        'resizeImage',
+        '|',
+        'imageTextAlternative'
+      ]
+    },
+
+    // You need to configure the image toolbar, too, so it shows the new style
+    // buttons as well as the resize buttons.
+
+    
   }
+  
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -209,7 +245,27 @@ function Editbox(props) {
     props.questionInfo[props.currentQuestion - 1].choice = [...props.questionInfo[props.currentQuestion - 1].choice, { "choiceID": id, "questionID": questionID, "data": "", "imageLink": [], "check": "false" }];
     props.setQuestionInfo([...props.questionInfo])
   }
+  const fixPair = () => {
+    props.questionInfo[props.currentQuestion - 1].choice = []
+    let id = uuid()
+    let id2 = uuid()
+    let questionID = props.questionInfo[props.currentQuestion - 1].questionID
+    props.questionInfo[props.currentQuestion - 1].choice = [...props.questionInfo[props.currentQuestion - 1].choice, { "choiceID": id, "questionID": questionID, "data": "", "imageLink": [], "check": id2 }];
+    let questionID2 = props.questionInfo[props.currentQuestion - 1].questionID
+    props.questionInfo[props.currentQuestion - 1].choice = [...props.questionInfo[props.currentQuestion - 1].choice, { "choiceID": id2, "questionID": questionID2, "data": "", "imageLink": [], "check": id }];
+    props.setQuestionInfo([...props.questionInfo])
+  }
+  const addChoicePair = () => {
+    let id = uuid()
+    let id2 = uuid()
+    let questionID = props.questionInfo[props.currentQuestion - 1].questionID
+    props.questionInfo[props.currentQuestion - 1].choice = [...props.questionInfo[props.currentQuestion - 1].choice, { "choiceID": id, "questionID": questionID, "data": "", "imageLink": [], "check": id2 }];
+    let questionID2 = props.questionInfo[props.currentQuestion - 1].questionID
+    props.questionInfo[props.currentQuestion - 1].choice = [...props.questionInfo[props.currentQuestion - 1].choice, { "choiceID": id2, "questionID": questionID2, "data": "", "imageLink": [], "check": id }];
+    props.setQuestionInfo([...props.questionInfo])
+  }
   const onChangeInput = (value, index) => {
+    console.log(props.questionInfo[props.currentQuestion - 1])
     props.questionInfo[props.currentQuestion - 1].choice[index].data = value
     //setChoice([...choice])
     //props.questionInfo[props.currentQuestion - 1].choice = choice;
@@ -239,6 +295,7 @@ function Editbox(props) {
           <div className="Editbox">
             <div className="editor">
               <CKEditor
+                style={{fontSize:20}}
                 required
                 data={content}
                 editor={ClassicEditor}
@@ -289,54 +346,59 @@ function Editbox(props) {
             )}
             {props.value === "Pair" && (
               <>
-                {props.questionInfo[props.currentQuestion - 1].choice.map((item, index) => {
-                  return (
-                    <Row gutter={16} type="flex" justify="space-around">
-                      <Col span={8} style={{ marginTop: 20 }}>
-                        <Input defaultValue={item.data} onChange={e => onChangeInput(e.target.value, index)}></Input>
-                      </Col>
-                      <Col span={3} style={{ maxHeight: 10 }}>
-                        <Upload
-                          action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
-                          listType="picture-card"
-                          fileList={item.imageLink}
-                          headers={token}
-                          onChange={e => onhandleChange(e, index)}
-                          name="myFile"
-                          maxCount={1}
-                        >
-                          {item.imageLink.length >= 1 ? null : uploadButton}
-                        </Upload>
+                {
+                  props.questionInfo[props.currentQuestion - 1].choice.map((item, index) => {
+                    if (props.questionInfo[props.currentQuestion - 1].choice.length % 2 == 1) { addChoice() }
+                    if (index % 2 == 0) {
+                      return (
+                        <Row gutter={16} type="flex" justify="space-around">
+                          <Col span={8} style={{ marginTop: 20 }}>
+                            <Input value={item.data} onChange={e => onChangeInput(e.target.value, index)}></Input>
+                          </Col>
+                          <Col span={3} style={{ maxHeight: 10 }}>
+                            <Upload
+                              action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
+                              listType="picture-card"
+                              fileList={item.imageLink}
+                              headers={token}
+                              onChange={e => onhandleChange(e, index)}
+                              name="myFile"
+                              maxCount={1}
+                            >
+                              {item.imageLink.length >= 1 ? null : uploadButton}
+                            </Upload>
 
-                      </Col>
-                      <Col span={8} style={{ marginTop: 20 }}>
-                        <Input defaultValue={item.data} onChange={e => onChangeInput(e.target.value, index)}></Input>
-                      </Col>
-                      <Col span={3} style={{ maxHeight: 10 }}>
-                        <Upload
-                          action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
-                          listType="picture-card"
-                          fileList={item.imageLink}
-                          headers={token}
-                          onChange={e => onhandleChange(e, index)}
-                          name="myFile"
-                          maxCount={1}
-                        >
-                          {item.imageLink.length >= 1 ? null : uploadButton}
-                        </Upload>
-                      </Col>
-                      <Col span={1} style={{ maxHeight: 10 }}>
-                        <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => deleteChoice(index)}
-                        >
-                          <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
-                        </Popconfirm>
-                      </Col>
-                      <Col span={1} >
-                      </Col>
-                    </Row>
-                  )
-                })}
-                <Button type="link" style={{ marginTop: 25, width: 200, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} onClick={() => addChoice()}>add choice</Button>
+                          </Col>
+                          <Col span={8} style={{ marginTop: 20 }}>
+                            <Input value={props.questionInfo[props.currentQuestion - 1].choice[index + 1].data} onChange={e => onChangeInput(e.target.value, index + 1)}></Input>
+                          </Col>
+                          <Col span={3} style={{ maxHeight: 10 }}>
+                            <Upload
+                              action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
+                              listType="picture-card"
+                              fileList={item.imageLink}
+                              headers={token}
+                              onChange={e => onhandleChange(e, index + 1)}
+                              name="myFile"
+                              maxCount={1}
+                            >
+                              {item.imageLink.length >= 1 ? null : uploadButton}
+                            </Upload>
+                          </Col>
+                          <Col span={1} style={{ maxHeight: 10 }}>
+                            <Popconfirm title="Are you sure？" okText="Yes" cancelText="No" onConfirm={() => deleteChoice(index)}
+                            >
+                              <Button type="primary" shape="circle" size="large" style={{ background: '#F4A940', color: '#FFFFFF' }}>x</Button>
+                            </Popconfirm>
+                          </Col>
+                          <Col span={1} >
+                          </Col>
+                        </Row>
+                      )
+                    }
+
+                  })}
+                <Button type="link" style={{ marginTop: 25, width: 200, fontSize: 16, textDecorationLine: 'underline', color: "blue" }} onClick={() => addChoicePair()}>add choice</Button>
               </>
             )}
             {props.value === "Short Answer" && (

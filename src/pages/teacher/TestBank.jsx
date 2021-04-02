@@ -61,12 +61,12 @@ function TestBank(props) {
               <Col span={4} offset={2}>
                 <div style={{ fontSize: 50, fontWeight: 'bold' }}>TestBank</div>
               </Col>
-              <Col span={5} style={{ marginTop: 30 }} >
-                <Input onChange={e=>setInput(e.target.value)}></Input>
+              <Col span={5} style={{ marginTop: 20 }} >
+                <Input placeholder="Group Name" style={{ marginLeft: 15,fontSize:20, width: '100%' }} onChange={e=>setInput(e.target.value)}></Input>
               </Col>
               <Col span={1} >
-                <Button onClick={() => AddGroups()} type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} >
-                  <div style={{ font: 'Josefin Sans', fontSize: 10 }} >+</div>
+                <Button onClick={() => AddGroups()} type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 40, marginTop: 20 }} >
+                  <div style={{  fontSize: 20 }} >+</div>
                 </Button>
               </Col>
              

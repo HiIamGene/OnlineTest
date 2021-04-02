@@ -100,10 +100,10 @@ class InCourse extends React.Component {
                       <div style={{ fontSize: 30, color: "#ffffff", fontWeight: "bold" }}>{localStorage.getItem('courseName')}
                       </div>
                       {this.state.editDescription ?
-                        <TextArea rows={4} style={{ width: "90%" }} defaultValue={this.state.description} onChange={e => this.setState({ description: e.target.value })} />
+                        <TextArea  rows={4} style={{ width: "90%" ,fontSize: 18}} defaultValue={this.state.description} onChange={e => this.setState({ description: e.target.value })} />
 
                         :
-                        <div style={{ fontSize: 30, color: "#ffffff", height: 100 }}>{this.state.description}</div>
+                        <div style={{ fontSize: 20, color: "#ffffff", height: 100 }}>{this.state.description}</div>
                       }
 
                       <div style={{ fontSize: 20, color: "#ffffff" }}> Course code: {localStorage.getItem('courseCode')}
@@ -119,8 +119,8 @@ class InCourse extends React.Component {
                 <Col span={4} offset={2} style={{ marginTop: "2%" }}>
                   <div style={{ background: "#FFB766", height: 250, width: "100%" }}>
                     <div style={{ height: "15px" }}></div>
-                    <div style={{ color: "#ffffff", minHeight: 150, marginLeft: 20, fontWeight: "bold" }}>
-                      <div style={{ fontSize: 30 }}>Announce</div>
+                    <div style={{ color: "#ffffff", minHeight: 150, marginLeft: 20 }}>
+                      <div style={{ fontSize: 30 , fontWeight: "bold"}}>Announce</div>
                       {this.state.editAnnounce ?
                         <TextArea rows={4} style={{ width: "90%" }} defaultValue={this.state.announce} onChange={e => this.setState({ announce: e.target.value })} />
                         :

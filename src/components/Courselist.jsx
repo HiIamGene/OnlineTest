@@ -12,7 +12,6 @@ function Classlist(props) {
         }, {
         }).then(res => {
             setclasslist(res.data)
-            console.log(res.data)
         }).catch(err => {
             console.warn(err);
         })
@@ -33,7 +32,7 @@ function Classlist(props) {
         if (classlist === null) {
             return <Empty style={{
                 marginLeft: "auto",
-                marginRight: "auto"
+                marginRight: "auto" 
             }}
                 description={false} />
         }

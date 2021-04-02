@@ -53,25 +53,34 @@ function DoTest(props) {
     useEffect(() => {
         Object.entries(props.headers).map(([columnId, column], index) => {
             column.items.map((item, key) => {
-
                 item.questionList.map((question, name) => {
+                    if (part != 0) {
+                        if (name >= parseInt(props.headers[columnId].items[key].numQuestion)) {
+                            props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
+                                if (questionTestbank.questionID == question.questionID) {
 
-
-                    props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
-                        if (name > parseInt(props.headers[columnId].items[key].numQuestion)) {
-                            props.questionsTestbank.slice(questionTestbankId, 1)
+                                    props.questionsTestbank.slice(questionTestbankId, 1)
+                                }
+                            })
                         }
-                        else if (questionTestbank.questionID !== question.questionID) {
-                            props.questionsTestbank.slice(questionTestbankId, 1)
+                        else {
+                            props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
+                                if (questionTestbank.questionID == question.questionID) {
+                                    console.log(question.questionID)
+                                    setQuestionsInTest(questionsInTest => [...questionsInTest, props.questionsTestbank[questionTestbankId]])
+                                }
+                            })
                         }
-                    })
-                    props.setQuestionsTestbank([...props.questionsTestbank])
+                    }
                 })
             })
+            
+            props.setQuestionsTestbank([...props.questionsTestbank])
             setPart(index + 1)
         })
 
     }, [props.headers]);
+    const [questionsInTest, setQuestionsInTest] = useState([])
     const [part, setPart] = useState(0)
     const [current, setCurrent] = useState(0);
     const [url, setUrl] = useState("");
@@ -82,7 +91,7 @@ function DoTest(props) {
         setCurrent(current - 1);
     };
     const update = () => {
-        instance.post(API.V1.STUDENT.UPDATEINPUTEXAM, props.questionsTestbank,
+        instance.post(API.V1.STUDENT.UPDATEINPUTEXAM, questionsInTest,
             {
                 headers: {
                     "TestId": props.selectTest.TestID,
@@ -96,23 +105,23 @@ function DoTest(props) {
 
     }
     const onChangeChoice = (e, index, questionTestbankId) => {
-        props.questionsTestbank[questionTestbankId].choice[index].answer = e.toString()
-        props.setQuestionsTestbank([...props.questionsTestbank])
-        update()
+        questionsInTest[questionTestbankId].choice[index].answer = e.toString()
+        setQuestionsInTest([...questionsInTest])
+        //update()
     }
     const onChangeShortAnswer = (e, questionTestbankId) => {
 
-        props.questionsTestbank[questionTestbankId].choice[0].answer = e
-        props.setQuestionsTestbank([...props.questionsTestbank])
-        update()
+        questionsInTest[questionTestbankId].choice[0].answer = e
+        setQuestionsInTest([...questionsInTest])
+        //update()
     }
     const onChangeWriteup = (e, questionTestbankId) => {
-        props.questionsTestbank[questionTestbankId].choice[0].answer = e
-        props.setQuestionsTestbank([...props.questionsTestbank])
-        update()
+        questionsInTest[questionTestbankId].choice[0].answer = e
+        setQuestionsInTest([...questionsInTest])
+        //update()
     }
     const saveAll = () => {
-        instance.post(API.V1.STUDENT.SUBMIT, props.questionsTestbank,
+        instance.post(API.V1.STUDENT.SUBMIT, questionsInTest,
             {
                 headers: {
                     "TestId": props.selectTest.TestID,
@@ -156,13 +165,13 @@ function DoTest(props) {
                                                 {item.questionList.map((question, name) => {
                                                     return (
                                                         <>
-                                                            {props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
+                                                            {questionsInTest.map((questionTestbank, questionTestbankId) => {
                                                                 return (
                                                                     <div style={{ fontSize: 30, background: '#FFFFFF', margin: 30, textAlign: 'left' }}>
                                                                         {questionTestbank.questionID === question.questionID && (
                                                                             <div style={{ margin: 30 }}>
-
-                                                                                <p
+                                                                                {name+1}.
+                                                                                <span
                                                                                     dangerouslySetInnerHTML={{
                                                                                         __html: questionTestbank.data
                                                                                     }} />
@@ -179,10 +188,12 @@ function DoTest(props) {
                                                                                                 <div>
                                                                                                     <Checkbox
                                                                                                         checked={(choice.answer == "true")}
-                                                                                                        onChange={e => onChangeChoice(e.target.checked, index, questionTestbankId)} //value={this.state.value1}
+                                                                                                        onChange={e => onChangeChoice(e.target.checked, index, questionTestbankId)}
+                                                                                                        style={{ fontSize: 25 }}
                                                                                                     >
-                                                                                                        {choice.data}
+                                                                                                       
                                                                                                     </Checkbox>
+                                                                                                    {String.fromCharCode(index + 97)}.) {choice.data}
                                                                                                     {choice.imageLink.length >= 1 && (
                                                                                                         <div>
                                                                                                             <Image
@@ -201,7 +212,7 @@ function DoTest(props) {
                                                                                 )}
                                                                                 {questionTestbank.type === "Short Answer" && (
 
-                                                                                    <Input value={questionTestbank.choice[0].answer} onChange={e => onChangeShortAnswer(e.target.value, questionTestbankId)} style={{ width: 800 }} placeholder="Your answer">
+                                                                                    <Input value={questionTestbank.choice[0].answer} onChange={e => onChangeShortAnswer(e.target.value, questionTestbankId)} style={{ fontSize:30,width: 800 }} placeholder="Your answer">
 
                                                                                     </Input>
                                                                                 )}
@@ -246,19 +257,19 @@ function DoTest(props) {
 
                     })}
                 </div>
-                <div style={{ marginLeft: 30 }}>
+                <div style={{ marginLeft: 20, marginTop: 100 }}>
                     {current > 0 && (
-                        <Button type="primary" style={{ margin: '0 8px' }} onClick={() => prev()}>
+                        <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => prev()}>
                             Previous
                         </Button>
                     )}
                     {current < part - 1 && (
-                        <Button type="primary" onClick={() => next()}>
+                        <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => next()}>
                             Next
                         </Button>
                     )}
                     {current === part - 1 && (
-                        <Button type="primary" onClick={() => saveAll()}>
+                        <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => saveAll()}>
                             Done
                         </Button>
                     )}

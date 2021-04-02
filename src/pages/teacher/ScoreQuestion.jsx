@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Typography, Row, Col, Button, Pagination, Select, Spin } from 'antd';
+import { Layout, Typography, Row, Col, Button, Pagination, Select, Empty } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ContentContainer, Container, HeadlineWrapper } from '../../components/Styles';
 import SideMenu from '../../components/SideMenu';
@@ -140,7 +140,11 @@ function ScoreQuestion(props) {
                             </Row>
                             :
 
-                            <Spin />
+                            <Empty style={{
+                                marginLeft: "auto",
+                                marginRight: "auto" 
+                            }}
+                                description={false} />
                         }
                     </ContentContainer>
                 </Layout>

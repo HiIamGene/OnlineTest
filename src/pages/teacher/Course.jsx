@@ -110,11 +110,11 @@ class Course extends React.Component {
                   <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Course</div>
                 </Col>
                 <Col span={5} >
-                  <Input style={{ marginTop: 30, width: "100%" }} onChange={e => this.updateAddCourse(e.target.value)} />
+                  <Input placeholder="Course ID"style={{ fontSize:20,marginTop: 30, width: "100%" }} onChange={e => this.updateAddCourse(e.target.value)} />
                 </Col>
                 <Col span={1} >
-                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: '100%', height: 32, marginTop: 30 }} onClick={() => this.addCourse}>
-                    <div style={{ font: 'Josefin Sans', fontSize: 10 }}>+</div>
+                  <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize:20,background: '#F43A09', color: '#FFFFFF', width: '80%', height: 40, marginTop: 30 }} onClick={() => this.addCourse}>
+                   +
                   </Button>
                 </Col>
                 <Col span={11} ></Col>

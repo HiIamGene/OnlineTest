@@ -52,7 +52,7 @@ function ScoreHeader(props) {
                                 <div style={{ fontSize: 50, fontWeight: 'bold' }}>{props.test.topic}</div>
                             </Col>
                             <Col span={14} ></Col>
-                            <Col span={22} offset={2} style={{ fontSize: 20, fontWeight: 'bold' }}> Header</Col>
+                            <Col span={22} offset={2} style={{ fontSize: 30, fontWeight: 'bold' }}>Part</Col>
                             <Col span={22} offset={2} ><HeaderList headerlist={props.headerlist}/></Col>
                         </Row>
                     </ContentContainer>

@@ -52,6 +52,7 @@ class UserInfo extends React.Component {
     instance.post(API.V1.TEACHER.INFO.GETINFO, {
     }, {
     }).then(res => {
+      console.log(res.data)
       this.setState({ firstname: res.data.Firstname })
       this.setState({ surname: res.data.Surname })
       this.setState({ email: res.data.Email })
@@ -72,8 +73,8 @@ class UserInfo extends React.Component {
 
                   <Row gutter={16} type="flex" justify="space-around">
                   </Row>
-                  <img src={Profile} alt={"Profile"} style={{ height: 200, marginLeft: 150 }} />
-                  <div style={{ marginLeft: 150, fontSize: 30, fontWeight: "bold" }} >T.testteacher</div>
+                  <img src={Profile} alt={"Profile"} style={{ height: 200, marginLeft: 150  ,marginTop:50}} />
+
                   <div style={{ marginLeft: 150, fontSize: 30 }} >Name : <input onChange={e => this.updatefirstname(e.target.value)} defaultValue={this.state.firstname}></input></div>
 
                   <div style={{ marginLeft: 150, fontSize: 30 }} >Surname : <input onChange={e => this.updatesurname(e.target.value)} defaultValue={this.state.surname}></input></div>
@@ -86,8 +87,8 @@ class UserInfo extends React.Component {
 
                   <Row gutter={16} type="flex" justify="space-around">
                   </Row>
-                  <img src={Profile}  alt={"Profile"} style={{ height: 200, marginLeft: 150 }} />
-                  <div style={{ marginLeft: 150, fontSize: 30, fontWeight: "bold" }} >T.testteacher</div>
+                  <img src={Profile}  alt={"Profile"} style={{ height: 200, marginLeft: 150  ,marginTop:50}} />
+                
                   <div style={{ marginLeft: 150, fontSize: 30 }} >Name : {this.state.firstname}</div>
 
                   <div style={{ marginLeft: 150, fontSize: 30 }} >Surname : {this.state.surname}</div>

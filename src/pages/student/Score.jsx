@@ -2,41 +2,57 @@ import React, { useEffect, useState } from "react"
 import instance from '../../constants/action.js';
 import API from "../../constants/api.jsx";
 import { Link } from 'react-router-dom';
-import { Layout, Row, Col, Button, Select, Modal, Input } from 'antd';
+import { Layout, Row, Col, Button, Popover } from 'antd';
 import { ContentContainer, Container } from '../../components/Styles';
 import SideMenu from '../../components/SideMen2';
 import Head from '../../components/Head';
 import TestInterface from '../../components/TestInterface';
 import SearchData from '../../components/SearchData';
 function Score(props) {
-    useEffect(() => {
-        instance.get(API.V1.STUDENT.SCORE
-            ).then(res => {
-    
-            console.log(res.data)
-        }).catch(err => {
-            console.warn(err);
-        })
-    }, []);
-    const keyValue = "3";
-    const form = 1;
+  useEffect(() => {
+    instance.get(API.V1.STUDENT.SCORE
+    ).then(res => {
+      setDatas(res.data)
+    }).catch(err => {
+      console.warn(err);
+    })
+  }, []);
+  const keyValue = "3";
+  const form = 1;
+  const [datas, setDatas] = useState([])
+  return (
+    <Container>
+      <Layout>
+        <SideMenu keyValue={keyValue} form={form} />
+        <Layout style={{ marginLeft: 180 }}>
+          <ContentContainer >
+            <Head />
+            <Row >
+              <Col span={22} offset={2}>
+                <div style={{ fontSize: 50, fontWeight: 'bold' }}>Your Test</div>
+              </Col>
 
-    return (
-        <Container>
-        <Layout>
-          <SideMenu keyValue={keyValue} form={form} />
-          <Layout style={{ marginLeft: 180 }}>
-            <ContentContainer >
-              <Head />
-              <Row >
-        
+              {
+                datas.map((data, index) => {
+                  return (
+                    <Popover content={<div>
+                      <p>max : {data.max}</p>
+                      <p>min : {data.min}</p>
+                      <p>mean : {data.mean}</p>
+                      <p>sd : {data.sd}</p>
+                    </div>} title={data.topic}>
+                    <Button disabled type="primary" htmlType="submit" className="login-form-button"  style={{ fontSize: 30, background: '#989898', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>{data.topic} {data.totalScore} </Button>
+                    </Popover>
+                  )
+                })
+              }
 
-              </Row>
-            </ContentContainer>
-          </Layout>
+            </Row>
+          </ContentContainer>
         </Layout>
-      </Container>
-    )
+      </Layout>
+    </Container>
+  )
 }
 
 

@@ -47,5 +47,9 @@
   "devDependencies": {
     "@ant-design/icons": "^4.5.0",
     "@ckeditor/ckeditor5-alignment": "^25.0.0"
+  },
+  "rnpm": {
+    "assets": [ "./assets/fonts/" ]
   }
+    
 }

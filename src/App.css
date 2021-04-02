@@ -1,4 +1,6 @@
 @import '~antd/dist/antd.css';
+	
+
 .multicolor-bar {
 	margin: 20px 20%;
 }
@@ -50,5 +52,21 @@
 }
 body {
 	min-width: 1400px;
-
 }
+
+body {
+	font-family:Mitr;
+  }
+  code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+	  monospace;
+  }
+  
+  
+  
+  @font-face {
+	font-family: "Mitr";
+	src: local("Mitr"),
+	  url("./assets/fonts/Mitr-Regular.ttf") format("truetype");
+	font-weight: normal;
+  }
