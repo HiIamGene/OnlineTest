@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { connect } from 'react-redux';
-import { Upload, Input, Button, Radio, Image ,message} from 'antd';
+import { Upload, Input, Button, Checkbox, Image ,message} from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 const { TextArea } = Input;
 const mapStateToProps = state => {
@@ -52,7 +52,8 @@ function Preview(props) {
                                                             <div style={{ fontSize: 30, background: '#FFFFFF', margin: 30, textAlign: 'left' }}>
                                                                 {questionTestbank.questionID === question.questionID && (
                                                                     <div style={{ margin: 30 }}>
-                                                                        <p
+                                                                        {name + 1}.
+                                                                        <span
                                                                             dangerouslySetInnerHTML={{
                                                                                 __html: questionTestbank.data
                                                                             }}/> 
@@ -67,9 +68,9 @@ function Preview(props) {
                                                                                 {questionTestbank.choice.map((choice, index) => {
                                                                                     return (
                                                                                         <div>
-                                                                                            <Radio>
-                                                                                                {choice.data}
-                                                                                            </Radio>
+                                                                                             <Checkbox>
+                                                                                                
+                                                                                            </Checkbox> {String.fromCharCode(index + 97)}.) {choice.data}
                                                                                             {choice.imageLink.length >= 1 && (
                                                                                                 <div>
                                                                                                     <Image
