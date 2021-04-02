@@ -30,7 +30,6 @@ function DoTest(props) {
                     "CourseID": props.selectTest.CourseID,
                 }
             }).then(res => {
-               
                 props.setStateHeaders(res.data)
             }).catch(err => {
                 console.warn(err);
@@ -43,7 +42,6 @@ function DoTest(props) {
                     "StudentID": props.selectTest.CourseID
                 }
             }).then(res => {
-                console.log(res.data)
                 props.setQuestionsTestbank(res.data)
 
             }).catch(err => {
@@ -54,31 +52,48 @@ function DoTest(props) {
 
     useEffect(() => {
         Object.entries(props.headers).map(([columnId, column], index) => {
+            column.items.map((item, key) => {
+
+                item.questionList.map((question, name) => {
+
+
+                    props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
+                        if (name > parseInt(props.headers[columnId].items[key].numQuestion)) {
+                            props.questionsTestbank.slice(questionTestbankId, 1)
+                        }
+                        else if (questionTestbank.questionID !== question.questionID) {
+                            props.questionsTestbank.slice(questionTestbankId, 1)
+                        }
+                    })
+                    props.setQuestionsTestbank([...props.questionsTestbank])
+                })
+            })
             setPart(index + 1)
         })
 
     }, [props.headers]);
     const [part, setPart] = useState(0)
     const [current, setCurrent] = useState(0);
+    const [url, setUrl] = useState("");
     const next = () => {
         setCurrent(current + 1);
     };
     const prev = () => {
         setCurrent(current - 1);
     };
-    const update =()=>{
-        instance.post(API.V1.STUDENT.UPDATEINPUTEXAM,props.questionsTestbank,
+    const update = () => {
+        instance.post(API.V1.STUDENT.UPDATEINPUTEXAM, props.questionsTestbank,
             {
                 headers: {
                     "TestId": props.selectTest.TestID,
                     "CourseID": props.selectTest.CourseID,
                 }
             }).then(res => {
-        
+
             }).catch(err => {
                 console.warn(err);
             });
-        
+
     }
     const onChangeChoice = (e, index, questionTestbankId) => {
         props.questionsTestbank[questionTestbankId].choice[index].answer = e.toString()
@@ -86,7 +101,7 @@ function DoTest(props) {
         update()
     }
     const onChangeShortAnswer = (e, questionTestbankId) => {
-        
+
         props.questionsTestbank[questionTestbankId].choice[0].answer = e
         props.setQuestionsTestbank([...props.questionsTestbank])
         update()
@@ -96,22 +111,34 @@ function DoTest(props) {
         props.setQuestionsTestbank([...props.questionsTestbank])
         update()
     }
-    const saveAll = () =>{
-        instance.post(API.V1.STUDENT.SUBMIT,props.questionsTestbank,
+    const saveAll = () => {
+        instance.post(API.V1.STUDENT.SUBMIT, props.questionsTestbank,
             {
                 headers: {
                     "TestId": props.selectTest.TestID,
                     "CourseID": props.selectTest.CourseID,
                 }
             }).then(res => {
-        
+
             }).catch(err => {
                 console.warn(err);
             });
         history.push(`/`)
         message.success('Processing complete!')
     }
-   
+    const onhandleChange = (newFileList, index) => {
+        if (newFileList.file.status === "done") {
+            /*props.questionInfo[props.currentQuestion - 1].choice[index].imageLink = [{ uid: '-1', url: newFileList.file.response.URL }]
+            //setChoice([...choice])
+            //props.questionInfo[props.currentQuestion - 1].choice = choice;
+            props.setQuestionInfo([...props.questionInfo])*/
+            setUrl(newFileList.file.response.URL)
+        }
+        if (newFileList.file.status === "removed") {
+            /*props.questionInfo[props.currentQuestion - 1].choice[index].imageLink = []
+            props.setQuestionInfo([...props.questionInfo])*/
+        }
+    }
     return (
         <Layout>
             <div style={{ justifyContent: "center", height: "100%", width: "100%" }}>
@@ -120,7 +147,7 @@ function DoTest(props) {
                         if (index === current) {
                             return (
                                 <div>
-                                    <div style={{ marginTop: 30, background: "#FFB766",  width: "100%", fontWeight: 'bold', display: "inline-block" }}>
+                                    <div style={{ marginTop: 30, background: "#FFB766", width: "100%", fontWeight: 'bold', display: "inline-block" }}>
                                         <div style={{ marginLeft: 30, color: "#ffffff", fontSize: 50 }}>{column.name}</div>
                                     </div>
                                     {column.items.map((item, key) => {
@@ -134,11 +161,11 @@ function DoTest(props) {
                                                                     <div style={{ fontSize: 30, background: '#FFFFFF', margin: 30, textAlign: 'left' }}>
                                                                         {questionTestbank.questionID === question.questionID && (
                                                                             <div style={{ margin: 30 }}>
-                                                                              
-                                                                                    <p
-                                                                                        dangerouslySetInnerHTML={{
-                                                                                            __html: questionTestbank.data
-                                                                                        }} />
+
+                                                                                <p
+                                                                                    dangerouslySetInnerHTML={{
+                                                                                        __html: questionTestbank.data
+                                                                                    }} />
                                                                                 {questionTestbank.type === "Pair" && (
                                                                                     <>
                                                                                     </>
@@ -180,15 +207,25 @@ function DoTest(props) {
                                                                                 )}
                                                                                 {questionTestbank.type === "Write-up" && (
 
-                                                                                    <TextArea value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value,  questionTestbankId)} rows={4}>
+                                                                                    <TextArea value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value, questionTestbankId)} rows={4}>
 
                                                                                     </TextArea>
                                                                                 )}
                                                                                 {questionTestbank.type === "Upload Answer" && (
+                                                                                    <div>
+                                                                                        <Upload
+                                                                                            action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
+                                                                                            fileList={item.imageLink}
+                                                                                            onChange={e => onhandleChange(e, index)}
+                                                                                            name="myFile"
+                                                                                            maxCount={1}
+                                                                                        >
+                                                                                            <Button icon={<UploadOutlined />}>Upload</Button>
 
-                                                                                    <Upload {...props}>
-                                                                                        <Button icon={<UploadOutlined />}>Upload</Button>
-                                                                                    </Upload>
+                                                                                        </Upload>
+                                                                                        <a href={url}>{url}</a>
+                                                                                    </div>
+
                                                                                 )}
 
                                                                             </div>
