@@ -3,37 +3,31 @@ import { Row, Col, Button, Input, Form } from 'antd';
 import { Typography } from 'antd';
 import instance from '../../constants/action.js';
 import API from "../../constants/api.jsx";
-
+import Head from '../../components/Head';
 const { Title } = Typography;
 
 function Homepage(props) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
-    const [token, setToken] = useState("")
     const onAdd = values => {
         instance.post(API.V1.ADMIN, null, {
-            params: {
-                username: values.username
+            headers: {
+                username: username
                 ,
-                password: values.password
+                password: password,
+                email:email,
             }
 
         }).then(res => {
-            if (res.data === "Wrong Username or Password") {
-                alert("Wrong Username or Password")
-            }
-            else {
-                setToken(res.data["token"])
-                localStorage.setItem('token', "Bearer " + res.data["token"])
-                localStorage.setItem('role', res.data["role"])
-            }
+            
         }).catch(err => {
             console.warn(err);
         })
     };
     return (
         <div>
+                     <Head />
             <Row style={{ background: '#ffffff', marginTop: 90 }}>
                 <Col span={14} offset={0}>
                 </Col>

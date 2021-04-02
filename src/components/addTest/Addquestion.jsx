@@ -102,7 +102,7 @@ function Addquestion(props) {
     props.setQuestionsTestbank([...temp])
     setvalue(value)
   }
-  console.log(questionInfo)
+  
   return (
     <>
       {!loading ?
