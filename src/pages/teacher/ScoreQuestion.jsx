@@ -95,16 +95,13 @@ function ScoreQuestion(props) {
                         {loading ?
                             <Row gutter={16} type="flex" justify="space-around">
                                 <Col span={19} offset={2}>
-                                    <div style={{ fontSize: 50, fontWeight: 'bold', display: "inline-block" }}>{props.test.topic} - 
-                                    <Select value= { props.student.studentID} style={{ width: 200 }}>
-                                        {children}
-                                    </Select></div>
+                                    <div style={{ fontSize: 40, fontWeight: 'bold', display: "inline-block" }}>{props.test.topic} - <Select value= { props.student.studentID} style={{fontSize:30}}>{children}</Select></div>
                                 </Col>
 
                                 <Col span={2} ></Col>
                                 <Col span={21} offset={2}>
-                                    <div style={{ fontSize: 40 }}>     <p
-                                        dangerouslySetInnerHTML={{
+                                    <div style={{ fontSize: 30 }}>     
+                                    <p dangerouslySetInnerHTML={{
                                             __html: props.scoreQuestion[current-1].data
                                         }} />   </div>
                                     <br />
@@ -119,7 +116,7 @@ function ScoreQuestion(props) {
 
                             </Col>
                                 <Col span={1} style={{ fontSize: 30 }}>
-                                    <input value={props.scoreQuestion[0].score} onChange={e => onChangeScore(e.target.value)} style={{ marginTop: 10, height: 35, width: 35 }} />
+                                    <input value={props.scoreQuestion[current-1].score} onChange={e => onChangeScore(e.target.value)} style={{ marginTop: 10, height: 35, width: 35 }} />
 
                                 </Col>
                                 <Col span={1} style={{ fontSize: 30 }}>

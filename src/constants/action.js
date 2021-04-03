@@ -13,7 +13,12 @@ const instance = axios.create({
     delete API.defaults.headers.Authorization
   }
 }*/
+if (localStorage.getItem('token')) {
+  instance.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+} else {
+  delete instance.defaults.headers.Authorization
 
+}
 
 
 export default instance

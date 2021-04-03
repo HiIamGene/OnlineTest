@@ -156,7 +156,7 @@ function DoTest(props) {
                             return (
                                 <div>
                                     <div style={{ marginTop: 30, background: "#FFB766", width: "100%", fontWeight: 'bold', display: "inline-block" }}>
-                                        <div style={{ marginLeft: 30, color: "#ffffff", fontSize: 50 }}>{column.name}</div>
+                                        <div style={{ marginLeft: 30, color: "#ffffff", fontSize: 40 }}>{column.name}</div>
                                     </div>
                                     {column.items.map((item, key) => {
                                         return (

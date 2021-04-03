@@ -34,9 +34,9 @@ function ScoreTestList(props) {
                         <Button onClick={()=>onClickTest(e)}type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#AFD36C', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>
                             <Row type="flex" justify="space-around">
                                 <Col span={3}>{e.studentID}</Col>
-                                <Col span={3}>{e.firstname}</Col>
-                                <Col span={9}>{e.surname}</Col>
-                                <Col span={2} offset={5} >process : {e.completePercent}%</Col>
+                                <Col span={5}>{e.firstname}</Col>
+                                <Col span={7}>{e.surname}</Col>
+                                <Col span={5} offset={3} >process : {e.completePercent}%</Col>
                                 <Col span={1}></Col>
                             </Row>
 
@@ -46,9 +46,9 @@ function ScoreTestList(props) {
 
                             <Row type="flex" justify="space-around">
                                 <Col span={3}>{e.studentID}</Col>
-                                <Col span={3}>{e.firstname}</Col>
-                                <Col span={9}>{e.surname}</Col>
-                                <Col span={2} offset={5} >process : {e.completePercent}%</Col>
+                                <Col span={5}>{e.firstname}</Col>
+                                <Col span={7}>{e.surname}</Col>
+                                <Col span={5} offset={3} >process : {e.completePercent}%</Col>
                                 <Col span={1}></Col>
                             </Row>
                         </Button>
