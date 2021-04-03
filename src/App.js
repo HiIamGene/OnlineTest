@@ -73,7 +73,6 @@ function App() {
       
       <Route  path="/Teacher/GroupTestBank" exact component={GroupTestBank} />
       <Route  path="/Teacher/ScoreHeader" exact component={ScoreHeader} />
-      <Route  path="/Teacher/ScoreStudent" exact component={ScoreStudent} />
       <Route  path="/Teacher/EditQuestionTestBank" exact component={questionNewone} />
       <Route  path="/Student/UserInfo" exact component={UserInfo_S} />
       <Route  path="/Student/Course" exact component={Course_S} />

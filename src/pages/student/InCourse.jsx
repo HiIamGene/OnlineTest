@@ -94,10 +94,10 @@ class InCourse extends React.Component {
                 <Col  span={20} offset={2}>
                   <div style={{ height: 10 }}>
                   </div>
-                  <div style={{ background: "#FFB766", height: 250 }}>
+                  <div style={{ background: "#FFB766", height: 250}}>
                     <div style={{ height: "30px" }}></div>
                     <div style={{ marginLeft: "55px", height: "15px" }}>
-                      <div style={{ fontSize: 30, color: "#ffffff", fontWeight: "bold" }}>{localStorage.getItem('courseName')}
+                      <div style={{ fontSize: 30, color: "#ffffff", fontWeight: "bold"  }}>{localStorage.getItem('courseName')}
                       </div>
                         <div style={{ fontSize: 30, color: "#ffffff", height: 100 }}>{this.state.description}</div>
 

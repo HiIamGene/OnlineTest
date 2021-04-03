@@ -52,7 +52,7 @@ function Detail(props) {
         </div>
       </Col>
       <Col span={22} offset={2} >
-        <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }}  >
+        <div style={{ fontSize: 30, fontWeight: "bold", display: "block"}}  >
           Description :
                   <br />
           <Input style={{ width: 850 }} value={props.detail.Description} onChange={e=>updateDescription(e.target.value)}/>
