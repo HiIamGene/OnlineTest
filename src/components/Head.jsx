@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
 import { Row, Col } from 'antd';
 import Profile from '../assets/icon/Profile.png';
-import instance from '../constants/action.js';
+import instance,{setAuth} from '../constants/action.js';
 import API from "../constants/api.jsx"
 import history from "./../utils/history";
 
@@ -20,6 +20,7 @@ function Head(props) {
   const [username,setUsername] = useState([])
   const logout = () => {
     localStorage.clear();
+    setAuth()
     history.push('/')
   }
   useEffect(() => {

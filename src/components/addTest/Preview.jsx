@@ -95,7 +95,7 @@ function Preview(props) {
                                                                         )}
                                                                         {questionTestbank.type === "Write-up" && (
 
-                                                                            <TextArea>
+                                                                            <TextArea style={{fontSize:25}} rows={4}> 
 
                                                                             </TextArea>
                                                                         )}

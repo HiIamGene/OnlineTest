@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from 'react';
 import { Row, Col, Button, Input, Form } from 'antd';
 import { Typography } from 'antd';
-import instance from '../constants/action.js';
+import instance, {setAuth} from '../constants/action.js';
 import API from "../constants/api.jsx";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import writing from '../assets/img/writing.png'
@@ -40,6 +40,7 @@ function Homepage (props){
         setToken( res.data["token"])
         localStorage.setItem('token', "Bearer " + res.data["token"])
         localStorage.setItem('role', res.data["role"])
+        setAuth()
       }
     }).catch(err => {
       console.warn(err);

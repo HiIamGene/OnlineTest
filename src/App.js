@@ -48,11 +48,11 @@ instance.interceptors.request.use(
 function App() {
   useEffect(() => {
     if (localStorage.getItem('token') ==null){
-      history.push(`/`)
+      //history.push(`/`)
     }
   }, []);
   return (
-    <Router history={history} username="T.Somchai">
+    <Router history={history} >
       <Route  path="/" exact component={Homepage} />
       <Route  path="/Accept" exact component={Accept} />
       <Route  path="/Teacher/Course" exact component={Course} />
