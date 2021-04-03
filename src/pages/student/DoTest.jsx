@@ -79,6 +79,18 @@ function DoTest(props) {
         })
         props.setQuestionsTestbank([...props.questionsTestbank])
     }, [props.headers]);
+    /*useEffect(() => {
+        
+        Object.entries(props.headers).map(([columnId, column], index) => {
+            column.items.map((item, key) => {
+                while (props.headers[columnId].items[key].questionList.length >parseInt(props.headers[columnId].items[key].numQuestion)){
+                        props.headers[columnId].items[key].questionList.slice(Math.floor(Math.random() * item.questionList.length), 1)  
+                        props.setStateHeaders({...props.headers})   
+                    }
+            })
+        })
+        console.log(props.headers)
+    }, [props.questionsTestbank]);*/
     const [questionsInTest, setQuestionsInTest] = useState([])
     const [part, setPart] = useState(0)
     const [current, setCurrent] = useState(0);
@@ -106,18 +118,18 @@ function DoTest(props) {
     const onChangeChoice = (e, index, questionTestbankId) => {
         questionsInTest[questionTestbankId].choice[index].answer = e.toString()
         setQuestionsInTest([...questionsInTest])
-        update()
+        //update()
     }
     const onChangeShortAnswer = (e, questionTestbankId) => {
 
         questionsInTest[questionTestbankId].choice[0].answer = e
         setQuestionsInTest([...questionsInTest])
-        update()
+        //update()
     }
     const onChangeWriteup = (e, questionTestbankId) => {
         questionsInTest[questionTestbankId].choice[0].answer = e
         setQuestionsInTest([...questionsInTest])
-        update()
+        //update()
     }
     const saveAll = () => {
         instance.post(API.V1.STUDENT.SUBMIT, questionsInTest,
@@ -216,7 +228,7 @@ function DoTest(props) {
                                                                                 )}
                                                                                 {questionTestbank.type === "Write-up" && (
 
-                                                                                    <TextArea style={{fontSize:25}} value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value, questionTestbankId)} rows={4}>
+                                                                                    <TextArea style={{ fontSize: 25 }} value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value, questionTestbankId)} rows={4}>
 
                                                                                     </TextArea>
                                                                                 )}

@@ -12,7 +12,7 @@ function Classlist(props) {
         }, {
         }).then(res => {
             setclasslist(res.data)
-            console.log(res.data)
+   
         }).catch(err => {
             console.warn(err);
         })
