@@ -23,6 +23,19 @@ const mapDispatchToProps = dispatch => {
 }
 function DoTest(props) {
     useEffect(() => {
+        instance.get(API.V1.STUDENT.ALLQUESTIONFORTEST,
+            {
+                headers: {
+                    "TestId": props.selectTest.TestID,
+                    "CourseID": props.selectTest.CourseID,
+
+                }
+            }).then(res => {
+                props.setQuestionsTestbank(res.data)
+
+            }).catch(err => {
+                console.warn(err);
+            });
         instance.get(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE,
             {
                 headers: {
@@ -34,27 +47,13 @@ function DoTest(props) {
             }).catch(err => {
                 console.warn(err);
             });
-        instance.get(API.V1.STUDENT.ALLQUESTIONFORTEST,
-            {
-                headers: {
-                    "TestId": props.selectTest.TestID,
-                    "CourseID": props.selectTest.CourseID,
-                    "StudentID": props.selectTest.CourseID
-                }
-            }).then(res => {
-                props.setQuestionsTestbank(res.data)
-
-            }).catch(err => {
-                console.warn(err);
-            });
-
     }, []);
 
     useEffect(() => {
         Object.entries(props.headers).map(([columnId, column], index) => {
             column.items.map((item, key) => {
                 item.questionList.map((question, name) => {
-                    if (part != 0) {
+                    if (part == 0) {
                         if (name >= parseInt(props.headers[columnId].items[key].numQuestion)) {
                             props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
                                 if (questionTestbank.questionID == question.questionID) {
@@ -66,19 +65,19 @@ function DoTest(props) {
                         else {
                             props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
                                 if (questionTestbank.questionID == question.questionID) {
-                                    console.log(question.questionID)
+
                                     setQuestionsInTest(questionsInTest => [...questionsInTest, props.questionsTestbank[questionTestbankId]])
                                 }
                             })
                         }
                     }
-                })
+                }
+                )
             })
-
-            props.setQuestionsTestbank([...props.questionsTestbank])
             setPart(index + 1)
-        })
 
+        })
+        props.setQuestionsTestbank([...props.questionsTestbank])
     }, [props.headers]);
     const [questionsInTest, setQuestionsInTest] = useState([])
     const [part, setPart] = useState(0)
@@ -107,18 +106,18 @@ function DoTest(props) {
     const onChangeChoice = (e, index, questionTestbankId) => {
         questionsInTest[questionTestbankId].choice[index].answer = e.toString()
         setQuestionsInTest([...questionsInTest])
-        //update()
+        update()
     }
     const onChangeShortAnswer = (e, questionTestbankId) => {
 
         questionsInTest[questionTestbankId].choice[0].answer = e
         setQuestionsInTest([...questionsInTest])
-        //update()
+        update()
     }
     const onChangeWriteup = (e, questionTestbankId) => {
         questionsInTest[questionTestbankId].choice[0].answer = e
         setQuestionsInTest([...questionsInTest])
-        //update()
+        update()
     }
     const saveAll = () => {
         instance.post(API.V1.STUDENT.SUBMIT, questionsInTest,
@@ -217,7 +216,7 @@ function DoTest(props) {
                                                                                 )}
                                                                                 {questionTestbank.type === "Write-up" && (
 
-                                                                                    <TextArea value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value, questionTestbankId)} rows={4}>
+                                                                                    <TextArea style={{fontSize:25}} value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value, questionTestbankId)} rows={4}>
 
                                                                                     </TextArea>
                                                                                 )}

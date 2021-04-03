@@ -45,8 +45,8 @@ function Score(props) {
                         <Button type="primary" htmlType="submit" className="login-form-button" style={{ fontSize: 30, background: '#989898', color: '#FFFFFF', width: 1400, height: 126, marginTop: 30, textAlign: 'left' }}>
 
                           <Row>
-                            <Col span={10}>{data.topic} </Col>
-                            <Col span={14}>Score : {data.totalScore}</Col>
+                            <Col span={24}>{data.topic} </Col>
+                            <Col span={24}>Score : {data.totalScore}</Col>
                           </Row>
                         </Button>
                       </Col>
