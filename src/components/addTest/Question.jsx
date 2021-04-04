@@ -33,12 +33,12 @@ function Question(props) {
     props.setGroups({ ...props.groups });
   };
   useEffect(() => {
-    props.groups.maxQuestion=props.groups.questionList.length.toString()
+    props.groups.maxQuestion = props.groups.questionList.length.toString()
     props.setGroups({ ...props.groups })
   }, []);
   useEffect(() => {
 
-    for (const [items,name ] of Object.entries(props.headers)) {
+    for (const [items, name] of Object.entries(props.headers)) {
       for (const [columnId, column] of Object.entries(props.headers[items].items)) {
         if (props.groups.id === props.headers[items].items[columnId].id) {
           props.headers[items].items[columnId] = props.groups
@@ -52,22 +52,26 @@ function Question(props) {
     let temp = props.groups
     let id = uuid()
     temp.questionList.push({ "questionID": id, "question": "Please edit this question before save" })
-    props.questionsTestbank.push({ "groupID":props.groups.id ,"questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice": 
-    [{"check": "false",
-    "choiceID":  uuid(),
-    "data": "",
-    "imageLink": [],
-    "questionID": ""}] })
+    props.questionsTestbank.push({
+      "groupID": props.groups.id, "questionID": id, "question": "Please edit this question before save", "type": "", "data": "", "choice":
+        [{
+          "check": "false",
+          "choiceID": uuid(),
+          "data": "",
+          "imageLink": [],
+          "questionID": ""
+        }]
+    })
     props.setQuestionsTestbank(props.questionsTestbank)
-    temp.maxQuestion=temp.questionList.length.toString()
+    temp.maxQuestion = temp.questionList.length.toString()
     props.setGroups({ ...temp })
   }
   const onClickdeletColumn = (index) => {
     let temp = props.groups
     //let select= temp[e].items[column]
     temp.questionList.splice(index, 1)
-    temp.maxQuestion=temp.questionList.length.toString()
-    props.setGroups({...temp })
+    temp.maxQuestion = temp.questionList.length.toString()
+    props.setGroups({ ...temp })
   }
 
   return (

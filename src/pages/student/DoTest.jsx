@@ -143,6 +143,7 @@ function DoTest(props) {
             //props.questionInfo[props.currentQuestion - 1].choice = choice;
             props.setQuestionInfo([...props.questionInfo])*/
             setUrl(newFileList.file.response.URL)
+            
         }
         if (newFileList.file.status === "removed") {
             /*props.questionInfo[props.currentQuestion - 1].choice[index].imageLink = []
