@@ -52,8 +52,8 @@ function ScoreQuestion(props) {
         }
 
     }, [props.scoreQuestion]);
-    const onChangeScore = (e) => {
-        props.scoreQuestion[0].score =e
+    const onChangeScore = (e,current) => {
+        props.scoreQuestion[current-1].score =e
         props.setScoreQuestion([... props.scoreQuestion])
     }
     const [loading, setLoading] = useState(false);
@@ -116,7 +116,7 @@ function ScoreQuestion(props) {
 
                             </Col>
                                 <Col span={1} style={{ fontSize: 30 }}>
-                                    <input value={props.scoreQuestion[current-1].score} onChange={e => onChangeScore(e.target.value)} style={{ marginTop: 10, height: 35, width: 35 }} />
+                                    <input value={props.scoreQuestion[current-1].score} onChange={e => onChangeScore(e.target.value,current)} style={{ marginTop: 10, height: 35, width: 35 }} />
 
                                 </Col>
                                 <Col span={1} style={{ fontSize: 30 }}>
