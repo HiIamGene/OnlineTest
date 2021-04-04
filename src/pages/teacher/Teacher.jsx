@@ -19,7 +19,7 @@ class Teacher extends React.Component {
     this.setState({ teacherID: value })
   }
   addTeacher() {
-    if (this.state.studentID) {
+    if (this.state.teacherID) {
       instance.post(API.V1.TEACHER.COURSE.ADDTEACHER, {
         'CourseCode': localStorage.getItem('courseCode'),
         "Username": this.state.teacherID
@@ -62,7 +62,7 @@ class Teacher extends React.Component {
                 /></div>
               </Col>
               <Col span={4} offset={2} >
-                <input placeholder="Teacher ID" style={{ marginLeft: 15, width: '100%', marginTop: 32 ,fontSize:20}} onChange={e => this.updateTeacherid(e.target.value)} ></input>
+                <input placeholder="Teacher Username" style={{ marginLeft: 15, width: '100%', marginTop: 32 ,fontSize:20}} onChange={e => this.updateTeacherid(e.target.value)} ></input>
               </Col>
               <Col span={1}  >
                 <Button onClick={()=>this.addTeacher()} type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', background: '#F43A09', color: '#FFFFFF', height: 40, marginTop: 30 }} >
