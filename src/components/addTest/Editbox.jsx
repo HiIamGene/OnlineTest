@@ -112,8 +112,8 @@ class MyUploadAdapter {
 
 }
 function Editbox(props) {
-  const token = { 'Authorization': localStorage.getItem('token') }
-  const [content, setContent] = useState("")
+  const token = { 'AuthosetContentrization': localStorage.getItem('token') }
+  const [content,setContent ] = useState("")
   const [loading, setLoading] = useState(true)
   /*useEffect(() => {
     console.log(choice)
@@ -265,7 +265,6 @@ function Editbox(props) {
     props.setQuestionInfo([...props.questionInfo])
   }
   const onChangeInput = (value, index) => {
-    console.log(props.questionInfo[props.currentQuestion - 1])
     props.questionInfo[props.currentQuestion - 1].choice[index].data = value
     //setChoice([...choice])
     //props.questionInfo[props.currentQuestion - 1].choice = choice;
@@ -312,10 +311,10 @@ function Editbox(props) {
                   return (
                     <Row gutter={16} type="flex" justify="space-around">
                       <Col span={12} style={{ marginTop: 20 }}>
-                        <Input defaultValue={item.data} onChange={e => onChangeInput(e.target.value, index)}></Input>
+                        <Input value={item.data} onChange={e => onChangeInput(e.target.value, index)}></Input>
                       </Col>
                       <Col span={1} style={{ marginTop: 20 }} >
-                        <Checkbox defaultChecked={(item.check === 'true')} onChange={e => onChangeUpdateCheckbox(e.target.checked, index)}></Checkbox>
+                        <Checkbox checked={(item.check === 'true')} onChange={e => onChangeUpdateCheckbox(e.target.checked, index)}></Checkbox>
                       </Col>
                       <Col span={3}>
                         <Upload

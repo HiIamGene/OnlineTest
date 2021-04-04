@@ -93,6 +93,8 @@ function ScoreQuestion(props) {
 
                         <Head history={props.history} />
                         {loading ?
+                        <>
+                          {props.scoreQuestion[current-1].type === "Write-up" && (
                             <Row gutter={16} type="flex" justify="space-around">
                                 <Col span={19} offset={2}>
                                     <div style={{ fontSize: 40, fontWeight: 'bold', display: "inline-block" }}>{props.test.topic} - <Select value= { props.student.studentID} style={{fontSize:30}}>{children}</Select></div>
@@ -134,7 +136,52 @@ function ScoreQuestion(props) {
                                         <div style={{ fontSize: 30 }}>Save</div>
                                     </Button>
                                 </Col>
-                            </Row>
+                            </Row>)}
+                            {props.scoreQuestion[current-1].type === "Upload Answer" && (
+                            <Row gutter={16} type="flex" justify="space-around">
+                                <Col span={19} offset={2}>
+                                    <div style={{ fontSize: 40, fontWeight: 'bold', display: "inline-block" }}>{props.test.topic} - <Select value= { props.student.studentID} style={{fontSize:30}}>{children}</Select></div>
+                                </Col>
+
+                                <Col span={2} ></Col>
+                                <Col span={21} offset={2}>
+                                    <div style={{ fontSize: 30 }}>     
+                                    <p dangerouslySetInnerHTML={{
+                                            __html: props.scoreQuestion[current-1].data
+                                        }} />   </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <a href={props.scoreQuestion[current-1].answer}>{props.scoreQuestion[current-1].answer}</a>
+                               
+
+                                </Col>
+                                <Col span={24} style={{ height: 300 }}></Col>
+                                <Col span={2} offset={19} style={{ fontSize: 30 }}>
+                                    Score
+
+                            </Col>
+                                <Col span={1} style={{ fontSize: 30 }}>
+                                    <input value={props.scoreQuestion[current-1].score} onChange={e => onChangeScore(e.target.value,current)} style={{ marginTop: 10, height: 35, width: 35 }} />
+
+                                </Col>
+                                <Col span={1} style={{ fontSize: 30 }}>
+                                    /{props.scoreQuestion[current-1].maxscore}
+
+                                </Col>
+                                <Col span={1}></Col>
+                                <Col span={5}>
+                                    <Pagination current={current} onChange={onChange} total={props.scoreQuestion.length*10} />
+                                </Col>
+                                <Col span={6} offset={18}>
+
+
+                                    <Button onClick={()=>onSave()} type="primary" htmlType="submit" className="login-form-button" style={{ background: '#F43A09', color: '#FFFFFF', width: 300, height: 70, marginTop: 30 }} >
+                                        <div style={{ fontSize: 30 }}>Save</div>
+                                    </Button>
+                                </Col>
+                            </Row>)}
+                            </>
                             :
 
                             <Empty style={{

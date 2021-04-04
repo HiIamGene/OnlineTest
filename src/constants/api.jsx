@@ -39,7 +39,7 @@ export default {
                 EDITANNOUNCE:'/editannouncement',
                 GETSTUDENT:'/getstudentincourse',
                 ADDSTUDENT:'/addstudent',
-                ADDSTUDENTFILE:'/addstudentbyfile',
+                ADDSTUDENTFILE:API_DOMAIN_NAME+'/addstudentbyfile',
                 DELETESTUDENT:'/deletestudentincourse',
                 GETTEACHER:'/getteacherincourse',
                 ADDTEACHER:'/addteacher',
@@ -55,6 +55,10 @@ export default {
                     GROUPTESTLIST:"/testbankupdate ", //check
                     ALLQUESTIONINTESTBANK:"/updateallquestionintest",
                     TESTBANKUPDATE:"/testbankupdate "
+                },
+                SCORE:{
+                    GETSCORE:'/getallstudentscore',
+                    GETCV:'/getstatisticvalue'
                 }               
             },
             TESTBANK:{
