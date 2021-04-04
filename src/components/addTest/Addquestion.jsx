@@ -138,7 +138,7 @@ function Addquestion(props) {
           </Col>
           <Col span={2} ></Col>
           <Col span={14} offset={10} >
-            <Pagination simple defaultCurrent={props.currentQuestion} onChange={onChangeQues} total={props.maxQuestion * 10} hideOnSinglePage={true} />
+            <Pagination simple current={props.currentQuestion} onChange={onChangeQues} total={props.maxQuestion * 10} hideOnSinglePage={true} />
           </Col>
         </Row>
         :

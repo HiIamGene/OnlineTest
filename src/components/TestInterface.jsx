@@ -32,7 +32,7 @@ function TestInterface(props) {
         })
     }, []);
     const handleOk = () => {
-        props.setSelectTest(selectTest)
+        props.setSelectTest({...selectTest})
         history.push(`/Student/DoTest`)
     };
     const handleOpen = (item) => {

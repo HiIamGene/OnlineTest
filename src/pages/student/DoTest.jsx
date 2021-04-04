@@ -22,12 +22,23 @@ const mapDispatchToProps = dispatch => {
     };
 }
 function DoTest(props) {
+    const[number, setNumber] = useState(0)
     const [newHeader, setnewHeader] = useState({})
     const [questionsInTest, setQuestionsInTest] = useState([])
     const [part, setPart] = useState(0)
     const [current, setCurrent] = useState(0);
-    const [url, setUrl] = useState("");
     useEffect(() => {
+        instance.get(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE,
+            {
+                headers: {
+                    "TestId": props.selectTest.TestID,
+                    "CourseID": props.selectTest.CourseID,
+                }
+            }).then(res => {
+                props.setStateHeaders({ ...res.data })
+            }).catch(err => {
+                console.warn(err);
+            });
         instance.get(API.V1.STUDENT.ALLQUESTIONFORTEST,
             {
                 headers: {
@@ -40,21 +51,10 @@ function DoTest(props) {
             }).catch(err => {
                 console.warn(err);
             });
-        instance.get(API.V1.TEACHER.COURSE.TEST.GROUPSTESTLISTUPDATE,
-            {
-                headers: {
-                    "TestId": props.selectTest.TestID,
-                    "CourseID": props.selectTest.CourseID,
-                }
-            }).then(res => {
-                props.setStateHeaders({ ...res.data })
-            }).catch(err => {
-                console.warn(err);
-            });
             console.log("1")
     }, []);
     useEffect(() => {
-        Object.entries(newHeader).map(([columnId, column], index) => {
+        Object.entries(props.headers).map(([columnId, column], index) => {
             column.items.map((item, key) => {
                 num = props.headers[columnId].items[key].questionList.length
                 while (num > parseInt(props.headers[columnId].items[key].numQuestion)) {
@@ -65,20 +65,21 @@ function DoTest(props) {
 
         })
         setnewHeader({ ...props.headers })
+        setQuestionsInTest([])
         console.log("2")
-    }, []);
+        console.log(props.questionsTestbank)
+    }, [props.headers]);
     let num = 0;
     useEffect(() => {
-        Object.entries(props.headers).map(([columnId, column], index) => {
+        Object.entries(newHeader).map(([columnId, column], index) => {
             column.items.map((item, key) => {
                 item.questionList.map((question, name) => {
                     props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
                         if (questionTestbank.questionID == question.questionID) {
                             setQuestionsInTest(questionsInTest => [...questionsInTest, props.questionsTestbank[questionTestbankId]])
+                            console.log("add")
                         }
                     })
-
-
                 }
                 )
             })
@@ -86,7 +87,7 @@ function DoTest(props) {
         })
         console.log("3")
 
-    }, []);
+    }, [newHeader]);
     const next = () => {
         setCurrent(current + 1);
     };
@@ -110,18 +111,18 @@ function DoTest(props) {
     const onChangeChoice = (e, index, questionTestbankId) => {
         questionsInTest[questionTestbankId].choice[index].answer = e.toString()
         setQuestionsInTest([...questionsInTest])
-        //update()
+        update()
     }
     const onChangeShortAnswer = (e, questionTestbankId) => {
 
         questionsInTest[questionTestbankId].choice[0].answer = e
         setQuestionsInTest([...questionsInTest])
-        //update()
+        update()
     }
     const onChangeWriteup = (e, questionTestbankId) => {
         questionsInTest[questionTestbankId].choice[0].answer = e
         setQuestionsInTest([...questionsInTest])
-        //update()
+        update()
     }
     const saveAll = () => {
         instance.post(API.V1.STUDENT.SUBMIT, questionsInTest,
@@ -138,14 +139,14 @@ function DoTest(props) {
         history.push(`/`)
         message.success('Processing complete!')
     }
-    const onhandleChange = (newFileList, index) => {
+    const onhandleChange = (newFileList, questionTestbankId) => {
         if (newFileList.file.status === "done") {
             /*props.questionInfo[props.currentQuestion - 1].choice[index].imageLink = [{ uid: '-1', url: newFileList.file.response.URL }]
             //setChoice([...choice])
             //props.questionInfo[props.currentQuestion - 1].choice = choice;
             props.setQuestionInfo([...props.questionInfo])*/
-            setUrl(newFileList.file.response.URL)
-            
+            questionsInTest[questionTestbankId].choice[0].answer = newFileList.file.response.URL
+            setQuestionsInTest([...questionsInTest])
         }
         if (newFileList.file.status === "removed") {
             /*props.questionInfo[props.currentQuestion - 1].choice[index].imageLink = []
@@ -201,7 +202,7 @@ function DoTest(props) {
                                                                                                         <div>
                                                                                                             <Image
                                                                                                                 width={200}
-                                                                                                                src={choice.imageLink[0].url}
+                                                                                                                src={choice.imageLink[index].url}
                                                                                                             />
                                                                                                         </div>
                                                                                                     )
@@ -229,15 +230,14 @@ function DoTest(props) {
                                                                                     <div>
                                                                                         <Upload
                                                                                             action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
-                                                                                           // fileList={item.imageLink}
-                                                                                            onChange={e => onhandleChange(e, index)}
+                                                                                            defaultFileList={[]}
+                                                                                            onChange={e => onhandleChange(e, questionTestbankId)}
                                                                                             name="myFile"
                                                                                             maxCount={1}
                                                                                         >
                                                                                             <Button icon={<UploadOutlined />}>Upload</Button>
-
                                                                                         </Upload>
-                                                                                        <a href={url}>{url}</a>
+
                                                                                     </div>
 
                                                                                 )}
