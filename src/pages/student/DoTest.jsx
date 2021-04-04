@@ -22,6 +22,11 @@ const mapDispatchToProps = dispatch => {
     };
 }
 function DoTest(props) {
+    const [newHeader, setnewHeader] = useState({})
+    const [questionsInTest, setQuestionsInTest] = useState([])
+    const [part, setPart] = useState(0)
+    const [current, setCurrent] = useState(0);
+    const [url, setUrl] = useState("");
     useEffect(() => {
         instance.get(API.V1.STUDENT.ALLQUESTIONFORTEST,
             {
@@ -31,8 +36,7 @@ function DoTest(props) {
 
                 }
             }).then(res => {
-                props.setQuestionsTestbank(res.data)
-
+                props.setQuestionsTestbank([...res.data])
             }).catch(err => {
                 console.warn(err);
             });
@@ -43,58 +47,51 @@ function DoTest(props) {
                     "CourseID": props.selectTest.CourseID,
                 }
             }).then(res => {
-                props.setStateHeaders(res.data)
+                props.setStateHeaders({ ...res.data })
             }).catch(err => {
                 console.warn(err);
             });
-    }, []);
 
+    }, []);
+    let num = 0;
     useEffect(() => {
+        setQuestionsInTest([])
         Object.entries(props.headers).map(([columnId, column], index) => {
             column.items.map((item, key) => {
                 item.questionList.map((question, name) => {
-                    if (part == 0) {
-                        if (name >= parseInt(props.headers[columnId].items[key].numQuestion)) {
-                            props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
-                                if (questionTestbank.questionID == question.questionID) {
 
-                                    props.questionsTestbank.slice(questionTestbankId, 1)
-                                }
-                            })
+                    props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
+                        if (questionTestbank.questionID == question.questionID) {
+                            setQuestionsInTest(questionsInTest => [...questionsInTest, props.questionsTestbank[questionTestbankId]])
                         }
-                        else {
-                            props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
-                                if (questionTestbank.questionID == question.questionID) {
+                    })
 
-                                    setQuestionsInTest(questionsInTest => [...questionsInTest, props.questionsTestbank[questionTestbankId]])
-                                }
-                            })
-                        }
-                    }
+
                 }
                 )
             })
             setPart(index + 1)
+        })
+        
+    }, [newHeader]);
+    useEffect(() => {
+        Object.entries(newHeader).map(([columnId, column], index) => {
+            column.items.map((item, key) => {
+                num = props.headers[columnId].items[key].questionList.length
+                while (num > parseInt(props.headers[columnId].items[key].numQuestion)) {
+                    props.headers[columnId].items[key].questionList.splice(Math.floor(Math.random() * num), 1)
+                    num = num - 1
+                }
+            })
 
         })
-        props.setQuestionsTestbank([...props.questionsTestbank])
+        setnewHeader({ ...props.headers })
+
     }, [props.headers]);
-    /*useEffect(() => {
-        
-        Object.entries(props.headers).map(([columnId, column], index) => {
-            column.items.map((item, key) => {
-                while (props.headers[columnId].items[key].questionList.length >parseInt(props.headers[columnId].items[key].numQuestion)){
-                        props.headers[columnId].items[key].questionList.slice(Math.floor(Math.random() * item.questionList.length), 1)  
-                        props.setStateHeaders({...props.headers})   
-                    }
-            })
-        })
-        console.log(props.headers)
-    }, [props.questionsTestbank]);*/
-    const [questionsInTest, setQuestionsInTest] = useState([])
-    const [part, setPart] = useState(0)
-    const [current, setCurrent] = useState(0);
-    const [url, setUrl] = useState("");
+
+
+
+
     const next = () => {
         setCurrent(current + 1);
     };
@@ -163,7 +160,7 @@ function DoTest(props) {
         <Layout>
             <div style={{ justifyContent: "center", height: "100%", width: "100%" }}>
                 <div>
-                    {Object.entries(props.headers).map(([columnId, column], index) => {
+                    {Object.entries(newHeader).map(([columnId, column], index) => {
                         if (index === current) {
                             return (
                                 <div>
@@ -236,7 +233,7 @@ function DoTest(props) {
                                                                                     <div>
                                                                                         <Upload
                                                                                             action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
-                                                                                            fileList={item.imageLink}
+                                                                                           // fileList={item.imageLink}
                                                                                             onChange={e => onhandleChange(e, index)}
                                                                                             name="myFile"
                                                                                             maxCount={1}
