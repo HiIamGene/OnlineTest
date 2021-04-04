@@ -52,7 +52,6 @@ class UserInfo extends React.Component {
     instance.post(API.V1.TEACHER.INFO.GETINFO, {
     }, {
     }).then(res => {
-      console.log(res.data)
       this.setState({ firstname: res.data.Firstname })
       this.setState({ surname: res.data.Surname })
       this.setState({ email: res.data.Email })

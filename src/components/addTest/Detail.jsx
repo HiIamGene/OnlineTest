@@ -76,7 +76,7 @@ function Detail(props) {
         <div style={{ fontSize: 30, fontWeight: "bold", display: "block" }} >
           Time start :
                   <br />
-          <TimePicker format="h:mm" style={{ width: 850 }} value={moment(props.detail.Timestart, 'h:mm')} onChange={(e,timeString)=>updateTimeStart(e,timeString)}/>
+          <TimePicker format='HH:mm' style={{ width: 850 }} value={moment(props.detail.Timestart, 'HH:mm')} onChange={(e,timeString)=>updateTimeStart(e,timeString)}/>
         </div>
       </Col>
     </Row>

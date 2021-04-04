@@ -71,12 +71,7 @@ function Question(props) {
     //let select= temp[e].items[column]
     temp.questionList.splice(index, 1)
     temp.maxQuestion = temp.questionList.length.toString()
-    props.setGroups({ ...temp })
-  }
-
-  return (
-
-    <Row gutter={16} type="flex" justify="space-around">
+    props.setGroups({ ...temp gustify="space-around">
       <Col span={22} offset={2}>
         <div style={{ fontSize: 50, fontWeight: 'bold' }}>{props.groups.groupName}</div>
       </Col>
