@@ -51,6 +51,7 @@ function DoTest(props) {
             }).catch(err => {
                 console.warn(err);
             });
+            console.log("1")
     }, []);
     useEffect(() => {
         Object.entries(newHeader).map(([columnId, column], index) => {
@@ -64,7 +65,7 @@ function DoTest(props) {
 
         })
         setnewHeader({ ...props.headers })
-
+        console.log("2")
     }, []);
     let num = 0;
     useEffect(() => {
@@ -83,8 +84,9 @@ function DoTest(props) {
             })
             setPart(index + 1)
         })
+        console.log("3")
 
-    }, [   ]);
+    }, []);
     const next = () => {
         setCurrent(current + 1);
     };
