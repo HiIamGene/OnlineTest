@@ -51,29 +51,7 @@ function DoTest(props) {
             }).catch(err => {
                 console.warn(err);
             });
-
     }, []);
-    let num = 0;
-    useEffect(() => {
-        setQuestionsInTest([])
-        Object.entries(props.headers).map(([columnId, column], index) => {
-            column.items.map((item, key) => {
-                item.questionList.map((question, name) => {
-
-                    props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
-                        if (questionTestbank.questionID == question.questionID) {
-                            setQuestionsInTest(questionsInTest => [...questionsInTest, props.questionsTestbank[questionTestbankId]])
-                        }
-                    })
-
-
-                }
-                )
-            })
-            setPart(index + 1)
-        })
-        
-    }, [newHeader]);
     useEffect(() => {
         Object.entries(newHeader).map(([columnId, column], index) => {
             column.items.map((item, key) => {
@@ -87,11 +65,26 @@ function DoTest(props) {
         })
         setnewHeader({ ...props.headers })
 
-    }, [props.headers]);
+    }, []);
+    let num = 0;
+    useEffect(() => {
+        Object.entries(props.headers).map(([columnId, column], index) => {
+            column.items.map((item, key) => {
+                item.questionList.map((question, name) => {
+                    props.questionsTestbank.map((questionTestbank, questionTestbankId) => {
+                        if (questionTestbank.questionID == question.questionID) {
+                            setQuestionsInTest(questionsInTest => [...questionsInTest, props.questionsTestbank[questionTestbankId]])
+                        }
+                    })
 
 
+                }
+                )
+            })
+            setPart(index + 1)
+        })
 
-
+    }, [   ]);
     const next = () => {
         setCurrent(current + 1);
     };
