@@ -354,7 +354,7 @@ function Editbox(props) {
                           <Col span={8} style={{ marginTop: 20 }}>
                             <Input value={item.data} onChange={e => onChangeInput(e.target.value, index)}></Input>
                           </Col>
-                          <Col span={3} style={{ maxHeight: 10 }}>
+                          <Col span={3}>
                             <Upload
                               action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
                               listType="picture-card"
@@ -371,7 +371,7 @@ function Editbox(props) {
                           <Col span={8} style={{ marginTop: 20 }}>
                             <Input value={props.questionInfo[props.currentQuestion - 1].choice[index + 1].data} onChange={e => onChangeInput(e.target.value, index + 1)}></Input>
                           </Col>
-                          <Col span={3} style={{ maxHeight: 10 }}>
+                          <Col span={3} >
                             <Upload
                               action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
                               listType="picture-card"

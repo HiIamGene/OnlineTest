@@ -152,7 +152,7 @@ function ScoreQuestion(props) {
                                     <br />
                                     <br />
                                     <br />
-                                    <a href={props.scoreQuestion[current-1].answer}>{props.scoreQuestion[current-1].answer}</a>
+                                    <a style={{ fontSize: 25 }} href={props.scoreQuestion[current-1].answer}>{props.scoreQuestion[current-1].answer}</a>
                                
 
                                 </Col>

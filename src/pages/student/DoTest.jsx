@@ -22,7 +22,8 @@ const mapDispatchToProps = dispatch => {
     };
 }
 function DoTest(props) {
-    const[number, setNumber] = useState(0)
+    const [loading, setLoading] = useState(false)
+    const [number, setNumber] = useState(0)
     const [newHeader, setnewHeader] = useState({})
     const [questionsInTest, setQuestionsInTest] = useState([])
     const [part, setPart] = useState(0)
@@ -51,7 +52,7 @@ function DoTest(props) {
             }).catch(err => {
                 console.warn(err);
             });
-            console.log("1")
+        setLoading(true)
     }, []);
     useEffect(() => {
         Object.entries(props.headers).map(([columnId, column], index) => {
@@ -66,11 +67,10 @@ function DoTest(props) {
         })
         setnewHeader({ ...props.headers })
         setQuestionsInTest([])
-        console.log("2")
-        console.log(props.questionsTestbank)
     }, [props.headers]);
     let num = 0;
     useEffect(() => {
+
         Object.entries(newHeader).map(([columnId, column], index) => {
             column.items.map((item, key) => {
                 item.questionList.map((question, name) => {
@@ -85,8 +85,8 @@ function DoTest(props) {
             })
             setPart(index + 1)
         })
-        console.log("3")
-
+        console.log(props.questionsTestbank)
+        console.log(newHeader)
     }, [newHeader]);
     const next = () => {
         setCurrent(current + 1);
@@ -154,135 +154,140 @@ function DoTest(props) {
         }
     }
     return (
-        <Layout>
-            <div style={{ justifyContent: "center", height: "100%", width: "100%" }}>
-                <div>
-                    {Object.entries(newHeader).map(([columnId, column], index) => {
-                        if (index === current) {
-                            return (
-                                <div>
-                                    <div style={{ marginTop: 30, background: "#FFB766", width: "100%", fontWeight: 'bold', display: "inline-block" }}>
-                                        <div style={{ marginLeft: 30, color: "#ffffff", fontSize: 40 }}>{column.name}</div>
-                                    </div>
-                                    {column.items.map((item, key) => {
-                                        return (
-                                            <>
-                                                {item.questionList.map((question, name) => {
-                                                    return (
-                                                        <>
-                                                            {questionsInTest.map((questionTestbank, questionTestbankId) => {
-                                                                return (
-                                                                    <div style={{ fontSize: 30, background: '#FFFFFF', margin: 30, textAlign: 'left' }}>
-                                                                        {questionTestbank.questionID === question.questionID && (
-                                                                            <div style={{ margin: 30 }}>
-                                                                                {name + 1}.
-                                                                                <span
-                                                                                    dangerouslySetInnerHTML={{
-                                                                                        __html: questionTestbank.data
-                                                                                    }} />
-                                                                                {questionTestbank.type === "Pair" && (
-                                                                                    <>
-                                                                                    </>
-                                                                                )}
-                                                                                {questionTestbank.type === "Choice" && (
+        <>
+            {loading ?
+                <Layout>
+                    <div style={{ justifyContent: "center", height: "100%", width: "100%" }}>
+                        <div>
+                            {Object.entries(newHeader).map(([columnId, column], index) => {
+                                if (index === current) {
+                                    return (
+                                        <div>
+                                            <div style={{ marginTop: 30, background: "#FFB766", width: "100%", fontWeight: 'bold', display: "inline-block" }}>
+                                                <div style={{ marginLeft: 30, color: "#ffffff", fontSize: 40 }}>{column.name}</div>
+                                            </div>
+                                            {column.items.map((item, key) => {
+                                                return (
+                                                    <>
+                                                        {item.questionList.map((question, name) => {
+                                                            return (
+                                                                <>
+                                                                    {questionsInTest.map((questionTestbank, questionTestbankId) => {
+                                                                        return (
+                                                                            <div style={{ fontSize: 30, background: '#FFFFFF', margin: 30, textAlign: 'left' }}>
+                                                                                {questionTestbank.questionID === question.questionID && (
+                                                                                    <div style={{ margin: 30 }}>
+                                                                                        {name + 1}.
+                                                                                        <span
+                                                                                            dangerouslySetInnerHTML={{
+                                                                                                __html: questionTestbank.data
+                                                                                            }} />
+                                                                                        {questionTestbank.type === "Pair" && (
+                                                                                            <>
+                                                                                            </>
+                                                                                        )}
+                                                                                        {questionTestbank.type === "Choice" && (
 
-                                                                                    <>
+                                                                                            <>
 
-                                                                                        {questionTestbank.choice.map((choice, index) => {
-                                                                                            return (
-                                                                                                <div>
-                                                                                                    <Checkbox
-                                                                                                        checked={(choice.answer == "true")}
-                                                                                                        onChange={e => onChangeChoice(e.target.checked, index, questionTestbankId)}
-                                                                                                        style={{ fontSize: 25 }}
-                                                                                                    >
-
-                                                                                                    </Checkbox>     {String.fromCharCode(index + 97)}.) {choice.data}
-                                                                                                    {choice.imageLink.length >= 1 && (
+                                                                                                {questionTestbank.choice.map((choice, index) => {
+                                                                                                    return (
                                                                                                         <div>
-                                                                                                            <Image
-                                                                                                                width={200}
-                                                                                                                src={choice.imageLink[index].url}
-                                                                                                            />
+                                                                                                            <Checkbox
+                                                                                                                checked={(choice.answer == "true") }
+                                                                                                                onChange={e => onChangeChoice(e.target.checked, index, questionTestbankId)}
+                                                                                                                style={{ fontSize: 25 }}
+                                                                                                            >
+
+                                                                                                            </Checkbox>     {String.fromCharCode(index + 97)}.) {choice.data}
+                                                                                                            {choice.imageLink.length >= 1 && (
+                                                                                                                <div>
+                                                                                                                    <Image
+                                                                                                                        width={200}
+                                                                                                                        src={choice.imageLink[index].url}
+                                                                                                                    />
+                                                                                                                </div>
+                                                                                                            )
+
+                                                                                                            }
+
                                                                                                         </div>
                                                                                                     )
+                                                                                                }
+                                                                                                )}                                                      </>
+                                                                                        )}
+                                                                                        {questionTestbank.type === "Short Answer" && (
 
-                                                                                                    }
+                                                                                            <Input value={questionTestbank.choice[0].answer} onChange={e => onChangeShortAnswer(e.target.value, questionTestbankId)} style={{ fontSize: 30, width: 800 }} placeholder="Your answer">
 
-                                                                                                </div>
-                                                                                            )
-                                                                                        }
-                                                                                        )}                                                      </>
-                                                                                )}
-                                                                                {questionTestbank.type === "Short Answer" && (
+                                                                                            </Input>
+                                                                                        )}
+                                                                                        {questionTestbank.type === "Write-up" && (
 
-                                                                                    <Input value={questionTestbank.choice[0].answer} onChange={e => onChangeShortAnswer(e.target.value, questionTestbankId)} style={{ fontSize: 30, width: 800 }} placeholder="Your answer">
+                                                                                            <TextArea style={{ fontSize: 25 }} value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value, questionTestbankId)} rows={4}>
 
-                                                                                    </Input>
-                                                                                )}
-                                                                                {questionTestbank.type === "Write-up" && (
+                                                                                            </TextArea>
+                                                                                        )}
+                                                                                        {questionTestbank.type === "Upload Answer" && (
+                                                                                            <div>
+                                                                                                <Upload
+                                                                                                    action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
+                                                                                                    defaultFileList={[]}
+                                                                                                    onChange={e => onhandleChange(e, questionTestbankId)}
+                                                                                                    name="myFile"
+                                                                                                    maxCount={1}
+                                                                                                >
+                                                                                                    <Button icon={<UploadOutlined />}>Upload</Button>
+                                                                                                </Upload>
 
-                                                                                    <TextArea style={{ fontSize: 25 }} value={questionTestbank.choice[0].answer} onChange={e => onChangeWriteup(e.target.value, questionTestbankId)} rows={4}>
+                                                                                            </div>
 
-                                                                                    </TextArea>
-                                                                                )}
-                                                                                {questionTestbank.type === "Upload Answer" && (
-                                                                                    <div>
-                                                                                        <Upload
-                                                                                            action={API.V1.TEACHER.COURSE.TEST.UPLOADPIC}
-                                                                                            defaultFileList={[]}
-                                                                                            onChange={e => onhandleChange(e, questionTestbankId)}
-                                                                                            name="myFile"
-                                                                                            maxCount={1}
-                                                                                        >
-                                                                                            <Button icon={<UploadOutlined />}>Upload</Button>
-                                                                                        </Upload>
+                                                                                        )}
 
                                                                                     </div>
-
-                                                                                )}
-
+                                                                                )
+                                                                                }
                                                                             </div>
                                                                         )
-                                                                        }
-                                                                    </div>
-                                                                )
-                                                            })}
-                                                        </>
-                                                    )
-                                                })}
-                                            </>
-                                        )
-                                    })}
+                                                                    })}
+                                                                </>
+                                                            )
+                                                        })}
+                                                    </>
+                                                )
+                                            })}
 
-                                </div>)
-                        }
+                                        </div>)
+                                }
 
-                    })}
-                </div>
-                <div style={{ marginLeft: 20, marginTop: 100 }}>
-                    {current > 0 && (
-                        <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => prev()}>
-                            Previous
-                        </Button>
-                    )}
-                    {current < part - 1 && (
-                        <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => next()}>
-                            Next
-                        </Button>
-                    )}
-                    {current === part - 1 && (
-                        <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => saveAll()}>
-                            Done
-                        </Button>
-                    )}
+                            })}
+                        </div>
+                        <div style={{ marginLeft: 20, marginTop: 100 }}>
+                            {current > 0 && (
+                                <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => prev()}>
+                                    Previous
+                                </Button>
+                            )}
+                            {current < part - 1 && (
+                                <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => next()}>
+                                    Next
+                                </Button>
+                            )}
+                            {current === part - 1 && (
+                                <Button type="primary" style={{ height: 60, width: 150, margin: '0 8px', fontSize: 20 }} onClick={() => saveAll()}>
+                                    Done
+                                </Button>
+                            )}
 
-                </div>
-                <div style={{ height: 100 }}>
+                        </div>
+                        <div style={{ height: 100 }}>
 
-                </div>
-            </div >
-        </Layout>
+                        </div>
+                    </div >
+                </Layout>
+                : <></>
+            }
+        </>
     )
 }
 
